@@ -18,7 +18,7 @@ export default function Navbar() {
       <div
         className={`justify-between z-10 py-5 px-3 sm:px-6 md:px-9 md:py-5 md:flex lg:px-[6.5rem]`}
       >
-        <div className="text-2xl flex items-center">
+        <div className="flex items-center">
           <img
             src={logoReproHealth}
             alt="logo"
@@ -45,7 +45,7 @@ export default function Navbar() {
         isOpen ? "top-20" : "top-[-300px] hidden"
       }`}
         >
-          <li className="text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
             <a
               href="/#"
               className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
@@ -53,7 +53,7 @@ export default function Navbar() {
               Home {isOpen}
             </a>
           </li>
-          <li className="text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
             <a
               href="/#"
               className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
@@ -61,7 +61,7 @@ export default function Navbar() {
               About Us
             </a>
           </li>
-          <li className="text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
             <a
               href="/#"
               className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
@@ -69,7 +69,7 @@ export default function Navbar() {
               Service
             </a>
           </li>
-          <li className="text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
             <a
               href="/#"
               className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
@@ -77,7 +77,7 @@ export default function Navbar() {
               Benefit
             </a>
           </li>
-          <li className="text-md text-grey-10 md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="text-sm md:text-md text-grey-10 md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
             <Button text="Download" />
           </li>
         </ul>
