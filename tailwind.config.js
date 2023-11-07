@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      body: ["Poppins", "sans-serif"],
+      sans: ["Poppins", "sans-serif"],
     },
     colors: {
       "green-900": "#0a5344",
@@ -18,7 +18,7 @@ export default {
       "green-100": "#b7ede2",
       "green-50": "#e8f9f6",
 
-      "grey-10": "#FBFBF",
+      "grey-10": "#FBFBFB",
       "grey-50": "#e9e9e9",
       "grey-100": "#b9b9b9",
       "grey-200": "#989898",
