@@ -14,9 +14,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-green-50 sticky z-50 top-0 left-0">
+    <nav className="w-full bg-green-50 sticky z-50 top-0 left-0 md:static">
       <div
-        className={`justify-between z-10 py-5 px-3 sm:px-6 md:px-9 md:py-3 md:flex lg:px-[6.5rem]`}
+        className={`justify-between z-10 py-5 px-3 sm:px-6 md:px-9 md:py-5 md:flex lg:px-[6.5rem]`}
       >
         <div className="text-2xl flex items-center">
           <img
@@ -29,12 +29,12 @@ export default function Navbar() {
         <div>
           {isOpen ? (
             <IoCloseSharp
-              className="text-white text-lg absolute right-8 top-6 cursor-pointer md:hidden"
+              className="text-grey-900 text-lg absolute right-8 top-6 cursor-pointer md:hidden"
               onClick={handleOpen}
             />
           ) : (
             <GiHamburgerMenu
-              className="text-white text-lg absolute right-8 top-6 cursor-pointer md:hidden"
+              className="text-grey-900 text-lg absolute right-8 top-6 cursor-pointer md:hidden"
               onClick={handleOpen}
             />
           )}
