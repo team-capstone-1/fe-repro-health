@@ -3,3 +3,167 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Container  */
+.container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+@media (min-width: 476px) {
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+@media (min-width: 476px) {
+  .container {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 720px;
+    max-width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 960px;
+    max-width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+    max-width: 100%;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    width: 1340px;
+    max-width: 100%;
+  }
+}
+
+h1 {
+  font-size: 48px;
+  line-height: normal;
+  font-weight: 700;
+}
+h2 {
+  font-size: 40px;
+  line-height: normal;
+  font-weight: 700;
+}
+h3 {
+  font-size: 32px;
+  line-height: normal;
+  font-weight: 600;
+}
+h4 {
+  font-size: 24px;
+  line-height: normal;
+  font-weight: 600;
+}
+h5 {
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 500;
+}
+h6 {
+  font-size: 14px;
+  line-height: normal;
+  font-weight: 400;
+}
+p {
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 400;
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+}

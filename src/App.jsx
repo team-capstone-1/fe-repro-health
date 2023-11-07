@@ -1,4 +1,4 @@
-import logo from "/vite.svg";
+import SetupRoutes from "./routers";
 import Navbar from "@/components/layout-components/navbar";
 
 function App() {
@@ -6,8 +6,16 @@ function App() {
     <>
       <main className="font-body">
         <Navbar />
-        <h1 className="text-positive">Vite + React</h1>
-        <img src={logo} alt="" />
+        <SetupRoutes />
+        <div className="container">
+          <h1>Frequently Ask Question</h1>
+          <h2>Frequently Ask Question</h2>
+          <h3>Frequently Ask Question</h3>
+          <h4>Frequently Ask Question</h4>
+          <h5>Frequently Ask Question</h5>
+          <h6>Frequently Ask Question</h6>
+          <p>Frequently Ask Question</p>
+        </div>
       </main>
     </>
   );
