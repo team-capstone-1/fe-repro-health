@@ -1,5 +1,5 @@
 import logo from "/vite.svg";
-import Navbar from "./components/layout-components/navbar";
+import Navbar from "@/components/layout-components/navbar";
 
 function App() {
   return (
