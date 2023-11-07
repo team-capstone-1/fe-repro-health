@@ -9,14 +9,13 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
-    if (!isOpen) setIsOpen(true);
-    else setIsOpen(false);
+    setIsOpen((prev) => !prev);
   };
 
   return (
     <nav className="w-full bg-green-50 sticky z-50 top-0 left-0 md:static">
       <div
-        className={`justify-between z-10 py-5 px-3 sm:px-6 md:px-9 md:py-5 md:flex lg:px-[6.5rem]`}
+        className={`justify-between z-10 py-5 px-2 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem] md:py-5 md:flex`}
       >
         <div className="flex items-center">
           <img
