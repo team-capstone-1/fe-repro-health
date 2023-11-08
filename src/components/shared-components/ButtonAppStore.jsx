@@ -3,7 +3,7 @@ import { AiFillApple } from "react-icons/ai";
 
 export default function ButtonAppStore() {
   return (
-    <button className="flex p-1 ps-2 pe-5 rounded-md text-white bg-black m-1">
+    <button className="flex p-1 ps-2 pe-5 rounded-md text-white bg-black hover:bg-opacity-95 m-1">
       <span className="text-4xl">
         <AiFillApple />
       </span>

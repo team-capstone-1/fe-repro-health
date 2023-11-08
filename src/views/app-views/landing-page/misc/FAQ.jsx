@@ -14,7 +14,9 @@ const items = [
     label: <p>Bagaimana cara melihat detail janji temu saya?</p>,
     children: (
       <>
-        <p className="mb-4">Ikuti langkah berikut untuk melihat detail janji temu kamu:</p>
+        <p className="mb-4">
+          Ikuti langkah berikut untuk melihat detail janji temu kamu:
+        </p>
         <p>1. Pilih &apos;Riwayat&apos; pada menu bagian bawah layar. </p>
         <p>2. Pilih janji temu untuk melihat detailnya.</p>
       </>
@@ -36,8 +38,8 @@ const items = [
     key: "5",
     label: (
       <p>
-        Saya ingin menghapus akun Halodoc yang terdaftar ke nomor ponsel saya yang hilang. Kemana
-        saya harus menghubungi?
+        Saya ingin menghapus akun Halodoc yang terdaftar ke nomor ponsel saya
+        yang hilang. Kemana saya harus menghubungi?
       </p>
     ),
   },
@@ -70,9 +72,12 @@ export default function Faq() {
               <div className="grid grid-cols-6">
                 <div className="col-span-4 md:col-span-6 lg:col-span-4 self-center">
                   <h4 className="text-green-900 font-semibold">
-                    Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh ReproHealth Sekarang
+                    Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh
+                    ReproHealth Sekarang
                   </h4>
-                  <p className="font-semibold">Tanggapan Cepat, Solusi Akurat!</p>
+                  <p className="font-semibold">
+                    Tanggapan Cepat, Solusi Akurat!
+                  </p>
                 </div>
                 <div className="col-span-2 md:col-span-6 lg:col-span-2 flex flex-wrap self-center place-content-center">
                   <ButtonGooglePlay />

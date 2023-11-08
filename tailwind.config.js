@@ -2,6 +2,13 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+    },
+
     container: {
       padding: {
         DEFAULT: "0.5rem",
@@ -56,6 +63,7 @@ export default {
     },
     backgroundImage: {
       "vector-header": 'url("./assets/vector.png")',
+      "vector-header-2": 'url("./assets/vector-2.png")',
       "ellipse-header": 'url("./assets/ellipse.svg")',
       "doctor-header": 'url("./assets/doctor.svg")',
     },

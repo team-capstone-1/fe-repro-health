@@ -9,7 +9,7 @@
 }
 
 .base-container {
-  @apply w-full px-2 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem];
+  @apply w-full px-2 sm:px-12 lg:px-[5.5rem] xl:px-32;
 }
 
 h1,

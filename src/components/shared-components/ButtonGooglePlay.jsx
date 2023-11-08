@@ -3,7 +3,7 @@ import logoGooglePlay from "@/assets/logo-google-play.png";
 
 export default function ButtonGooglePlay() {
   return (
-    <button className="flex p-1 px-3 rounded-md text-white bg-black m-1">
+    <button className="flex p-1 px-3 rounded-md text-white bg-black hover:bg-opacity-95 m-1">
       <span className="w-7 m-1">
         <img src={logoGooglePlay} alt="app-store" />
       </span>
