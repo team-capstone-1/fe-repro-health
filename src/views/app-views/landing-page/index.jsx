@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import doctorImg from "@/assets/doctor.svg";
 import ButtonGooglePlay from "@/components/shared-components/ButtonGooglePlay";
 import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
@@ -11,14 +11,11 @@ export default function LandingPage() {
         <div className="container static grid grid-cols-1 lg:grid-cols-2 h-[34.6rem]">
           <div className="pt-5 md:w-[40rem] md:pt-20 z-10">
             <h3 className="text-green-500">ReproHealth</h3>
-            <h1 className="text-green-900">
-              Partner Terpercaya untuk Kesehatan Reproduksi Anda
-            </h1>
+            <h1 className="text-green-900">Partner Terpercaya untuk Kesehatan Reproduksi Anda</h1>
             <div className="md:w-[36rem]">
-              <p className="mt-8 text-xl font-medium text-grey-400">
-                Dengan akses mudah, informasi terpercaya, dan konsultasi yang
-                nyaman, kami hadir untuk membantu Anda dalam mengakses layanan
-                kesehatan reproduksi.
+              <p className="mt-8 text-lg font-medium text-grey-400">
+                Dengan akses mudah, informasi terpercaya, dan konsultasi yang nyaman, kami hadir
+                untuk membantu Anda dalam mengakses layanan kesehatan reproduksi.
               </p>
             </div>
             <div className="flex mt-16 gap-2 md:gap-10">
@@ -32,11 +29,7 @@ export default function LandingPage() {
               className="hidden sm:block sm:absolute sm:right-0 sm:-bottom-0 w-[36rem] h-[38rem] 
             md:right-24 md:-bottom-0 lg:absolute lg:right-14 bg-doctor-header"
             ></div>
-            <img
-              src={doctorImg}
-              alt="doctor"
-              className="absolute right-2 -bottom-0 sm:hidden"
-            />
+            <img src={doctorImg} alt="doctor" className="absolute right-2 -bottom-0 sm:hidden" />
           </div>
         </div>
       </header>

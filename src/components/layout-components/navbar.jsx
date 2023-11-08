@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 import Button from "@/components/shared-components/button";
@@ -14,15 +15,11 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-green-50 sticky z-50 top-0 left-0 md:static">
-      <div
-        className={`justify-between z-10 py-5 px-2 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem] md:py-5 md:flex`}
-      >
+      <div className="justify-between z-10 py-5 base-container md:py-5 md:flex">
         <div className="flex items-center">
-          <img
-            src={logoReproHealth}
-            alt="logo"
-            className="w-32 sm:w-44 md:w-52 cursor-pointer"
-          />
+          <Link to="/">
+            <img src={logoReproHealth} alt="logo" className="w-32 sm:w-44 md:w-52 cursor-pointer" />
+          </Link>
         </div>
 
         <div>
@@ -45,34 +42,22 @@ export default function Navbar() {
       }`}
         >
           <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
-            <a
-              href="/#"
-              className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
-            >
+            <a href="/#" className="hover:text-green-500 ms-16 md:ms-0 duration-200">
               Home {isOpen}
             </a>
           </li>
           <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
-            <a
-              href="/#"
-              className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
-            >
+            <a href="/#" className="hover:text-green-500 ms-16 md:ms-0 duration-200">
               About Us
             </a>
           </li>
           <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
-            <a
-              href="/#"
-              className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
-            >
+            <a href="/#" className="hover:text-green-500 ms-16 md:ms-0 duration-200">
               Service
             </a>
           </li>
           <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
-            <a
-              href="/#"
-              className={`hover:text-green-500 ms-16 md:ms-0 duration-100`}
-            >
+            <a href="/#" className="hover:text-green-500 ms-16 md:ms-0 duration-200">
               Benefit
             </a>
           </li>
