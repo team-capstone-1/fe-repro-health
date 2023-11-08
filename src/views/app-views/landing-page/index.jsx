@@ -7,7 +7,8 @@ export default function LandingPage() {
   return (
     <>
       <header className="relative pt-8 h-[65rem] md:h-[68rem] lg:h-[45rem] bg-green-50">
-        <div className="container static grid grid-cols-1 lg:grid-cols-2 h-[34.6rem] bg-center bg-vector-header">
+        <div className="absolute w-full h-[34.6rem] bg-vector-header"></div>
+        <div className="container static grid grid-cols-1 lg:grid-cols-2 h-[34.6rem]">
           <div className="pt-5 md:w-[40rem] md:pt-20 z-10">
             <h3 className="text-green-500">ReproHealth</h3>
             <h1 className="text-green-900">
