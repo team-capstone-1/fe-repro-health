@@ -3,11 +3,11 @@ import doctorImg from "@/assets/doctor.svg";
 import ButtonGooglePlay from "@/components/shared-components/ButtonGooglePlay";
 import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
 import handPhone from "@/assets/handphone.png";
-import handPhoneSecond from "@/assets/handphone-2.png";
 import forumIcon from "@/assets/forum-icon.svg";
 import artikelIcon from "@/assets/artikel-icon.svg";
 import appointmentIcon from "@/assets/appointment-icon.svg";
 import doctorVector from "@/assets/doctor-vector.png";
+import BannerDownload from "@/components/shared-components/BannerDownload";
 
 import { AiOutlineCheck } from "react-icons/ai";
 import { GrLinkNext } from "react-icons/gr";
@@ -16,7 +16,7 @@ export default function LandingPage() {
   return (
     <>
       <header className="relative pt-8 h-[59rem] md:h-[68rem] lg:h-[45rem] bg-green-50">
-        <div className="absolute w-full bg-repeat-x h-[30rem]  bg-vector-header"></div>
+        <div className="absolute w-full bg-repeat-x h-[38rem] bg-vector-header"></div>
         <div className="px-2 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem] static grid grid-cols-1 lg:grid-cols-2 h-[34.6rem]">
           <div className="pt-5 md:w-[40rem] md:pt-20 z-10">
             <h3 className="text-green-500">ReproHealth</h3>
@@ -157,26 +157,7 @@ export default function LandingPage() {
         </div>
       </section>
       <section className="h-auto md:relative p-2 py-8 sm:px-12 lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]">
-        <div className="bg-green-50 w-auto h-auto lg:h-[13rem] bg-vector-header-2 sm:bg-no-repeat">
-          <div className="px-2 lg:ps-56 grid grid-cols-1 lg:grid-cols-2 lg:grid-flow-row-dense">
-            <div className="pt-12 w-auto lg:w-[30rem] xl:w-[33rem]">
-              <h2 className="text-2xl text-green-900">
-                Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh ReproHealth
-                Sekarang
-              </h2>
-              <h4 className="pt-2 text-xl text-grey-400">
-                Tanggapan Cepat, Solusi Akurat!
-              </h4>
-            </div>
-            <div className="flex justify-center gap-3 my-10 lg:grid lg:ms-36 lg:gap-3">
-              <ButtonAppStore />
-              <ButtonGooglePlay />
-            </div>
-          </div>
-          <div className="px-2 flex justify-center items-end lg:absolute lg:left-40 lg:bottom-8 lg:w-[10.62rem] lg:h-[14rem]">
-            <img src={handPhoneSecond} alt="handphoneSecondary" />
-          </div>
-        </div>
+        <BannerDownload />
       </section>
       <section className="base-container w-auto h-auto bg-green-100">
         <div className="py-[3.25rem] md:text-center">
@@ -195,9 +176,6 @@ export default function LandingPage() {
             </button>
           </div>
         </div>
-      </section>
-      <section className="base-container w-auto h-[16rem] bg-green-900">
-        footer
       </section>
     </>
   );
