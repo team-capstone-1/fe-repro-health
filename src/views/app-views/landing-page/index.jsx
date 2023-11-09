@@ -1,13 +1,13 @@
 // import React from "react";
-import doctorImg from "@/assets/doctor.svg";
 import ButtonGooglePlay from "@/components/shared-components/ButtonGooglePlay";
 import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
+import BannerDownload from "@/components/shared-components/BannerDownload";
+import doctorImg from "@/assets/doctor.svg";
 import handPhone from "@/assets/handphone.png";
 import forumIcon from "@/assets/forum-icon.svg";
 import artikelIcon from "@/assets/artikel-icon.svg";
 import appointmentIcon from "@/assets/appointment-icon.svg";
 import doctorVector from "@/assets/doctor-vector.png";
-import BannerDownload from "@/components/shared-components/BannerDownload";
 
 import { AiOutlineCheck } from "react-icons/ai";
 import { GrLinkNext } from "react-icons/gr";

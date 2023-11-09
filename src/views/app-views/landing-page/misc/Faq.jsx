@@ -2,7 +2,7 @@
 import { Collapse, Card, Row, Col } from "antd";
 import { MdOutlineEmail } from "react-icons/md";
 
-import Button from "@/components/shared-components/button";
+import Button from "@/components/shared-components/Button";
 import BannerDownload from "@/components/shared-components/BannerDownload";
 
 const items = [
@@ -11,7 +11,9 @@ const items = [
     label: <p>Bagaimana cara melihat detail janji temu saya?</p>,
     children: (
       <>
-        <p className="mb-4">Ikuti langkah berikut untuk melihat detail janji temu kamu:</p>
+        <p className="mb-4">
+          Ikuti langkah berikut untuk melihat detail janji temu kamu:
+        </p>
         <p>1. Pilih &apos;Riwayat&apos; pada menu bagian bawah layar. </p>
         <p>2. Pilih janji temu untuk melihat detailnya.</p>
       </>
@@ -33,8 +35,8 @@ const items = [
     key: "5",
     label: (
       <p>
-        Saya ingin menghapus akun Halodoc yang terdaftar ke nomor ponsel saya yang hilang. Kemana
-        saya harus menghubungi?
+        Saya ingin menghapus akun Halodoc yang terdaftar ke nomor ponsel saya
+        yang hilang. Kemana saya harus menghubungi?
       </p>
     ),
   },
@@ -48,10 +50,22 @@ export default function Faq() {
         <Collapse accordion items={items} />
         <Card className="bg-grey-10 my-5">
           <Row justify="space-between" gutter={[8, 16]} align="middle">
-            <Col span={24} md={12} lg={8} xl={6} className="text-center text-md-start">
+            <Col
+              span={24}
+              md={12}
+              lg={8}
+              xl={6}
+              className="text-center text-md-start"
+            >
               <h5>Punya pertanyaan lanjutan?</h5>
             </Col>
-            <Col span={24} md={12} lg={8} xl={6} className="text-center text-md-end">
+            <Col
+              span={24}
+              md={12}
+              lg={8}
+              xl={6}
+              className="text-center text-md-end"
+            >
               <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
             </Col>
           </Row>
