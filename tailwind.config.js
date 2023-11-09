@@ -2,16 +2,6 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-   
-    container: {
-      padding: {
-        DEFAULT: "0.5rem",
-        sm: "3rem",
-        lg: "5.5rem",
-        xl: "8rem",
-        "2xl": "10.5rem",
-      },
-    },
 
     extend: {
       colors: {
