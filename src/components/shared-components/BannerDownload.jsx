@@ -8,7 +8,7 @@ import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
 export default function BannerDownload() {
   return (
     <>
-      <div className="bg-green-50 rounded-lg px-5 py-5 md:py-0">
+      <div className="bg-green-50 rounded-lg px-5 py-5 md:py-0 bg-vector-header-2 sm:bg-no-repeat">
         <Row align="middle">
           <Col span={6} xs={0} md={6} align="center">
             <img src={HandPhone} alt="" />
@@ -22,11 +22,11 @@ export default function BannerDownload() {
                 <h5 className="font-semibold">Tanggapan Cepat, Solusi Akurat!</h5>
               </Col>
               <Col span={24} lg={8} xl={6}>
-                <Row justify="space-evenly">
-                  <Col span={24} xs={12} md={12} lg={24}>
+                <Row justify="center">
+                  <Col span={24} xs={12} md={10} lg={24} align="center">
                     <ButtonGooglePlay />
                   </Col>
-                  <Col span={24} xs={12} md={12} lg={24}>
+                  <Col span={24} xs={12} md={10} lg={24} align="center">
                     <ButtonAppStore />
                   </Col>
                 </Row>
