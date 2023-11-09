@@ -1,6 +1,6 @@
 import { Row, Col } from "antd";
 
-import HandPhone from "@/assets/hand-phone.png";
+import HandPhone from "@/assets/handphone-2.png";
 
 import ButtonGooglePlay from "@/components/shared-components/ButtonGooglePlay";
 import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
@@ -17,9 +17,12 @@ export default function BannerDownload() {
             <Row align="middle">
               <Col span={24} lg={16} xl={18}>
                 <h4 className="text-green-900 font-bold">
-                  Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh ReproHealth Sekarang
+                  Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh ReproHealth
+                  Sekarang
                 </h4>
-                <h5 className="font-semibold text-grey-400">Tanggapan Cepat, Solusi Akurat!</h5>
+                <h5 className="font-semibold text-grey-400">
+                  Tanggapan Cepat, Solusi Akurat!
+                </h5>
               </Col>
               <Col span={24} lg={8} xl={6} className="my-4 my-md-0">
                 <Row>
