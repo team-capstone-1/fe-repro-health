@@ -4,7 +4,7 @@ export default function Button({ text, icon }) {
   return (
     <button className="py-2 px-7 md:ms-0 rounded-lg bg-green-500 hover:bg-green-600 text-white">
       <div className="flex">
-        <span className="text-xl me-3">{icon}</span>
+        <span className="text-xl">{icon}</span>
         {text}
       </div>
     </button>
