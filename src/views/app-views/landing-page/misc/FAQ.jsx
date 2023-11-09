@@ -1,5 +1,5 @@
 // import React from "react";
-import { Collapse, Card } from "antd";
+import { Collapse, Card, Row, Col } from "antd";
 import { MdOutlineEmail } from "react-icons/md";
 
 import HandPhone from "@/assets/hand-phone.png";
@@ -14,9 +14,7 @@ const items = [
     label: <p>Bagaimana cara melihat detail janji temu saya?</p>,
     children: (
       <>
-        <p className="mb-4">
-          Ikuti langkah berikut untuk melihat detail janji temu kamu:
-        </p>
+        <p className="mb-4">Ikuti langkah berikut untuk melihat detail janji temu kamu:</p>
         <p>1. Pilih &apos;Riwayat&apos; pada menu bagian bawah layar. </p>
         <p>2. Pilih janji temu untuk melihat detailnya.</p>
       </>
@@ -38,8 +36,8 @@ const items = [
     key: "5",
     label: (
       <p>
-        Saya ingin menghapus akun Halodoc yang terdaftar ke nomor ponsel saya
-        yang hilang. Kemana saya harus menghubungi?
+        Saya ingin menghapus akun Halodoc yang terdaftar ke nomor ponsel saya yang hilang. Kemana
+        saya harus menghubungi?
       </p>
     ),
   },
@@ -49,43 +47,46 @@ export default function Faq() {
   return (
     <>
       <div className="py-5 base-container">
-        <h2 className="py-5">Frequently Ask Question</h2>
+        <h2 className="pb-5 mt-5">Frequently Ask Question</h2>
         <Collapse accordion items={items} />
 
         <Card className="bg-grey-10 my-5">
-          <div className="grid grid-cols-6 gap-4">
-            <div className="col-start-1 col-end-3 md:col-end-4">
+          <Row justify="space-between" gutter={[8, 16]} align="middle">
+            <Col span={24} md={12} lg={8} xl={6} className="text-center text-md-start">
               <h5>Punya pertanyaan lanjutan?</h5>
-            </div>
-            <div className="col-end-7 col-span-2 md:col-span-3 grid justify-items-end">
+            </Col>
+            <Col span={24} md={12} lg={8} xl={6} className="text-center text-md-end">
               <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
-            </div>
-          </div>
+            </Col>
+          </Row>
         </Card>
 
-        <div className="bg-green-50 rounded-lg px-5">
-          <div className="grid grid-cols-8">
-            <div className="justify-self-center pb-0 col-span-2 lg:col-span-2 invisible md:visible">
+        <div className="bg-green-50 rounded-lg px-5 py-5 md:py-0">
+          <Row align="middle">
+            <Col span={6} xs={0} md={6} align="center">
               <img src={HandPhone} alt="" />
-            </div>
-            <div className="self-center col-span-6">
-              <div className="grid grid-cols-6">
-                <div className="col-span-4 md:col-span-6 lg:col-span-4 self-center">
+            </Col>
+            <Col span={18} xs={24} sm={18}>
+              <Row align="middle" gutter={[8, 16]}>
+                <Col span={24} lg={16} xl={18}>
                   <h4 className="text-green-900 font-semibold">
-                    Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh
-                    ReproHealth Sekarang
+                    Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh ReproHealth Sekarang
                   </h4>
-                  <p className="font-semibold">
-                    Tanggapan Cepat, Solusi Akurat!
-                  </p>
-                </div>
-                <div className="col-span-2 md:col-span-6 lg:col-span-2 flex flex-wrap self-center place-content-center">
-                  <ButtonGooglePlay />
-                  <ButtonAppStore />
-                </div>
-              </div>
-            </div>
-          </div>
+                  <h5 className="font-semibold">Tanggapan Cepat, Solusi Akurat!</h5>
+                </Col>
+                <Col span={24} lg={8} xl={6}>
+                  <Row justify="space-evenly">
+                    <Col span={24} xs={12} md={12} lg={24}>
+                      <ButtonGooglePlay />
+                    </Col>
+                    <Col span={24} xs={12} md={12} lg={24}>
+                      <ButtonAppStore />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         </div>
       </div>
     </>

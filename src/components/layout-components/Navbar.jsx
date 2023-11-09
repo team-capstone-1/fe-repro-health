@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-green-50 sticky z-50 top-0 left-0 md:static">
-      <div className="justify-between z-10 py-5 base-container md:py-5 md:flex">
+      <div className="justify-between z-10 base-container py-5 md:py-3 md:flex">
         <div className="flex items-center">
           <Link to="/">
             <img src={logoReproHealth} alt="logo" className="w-32 sm:w-44 md:w-52 cursor-pointer" />
