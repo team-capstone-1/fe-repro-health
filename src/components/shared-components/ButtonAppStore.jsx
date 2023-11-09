@@ -1,4 +1,3 @@
-import React from "react";
 import { AiFillApple } from "react-icons/ai";
 
 export default function ButtonAppStore() {

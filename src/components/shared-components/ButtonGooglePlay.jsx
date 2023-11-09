@@ -1,4 +1,3 @@
-import React from "react";
 import logoGooglePlay from "@/assets/logo-google-play.png";
 
 export default function ButtonGooglePlay() {
