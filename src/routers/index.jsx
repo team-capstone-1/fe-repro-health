@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Faq from "@/views/app-views/landing-page/misc/Faq";
 import LandingPage from "@/views/app-views/landing-page";
-import UserTerms from "../views/app-views/landing-page/misc/UserTerms";
+import UserTerms from "@/views/app-views/landing-page/misc/UserTerms";
 
 export default function SetupRoutes() {
   return (
