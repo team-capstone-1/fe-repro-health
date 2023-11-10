@@ -51,12 +51,12 @@ export default function Footer() {
           <Col className="gutter-row" span={4} xs={12} md={6} lg={5}>
             <div className="list-none">
               <p className="mb-1 font-semibold">Lainnya</p>
-              <Link to="user-terms">
+              <Link to="ketentuan-pengguna">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
                   Ketentuan Pengguna
                 </p>
               </Link>
-              <Link to="#">
+              <Link to="kebijakan-privasi">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
                   Kebijakan Privasi
                 </p>
