@@ -11,6 +11,7 @@ import doctorVector from "@/assets/doctor-vector.png";
 
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
@@ -132,12 +133,14 @@ export default function LandingPage() {
             Kesempatan bergabung dengan Tim ReproHealth
           </p>
           <div className="mt-6 flex text-white md:justify-center">
-            <button className="flex items-center rounded-lg bg-green-500 px-8 py-3 text-base font-semibold">
-              Pelajari Lebih Lanjut
-              <span className="ms-1 text-lg text-white">
-                <AiOutlineArrowRight />
-              </span>
-            </button>
+            <Link to="/join-as-doctor">
+              <button className="flex items-center rounded-lg bg-green-500 px-8 py-3 text-base font-semibold">
+                Pelajari Lebih Lanjut
+                <span className="ms-1 text-lg text-white">
+                  <AiOutlineArrowRight />
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       </section>
