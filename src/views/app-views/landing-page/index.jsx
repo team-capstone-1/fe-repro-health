@@ -10,7 +10,7 @@ import appointmentIcon from "@/assets/appointment-icon.svg";
 import doctorVector from "@/assets/doctor-vector.png";
 
 import { AiOutlineCheck } from "react-icons/ai";
-import { GrLinkNext } from "react-icons/gr";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 export default function LandingPage() {
   return (
@@ -167,11 +167,11 @@ export default function LandingPage() {
           <p className="text-xl mt-1">
             Kesempatan bergabung dengan Tim ReproHealth
           </p>
-          <div className="mt-6 flex md:justify-center text-grey-500">
+          <div className="mt-6 flex md:justify-center text-white">
             <button className="text-base font-semibold flex items-center py-3 px-8 rounded-lg bg-green-500">
               Pelajari Lebih Lanjut
-              <span className="ms-1 mb-1">
-                <GrLinkNext />
+              <span className="ms-1 text-lg text-white">
+                <AiOutlineArrowRight />
               </span>
             </button>
           </div>
