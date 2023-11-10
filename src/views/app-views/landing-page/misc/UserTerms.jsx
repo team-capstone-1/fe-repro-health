@@ -1,6 +1,7 @@
 import React from "react";
+import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import BannerDownload from "@/components/shared-components/BannerDownload";
-import { PiCaretDoubleRightBold } from "react-icons/pi";
+
 export default function UserTerms() {
   const terms = [
     {
@@ -35,17 +36,10 @@ export default function UserTerms() {
   ];
 
   return (
-    <div className="md:mr-28 md:ml-28 m-4">
-      <div className="flex flex-auto mt-[1.5rem] mb-[2rem]">
-        <a href="/">
-          <p className="text-green-600 mr-2">Beranda</p>
-        </a>
-
-        <PiCaretDoubleRightBold className="mt-[0.25rem] mr-2 text-grey-300" />
-        <p>Ketentuan Pengguna</p>
-      </div>
+    <div className="base-container">
+      <Breadcrumb currentPage="Ketentuan Pengguna" />
       <h1 className="mb-4">Ketentuan Pengguna</h1>
-      <p className="font-medium text-base">
+      <p className="pb-3 text-justify text-base">
         Berikut adalah Syarat dan Ketentuan Penggunaan Platform Reproheath yang
         berisi semua peraturan dan ketentuan yang secara otomatis mengikat
         ketika Anda melakukan kunjungan, mengunduh, memasang, menggunakan
@@ -54,20 +48,20 @@ export default function UserTerms() {
       </p>
       {terms.map((section, index) => (
         <div key={index}>
-          <strong className="block">
+          <strong className="mb-1 mt-3 block">
             {index + 1}. {section.title}
           </strong>
-          <ul className="list-inside list-disc pl-[0.5rem]">
+          <ul className="list-inside list-disc pl-[0.5rem] text-justify">
             {section.listTerms.map((item, itemIndex) => (
               <li key={itemIndex} className="flex items-start">
                 <span className="mr-2 text-black">•</span>
-                <span className="font-medium">{item}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
         </div>
       ))}
-      <div className="mt-[10rem]">
+      <div className="my-[5rem]">
         <BannerDownload />
       </div>
     </div>

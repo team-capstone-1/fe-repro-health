@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Button({ text, icon }) {
   return (
-    <button className="py-2 px-7 md:ms-0 rounded-lg bg-green-500 hover:bg-green-600 text-white">
-      <div className="flex">
-        <span className="text-xl">{icon}</span>
+    <button className="rounded-lg bg-green-500 px-5 py-2 text-white hover:bg-green-600 md:ms-0">
+      <div className="me-1 flex">
+        <span className="me-2 text-xl">{icon}</span>
         {text}
       </div>
     </button>
