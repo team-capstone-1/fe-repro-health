@@ -2,6 +2,7 @@
 import { Collapse, Card, Row, Col } from "antd";
 import { MdOutlineEmail } from "react-icons/md";
 
+import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import Button from "@/components/shared-components/Button";
 import BannerDownload from "@/components/shared-components/BannerDownload";
 
@@ -45,17 +46,18 @@ const items = [
 export default function Faq() {
   return (
     <>
-      <div className="py-5 base-container">
-        <h2 className="pb-5 mt-5">Frequently Ask Question</h2>
+      <div className="base-container">
+        <Breadcrumb currentPage="FAQ" />
+        <h2 className="mt-5 pb-5">Frequently Ask Question</h2>
         <Collapse accordion items={items} />
-        <Card className="bg-grey-10 my-5">
+        <Card className="my-5 bg-grey-10">
           <Row justify="space-between" gutter={[8, 16]} align="middle">
             <Col
               span={24}
               md={12}
               lg={8}
               xl={6}
-              className="text-center text-md-start"
+              className="text-md-start text-center"
             >
               <h5>Punya pertanyaan lanjutan?</h5>
             </Col>
@@ -64,13 +66,15 @@ export default function Faq() {
               md={12}
               lg={8}
               xl={6}
-              className="text-center text-md-end"
+              className="text-md-end text-center"
             >
               <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
             </Col>
           </Row>
         </Card>
-        <BannerDownload />
+        <div className="my-[5rem]">
+          <BannerDownload />
+        </div>
       </div>
     </>
   );
