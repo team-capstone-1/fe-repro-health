@@ -50,7 +50,7 @@ export default function Navbar() {
               href="/#"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
-              Home {isOpen}
+              Home
             </a>
           </li>
           <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
