@@ -50,7 +50,10 @@ export default function LandingPage() {
           </div>
         </div>
       </header>
-      <section className="h-auto bg-green-100 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
+      <section
+        id="about"
+        className="h-auto bg-green-100 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
+      >
         <div className="absolute hidden h-[21.9rem] w-[24rem] lg:bottom-0 lg:left-16 lg:block">
           <img src={handPhone} alt="handphone" />
         </div>
@@ -70,7 +73,10 @@ export default function LandingPage() {
           </p>
         </div>
       </section>
-      <section className="h-auto bg-grey-10 p-2 py-8 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
+      <section
+        id="services"
+        className="h-auto bg-grey-10 p-2 py-8 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
+      >
         <h2 className="mb-8 text-center text-2xl text-green-900 md:text-4xl">
           Pelayanan Kesehatan Untukmu
         </h2>
@@ -108,7 +114,10 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section className="h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
+      <section
+        id="benefit"
+        className="h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
+      >
         <div className="grid grid-cols-1">
           <div className="flex justify-center p-2 lg:absolute lg:bottom-8 lg:right-16 lg:h-[21.9rem] lg:w-[30rem]">
             <img src={doctorVector} alt="doctor" />

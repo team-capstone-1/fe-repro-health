@@ -37,15 +37,21 @@ export default function Footer() {
               <Link to="/">
                 <p className="mb-1 cursor-pointer hover:text-green-100">Home</p>
               </Link>
-              <p className="mb-1 cursor-pointer hover:text-green-100">
-                Abous Us
-              </p>
-              <p className="mb-1 cursor-pointer hover:text-green-100">
-                Service
-              </p>
-              <p className="mb-1 cursor-pointer hover:text-green-100">
-                Benefit
-              </p>
+              <a href="/#about">
+                <p className="mb-1 cursor-pointer hover:text-green-100">
+                  About Us
+                </p>
+              </a>
+              <a href="/#services">
+                <p className="mb-1 cursor-pointer hover:text-green-100">
+                  Service
+                </p>
+              </a>
+              <a href="/#benefit">
+                <p className="mb-1 cursor-pointer hover:text-green-100">
+                  Benefit
+                </p>
+              </a>
             </div>
           </Col>
           <Col className="gutter-row" span={4} xs={12} md={6} lg={5}>
