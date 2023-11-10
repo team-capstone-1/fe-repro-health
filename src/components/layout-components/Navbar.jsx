@@ -14,14 +14,14 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-green-50 sticky z-50 top-0 left-0 md:static">
-      <div className="justify-between z-10 base-container py-5 md:py-3 md:flex">
+    <nav className="sticky left-0 top-0 z-50 w-full bg-green-50 md:static">
+      <div className="base-container z-10 justify-between py-5 md:flex md:py-3">
         <div className="flex items-center">
           <Link to="/">
             <img
               src={logoReproHealth}
               alt="logo"
-              className="w-32 sm:w-44 md:w-52 cursor-pointer"
+              className="w-32 cursor-pointer sm:w-44 md:w-52"
             />
           </Link>
         </div>
@@ -29,55 +29,55 @@ export default function Navbar() {
         <div>
           {isOpen ? (
             <IoCloseSharp
-              className="text-grey-900 text-lg absolute right-8 top-6 cursor-pointer md:hidden"
+              className="absolute right-8 top-6 cursor-pointer text-lg text-grey-900 md:hidden"
               onClick={handleOpen}
             />
           ) : (
             <GiHamburgerMenu
-              className="text-grey-900 text-lg absolute right-8 top-6 cursor-pointer md:hidden"
+              className="absolute right-8 top-6 cursor-pointer text-lg text-grey-900 md:hidden"
               onClick={handleOpen}
             />
           )}
         </div>
         <ul
-          className={`text-grey-900 font-semibold pb-5 absolute -z-10 left-0 w-full
-      bg-green-50 md:z-auto md:w-auto md:pl-0 md:static md:flex md:items-center md:gap-6 lg:gap-11 md:pb-0 ${
-        isOpen ? "top-20" : "top-[-300px] hidden"
+          className={`absolute left-0 -z-10 w-full bg-green-50 pb-5 font-semibold
+      text-grey-900 md:static md:z-auto md:flex md:w-auto md:items-center md:gap-6 md:pb-0 md:pl-0 lg:gap-11 ${
+        isOpen ? "top-16" : "top-[-300px] hidden"
       }`}
         >
-          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               href="/#"
-              className="hover:text-green-500 ms-16 md:ms-0 duration-200"
+              className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Home {isOpen}
             </a>
           </li>
-          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               href="/#"
-              className="hover:text-green-500 ms-16 md:ms-0 duration-200"
+              className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               About Us
             </a>
           </li>
-          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               href="/#"
-              className="hover:text-green-500 ms-16 md:ms-0 duration-200"
+              className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Service
             </a>
           </li>
-          <li className="text-sm md:text-md md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               href="/#"
-              className="hover:text-green-500 ms-16 md:ms-0 duration-200"
+              className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Benefit
             </a>
           </li>
-          <li className="text-sm md:text-md text-grey-10 md:my-0 hover:bg-green-50 mt-6 md:hover:bg-transparent">
+          <li className="md:text-md ms-16 mt-6 text-sm text-grey-10 hover:bg-green-50 md:my-0 md:ms-0 md:hover:bg-transparent">
             <Button text="Download" />
           </li>
         </ul>
