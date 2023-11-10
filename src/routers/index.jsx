@@ -14,6 +14,7 @@ export default function SetupRoutes() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/user-terms" element={<UserTerms />} />
         <Route path="/join-as-doctor" element={<Doctor />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />}/>
       </Route>
     </Routes>
   );
