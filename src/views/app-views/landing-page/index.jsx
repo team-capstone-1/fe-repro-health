@@ -82,7 +82,7 @@ export default function LandingPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 md:ps-9">
           <div className="p-8">
-            <div className="inline-block rounded-full bg-green-50 p-2">
+            <div className="grid h-16 w-16 place-content-center rounded-full bg-green-50">
               <img src={forumIcon} alt="forum" className="w-11" />
             </div>
             <h3 className="mt-3 text-2xl text-green-900">Forum</h3>
@@ -92,7 +92,7 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="p-8">
-            <div className="inline-block rounded-full bg-green-50 p-2">
+            <div className="grid h-16 w-16 place-content-center rounded-full bg-green-50">
               <img src={appointmentIcon} alt="appointment" className="w-9" />
             </div>
             <h3 className="mt-3 text-2xl text-green-900">Janji Temu</h3>
@@ -102,7 +102,7 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="p-8">
-            <div className="inline-block rounded-full bg-green-50 p-2">
+            <div className="grid h-16 w-16 place-content-center rounded-full bg-green-50">
               <img src={artikelIcon} alt="artikel" className="w-10" />
             </div>
             <h3 className="mt-3 text-2xl text-green-900">Artikel</h3>
@@ -194,7 +194,7 @@ function BenefitList() {
     <ul className="pt-8">
       {benefitLists.map((list) => (
         <li key={list.id} className="flex items-center pb-3">
-          <span className="me-3 inline-block rounded-full bg-green-50 px-[0.4em] py-[0.2em] text-xl text-green-500">
+          <span className="me-3 inline-block rounded-full bg-green-50 px-[0.4em] py-[0.4em] text-xl text-green-500">
             <AiOutlineCheck />
           </span>
           {list.textContent}
