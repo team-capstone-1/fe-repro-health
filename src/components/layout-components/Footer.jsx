@@ -1,4 +1,5 @@
 import { Row, Col } from "antd";
+import { Link } from "react-router-dom";
 
 import Logo from "@/assets/logo-white.png";
 
@@ -33,7 +34,9 @@ export default function Footer() {
           <Col className="gutter-row" span={4} xs={12} md={4} lg={4}>
             <div className="list-none align-middle">
               <p className="mb-1 font-semibold">Menu</p>
-              <p className="mb-1 cursor-pointer hover:text-green-100">Home</p>
+              <Link to="/">
+                <p className="mb-1 cursor-pointer hover:text-green-100">Home</p>
+              </Link>
               <p className="mb-1 cursor-pointer hover:text-green-100">
                 Abous Us
               </p>
@@ -48,13 +51,19 @@ export default function Footer() {
           <Col className="gutter-row" span={4} xs={12} md={6} lg={5}>
             <div className="list-none">
               <p className="mb-1 font-semibold">Lainnya</p>
-              <p className="mb-1 cursor-pointer hover:text-green-100">
-                Ketentuan Pengguna
-              </p>
-              <p className="mb-1 cursor-pointer hover:text-green-100">
-                Kebijakan Privasi
-              </p>
-              <p className="cursor-pointer hover:text-green-100">FAQ</p>
+              <Link to="user-terms">
+                <p className="mb-1 cursor-pointer hover:text-green-100">
+                  Ketentuan Pengguna
+                </p>
+              </Link>
+              <Link to="#">
+                <p className="mb-1 cursor-pointer hover:text-green-100">
+                  Kebijakan Privasi
+                </p>
+              </Link>
+              <Link to="faq">
+                <p className="cursor-pointer hover:text-green-100">FAQ</p>
+              </Link>
             </div>
           </Col>
           <Col className="gutter-row" span={8} xs={24} md={6} lg={8}>

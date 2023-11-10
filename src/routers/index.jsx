@@ -8,11 +8,11 @@ import Doctor from "@/views/app-views/landing-page/misc/DoctorPage";
 export default function SetupRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<PublicRoute/>}>
-      <Route index element={<LandingPage />} />
-      <Route path="/faq" element={<Faq />} />
-      <Route path="/userterms" element={<UserTerms />} />
-      <Route path="/join-as-doctor" element={<Doctor />} />
+      <Route path="/" element={<PublicRoute />}>
+        <Route index element={<LandingPage />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/user-terms" element={<UserTerms />} />
+        <Route path="/join-as-doctor" element={<Doctor />} />
       </Route>
     </Routes>
   );

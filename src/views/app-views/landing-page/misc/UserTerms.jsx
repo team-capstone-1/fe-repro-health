@@ -36,10 +36,10 @@ export default function UserTerms() {
   ];
 
   return (
-    <div className="base-container text-justify">
+    <div className="base-container">
       <Breadcrumb currentPage="Ketentuan Pengguna" />
       <h1 className="mb-4">Ketentuan Pengguna</h1>
-      <p className="text-base">
+      <p className="pb-3 text-justify text-base">
         Berikut adalah Syarat dan Ketentuan Penggunaan Platform Reproheath yang
         berisi semua peraturan dan ketentuan yang secara otomatis mengikat
         ketika Anda melakukan kunjungan, mengunduh, memasang, menggunakan
@@ -48,10 +48,10 @@ export default function UserTerms() {
       </p>
       {terms.map((section, index) => (
         <div key={index}>
-          <strong className="block">
+          <strong className="mb-1 mt-3 block">
             {index + 1}. {section.title}
           </strong>
-          <ul className="list-inside list-disc pl-[0.5rem]">
+          <ul className="list-inside list-disc pl-[0.5rem] text-justify">
             {section.listTerms.map((item, itemIndex) => (
               <li key={itemIndex} className="flex items-start">
                 <span className="mr-2 text-black">•</span>
