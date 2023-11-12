@@ -1,4 +1,3 @@
-import React from "react";
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import BannerDownload from "@/components/shared-components/BannerDownload";
 
@@ -36,34 +35,40 @@ export default function UserTerms() {
   ];
 
   return (
-    <div className="base-container">
-      <Breadcrumb currentPage="Ketentuan Pengguna" />
-      <h1 className="mb-4">Ketentuan Pengguna</h1>
-      <p className="pb-3 text-justify text-base">
-        Berikut adalah Syarat dan Ketentuan Penggunaan Platform Reproheath yang
-        berisi semua peraturan dan ketentuan yang secara otomatis mengikat
-        ketika Anda melakukan kunjungan, mengunduh, memasang, menggunakan
-        Platform dan/atau menikmati semua fitur dan fasilitas yang disediakan
-        pada Platform ReproHealth.
-      </p>
-      {terms.map((section, index) => (
-        <div key={index}>
-          <strong className="mb-1 mt-3 block">
-            {index + 1}. {section.title}
-          </strong>
-          <ul className="list-inside list-disc pl-[0.5rem] text-justify">
-            {section.listTerms.map((item, itemIndex) => (
-              <li key={itemIndex} className="flex items-start">
-                <span className="mr-2 text-black">•</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-      <div className="my-[5rem]">
-        <BannerDownload />
+    <>
+      <div className="base-container">
+        <Breadcrumb currentPage="Ketentuan Pengguna" />
+
+        <section>
+          <h1 className="mb-4 mt-5">Ketentuan Pengguna</h1>
+          <p className="text-justify text-base">
+            Berikut adalah Syarat dan Ketentuan Penggunaan Platform Reproheath
+            yang berisi semua peraturan dan ketentuan yang secara otomatis
+            mengikat ketika Anda melakukan kunjungan, mengunduh, memasang,
+            menggunakan Platform dan/atau menikmati semua fitur dan fasilitas
+            yang disediakan pada Platform ReproHealth.
+          </p>
+          {terms.map((section, index) => (
+            <div key={index}>
+              <strong className="mb-1 mt-3 block">
+                {index + 1}. {section.title}
+              </strong>
+              <ul className="list-inside list-disc pl-[0.5rem] text-justify">
+                {section.listTerms.map((item, itemIndex) => (
+                  <li key={itemIndex} className="flex items-start">
+                    <span className="mr-2 text-black">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        <section className="mb-[2rem] mt-[4rem]">
+          <BannerDownload />
+        </section>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Breadcrumb, Button } from "antd";
+import { Button } from "antd";
 import { VscSend } from "react-icons/vsc";
 import { BsClock } from "react-icons/bs";
 import { HiOutlineDocumentText } from "react-icons/hi";
@@ -10,30 +10,14 @@ import {
 } from "react-icons/ai";
 import doctor from "@/assets/doctor.svg";
 import arrow from "@/assets/arrow.svg";
+import Breadcrumb from "@/components/layout-components/Breadcrumb";
 
 export default function DocterPage() {
   return (
     <>
       <main>
         <section className="base-container">
-          <Breadcrumb
-            className="pt-4 sm:pt-12"
-            separator={
-              <p className="-mt-[0.26em] text-2xl min-[991.98px]:-mt-1">»</p>
-            }
-            items={[
-              {
-                title: (
-                  <Link className="text-green-500" to="/">
-                    <p>Beranda</p>
-                  </Link>
-                ),
-              },
-              {
-                title: <p className="cursor-default">Halaman Dokter</p>,
-              },
-            ]}
-          />
+          <Breadcrumb currentPage="Halaman Dokter" />
         </section>
         <section className="base-container py-6 md:flex">
           <div className="md:w-3/5 lg:w-2/3">
@@ -68,7 +52,7 @@ export default function DocterPage() {
             <h4 className="font-bold text-green-900 sm:text-[1.5rem] md:text-[1.65] lg:text-[1.8rem] xl:text-[1.9rem]">
               Siap Bergabung dengan ReproHealth?
             </h4>
-            <p className="mt-2 font-medium sm:text-lg lg:text-xl xl:text-2xl">
+            <p className="mt-2 font-medium sm:text-lg lg:text-lg xl:text-xl">
               Kesempatan untuk bergabung dengan ReproHealth menanti Anda.
               Hubungi kami sekarang!
             </p>

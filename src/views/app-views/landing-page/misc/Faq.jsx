@@ -48,33 +48,30 @@ export default function Faq() {
     <>
       <div className="base-container">
         <Breadcrumb currentPage="FAQ" />
-        <h2 className="mt-5 pb-5">Frequently Ask Question</h2>
-        <Collapse accordion items={items} />
-        <Card className="my-5 bg-grey-10">
-          <Row justify="space-between" gutter={[8, 16]} align="middle">
-            <Col
-              span={24}
-              md={12}
-              lg={8}
-              xl={6}
-              className="text-md-start text-center"
-            >
-              <h5>Punya pertanyaan lanjutan?</h5>
-            </Col>
-            <Col
-              span={24}
-              md={12}
-              lg={8}
-              xl={6}
-              className="text-md-end text-center"
-            >
-              <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
-            </Col>
-          </Row>
-        </Card>
-        <div className="my-[5rem]">
+
+        <section>
+          <h2 className="mt-5 pb-5">Frequently Ask Question</h2>
+          <Collapse accordion items={items} />
+          <Card className="my-5 bg-grey-10">
+            <Row justify="space-between" gutter={[8, 16]} align="middle">
+              <Col
+                span={24}
+                md={12}
+                lg={8}
+                className="text-center md:text-start"
+              >
+                <h5>Punya pertanyaan lanjutan?</h5>
+              </Col>
+              <Col span={24} md={12} lg={8} className="text-center md:text-end">
+                <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
+              </Col>
+            </Row>
+          </Card>
+        </section>
+
+        <section className="mb-[2rem] mt-[4rem]">
           <BannerDownload />
-        </div>
+        </section>
       </div>
     </>
   );

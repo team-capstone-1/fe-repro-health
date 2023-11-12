@@ -13,7 +13,9 @@ export default function Footer() {
         <Row gutter={[16, 24]}>
           <Col className="gutter-row" span={8} xs={24} md={8} lg={7}>
             <div>
-              <img src={Logo} alt="" />
+              <Link to="/">
+                <img src={Logo} alt="" />
+              </Link>
               <p className="my-3 pt-5 font-semibold">Social Media</p>
               <div className="flex gap-3">
                 <div className="icon-footer">
@@ -57,17 +59,17 @@ export default function Footer() {
           <Col className="gutter-row" span={4} xs={12} md={6} lg={5}>
             <div className="list-none">
               <p className="mb-1 font-semibold">Lainnya</p>
-              <Link to="ketentuan-pengguna">
+              <Link to="/ketentuan-pengguna">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
                   Ketentuan Pengguna
                 </p>
               </Link>
-              <Link to="kebijakan-privasi">
+              <Link to="/kebijakan-privasi">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
                   Kebijakan Privasi
                 </p>
               </Link>
-              <Link to="faq">
+              <Link to="/faq">
                 <p className="cursor-pointer hover:text-green-100">FAQ</p>
               </Link>
             </div>

@@ -160,7 +160,7 @@ function DoctorSection() {
     <section className="base-container h-auto w-auto bg-green-100">
       <div className="py-[3.25rem] md:text-center">
         <h2 className="text-[2rem] text-green-900">{doctorSection.title}</h2>
-        <p className="mt-1 text-xl">{doctorSection.subs}</p>
+        <p className="mt-1 text-lg">{doctorSection.subs}</p>
         <div className="mt-6 flex text-white md:justify-center">
           <Link to="/join-as-doctor">
             <ButtonCtaDoctor />
