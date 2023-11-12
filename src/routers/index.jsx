@@ -5,6 +5,10 @@ import UserTerms from "@/views/app-views/landing-page/misc/UserTerms";
 import PublicRoute from "@/routers/PublicRoute";
 import Doctor from "@/views/app-views/landing-page/misc/DoctorPage";
 import PrivacyPolicy from "@/views/app-views/landing-page/misc/PrivacyPolicy";
+import Login from "../views/app-views/auth/Login";
+import ForgotPassword from "../views/app-views/auth/ForgotPassword";
+import Verify from "../views/app-views/auth/Verify";
+import ResetPassword from "../views/app-views/auth/ResetPassword";
 
 export default function SetupRoutes() {
   return (
@@ -16,6 +20,10 @@ export default function SetupRoutes() {
         <Route path="/join-as-doctor" element={<Doctor />} />
         <Route path="/kebijakan-privasi" element={<PrivacyPolicy />}/>
       </Route>
+      <Route path="/login" element={<Login />}/>
+      <Route path="/forgot-password" element={<ForgotPassword />}/>
+      <Route path="/verify" element={<Verify />}/>
+      <Route path="/reset-password" element={<ResetPassword />}/>
     </Routes>
   );
 }
