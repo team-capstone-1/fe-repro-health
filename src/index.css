@@ -3,3 +3,120 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.base-container {
+  @apply w-full px-2 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem];
+}
+
+.icon-footer {
+  @apply flex h-8 w-8 cursor-pointer place-content-center items-center rounded-full border-2 border-white hover:border-green-100 hover:text-green-100 hover:duration-300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+h3 {
+  font-size: 32px;
+  font-weight: 600;
+}
+h4 {
+  font-size: 24px;
+  font-weight: 600;
+}
+h5 {
+  font-size: 18px;
+  font-weight: 400;
+}
+h6 {
+  font-size: 14px;
+  font-weight: 400;
+}
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 18px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+}
