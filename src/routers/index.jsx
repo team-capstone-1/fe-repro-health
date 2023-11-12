@@ -5,10 +5,10 @@ import UserTerms from "@/views/app-views/landing-page/misc/UserTerms";
 import PublicRoute from "@/routers/PublicRoute";
 import Doctor from "@/views/app-views/landing-page/misc/DoctorPage";
 import PrivacyPolicy from "@/views/app-views/landing-page/misc/PrivacyPolicy";
-import Login from "../views/app-views/auth/Login";
-import ForgotPassword from "../views/app-views/auth/ForgotPassword";
-import Verify from "../views/app-views/auth/Verify";
-import ResetPassword from "../views/app-views/auth/ResetPassword";
+import Login from "../views/auth-views/Login";
+import ForgotPassword from "../views/auth-views/ForgotPassword";
+import Verify from "../views/auth-views/Verify";
+import ResetPassword from "../views/auth-views/ResetPassword";
 
 export default function SetupRoutes() {
   return (
@@ -18,12 +18,12 @@ export default function SetupRoutes() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/ketentuan-pengguna" element={<UserTerms />} />
         <Route path="/join-as-doctor" element={<Doctor />} />
-        <Route path="/kebijakan-privasi" element={<PrivacyPolicy />}/>
+        <Route path="/kebijakan-privasi" element={<PrivacyPolicy />} />
       </Route>
-      <Route path="/login" element={<Login />}/>
-      <Route path="/forgot-password" element={<ForgotPassword />}/>
-      <Route path="/verify" element={<Verify />}/>
-      <Route path="/reset-password" element={<ResetPassword />}/>
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/verify" element={<Verify />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );
 }
