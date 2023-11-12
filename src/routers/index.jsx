@@ -5,10 +5,10 @@ import UserTerms from "@/views/app-views/landing-page/misc/UserTerms";
 import PublicRoute from "@/routers/PublicRoute";
 import Doctor from "@/views/app-views/landing-page/misc/DoctorPage";
 import PrivacyPolicy from "@/views/app-views/landing-page/misc/PrivacyPolicy";
-import Login from "../views/auth-views/Login";
-import ForgotPassword from "../views/auth-views/ForgotPassword";
-import Verify from "../views/auth-views/Verify";
-import ResetPassword from "../views/auth-views/ResetPassword";
+import Login from "@/views/auth-views/Login";
+import ForgotPassword from "@/views/auth-views/ForgotPassword";
+import Verify from "@/views/auth-views/Verify";
+import ResetPassword from "@/views/auth-views/ResetPassword";
 
 export default function SetupRoutes() {
   return (
