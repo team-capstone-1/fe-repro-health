@@ -79,11 +79,9 @@ export default function AppointmentTable() {
       ),
     },
   ];
-
   const data = [
     {
-      id: "#001",
-      name: "Naufal Helmi",
+      key: "1",
       no: "009",
       date: "23/10/23",
       session: "Pagi",

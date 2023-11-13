@@ -6,7 +6,7 @@ import ChartIncome from "./components/ChartIncome";
 import AppointmentTable from "./components/AppointmentTable";
 import Calendar from "./components/Calendar";
 
-export default function Dashboard() {
+export default function index() {
   return (
     <>
       <div className="mb-5 py-5">
