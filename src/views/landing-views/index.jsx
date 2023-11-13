@@ -15,7 +15,7 @@ import {
   CONST_aboutSection,
   CONST_serviceSection,
   CONST_ctaDoctor,
-} from "@/views/app-views/landing-page/constant/home-page";
+} from "@/views/landing-views/constant/home-page";
 
 export default function LandingPage() {
   return (
