@@ -49,7 +49,11 @@ const Login = () => {
               </p>
             </div>
 
-            <form id="login-form" onSubmit={handleSubmit(onSubmitHandler)} className="mt-8">
+            <form
+              id="login-form"
+              onSubmit={handleSubmit(onSubmitHandler)}
+              className="mt-8"
+            >
               {/* Email */}
               <div>
                 <label className="text-base font-medium text-grey-300">
@@ -154,7 +158,10 @@ const Login = () => {
 
               {/* Button */}
               <div className="mt-16">
-                <button id="submit-button" className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600">
+                <button
+                  id="submit-button"
+                  className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600"
+                >
                   Masuk
                 </button>
               </div>
@@ -162,7 +169,10 @@ const Login = () => {
           </div>
 
           {/* Illustration */}
-          <div id="login-illustration" className="absolute hidden translate-x-[40%] py-5 xl:block">
+          <div
+            id="login-illustration"
+            className="absolute hidden translate-x-[40%] py-5 xl:block"
+          >
             <img
               className="-z-10 w-[85%]"
               src={loginIllus}
