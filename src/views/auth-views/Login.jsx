@@ -38,7 +38,7 @@ const Login = () => {
     <section className="flex h-screen items-center justify-center xl:scale-90">
       <div className="base-container">
         <div className="flex items-center justify-center">
-          <div className="z-10 translate-x-0 rounded-lg bg-white px-8 py-8 shadow-none md:max-w-[38rem] md:px-14 md:py-14 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[38%]">
+          <div className="z-10 translate-x-0 rounded-lg bg-white px-8 py-8 shadow-none md:max-w-[655px] md:px-16 md:py-16 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[40%]">
             {/* Title */}
             <div className="space-y-1">
               <h2 className="font-semibold text-grey-900">
@@ -163,9 +163,9 @@ const Login = () => {
           </div>
 
           {/* Illustration */}
-          <div id="login-illustration" className="absolute hidden translate-x-[40%] py-5 xl:block">
+          <div className="absolute hidden translate-x-[40%] xl:block">
             <img
-              className="-z-10 w-[85%]"
+              className="-z-10 w-[90%]"
               src={loginIllus}
               alt="login-illustration"
             />
