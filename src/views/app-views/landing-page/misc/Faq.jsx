@@ -6,7 +6,9 @@ import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import Button from "@/components/shared-components/Button";
 import BannerDownload from "@/components/shared-components/BannerDownload";
 
-import { FAQ } from "@/views/app-views/landing-page/constant/faq";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { DataFaq } from "@/views/app-views/landing-page/constant/faq";
 
 const items = [
   {
@@ -46,13 +48,15 @@ const items = [
 ];
 
 export default function Faq() {
+  useDocumentTitle(DataFaq.title);
+  useScrollToTop();
   return (
     <>
       <div className="base-container">
-        <Breadcrumb currentPage={FAQ.title} />
+        <Breadcrumb currentPage={DataFaq.title} />
 
         <section>
-          <h2 className="mt-5 pb-5">{FAQ.title}</h2>
+          <h2 className="mt-5 pb-5">{DataFaq.title}</h2>
           <Collapse accordion items={items} />
           <Card className="my-5 bg-grey-10">
             <Row justify="space-between" gutter={[8, 16]} align="middle">
@@ -62,7 +66,7 @@ export default function Faq() {
                 lg={8}
                 className="text-center md:text-start"
               >
-                <h5>{FAQ.textContent}</h5>
+                <h5>{DataFaq.textContent}</h5>
               </Col>
               <Col span={24} md={12} lg={8} className="text-center md:text-end">
                 <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />

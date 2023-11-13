@@ -1,4 +1,4 @@
-export const CONST_DoctorPage = {
+export const DataDoctorPage = {
   title: "Halaman Dokter",
   header: "Ingin Bergabung dengan Tim ReproHealth?",
   headerBenefit: "Manfaat Bergabung Sebagai Dokter di ReproHealth",
@@ -8,7 +8,7 @@ export const CONST_DoctorPage = {
     "Kesempatan untuk bergabung dengan ReproHealth menanti Anda. Hubungi kami sekarang!",
 };
 
-export const CONST_benefitLists = [
+export const DataBenefitLists = [
   {
     id: 1,
     textContent:

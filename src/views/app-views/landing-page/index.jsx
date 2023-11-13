@@ -10,14 +10,18 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import {
-  CONST_benefitLists,
-  CONST_heroSection,
-  CONST_aboutSection,
-  CONST_serviceSection,
-  CONST_ctaDoctor,
+  DataHeroSection,
+  DataAboutSection,
+  DataServiceSection,
+  DataBenefitLists,
+  DataCtaDoctor,
 } from "@/views/app-views/landing-page/constant/home-page";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function LandingPage() {
+  useDocumentTitle(DataHeroSection.title);
+  useScrollToTop();
   return (
     <>
       <HeroSection />
@@ -31,7 +35,8 @@ export default function LandingPage() {
 }
 
 function HeroSection() {
-  const heroSection = CONST_heroSection;
+  const heroSection = DataHeroSection;
+
   return (
     <header className="relative h-[59rem] bg-green-50 pt-8 md:h-[68rem] lg:h-[45rem]">
       <div className="absolute h-[38rem] w-full bg-vector-header bg-repeat-x"></div>
@@ -67,7 +72,7 @@ function HeroSection() {
 }
 
 function AboutSection() {
-  const aboutSection = CONST_aboutSection;
+  const aboutSection = DataAboutSection;
   return (
     <section
       id="about"
@@ -89,7 +94,7 @@ function AboutSection() {
 }
 
 function ServicesList() {
-  const serviceLists = CONST_serviceSection;
+  const serviceLists = DataServiceSection;
   return (
     <>
       <section
@@ -116,7 +121,7 @@ function ServicesList() {
 }
 
 function BenefitList() {
-  const benefitLists = CONST_benefitLists;
+  const benefitLists = DataBenefitLists;
   return (
     <section
       id="benefit"
@@ -155,7 +160,7 @@ function DownloadSection() {
 }
 
 function DoctorSection() {
-  const doctorSection = CONST_ctaDoctor;
+  const doctorSection = DataCtaDoctor;
   return (
     <section className="base-container h-auto w-auto bg-green-100">
       <div className="py-[3.25rem] md:text-center">
