@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
-
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
 import UserTerms from "@/views/landing-views/misc/UserTerms";
 import PrivacyPolicy from "@/views/landing-views/misc/PrivacyPolicy";
 import Faq from "@/views/landing-views/misc/Faq";
-
 import Login from "@/views/auth-views/Login";
 import ForgotPassword from "@/views/auth-views/ForgotPassword";
 import Verify from "@/views/auth-views/Verify";
