@@ -1,23 +1,17 @@
 import BannerDownload from "@/components/shared-components/BannerDownload";
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
-import { privacy } from "@/views/app-views/landing-page/constant/privacy-policy";
+import { privacyPolicy, privacy } from "@/views/app-views/landing-page/constant/privacy-policy";
 
 export default function PrivacyPolicy() {
   return (
     <>
       <div className="base-container">
-        <Breadcrumb currentPage="Kebijakan Privasi" />
+        <Breadcrumb currentPage={privacyPolicy.title} />
 
         <section>
-          <h1 className="mb-4 mt-5">Kebijakan Privasi</h1>
+          <h1 className="mb-4 mt-5">{privacyPolicy.title}</h1>
           <p className="text-base font-medium">
-            Selamat datang di Website Reprohealth. Kami berkomitmen untuk
-            menjaga kerahasiaan informasi pribadi Anda dan memberikan
-            perlindungan terhadap data yang Anda bagikan kepada kami. Kebijakan
-            privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan,
-            mengungkap, dan melindungi informasi pribadi Anda. Dengan
-            menggunakan layanan kami, Anda setuju untuk mematuhi dan terikat
-            oleh kebijakan privasi ini.
+            {privacyPolicy.description}
           </p>
           {privacy.map((items, indexs) => (
             <div key={indexs}>
