@@ -9,8 +9,8 @@ const Login = () => {
   return (
     <section className="flex h-screen items-center justify-center">
       <div className="base-container">
-        <div className="items-center justify-center md:flex">
-          <div className="z-10 translate-x-0 rounded-lg bg-white px-6 py-12 shadow-none md:max-w-[655px] md:px-20 md:py-[90px] md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[45%]">
+        <div className="flex items-center justify-center">
+          <div className="z-10 translate-x-0 rounded-lg bg-white px-8 py-8 shadow-none md:max-w-[655px] md:px-16 md:py-16 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[40%]">
             {/* Title */}
             <div className="space-y-1">
               <h2 className="font-semibold text-grey-900">
@@ -104,8 +104,12 @@ const Login = () => {
           </div>
 
           {/* Illustration */}
-          <div className="absolute hidden translate-x-[35%] xl:block">
-            <img className="-z-10" src={loginIllus} alt="login-illustration" />
+          <div className="absolute hidden translate-x-[40%] xl:block">
+            <img
+              className="-z-10 w-[90%]"
+              src={loginIllus}
+              alt="login-illustration"
+            />
           </div>
         </div>
       </div>
