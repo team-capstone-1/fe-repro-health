@@ -6,7 +6,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="flex items-center justify-center h-screen xl:scale-95">
+    <section className="flex h-screen items-center justify-center xl:scale-95">
       <div className="base-container">
         <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-14 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">
           <button onClick={() => navigate(-1)} className="flex gap-3">
