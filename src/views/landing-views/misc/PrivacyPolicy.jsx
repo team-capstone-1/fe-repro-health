@@ -3,7 +3,7 @@ import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import {
   DataPrivacyPolicy,
   DataPrivacy,
-} from "@/views/landing-views/constant/privacy-policy";
+} from "@/views/app-views/landing-page/constant/privacy-policy";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
