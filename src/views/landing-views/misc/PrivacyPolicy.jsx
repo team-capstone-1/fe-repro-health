@@ -1,8 +1,9 @@
 import BannerDownload from "@/components/shared-components/BannerDownload";
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
-import { privacy } from "@/views/app-views/landing-page/constant/privacy-policy";
+import { CONST_privacy } from "@/views/landing-views/constant/privacy-policy";
 
 export default function PrivacyPolicy() {
+  const privacy = CONST_privacy;
   return (
     <>
       <div className="base-container">
@@ -21,7 +22,7 @@ export default function PrivacyPolicy() {
           </p>
           {privacy.map((items, indexs) => (
             <div key={indexs}>
-              <h5 className="text-base font-bold">{items.title}</h5>
+              <h5 className="mt-3 text-base font-bold">{items.title}</h5>
               <h5 className="text-base font-medium">{items.subs[0]}</h5>
               <h5 className="text-base font-medium">{items.subs[1]}</h5>
               <ul>
