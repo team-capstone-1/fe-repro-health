@@ -31,11 +31,11 @@ export default function DoctorPage() {
         <div className="md:w-3/5 lg:w-2/3">
           <div className="max-w-[726px]">
             <h2 className="text-green-900">{doctorPage.header}</h2>
-            <div className="mt-1">
+            <div className="mt-4">
               <p className="text-[0.95rem] font-medium sm:text-base md:text-lg">
                 {doctorPage.subHeader}
               </p>
-              <div className="mt-1 flex flex-wrap gap-4">
+              <div className="mt-4 flex flex-wrap gap-4">
                 <Button className="h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
                   <Link to="mailto:ReproHealthCS@gmail.com">
                     Hubungi Email Kami
@@ -73,7 +73,7 @@ export default function DoctorPage() {
           <h4 className="font-bold text-green-900 sm:text-[1.5rem] md:text-[1.65] lg:text-[1.8rem] xl:text-[1.9rem]">
             {doctorPage.headerCTA}
           </h4>
-          <p className="mt-2 font-medium sm:text-lg lg:text-lg xl:text-xl">
+          <p className="mt-2 font-medium sm:text-lg lg:text-lg">
             {doctorPage.subCTA}
           </p>
           <Button className="mt-5 h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
@@ -145,14 +145,13 @@ function HowToJoinList() {
             <span className="rounded-full bg-green-50 p-3 text-green-500">
               {list.icon}
             </span>
-            <img className="hidden lg:block" src={list.id !== 4 && arrow} />
           </div>
           <div>
-            <h5 className="mt-2 font-bold 2xl:mt-5">
+            <h5 className="mt-2 font-bold lg:mt-5">
               <span>{list.id}. </span>
               {list.title}
             </h5>
-            <p className="mt-5 font-medium 2xl:mt-8">{list.textContent}</p>
+            <p className="mt-3 font-medium">{list.textContent}</p>
           </div>
         </li>
       ))}
