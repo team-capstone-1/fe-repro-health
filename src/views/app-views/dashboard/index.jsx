@@ -1,4 +1,4 @@
-import { Row, Col, Layout } from "antd";
+import { Row, Col } from "antd";
 
 import Topbar from "@/components/layout-components/Topbar";
 import Sidebar from "./components/Sidebar";
