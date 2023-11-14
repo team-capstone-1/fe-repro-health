@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import ButtonFilter from "./components/ButtonFilter";
 import TotalCards from "./components/TotalCards";
 import AppointmentTable from "./components/AppointmentTable";
+import Calendar from "./components/Calendar";
 
 export default function Dashboard() {
   return (
