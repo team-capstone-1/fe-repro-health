@@ -1,19 +1,26 @@
 import BannerDownload from "@/components/shared-components/BannerDownload";
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
-import { privacyPolicy, privacy } from "@/views/app-views/landing-page/constant/privacy-policy";
+import {
+  DataPrivacyPolicy,
+  DataPrivacy,
+} from "@/views/app-views/landing-page/constant/privacy-policy";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function PrivacyPolicy() {
+  useDocumentTitle(DataPrivacyPolicy.title);
+  useScrollToTop();
   return (
     <>
       <div className="base-container">
-        <Breadcrumb currentPage={privacyPolicy.title} />
+        <Breadcrumb currentPage={DataPrivacyPolicy.title} />
 
         <section>
-          <h1 className="mb-4 mt-5">{privacyPolicy.title}</h1>
+          <h1 className="mb-4 mt-5">{DataPrivacyPolicy.title}</h1>
           <p className="text-base font-medium">
-            {privacyPolicy.description}
+            {DataPrivacyPolicy.description}
           </p>
-          {privacy.map((items, indexs) => (
+          {DataPrivacy.map((items, indexs) => (
             <div key={indexs}>
               <h5 className="text-base font-bold">{items.title}</h5>
               <h5 className="text-base font-medium">{items.subs[0]}</h5>
