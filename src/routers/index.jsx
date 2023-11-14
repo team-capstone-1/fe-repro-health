@@ -13,6 +13,7 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 export default function SetupRoutes() {
   return (
@@ -24,11 +25,13 @@ export default function SetupRoutes() {
         <Route path="/join-as-doctor" element={<Doctor />} />
         <Route path="/kebijakan-privasi" element={<PrivacyPolicy />} />
       </Route>
+      <Route path="/" element={<PrivateRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/verify" element={<Verify />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

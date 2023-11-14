@@ -1,12 +1,12 @@
 import { IoNotificationsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import profileDoctor from "@/assets/profile-doctor.svg";
 
+import profileDoctor from "@/assets/profile-doctor.svg";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 
 export default function Topbar() {
   return (
-    <nav className="static left-0 top-0 z-50 w-full bg-green-50">
+    <nav className="static left-0 top-0 z-50 w-full bg-grey-10">
       <div className="base-container z-10 flex justify-between py-5 md:py-3">
         <div className="flex items-center">
           <Link to="/">
