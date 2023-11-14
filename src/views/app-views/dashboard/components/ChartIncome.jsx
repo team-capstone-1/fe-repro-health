@@ -7,8 +7,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer as Wrapper,
-  Legend,
+  ResponsiveContainer,
+  //   LabelList,
 } from "recharts";
 
 import {
@@ -114,7 +114,7 @@ export default function ChartIncome() {
               data={data}
               barGap={0}
               margin={{
-                top: 5,
+                top: 15,
                 right: 0,
                 left: 0,
                 bottom: 10,
@@ -145,7 +145,7 @@ export default function ChartIncome() {
                 dataKey="date"
                 tickLine={false}
                 axisLine={false}
-                tickMargin={20}
+                stroke="rgba(75, 75, 75, 1)"
                 className="text-base font-medium"
               />
 
@@ -176,13 +176,13 @@ export default function ChartIncome() {
                 // barSize={data.length < 8 ? 30 : 20}
                 radius={data.length < 10 ? 10 : 2}
                 dataKey="after"
-                name="Jumlah Pendapatan"
+                name="Pekan Kini"
                 fill="rgba(20, 198, 164, 1)"
               >
                 {/* <LabelList position="top" fill="black" /> */}
               </Bar>
             </BarChart>
-          </Wrapper>
+          </ResponsiveContainer>
         </Card>
       </Col>
     </Row>
