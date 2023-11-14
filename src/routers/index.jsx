@@ -32,7 +32,6 @@ export default function SetupRoutes() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/verify" element={<Verify />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

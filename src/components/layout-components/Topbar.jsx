@@ -5,6 +5,7 @@ import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
 
 import profileDoctor from "@/assets/profile-doctor.svg";
 
+import profileDoctor from "@/assets/profile-doctor.svg";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 
 export default function Topbar() {

@@ -130,8 +130,6 @@ export default function Sidebar() {
             Menu: {
               itemSelectedBg: "#17c6a3",
               itemSelectedColor: "#fff",
-              dangerItemSelectedBg: "#ff5757",
-              dangerItemSelectedColor: "#fff",
             },
           },
         }}
