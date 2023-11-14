@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Row, Button, Col, Flex } from "antd";
 
 export default function ButtonFilter() {
-  const [selectedButton, setSelectedButton] = useState("Bulanan");
+  const [selectedButton, setSelectedButton] = useState("Tahunan");
 
   const handleButtonClick = (buttonType) => {
     setSelectedButton(buttonType);
@@ -16,7 +16,11 @@ export default function ButtonFilter() {
           </h4>
         </Col>
         <Col xs={24} md={12} className="mb-5 text-start md:text-end">
-          <Flex className="flex justify-start sm:pr-5 md:justify-end" wrap="wrap" gap="small">
+          <Flex
+            className="flex justify-start sm:pr-5 md:justify-end"
+            wrap="wrap"
+            gap="small"
+          >
             <Button
               id="button-filter-monthly"
               type="primary"
