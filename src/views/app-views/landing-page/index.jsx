@@ -76,7 +76,7 @@ function AboutSection() {
   return (
     <section
       id="about"
-      className="h-auto bg-green-100 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
+      className="h-auto bg-green-50 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
     >
       <div className="absolute hidden h-[21.9rem] w-[24rem] lg:bottom-0 lg:left-16 lg:block">
         <img src={handPhone} alt="handphone" />

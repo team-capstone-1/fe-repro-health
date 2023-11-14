@@ -30,8 +30,23 @@ export default function DoctorPage() {
       <section className="base-container py-6 md:flex">
         <div className="md:w-3/5 lg:w-2/3">
           <div className="max-w-[726px]">
-            <h2 className=" text-green-900">{doctorPage.header}</h2>
-            <h4 className="py-2 text-[1.1rem] font-bold text-green-900 sm:text-[1.3rem] lg:text-[1.5rem] xl:text-[1.68rem] 2xl:py-4">
+            <h2 className="text-green-900">{doctorPage.header}</h2>
+            <div className="mt-1">
+              <p className="text-[0.95rem] font-medium sm:text-base md:text-lg">
+                {doctorPage.subHeader}
+              </p>
+              <div className="mt-1 flex flex-wrap gap-4">
+                <Button className="h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
+                  <Link to="mailto:ReproHealthCS@gmail.com">
+                    Hubungi Email Kami
+                  </Link>
+                </Button>
+                <Button className="h-10 border-green-500 bg-white px-6 pb-8 pt-2 font-semibold text-green-500 hover:border-green-700 hover:text-green-700 2xl:mt-6">
+                  <Link to="/login">Masuk Sebagai Dokter</Link>
+                </Button>
+              </div>
+            </div>
+            <h4 className="mt-8 py-2 text-[1.1rem] font-bold text-green-900 sm:text-[1.3rem] lg:text-[1.5rem] xl:text-[1.68rem] 2xl:py-4">
               {doctorPage.headerBenefit}
             </h4>
             <BenefitList />
@@ -133,7 +148,10 @@ function HowToJoinList() {
             <img className="hidden lg:block" src={list.id !== 4 && arrow} />
           </div>
           <div>
-            <h5 className="mt-2 font-bold 2xl:mt-5">{list.title}</h5>
+            <h5 className="mt-2 font-bold 2xl:mt-5">
+              <span>{list.id}. </span>
+              {list.title}
+            </h5>
             <p className="mt-5 font-medium 2xl:mt-8">{list.textContent}</p>
           </div>
         </li>

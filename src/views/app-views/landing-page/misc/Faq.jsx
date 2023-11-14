@@ -19,7 +19,7 @@ const items = [
         <p className="mb-4">
           Ikuti langkah berikut untuk melihat detail janji temu kamu:
         </p>
-        <p>1. Pilih &apos;Riwayat&apos; pada menu bagian bawah layar. </p>
+        <p>1. Pilih 'Riwayat' pada menu bagian bawah layar. </p>
         <p>2. Pilih janji temu untuk melihat detailnya.</p>
       </>
     ),
@@ -27,22 +27,74 @@ const items = [
   {
     key: "2",
     label: <p>Bagaimana cara membatalkan janji temu saya?</p>,
+    children: (
+      <>
+        <p className="mb-4">
+          Ikuti langkah berikut untuk membatalkan janji temu:
+        </p>
+        <p>1. Pilih 'Riwayat Transaksi' pada menu bagian bawah layar.</p>
+        <p>2. Pilih janji yang ingin dibatalkan.</p>
+        <p>3. Pilih 'Batalkan'.</p>
+      </>
+    ),
   },
   {
     key: "3",
     label: <p>Berapa lama estimasi pengembalian dana (refund) ReproHealth?</p>,
+    children: (
+      <>
+        <p className="mb-4">
+          Berikut adalah perkiraan kapan pengembalian danamu akan diterima:
+        </p>
+        <p>
+          Kartu Debit : Maksimal 14 hari kerja tergantung bank (tidak termasuk
+          hari Sabtu, Minggu & Libur Nasional).
+        </p>
+        <p className="mt-4">
+          Apabila sudah lewat dari waktu di atas dan kamu belum menerima
+          pengembalian dana, hubungi email ReproHealth di
+          helpreprohealth@gmail.com.
+        </p>
+      </>
+    ),
   },
   {
     key: "4",
-    label: <p>Mengapa proses verifikasi KTP atau KIA saya gagal?</p>,
+    label: <p>Bagaimana cara mengubah jadwal janji temu saya?</p>,
+    children: (
+      <>
+        <p className="mb-4">
+          Ikuti langkah berikut untuk mengubah jadwal janji temu:
+        </p>
+        <p>1. Pilih 'Riwayat Transaksi' pada menu bagian bawah layar.</p>
+        <p>2. Pilih janji yang ingin kamu ubah dan klik 'Ubah Jadwal'.</p>
+        <p>3. Pilih tanggal dan waktu yang baru.</p>
+        <p className="mt-4">
+          Apabila langkah di atas ini sudah tidak bisa dilakukan dan kamu perlu
+          mengubah jadwal, hubungi email ReproHealth di
+          helpreprohealth@gmail.com.
+        </p>
+      </>
+    ),
   },
   {
     key: "5",
     label: (
       <p>
-        Saya ingin menghapus akun Halodoc yang terdaftar ke nomor ponsel saya
-        yang hilang. Kemana saya harus menghubungi?
+        Saya tidak bisa membuat pesanan janji temu. Apa yang harus saya lakukan?
       </p>
+    ),
+    children: (
+      <>
+        <p className="mb-4">
+          Jika kamu mengalami kendala membuat pesanan janji temu di ReproHealth,
+          coba perbarui aplikasi ReproHealth kamu hingga ke versi terbaru.
+        </p>
+        <p>
+          Jika masih mengalami kendala, silakan hubungi email ReproHealth di
+          helpreprohealth@gmail.com.
+        </p>
+      </>
     ),
   },
 ];
@@ -58,7 +110,7 @@ export default function Faq() {
         <section>
           <h2 className="mt-5 pb-5">{DataFaq.title}</h2>
           <Collapse accordion items={items} />
-          <Card className="my-5 bg-grey-10">
+          <Card className="my-5 border-slate-300 bg-grey-10">
             <Row justify="space-between" gutter={[8, 16]} align="middle">
               <Col
                 span={24}
