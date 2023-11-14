@@ -6,6 +6,7 @@ import ButtonFilter from "./components/ButtonFilter";
 import TotalCards from "./components/TotalCards";
 import AppointmentTable from "./components/AppointmentTable";
 import Calendar from "./components/Calendar";
+import ChartIncome from "./components/ChartIncome";
 
 export default function Dashboard() {
   return (
