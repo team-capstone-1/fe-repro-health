@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 // dataset
 export const DataIncome = [
   {
@@ -41,5 +43,24 @@ export const DataIncome = [
     after: 49000000,
     // prev: 20,
     amount: 60000000,
+  },
+];
+
+export const RangePresets = [
+  {
+    label: "Last 7 Days",
+    value: [dayjs().add(-7, "d"), dayjs()],
+  },
+  {
+    label: "Last 7 Month",
+    value: [dayjs().add(-7, "month"), dayjs()],
+  },
+  {
+    label: "Last 7 Years",
+    value: [dayjs().add(-7, "years"), dayjs()],
+  },
+  {
+    label: "Last 30 Days",
+    value: [dayjs().add(-30, "d"), dayjs()],
   },
 ];

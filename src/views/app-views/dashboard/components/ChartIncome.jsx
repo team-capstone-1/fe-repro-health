@@ -1,4 +1,5 @@
-import { Card, Col, Row } from "antd";
+import { Card, Col, DatePicker, Row, Space } from "antd";
+import dayjs from "dayjs";
 import {
   BarChart,
   Bar,
@@ -10,7 +11,12 @@ import {
   Legend,
 } from "recharts";
 
-import { DataIncome as data } from "@/utils/DataIncome";
+import {
+  DataIncome as data,
+  RangePresets as rangePresets,
+} from "@/views/landing-views/constant/graph-income";
+
+import { useState } from "react";
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -37,6 +43,34 @@ export default function ChartIncome() {
   const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
   const customTickXAxis = (value) => value.slice(0, 3);
 
+  const { RangePicker } = DatePicker;
+
+  const [selectedRange, setSelectedRange] = useState("");
+  const [startDate, setStartDate] = useState(selectedRange[0]);
+  const [endDate, setEndDate] = useState(selectedRange[1]);
+
+  const onRangeChange = (dates) => {
+    if (dates) {
+      setStartDate(dates[0]);
+      setEndDate(dates[1]);
+      setSelectedRange(dates);
+    } else {
+      setStartDate("");
+      setEndDate("");
+      setSelectedRange("");
+    }
+  };
+
+  const getLabel = () => {
+    if (startDate && endDate) {
+      const formattedStartDate = dayjs(startDate).format("DD MMMM, YYYY");
+      const formattedEndDate = dayjs(endDate).format("DD MMMM, YYYY");
+      return `Pendapatan dari ${formattedStartDate} hingga ${formattedEndDate}`;
+    } else {
+      return `Pilih Rentang Pendapatan...`;
+    }
+  };
+
   return (
     <Row justify="start">
       <Col span={24} xs={24} md={24} lg={24}>
@@ -45,7 +79,14 @@ export default function ChartIncome() {
             <h3 className="text-2xl font-semibold text-black">
               Grafik Pendapatan
             </h3>
-            <h6>Menampilkan data 7 bulan terakhir</h6>
+            <h6 id="label-graph" className="mb-3">
+              {getLabel()}
+            </h6>
+            <Col span={24}>
+              <Space direction="vertical" size={12}>
+                <RangePicker presets={rangePresets} onChange={onRangeChange} />
+              </Space>
+            </Col>
           </div>
 
           <Wrapper width="100%" height={405}>
@@ -102,16 +143,6 @@ export default function ChartIncome() {
                 cursor={{ fill: "transparent" }}
                 content={CustomTooltip}
               />
-
-              {/* <Bar
-                barSize={30}
-                radius={10}
-                dataKey="prev"
-                fill="#8896AB"
-                name="Pendapatan Sebelum"
-              >
-                <LabelList position="insideTop" fill="white" />
-              </Bar> */}
 
               <Bar
                 barSize={30}
