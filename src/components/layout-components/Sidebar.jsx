@@ -63,12 +63,7 @@ export default function Sidebar() {
         opacity: 0,
         pointerEvents: "none",
       },
-    },
-    {
-      style: {
-        opacity: 0,
-        pointerEvents: "none",
-      },
+      className: "pt-20",
     },
     {
       type: "divider",
@@ -85,7 +80,7 @@ export default function Sidebar() {
     },
   ];
   return (
-    <div className="h-[calc(100vh-73.03px)] min-h-[660px]">
+    <div className="sticky top-[76px] h-[calc(100vh-75.91px)] min-h-[650px] bg-white sm:top-[83px] sm:max-md:h-[calc(100vh-82.6px)] md:top-[75px] md:h-[calc(100vh-74.63px)]">
       <ConfigProvider
         theme={{
           components: {
@@ -99,17 +94,14 @@ export default function Sidebar() {
         }}
       >
         <Menu
-          className={` max-w-[256px] space-y-5 py-8  transition-all duration-700 ease-out last:text-red-500 ${
-            collapsed
-              ? "px-2"
-              : "w-screen max-w-[100vw] px-8 sm:w-[256px] sm:max-w-[256px]"
+          className={`space-y-5 pt-8 transition-all duration-700 ease-out last:text-red-500 sm:max-w-[256px] ${
+            collapsed ? "px-2" : "px-8"
           }`}
           defaultSelectedKeys={["1"]}
           mode="inline"
           theme="light"
           inlineCollapsed={collapsed}
           items={items}
-          style={{ "li:last-child": { marginBottom: "200px" } }}
         ></Menu>
       </ConfigProvider>
       {/* Logout Modal */}

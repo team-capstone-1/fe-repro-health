@@ -89,7 +89,7 @@ export default function ChartIncome() {
             </Col>
           </div>
 
-          <Wrapper width="100%" height={405}>
+          <Wrapper width="100%" height={385}>
             <BarChart
               // width={770}
               // height={408}
