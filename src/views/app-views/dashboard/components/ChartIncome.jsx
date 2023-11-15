@@ -1,5 +1,4 @@
-import { Alert, Card, Col, Row } from "antd";
-import React from "react";
+import { Card, Col, Row } from "antd";
 import {
   BarChart,
   Bar,
@@ -16,43 +15,37 @@ const data = [
   {
     year: "Januari",
     after: 53,
-    // previous: 200,
+    previous: 200,
     amount: 0,
   },
   {
     year: "Februari",
     after: 43,
-    // previous: 180,
     amount: 10,
   },
   {
     year: "Maret",
     after: 33,
-    // previous: 240,
     amount: 20,
   },
   {
     year: "April",
     after: 50,
-    // previous: 220,
     amount: 30,
   },
   {
     year: "Mei",
     after: 47,
-    // previous: 140,
     amount: 40,
   },
   {
     year: "Juni",
     after: 45,
-    // previous: 140,
     amount: 50,
   },
   {
     year: "Juli",
     after: 49,
-    // previous: 140,
     amount: 60,
   },
 ];
@@ -60,7 +53,7 @@ const data = [
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="w-[190px] rounded-lg bg-slate-50 px-3 py-3">
+      <div className="w-full rounded-lg bg-slate-50 px-3 py-3">
         <p className="mb-4 text-base text-neutral-600">
           {`${label} : Rp. ${payload[0].value * 1000000}`}
         </p>
@@ -91,8 +84,8 @@ export default function ChartIncome() {
 
           <Wrapper width="100%" aspect={3}>
             <BarChart
-              //   width={405}
-              //   height={300}
+              // width={405}
+              // height={300}
               data={data}
               barGap={0}
               margin={{

@@ -17,7 +17,7 @@ export function AppLayout() {
 
 function Content() {
   return (
-    <section className="px-5">
+    <section className="bg-white px-5">
       <Outlet />
     </section>
   );
