@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 function Content() {
   return (
     <main id="content-landing-page">
+      <div className="bg-error-timeout"></div>
       <Outlet />
     </main>
   );
