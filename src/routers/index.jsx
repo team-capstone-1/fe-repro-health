@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import PublicRoute from "@/routers/PublicRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
@@ -15,6 +14,7 @@ import ResetPassword from "@/views/auth-views/ResetPassword";
 import Dashboard from "@/views/app-views/dashboard";
 import Forum from "@/views/app-views/forum";
 import PrivateRoute from "@/routers/PrivateRoute";
+import PublicRoute from "@/routers/PublicRoute";
 
 export default function SetupRoutes() {
   return (
