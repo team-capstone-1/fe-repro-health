@@ -90,9 +90,10 @@ export default function ChartIncome() {
             <h3 className="text-2xl font-semibold text-black">
               Grafik Pendapatan
             </h3>
+            <h6>Menampilkan data 7 bulan terakhir</h6>
           </div>
 
-          <Wrapper width="100%" height={400}>
+          <Wrapper width="100%" height={405}>
             <BarChart
               // width={770}
               // height={408}

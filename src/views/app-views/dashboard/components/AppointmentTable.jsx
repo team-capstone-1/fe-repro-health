@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Row, Col, Card, Table, Button } from "antd";
 
 export default function AppointmentTable() {
@@ -104,8 +105,12 @@ export default function AppointmentTable() {
       <Row gutter={[16]}>
         <Col span={24}>
           <Card>
-            <p className="mb-4 text-xl font-bold">Janji Temu</p>
-            <Table columns={columns} dataSource={data} />
+            <div className="flex justify-between">
+              <p className="mb-4 text-2xl font-semibold">Janji Temu</p>
+              <Link to="#">Lihat semua</Link>
+            </div>
+            <Table columns={columns} dataSource={data} pagination={false} />
+            <h6 className="mt-5 font-medium">Menampilkan 5 data teratas</h6>
           </Card>
         </Col>
       </Row>

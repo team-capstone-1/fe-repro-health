@@ -9,7 +9,7 @@ import Calendar from "./components/Calendar";
 export default function Dashboard() {
   return (
     <>
-      <div className="py-5">
+      <div className="mb-5 py-5">
         <ButtonFilter />
         <Row gutter={[16, 24]}>
           <Col span={24}>
