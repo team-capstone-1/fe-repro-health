@@ -85,9 +85,9 @@ export default function AppointmentTable() {
   return (
     <>
       <Row gutter={[16]}>
-        <Col span={16}>
+        <Col span={24}>
           <Card>
-            <h4 className="mb-4 font-bold">Janji Temu</h4>
+            <p className="mb-4 text-xl font-bold">Janji Temu</p>
             <Table columns={columns} dataSource={data} />
           </Card>
         </Col>
