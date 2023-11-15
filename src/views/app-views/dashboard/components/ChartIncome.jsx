@@ -7,41 +7,53 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer,
-  //   LabelList,
+  ResponsiveContainer as Wrapper,
+  Legend,
 } from "recharts";
 
 // dataset
 const data = [
   {
     year: "Januari",
-    after: 100,
+    after: 53,
     // previous: 200,
     amount: 0,
   },
   {
     year: "Februari",
-    after: 140,
+    after: 43,
     // previous: 180,
-    amount: 50,
+    amount: 10,
   },
   {
     year: "Maret",
-    after: 160,
+    after: 33,
     // previous: 240,
-    amount: 100,
+    amount: 20,
   },
   {
     year: "April",
-    after: 140,
+    after: 50,
     // previous: 220,
-    amount: 150,
+    amount: 30,
   },
   {
     year: "Mei",
-    after: 180,
+    after: 47,
     // previous: 140,
-    amount: 200,
+    amount: 40,
+  },
+  {
+    year: "Juni",
+    after: 45,
+    // previous: 140,
+    amount: 50,
+  },
+  {
+    year: "Juli",
+    after: 49,
+    // previous: 140,
+    amount: 60,
   },
 ];
 
@@ -50,7 +62,7 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="w-[190px] rounded-lg bg-slate-50 px-3 py-3">
         <p className="mb-4 text-base text-neutral-600">
-          {`${label} : Rp. ${payload[0].value * 1000}`}
+          {`${label} : Rp. ${payload[0].value * 1000000}`}
         </p>
 
         <p className="text-base text-neutral-600">
@@ -64,32 +76,46 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function ChartIncome() {
-  const customTickYAxis = (value) => `${value}K`;
+  const customTickYAxis = (value) => `${value} jt`;
   const customTickXAxis = (value) => value.slice(0, 3);
 
   return (
     <Row justify="start">
-      <Col span={8} xs={24} md={24} lg={8}>
+      <Col span={24} xs={24} md={24} lg={16}>
         <Card>
           <div className="pl-4">
-            <h3 className="text-2xl font-semibold text-black">Pendapatan</h3>
+            <h3 className="text-2xl font-semibold text-black">
+              Grafik Pendapatan
+            </h3>
           </div>
 
-          <ResponsiveContainer width="100%" aspect={1.5}>
+          <Wrapper width="100%" aspect={2}>
             <BarChart
               //   width={405}
               //   height={300}
               data={data}
               barGap={0}
               margin={{
-                top: 15,
+                top: 5,
                 right: 0,
-                left: 0,
-                bottom: 5,
+                left: 10,
+                bottom: 10,
               }}
-              className="mt-[3.4rem]"
             >
-              <CartesianGrid stroke="rgba(185, 185, 185, 1)" vertical={false} />
+              <Legend
+                verticalAlign="top"
+                align="end"
+                iconSize={20}
+                iconType="circle"
+                formatter={(value) => (
+                  <span className="text-black">{value}</span>
+                )}
+                wrapperStyle={{
+                  paddingBottom: "50px",
+                }}
+              />
+
+              <CartesianGrid stroke="rgba(233, 233, 233, 1)" vertical={false} />
 
               <XAxis
                 tickFormatter={customTickXAxis}
@@ -97,7 +123,7 @@ export default function ChartIncome() {
                 dataKey="year"
                 tickLine={false}
                 axisLine={false}
-                stroke="rgba(75, 75, 75, 1)"
+                tickMargin={20}
                 className="text-base font-medium"
               />
 
@@ -108,9 +134,10 @@ export default function ChartIncome() {
                 dataKey="amount"
                 tickLine={false}
                 axisLine={false}
-                stroke="rgba(75, 75, 75, 1)"
-                className="text-base font-semibold"
-              ></YAxis>
+                tickMargin={20}
+                // ticks={[0, 10, 20, 30, 40, 50, 60]} custom show tick
+                className="text-base"
+              />
 
               <Tooltip
                 cursor={{ fill: "transparent" }}
@@ -119,15 +146,15 @@ export default function ChartIncome() {
 
               <Bar
                 barSize={25}
-                radius={0}
+                radius={30}
                 dataKey="after"
-                name="Pekan Kini"
+                name="Jumlah Pendapatan"
                 fill="rgba(20, 198, 164, 1)"
               >
-                {/* <LabelList position="top" formatter={customTickYAxis} /> */}
+                {/* <LabelList position="insideBottom" fill="black" /> */}
               </Bar>
             </BarChart>
-          </ResponsiveContainer>
+          </Wrapper>
         </Card>
       </Col>
     </Row>
