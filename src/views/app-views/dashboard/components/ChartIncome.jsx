@@ -92,10 +92,10 @@ export default function ChartIncome() {
             </h3>
           </div>
 
-          <Wrapper width="100%" aspect={2.1}>
+          <Wrapper width="100%" height={400}>
             <BarChart
-              // width={405}
-              // height={300}
+              // width={770}
+              // height={408}
               data={data}
               barGap={5}
               margin={{

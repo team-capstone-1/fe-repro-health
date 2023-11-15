@@ -29,6 +29,17 @@ export default function AppointmentTable() {
       key: "session",
     },
     {
+      title: "Pembayaran",
+      dataIndex: "payment",
+      key: "payment",
+      render: (text) => <span className="text-green-500">{text}</span>,
+    },
+    {
+      title: "Metode",
+      dataIndex: "method",
+      key: "method",
+    },
+    {
       title: "Status",
       dataIndex: "status",
       key: "status",
@@ -37,11 +48,11 @@ export default function AppointmentTable() {
           {status.map((tag) => {
             let color;
             if (tag === "Berjalan") {
-              color = "text-link bg-link-25";
+              color = "text-link bg-link-25 cursor-default";
             } else if (tag === "Menunggu") {
-              color = "text-warning bg-warning-25";
+              color = "text-warning bg-warning-25 cursor-default";
             } else {
-              color = "text-negative bg-negative-25";
+              color = "text-negative bg-negative-25 cursor-default";
             }
 
             return (
@@ -62,6 +73,8 @@ export default function AppointmentTable() {
       no: "009",
       date: "23/10/23",
       session: "Pagi",
+      payment: "Rp 123.000",
+      method: "Bayar di Klinik",
       status: ["Menunggu"],
     },
     {
@@ -70,6 +83,8 @@ export default function AppointmentTable() {
       no: "009",
       date: "23/10/23",
       session: "Pagi",
+      payment: "Rp 123.000",
+      method: "Bayar di Klinik",
       status: ["Berjalan"],
     },
     {
@@ -78,6 +93,8 @@ export default function AppointmentTable() {
       no: "009",
       date: "23/10/23",
       session: "Pagi",
+      payment: "Rp 123.000",
+      method: "Bayar di Klinik",
       status: ["Dibatalkan"],
     },
   ];

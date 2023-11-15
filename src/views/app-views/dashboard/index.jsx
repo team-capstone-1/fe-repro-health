@@ -11,7 +11,7 @@ export default function Dashboard() {
     <>
       <div className="py-5">
         <ButtonFilter />
-        <Row gutter={[16, 16]}>
+        <Row gutter={[16, 24]}>
           <Col span={24}>
             <TotalCards />
           </Col>
