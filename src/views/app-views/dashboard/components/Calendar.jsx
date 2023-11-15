@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { useState } from "react";
+import { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 function cn(...classes) {
@@ -83,10 +83,10 @@ export default function Calendar() {
   );
   const schedule2 = newDate2.toDateString();
   return (
-    <div className="m-5 w-96 rounded-lg border-2 p-5">
+    <div className="w-96 rounded-lg border p-5">
       {/* Header */}
-      <div className="mb-2 flex items-center justify-between">
-        <h6 className="text-lg font-semibold">Kalender</h6>
+      <div className="mb-4 mt-1 flex items-center justify-between">
+        <p className="text-xl font-bold">Kalender</p>
         <div className="flex items-center gap-1">
           <h6 className="select-none font-semibold">
             {months[today.month()]} {today.year()}
