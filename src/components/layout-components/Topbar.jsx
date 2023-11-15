@@ -6,7 +6,7 @@ import logoReproHealth from "@/assets/logo-reprohealth.png";
 
 export default function Topbar() {
   return (
-    <nav className="static left-0 top-0 z-50 w-full border bg-white">
+    <nav className="sticky left-0 top-0 z-50 w-full border bg-white">
       <div className="app-container z-10 flex justify-between py-5 md:py-3">
         <div className="flex items-center">
           <Link to="/">
