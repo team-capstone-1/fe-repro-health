@@ -2,7 +2,6 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-
     extend: {
       colors: {
         green: {
@@ -50,6 +49,7 @@ export default {
       "vector-header-2": 'url("./assets/vector-2.png")',
       "ellipse-header": 'url("./assets/ellipse.svg")',
       "doctor-header": 'url("./assets/doctor.svg")',
+      "error-timeout": 'url("./assets/error-timeout.png")',
     },
   },
   plugins: [],
