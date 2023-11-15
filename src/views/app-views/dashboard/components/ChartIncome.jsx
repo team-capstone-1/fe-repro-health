@@ -15,45 +15,45 @@ import {
 const data = [
   {
     year: "Januari",
-    after: 53,
+    after: 53000000,
     // prev: 20,
     amount: 0,
   },
   {
     year: "Februari",
-    after: 43,
+    after: 43000000,
     // prev: 20,
-    amount: 10,
+    amount: 10000000,
   },
   {
     year: "Maret",
-    after: 33,
+    after: 33000000,
     // prev: 20,
-    amount: 20,
+    amount: 20000000,
   },
   {
     year: "April",
-    after: 50,
+    after: 50000000,
     // prev: 20,
-    amount: 30,
+    amount: 30000000,
   },
   {
     year: "Mei",
-    after: 47,
+    after: 47000000,
     // prev: 20,
-    amount: 40,
+    amount: 40000000,
   },
   {
     year: "Juni",
-    after: 45,
+    after: 45000000,
     // prev: 20,
-    amount: 50,
+    amount: 50000000,
   },
   {
     year: "Juli",
-    after: 49,
+    after: 49000000,
     // prev: 20,
-    amount: 60,
+    amount: 60000000,
   },
 ];
 
@@ -62,7 +62,10 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="w-full rounded-lg bg-slate-50 px-3 py-3">
         <p className="mb-4 text-base text-neutral-600">
-          {`${label} : Rp. ${payload[0].value * 1000000}`}
+          {`${label} : Rp. ${payload[0].value.toLocaleString("id-ID", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          })}`}
         </p>
 
         <p className="text-base text-neutral-600">
@@ -76,7 +79,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function ChartIncome() {
-  const customTickYAxis = (value) => `${value} jt`;
+  const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
   const customTickXAxis = (value) => value.slice(0, 3);
 
   return (
