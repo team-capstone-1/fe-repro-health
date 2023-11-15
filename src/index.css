@@ -12,6 +12,10 @@
   @apply w-full px-2 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem];
 }
 
+.app-container {
+  @apply w-full px-2 sm:px-12 md:px-5 lg:px-[5.5rem] xl:px-24 2xl:px-[10.5rem];
+}
+
 .icon-footer {
   @apply flex h-8 w-8 cursor-pointer place-content-center items-center rounded-full border-2 border-white hover:border-green-100 hover:text-green-100 hover:duration-300;
 }

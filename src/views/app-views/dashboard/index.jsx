@@ -4,9 +4,9 @@ import Topbar from "@/components/layout-components/Topbar";
 import Sidebar from "./components/Sidebar";
 import ButtonFilter from "./components/ButtonFilter";
 import TotalCards from "./components/TotalCards";
+import ChartIncome from "./components/ChartIncome";
 import AppointmentTable from "./components/AppointmentTable";
 import Calendar from "./components/Calendar";
-import ChartIncome from "./components/ChartIncome";
 
 export default function Dashboard() {
   return (
