@@ -52,9 +52,6 @@ export default function ButtonFilter() {
                 selectedButton === "Harian"
                   ? "bg-green-500"
                   : "border-green-500 text-green-600"
-              }`}
-              onClick={() => handleButtonClick("Harian")}
-            >
               Harian
             </Button>
           </Flex>

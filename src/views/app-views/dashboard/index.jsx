@@ -5,7 +5,6 @@ import TotalCards from "./components/TotalCards";
 import ChartIncome from "./components/ChartIncome";
 import AppointmentTable from "./components/AppointmentTable";
 import Calendar from "./components/Calendar";
-import ChartIncome from "./components/ChartIncome";
 
 export default function Dashboard() {
   return (
