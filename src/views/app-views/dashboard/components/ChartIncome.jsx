@@ -82,6 +82,7 @@ export default function ChartIncome() {
             <h6 id="label-graph" className="mb-3">
               {getLabel()}
             </h6>
+
             <Col span={24}>
               <Space direction="vertical" size={12}>
                 <RangePicker presets={rangePresets} onChange={onRangeChange} />
@@ -89,7 +90,7 @@ export default function ChartIncome() {
             </Col>
           </div>
 
-          <Wrapper width="100%" height={385}>
+          <Wrapper width="100%" height={345}>
             <BarChart
               // width={770}
               // height={408}
@@ -111,7 +112,7 @@ export default function ChartIncome() {
                   <span className="text-black">{value}</span>
                 )}
                 wrapperStyle={{
-                  paddingBottom: "50px",
+                  paddingBottom: "10px",
                 }}
               />
 
