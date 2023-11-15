@@ -2,20 +2,20 @@ import forumIcon from "@/assets/forum-icon.svg";
 import appointmentIcon from "@/assets/appointment-icon.svg";
 import artikelIcon from "@/assets/artikel-icon.svg";
 
-export const CONST_heroSection = {
+export const DataHeroSection = {
   title: "ReproHealth",
   subs: "Partner Terpercaya untuk Kesehatan Reproduksi Anda",
   description:
     "Dengan akses mudah, informasi terpercaya, dan konsultasi yang nyaman, kami hadir untuk membantu Anda dalam mengakses layanan kesehatan reproduksi.",
 };
 
-export const CONST_aboutSection = {
+export const DataAboutSection = {
   title: "Tentang ReproHealth",
   description:
     "ReproHealth berkomitmen untuk memberikan akses mudah, informasi terpercaya, dan layanan yang nyaman kepada penggunanya. Dengan fitur forum diskusi, janji temu dengan dokter, dan artikel kesehatan reproduksi, ReproHealth membantu mengatasi setiap permasalahan reproduksi dan meningkatkan pemahaman tentang kesehatan reproduksi. Kami adalah mitra kesehatan reproduksi yang setia, siap mendukung pengguna dalam perjalanan mereka menuju kesehatan reproduksi yang optimal.",
 };
 
-export const CONST_serviceSection = {
+export const DataServiceSection = {
   title: "Pelayanan Kesehatan Untukmu",
   content: [
     {
@@ -45,7 +45,7 @@ export const CONST_serviceSection = {
   ],
 };
 
-export const CONST_benefitLists = {
+export const DataBenefitLists = {
   title: "Mengapa Harus Kami?",
   content: [
     {
@@ -80,7 +80,7 @@ export const CONST_benefitLists = {
   ],
 };
 
-export const CONST_ctaDoctor = {
+export const DataCtaDoctor = {
   title: "Ingin bergabung sebagai dokter?",
   subs: "Kesempatan bergabung dengan Tim ReproHealth",
 };

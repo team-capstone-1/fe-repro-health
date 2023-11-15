@@ -2,19 +2,23 @@ import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import BannerDownload from "@/components/shared-components/BannerDownload";
 
 import {
-  userTerms,
-  terms,
-} from "@/views/app-views/landing-page/constant/user-terms";
+  DataUserTerms,
+  DataTerms,
+} from "@/views/landing-views/constant/user-terms";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function UserTerms() {
+  useDocumentTitle(DataUserTerms.title);
+  useScrollToTop();
   return (
     <>
       <div className="base-container">
-        <Breadcrumb currentPage={userTerms.title} />
+        <Breadcrumb currentPage={DataUserTerms.title} />
         <section>
-          <h1 className="mb-4 mt-5">{userTerms.title}</h1>
-          <p className="text-justify text-base">{userTerms.description}</p>
-          {terms.map((section, index) => (
+          <h1 className="mb-4 mt-5">{DataUserTerms.title}</h1>
+          <p className="text-justify text-base">{DataUserTerms.description}</p>
+          {DataTerms.map((section, index) => (
             <div key={index}>
               <strong className="mb-1 mt-3 block">
                 {index + 1}. {section.title}

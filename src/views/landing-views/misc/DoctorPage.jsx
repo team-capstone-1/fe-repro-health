@@ -9,71 +9,84 @@ import {
   AiOutlineMessage,
 } from "react-icons/ai";
 import doctor from "@/assets/doctor.svg";
-import arrow from "@/assets/arrow.svg";
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 import {
-  CONST_benefitLists,
-  CONST_DoctorPage,
-} from "@/views/app-views/landing-page/constant/doctor-page";
+  DataBenefitLists,
+  DataDoctorPage as doctorPage,
+} from "@/views/landing-views/constant/doctor-page";
 
-export default function DocterPage() {
-  const doctorPage = CONST_DoctorPage;
+export default function DoctorPage() {
+  useDocumentTitle(doctorPage.title);
+  useScrollToTop();
   return (
     <>
-      <main>
-        <section className="base-container">
-          <Breadcrumb currentPage={doctorPage.title} />
-        </section>
-        <section className="base-container py-6 md:flex">
-          <div className="md:w-3/5 lg:w-2/3">
-            <div className="max-w-[726px]">
-              <h2 className=" text-green-900">{doctorPage.header}</h2>
-              <h4 className="py-2 text-[1.1rem] font-bold text-green-900 sm:text-[1.3rem] lg:text-[1.5rem] xl:text-[1.68rem] 2xl:py-4">
-                {doctorPage.headerBenefit}
-              </h4>
-              <BenefitList />
+      <section className="base-container">
+        <Breadcrumb currentPage={doctorPage.title} />
+      </section>
+      <section className="base-container py-6 md:flex">
+        <div className="md:w-3/5 lg:w-2/3">
+          <div className="max-w-[726px]">
+            <h2 className="text-green-900">{doctorPage.header}</h2>
+            <div className="mt-4">
+              <p className="text-[0.95rem] font-medium sm:text-base md:text-lg">
+                {doctorPage.subHeader}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-4">
+                <Button className="h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
+                  <Link to="mailto:ReproHealthCS@gmail.com">
+                    Hubungi Email Kami
+                  </Link>
+                </Button>
+                <Button className="h-10 border-green-500 bg-white px-6 pb-8 pt-2 font-semibold text-green-500 hover:border-green-700 hover:text-green-700 2xl:mt-6">
+                  <Link to="/login">Masuk Sebagai Dokter</Link>
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="md:w-2/5 lg:w-1/3">
-            <div className="">
-              <img
-                className="mx-auto mt-5 w-60 sm:w-64 md:mt-[9em] lg:mt-[7em] lg:w-[18rem] xl:mt-[5.5em] xl:w-[21rem] 2xl:mt-[4em] 2xl:w-96"
-                src={doctor}
-                alt=""
-              />
-            </div>
-          </div>
-        </section>
-        <section className="base-container py-2 sm:py-8">
-          <h4 className="text-[1.1rem] font-bold text-green-900 sm:text-[1.3rem] lg:text-[1.5rem] xl:text-[1.68rem]">
-            {doctorPage.headerJoin}
-          </h4>
-          <HowToJoinList />
-        </section>
-        <section className="px-0 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
-          <div className="w-full bg-green-50 px-2 py-4 sm:my-5 sm:px-6 sm:py-8 md:my-10 lg:my-16 lg:px-8 lg:py-8 xl:my-24 2xl:px-10 2xl:py-10">
-            <h4 className="font-bold text-green-900 sm:text-[1.5rem] md:text-[1.65] lg:text-[1.8rem] xl:text-[1.9rem]">
-              {doctorPage.headerCTA}
+            <h4 className="mt-8 py-2 text-[1.1rem] font-bold text-green-900 sm:text-[1.3rem] lg:text-[1.5rem] xl:text-[1.68rem] 2xl:py-4">
+              {doctorPage.headerBenefit}
             </h4>
-            <p className="mt-2 font-medium sm:text-lg lg:text-lg xl:text-xl">
-              {doctorPage.subCTA}
-            </p>
-            <Button className="mt-5 h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
-              <AiOutlineMail className="mr-1 inline-block h-5 w-5 pb-[0.15em]" />
-              <Link to="mailto:ReproHealthCS@gmail.com">
-                Hubungi Email Kami
-              </Link>
-            </Button>
+            <BenefitList />
           </div>
-        </section>
-      </main>
+        </div>
+        <div className="md:w-2/5 lg:w-1/3">
+          <div className="">
+            <img
+              className="mx-auto mt-5 w-60 sm:w-64 md:mt-[9em] lg:mt-[7em] lg:w-[18rem] xl:mt-[5.5em] xl:w-[21rem] 2xl:mt-[4em] 2xl:w-96"
+              src={doctor}
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+      <section className="base-container py-2 sm:py-8">
+        <h4 className="text-[1.1rem] font-bold text-green-900 sm:text-[1.3rem] lg:text-[1.5rem] xl:text-[1.68rem]">
+          {doctorPage.headerJoin}
+        </h4>
+        <HowToJoinList />
+      </section>
+      <section className="px-0 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
+        <div className="w-full bg-green-50 px-2 py-4 sm:my-5 sm:px-6 sm:py-8 md:my-10 lg:my-16 lg:px-8 lg:py-8 xl:my-24 2xl:px-10 2xl:py-10">
+          <h4 className="font-bold text-green-900 sm:text-[1.5rem] md:text-[1.65] lg:text-[1.8rem] xl:text-[1.9rem]">
+            {doctorPage.headerCTA}
+          </h4>
+          <p className="mt-2 font-medium sm:text-lg lg:text-lg">
+            {doctorPage.subCTA}
+          </p>
+          <Button className="mt-5 h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
+            <AiOutlineMail className="mr-1 inline-block h-5 w-5 pb-[0.15em]" />
+            <Link to="mailto:ReproHealthCS@gmail.com">Hubungi Email Kami</Link>
+          </Button>
+        </div>
+      </section>
     </>
   );
 }
 
 function BenefitList() {
-  const benefitLists = CONST_benefitLists;
+  const benefitLists = DataBenefitLists;
   return (
     <ul className="space-y-2 text-[0.95rem] font-medium sm:text-base md:text-lg 2xl:text-left">
       {benefitLists.map((list) => (
@@ -90,7 +103,7 @@ function BenefitList() {
   );
 }
 
-const CONST_howToJoinLists = [
+const DataHowToJoinLists = [
   {
     id: 1,
     icon: <AiOutlineMessage className="h-8 w-8" />,
@@ -122,7 +135,7 @@ const CONST_howToJoinLists = [
 ];
 
 function HowToJoinList() {
-  const howToJoinLists = CONST_howToJoinLists;
+  const howToJoinLists = DataHowToJoinLists;
   return (
     <ul className="grid grid-cols-1 grid-rows-4 gap-6 pt-6 sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 2xl:gap-12 2xl:pt-8">
       {howToJoinLists.map((list) => (
@@ -131,11 +144,13 @@ function HowToJoinList() {
             <span className="rounded-full bg-green-50 p-3 text-green-500">
               {list.icon}
             </span>
-            <img className="hidden lg:block" src={list.id !== 4 && arrow} />
           </div>
           <div>
-            <h5 className="mt-2 font-bold 2xl:mt-5">{list.title}</h5>
-            <p className="mt-5 font-medium 2xl:mt-8">{list.textContent}</p>
+            <h5 className="mt-2 font-bold lg:mt-5">
+              <span>{list.id}. </span>
+              {list.title}
+            </h5>
+            <p className="mt-3 font-medium">{list.textContent}</p>
           </div>
         </li>
       ))}

@@ -6,18 +6,22 @@ import handPhone from "@/assets/handphone.png";
 import doctorVector from "@/assets/doctor-vector.png";
 
 import { AiOutlineCheck } from "react-icons/ai";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import {
-  CONST_benefitLists,
-  CONST_heroSection,
-  CONST_aboutSection,
-  CONST_serviceSection,
-  CONST_ctaDoctor,
+  DataHeroSection,
+  DataAboutSection,
+  DataServiceSection,
+  DataBenefitLists,
+  DataCtaDoctor,
 } from "@/views/landing-views/constant/home-page";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function LandingPage() {
+  useDocumentTitle(DataHeroSection.title);
+  useScrollToTop();
   return (
     <>
       <HeroSection />
@@ -31,7 +35,8 @@ export default function LandingPage() {
 }
 
 function HeroSection() {
-  const heroSection = CONST_heroSection;
+  const heroSection = DataHeroSection;
+
   return (
     <header className="relative h-[59rem] bg-green-50 pt-8 md:h-[68rem] lg:h-[45rem]">
       <div className="absolute h-[38rem] w-full bg-vector-header bg-repeat-x"></div>
@@ -67,11 +72,11 @@ function HeroSection() {
 }
 
 function AboutSection() {
-  const aboutSection = CONST_aboutSection;
+  const aboutSection = DataAboutSection;
   return (
     <section
       id="about"
-      className="h-auto bg-green-100 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
+      className="h-auto bg-green-50 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
     >
       <div className="absolute hidden h-[21.9rem] w-[24rem] lg:bottom-0 lg:left-16 lg:block">
         <img src={handPhone} alt="handphone" />
@@ -89,14 +94,14 @@ function AboutSection() {
 }
 
 function ServicesList() {
-  const serviceLists = CONST_serviceSection;
+  const serviceLists = DataServiceSection;
   return (
     <>
       <section
         id="services"
         className="h-auto bg-grey-10 p-2 py-8 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
       >
-        <h2 className="mb-8 text-center text-2xl text-green-900 md:text-4xl">
+        <h2 className="my-5 text-center text-2xl text-green-900 md:text-4xl">
           {serviceLists.title}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 md:ps-9">
@@ -116,7 +121,7 @@ function ServicesList() {
 }
 
 function BenefitList() {
-  const benefitLists = CONST_benefitLists;
+  const benefitLists = DataBenefitLists;
   return (
     <section
       id="benefit"
@@ -155,7 +160,7 @@ function DownloadSection() {
 }
 
 function DoctorSection() {
-  const doctorSection = CONST_ctaDoctor;
+  const doctorSection = DataCtaDoctor;
   return (
     <section className="base-container h-auto w-auto bg-green-100">
       <div className="py-[3.25rem] md:text-center">
@@ -175,8 +180,8 @@ function ButtonCtaDoctor() {
   return (
     <button className="flex items-center rounded-lg bg-green-500 px-8 py-3 text-base font-semibold">
       Pelajari Lebih Lanjut
-      <span className="ms-1 text-lg text-white">
-        <AiOutlineArrowRight />
+      <span className="ms-1 text-base text-white">
+        <FaArrowRight />
       </span>
     </button>
   );

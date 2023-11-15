@@ -1,7 +1,5 @@
 import { Row, Col } from "antd";
 
-import Topbar from "@/components/layout-components/Topbar";
-import Sidebar from "./components/Sidebar";
 import ButtonFilter from "./components/ButtonFilter";
 import TotalCards from "./components/TotalCards";
 import ChartIncome from "./components/ChartIncome";
@@ -11,23 +9,23 @@ import Calendar from "./components/Calendar";
 export default function Dashboard() {
   return (
     <>
-      <Layout className="lg:h-screen">
-        <Topbar />
-        <main className="flex">
-          <Sidebar />
-          <div className="px-5">
-            <ButtonFilter />
-            <Row gutter={[8, 16]}>
-              <Col span={24}>
-                <TotalCards />
-              </Col>
-              <Col span={24}>
-                <AppointmentTable />
-              </Col>
-            </Row>
-          </div>
-        </main>
-      </Layout>
+      <div className="py-5">
+        <ButtonFilter />
+        <Row gutter={[16, 16]}>
+          <Col span={24}>
+            <TotalCards />
+          </Col>
+          <Col span={24}>
+            <ChartIncome />
+          </Col>
+          <Col xs={24} md={24} lg={14} xl={16}>
+            <AppointmentTable />
+          </Col>
+          <Col xs={24} md={24} lg={10} xl={8}>
+            <Calendar />
+          </Col>
+        </Row>
+      </div>
     </>
   );
 }
