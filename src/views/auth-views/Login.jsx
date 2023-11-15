@@ -34,7 +34,7 @@ const Login = () => {
   const onSubmitHandler = (data) => console.log(data);
 
   return (
-    <section className="flex h-screen items-center justify-center xl:scale-95">
+    <section className="flex h-screen items-center justify-center xl:scale-90">
       <div className="base-container">
         <div className="flex items-center justify-center">
           <div className="z-10 translate-x-0 rounded-lg bg-white px-8 py-8 shadow-none md:max-w-[38rem] md:px-14 md:py-14 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[38%]">
@@ -48,7 +48,7 @@ const Login = () => {
               </p>
             </div>
 
-            <form className="mt-8">
+            <form onSubmit={handleSubmit(onSubmitHandler)} className="mt-8">
               {/* Email */}
               <div>
                 <label className="text-base font-medium text-grey-300">
@@ -192,7 +192,7 @@ const Login = () => {
           {/* Illustration */}
           <div className="absolute hidden translate-x-[40%] py-5 xl:block">
             <img
-              className="-z-10 w-[82%]"
+              className="-z-10 w-[85%]"
               src={loginIllus}
               alt="login-illustration"
             />
