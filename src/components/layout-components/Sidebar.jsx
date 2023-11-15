@@ -14,6 +14,7 @@ export default function Sidebar() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const openLogoutModal = () => {
+    console.log("Opening Logout Modal");
     setShowLogoutModal(true);
   };
 
