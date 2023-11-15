@@ -81,7 +81,7 @@ export default function ChartIncome() {
 
   return (
     <Row justify="start">
-      <Col span={24} xs={24} md={24} lg={16}>
+      <Col span={24} xs={24} md={24} lg={24}>
         <Card>
           <div className="pl-4">
             <h3 className="text-2xl font-semibold text-black">
@@ -89,7 +89,7 @@ export default function ChartIncome() {
             </h3>
           </div>
 
-          <Wrapper width="100%" aspect={2}>
+          <Wrapper width="100%" aspect={3}>
             <BarChart
               //   width={405}
               //   height={300}
