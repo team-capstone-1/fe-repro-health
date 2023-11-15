@@ -39,6 +39,7 @@ function HeroSection() {
 
   return (
     <header className="relative h-[59rem] bg-green-50 pt-8 md:h-[68rem] lg:h-[45rem]">
+      <div className="bg-error-timeout"></div>
       <div className="absolute h-[38rem] w-full bg-vector-header bg-repeat-x"></div>
       <div className="static grid h-[34.6rem] grid-cols-1 px-2 sm:px-12 lg:grid-cols-2 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
         <div className="z-10 pt-5 md:w-[40rem] md:pt-20">
