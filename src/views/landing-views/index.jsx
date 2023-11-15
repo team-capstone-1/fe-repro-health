@@ -115,10 +115,7 @@ function ServicesList() {
         id="services"
         className="h-auto bg-grey-10 p-2 py-8 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
       >
-        <h2
-          id="services-title"
-          className="my-5 text-center text-2xl text-green-900 md:text-4xl"
-        >
+        <h2 className="mb-8 text-center text-2xl text-green-900 md:text-4xl">
           {serviceLists.title}
         </h2>
         <div
@@ -232,8 +229,8 @@ function ButtonCtaDoctor() {
       className="flex items-center rounded-lg bg-green-500 px-8 py-3 text-base font-semibold"
     >
       Pelajari Lebih Lanjut
-      <span id="button-cta-doctor-icon" className="ms-1 text-base text-white">
-        <FaArrowRight />
+      <span className="ms-1 text-lg text-white">
+        <AiOutlineArrowRight />
       </span>
     </button>
   );
