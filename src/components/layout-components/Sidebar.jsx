@@ -7,9 +7,20 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
+import LogoutModal from "@/components/layout-components/LogoutModal";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const openLogoutModal = () => {
+    setShowLogoutModal(true);
+  };
+
+  const closeLogoutModal = () => {
+    setShowLogoutModal(false);
+  };
+
   const toggleCollapsed = () => {
     setCollapsed((prev) => !prev);
   };
@@ -50,13 +61,13 @@ export default function Sidebar() {
       style: {
         opacity: 0,
         pointerEvents: "none",
-      }
+      },
     },
     {
       style: {
         opacity: 0,
         pointerEvents: "none",
-      }
+      },
     },
     {
       type: "divider",
@@ -68,7 +79,7 @@ export default function Sidebar() {
     {
       label: "Logout",
       key: "11",
-      icon: <IoIosLogOut onClick={() => console.log("tes modal")} className={iconStyle} />,
+      icon: <IoIosLogOut onClick={openLogoutModal} className={iconStyle} />,
       danger: true,
     },
   ];
@@ -100,6 +111,8 @@ export default function Sidebar() {
           style={{ "li:last-child": { marginBottom: "200px" } }}
         ></Menu>
       </ConfigProvider>
+      {/* Logout Modal */}
+      {showLogoutModal && <LogoutModal closeModal={closeLogoutModal} />}
     </div>
   );
 }
