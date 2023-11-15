@@ -138,10 +138,10 @@ export default function Calendar() {
                   <h6
                     className={cn(
                       currentMonth ? "" : "text-gray-400",
-                      today ? "bg-grey-50 text-white" : "",
+                      today ? "bg-grey-50 text-black" : "",
                       selectDate.toDate().toDateString() ===
                         date.toDate().toDateString()
-                        ? "bg-grey-100 text-white"
+                        ? "bg-grey-100 text-black"
                         : "",
                       "grid h-10 w-10 cursor-pointer select-none place-content-center items-center rounded-full transition-all hover:bg-grey-100 hover:text-white",
                     )}
@@ -166,7 +166,7 @@ export default function Calendar() {
                       today ? "bg-grey-50 text-black" : "",
                       selectDate.toDate().toDateString() ===
                         date.toDate().toDateString()
-                        ? "bg-grey-100 text-white"
+                        ? "bg-grey-100 text-black"
                         : "",
                       "grid h-10 w-10 cursor-pointer select-none place-content-center rounded-full transition-all hover:bg-grey-100 hover:text-white",
                     )}
