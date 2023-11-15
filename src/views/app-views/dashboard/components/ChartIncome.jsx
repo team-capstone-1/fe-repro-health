@@ -145,7 +145,7 @@ export default function ChartIncome() {
               />
 
               <Bar
-                barSize={25}
+                barSize={30}
                 radius={30}
                 dataKey="after"
                 name="Jumlah Pendapatan"
