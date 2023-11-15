@@ -10,17 +10,17 @@ export default function Dashboard() {
   return (
     <>
       <ButtonFilter />
-      <Row gutter={[8, 16]}>
+      <Row gutter={[16, 16]}>
         <Col span={24}>
           <TotalCards />
         </Col>
         <Col span={24}>
           <ChartIncome />
         </Col>
-        <Col span={24}>
+        <Col xs={24} md={24} lg={14} xl={16}>
           <AppointmentTable />
         </Col>
-        <Col span={24}>
+        <Col xs={24} md={24} lg={10} xl={8}>
           <Calendar />
         </Col>
       </Row>
