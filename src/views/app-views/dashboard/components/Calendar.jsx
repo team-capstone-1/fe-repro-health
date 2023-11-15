@@ -83,7 +83,7 @@ export default function Calendar() {
   );
   const schedule2 = newDate2.toDateString();
   return (
-    <div className="w-96 rounded-lg border p-5">
+    <div className="w-full rounded-lg border p-5">
       {/* Header */}
       <div className="mb-4 mt-1 flex items-center justify-between">
         <p className="text-xl font-bold">Kalender</p>

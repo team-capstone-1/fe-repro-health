@@ -15,14 +15,14 @@ export default function Dashboard() {
           <Col span={24}>
             <TotalCards />
           </Col>
-          <Col span={24}>
-            <ChartIncome />
-          </Col>
           <Col xs={24} md={24} lg={14} xl={16}>
-            <AppointmentTable />
+            <ChartIncome />
           </Col>
           <Col xs={24} md={24} lg={10} xl={8}>
             <Calendar />
+          </Col>
+          <Col span={24}>
+            <AppointmentTable />
           </Col>
         </Row>
       </div>

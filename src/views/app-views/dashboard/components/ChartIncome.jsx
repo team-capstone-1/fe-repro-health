@@ -8,6 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer as Wrapper,
   Legend,
+  LabelList,
 } from "recharts";
 
 // dataset
@@ -15,37 +16,43 @@ const data = [
   {
     year: "Januari",
     after: 53,
-    previous: 200,
+    // prev: 20,
     amount: 0,
   },
   {
     year: "Februari",
     after: 43,
+    // prev: 20,
     amount: 10,
   },
   {
     year: "Maret",
     after: 33,
+    // prev: 20,
     amount: 20,
   },
   {
     year: "April",
     after: 50,
+    // prev: 20,
     amount: 30,
   },
   {
     year: "Mei",
     after: 47,
+    // prev: 20,
     amount: 40,
   },
   {
     year: "Juni",
     after: 45,
+    // prev: 20,
     amount: 50,
   },
   {
     year: "Juli",
     after: 49,
+    // prev: 20,
     amount: 60,
   },
 ];
@@ -82,12 +89,12 @@ export default function ChartIncome() {
             </h3>
           </div>
 
-          <Wrapper width="100%" aspect={3}>
+          <Wrapper width="100%" aspect={2.1}>
             <BarChart
               // width={405}
               // height={300}
               data={data}
-              barGap={0}
+              barGap={5}
               margin={{
                 top: 5,
                 right: 0,
@@ -137,14 +144,24 @@ export default function ChartIncome() {
                 content={CustomTooltip}
               />
 
+              {/* <Bar
+                barSize={30}
+                radius={10}
+                dataKey="prev"
+                fill="#8896AB"
+                name="Pendapatan Sebelum"
+              >
+                <LabelList position="insideTop" fill="white" />
+              </Bar> */}
+
               <Bar
                 barSize={30}
-                radius={30}
+                radius={10}
                 dataKey="after"
                 name="Jumlah Pendapatan"
                 fill="rgba(20, 198, 164, 1)"
               >
-                {/* <LabelList position="insideBottom" fill="black" /> */}
+                {/* <LabelList position="top" fill="black" /> */}
               </Bar>
             </BarChart>
           </Wrapper>
