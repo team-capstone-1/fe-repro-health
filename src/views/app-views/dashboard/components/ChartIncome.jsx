@@ -48,7 +48,7 @@ export default function ChartIncome() {
             <h6>Menampilkan data 7 bulan terakhir</h6>
           </div>
 
-          <Wrapper width="100%" height={405}>
+          <Wrapper width="100%" height={385}>
             <BarChart
               // width={770}
               // height={408}
