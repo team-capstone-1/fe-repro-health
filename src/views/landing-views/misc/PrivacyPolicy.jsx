@@ -4,6 +4,7 @@ import {
   privacyPolicy,
   privacy,
 } from "@/views/app-views/landing-page/constant/privacy-policy";
+import { CONST_privacy } from "@/views/landing-views/constant/privacy-policy";
 
 export default function PrivacyPolicy() {
   const privacy = privacyPolicy;
