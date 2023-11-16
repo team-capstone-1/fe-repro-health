@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
           </p>
           {DataPrivacy.map((items, indexs) => (
             <div key={indexs}>
-              <h5 className="text-base font-bold">{items.title}</h5>
+              <h5 className="mt-3 text-base font-bold">{items.title}</h5>
               <h5 className="text-base font-medium">{items.subs[0]}</h5>
               <h5 className="text-base font-medium">{items.subs[1]}</h5>
               <ul>

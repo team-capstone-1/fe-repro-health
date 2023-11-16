@@ -20,7 +20,7 @@ export default function ButtonFilter() {
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Bulanan"
                   ? "bg-green-500"
-                  : "hover: border-green-500 px-4 text-green-600"
+                  : "border-green-500 text-green-600"
               }`}
               onClick={() => handleButtonClick("Bulanan")}
             >
@@ -31,7 +31,7 @@ export default function ButtonFilter() {
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Mingguan"
                   ? "bg-green-500"
-                  : "hover: border-green-500 px-4 text-green-600"
+                  : "border-green-500 text-green-600"
               }`}
               onClick={() => handleButtonClick("Mingguan")}
             >
@@ -42,7 +42,7 @@ export default function ButtonFilter() {
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Harian"
                   ? "bg-green-500"
-                  : "hover: border-green-500 px-4 text-green-600"
+                  : "border-green-500 text-green-600"
               }`}
               onClick={() => handleButtonClick("Harian")}
             >
