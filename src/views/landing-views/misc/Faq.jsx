@@ -104,13 +104,15 @@ export default function Faq() {
   useScrollToTop();
   return (
     <>
-      <div className="base-container">
+      <div id="breadcrumb-section" className="base-container">
         <Breadcrumb currentPage={DataFaq.title} />
 
-        <section>
-          <h2 className="mt-5 pb-5">{DataFaq.title}</h2>
+        <section id="faq-section">
+          <h2 id="faq-title" className="mt-5 pb-5">
+            {DataFaq.title}
+          </h2>
           <Collapse accordion items={items} />
-          <Card className="my-5 border-slate-300 bg-grey-10">
+          <Card id="faq-card" className="my-5 border-slate-300 bg-grey-10">
             <Row justify="space-between" gutter={[8, 16]} align="middle">
               <Col
                 span={24}
@@ -118,7 +120,7 @@ export default function Faq() {
                 lg={8}
                 className="text-center md:text-start"
               >
-                <h5>{DataFaq.textContent}</h5>
+                <h5 id="faq-card-text">{DataFaq.textContent}</h5>
               </Col>
               <Col span={24} md={12} lg={8} className="text-center md:text-end">
                 <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
@@ -127,7 +129,7 @@ export default function Faq() {
           </Card>
         </section>
 
-        <section className="mb-[2rem] mt-[4rem]">
+        <section id="banner-download-section" className="mb-[2rem] mt-[4rem]">
           <BannerDownload />
         </section>
       </div>

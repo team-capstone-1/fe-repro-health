@@ -13,19 +13,30 @@ export default function UserTerms() {
   useScrollToTop();
   return (
     <>
-      <div className="base-container">
+      <div id="breadcrumb-section" className="base-container">
         <Breadcrumb currentPage={DataUserTerms.title} />
-        <section>
-          <h1 className="mb-4 mt-5">{DataUserTerms.title}</h1>
-          <p className="text-justify text-base">{DataUserTerms.description}</p>
+        <section id="user-terms-section">
+          <h1 id="user-terms-title" className="mb-4 mt-5">
+            {DataUserTerms.title}
+          </h1>
+          <p id="user-terms-description" className="text-justify text-base">
+            {DataUserTerms.description}
+          </p>
           {DataTerms.map((section, index) => (
-            <div key={index}>
-              <strong className="mb-1 mt-3 block">
+            <div id="user-terms-content" key={index}>
+              <strong id="user-terms-content-title" className="mb-1 mt-3 block">
                 {index + 1}. {section.title}
               </strong>
-              <ul className="list-inside list-disc pl-[0.5rem] text-justify">
+              <ul
+                id="user-terms-content-list"
+                className="list-inside list-disc pl-[0.5rem] text-justify"
+              >
                 {section.listTerms.map((item, itemIndex) => (
-                  <li key={itemIndex} className="flex items-start">
+                  <li
+                    id="user-terms-content-list-item"
+                    key={itemIndex}
+                    className="flex items-start"
+                  >
                     <span className="mr-2 text-black">•</span>
                     <span>{item}</span>
                   </li>
@@ -35,7 +46,7 @@ export default function UserTerms() {
           ))}
         </section>
 
-        <section className="mb-[2rem] mt-[4rem]">
+        <section id="banner-download" className="mb-[2rem] mt-[4rem]">
           <BannerDownload />
         </section>
       </div>
