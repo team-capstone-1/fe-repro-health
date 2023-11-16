@@ -73,11 +73,11 @@ export default function ChartIncome() {
   };
 
   return (
-    <Row justify="start">
+    <Row id="chart-income" justify="start">
       <Col span={24} xs={24} md={24} lg={24}>
         <Card>
           <div className="pl-4">
-            <h3 className="text-2xl font-semibold text-black">
+            <h3 id="title-graph" className="text-2xl font-semibold text-black">
               Grafik Pendapatan
             </h3>
             <h6 id="label-graph" className="my-2">
@@ -87,6 +87,7 @@ export default function ChartIncome() {
             <Col span={24}>
               <Space direction="vertical" size={12}>
                 <RangePicker
+                  id="range-picker-chart-income"
                   presets={rangePresets}
                   onChange={onRangeChange}
                   format={dateFormat}
@@ -95,8 +96,9 @@ export default function ChartIncome() {
             </Col>
           </div>
 
-          <Wrapper width="100%" height={340}>
+          <Wrapper id="chart-income-wrapper" width="100%" height={340}>
             <BarChart
+              id="bar-chart"
               // width={770}
               // height={408}
               data={data}
@@ -109,6 +111,7 @@ export default function ChartIncome() {
               }}
             >
               <Legend
+                id="legend-chart-income"
                 verticalAlign="top"
                 align="end"
                 iconSize={20}
@@ -146,11 +149,13 @@ export default function ChartIncome() {
               />
 
               <Tooltip
+                id="tooltip-chart-income"
                 cursor={{ fill: "transparent" }}
                 content={CustomTooltip}
               />
 
               <Bar
+                id="bar-chart-income"
                 barSize={30}
                 radius={10}
                 dataKey="after"

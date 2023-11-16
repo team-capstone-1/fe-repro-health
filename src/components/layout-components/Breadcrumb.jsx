@@ -5,6 +5,7 @@ export default function Breadcrumbs({ currentPage }) {
   return (
     <>
       <Breadcrumb
+        id="breadcrumb"
         className="pt-4 sm:pt-12"
         separator={
           <p className="-mt-[0.26em] text-2xl min-[991.98px]:-mt-1">»</p>
@@ -12,13 +13,17 @@ export default function Breadcrumbs({ currentPage }) {
         items={[
           {
             title: (
-              <Link className="text-green-500" to="/">
+              <Link id="link-home" className="text-green-500" to="/">
                 <p>Beranda</p>
               </Link>
             ),
           },
           {
-            title: <p className="cursor-default">{currentPage}</p>,
+            title: (
+              <p id="current-page" className="cursor-default">
+                {currentPage}
+              </p>
+            ),
           },
         ]}
       />

@@ -102,17 +102,33 @@ export default function AppointmentTable() {
 
   return (
     <>
-      <Row gutter={[16]}>
+      <Row id="appointment-table-section" gutter={[16]}>
         <Col span={24}>
           <Card>
             <div className="flex justify-between">
-              <p className="mb-4 text-2xl font-semibold">Janji Temu</p>
-              <Link to="#" className="text-green-500 hover:text-green-700">
+              <p
+                id="appointment-table-title"
+                className="mb-4 text-2xl font-semibold"
+              >
+                Janji Temu
+              </p>
+              <Link
+                id="link-to-all-appointment-table"
+                to="#"
+                className="text-green-500 hover:text-green-700"
+              >
                 Lihat semua
               </Link>
             </div>
-            <Table columns={columns} dataSource={data} pagination={false} />
-            <h6 className="mt-5 text-grey-200">Menampilkan 5 data teratas</h6>
+            <Table
+              id="table-appointment"
+              columns={columns}
+              dataSource={data}
+              pagination={false}
+            />
+            <h6 id="more-appointment-footer" className="mt-5 text-grey-200">
+              Menampilkan 5 data teratas
+            </h6>
           </Card>
         </Col>
       </Row>
