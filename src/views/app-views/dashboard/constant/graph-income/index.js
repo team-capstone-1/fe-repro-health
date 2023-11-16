@@ -59,8 +59,4 @@ export const RangePresets = [
     label: "Last 7 Years",
     value: [dayjs().add(-7, "years"), dayjs()],
   },
-  {
-    label: "Last 30 Days",
-    value: [dayjs().add(-30, "d"), dayjs()],
-  },
 ];
