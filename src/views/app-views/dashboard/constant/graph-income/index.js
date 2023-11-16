@@ -52,11 +52,11 @@ export const RangePresets = [
     value: [dayjs().add(-7, "d"), dayjs()],
   },
   {
-    label: "Last 7 Month",
-    value: [dayjs().add(-7, "month"), dayjs()],
+    label: "Last 7 Weeks",
+    value: [dayjs().add(-7, "week"), dayjs()],
   },
   {
-    label: "Last 7 Years",
-    value: [dayjs().add(-7, "years"), dayjs()],
+    label: "Last 7 Month",
+    value: [dayjs().add(-7, "month"), dayjs()],
   },
 ];
