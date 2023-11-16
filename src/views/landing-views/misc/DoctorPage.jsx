@@ -30,13 +30,22 @@ export default function DoctorPage() {
       <section id="doctor-section" className="base-container py-6 md:flex">
         <div className="md:w-3/5 lg:w-2/3">
           <div className="max-w-[726px]">
-            <h2 className="text-green-900">{doctorPage.header}</h2>
+            <h2 id="doctor-title" className="text-green-900">
+              {doctorPage.header}
+            </h2>
             <div className="mt-4">
-              <p className="text-[0.95rem] font-medium sm:text-base md:text-lg">
+              <p
+                id="doctor-sub-header"
+                className="text-[0.95rem] font-medium sm:text-base md:text-lg"
+              >
                 {doctorPage.subHeader}
               </p>
               <div className="mt-4 flex flex-wrap gap-4">
-                <Button className="h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
+                <Button
+                  id="join-with-us-button"
+                  type="primary"
+                  className="bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:bg-green-600 2xl:mt-6"
+                >
                   <Link to="mailto:ReproHealthCS@gmail.com">
                     Gabung Bersama Kami
                   </Link>
@@ -186,11 +195,13 @@ function HowToJoinList() {
             </span>
           </div>
           <div>
-            <h5 className="mt-2 font-bold lg:mt-5">
-              <span>{list.id}. </span>
+            <h5 id="list-title" className="mt-2 font-bold lg:mt-5">
+              <span id="list-id">{list.id}. </span>
               {list.title}
             </h5>
-            <p className="mt-3 font-medium">{list.textContent}</p>
+            <p id="list-text-content" className="mt-2 font-medium">
+              {list.textContent}
+            </p>
           </div>
         </li>
       ))}
