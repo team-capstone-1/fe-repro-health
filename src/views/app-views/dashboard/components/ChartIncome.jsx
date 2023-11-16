@@ -21,16 +21,16 @@ import { useState } from "react";
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="w-full rounded-lg bg-slate-50 px-3 py-3">
-        <p className="mb-4 text-base text-neutral-600">
-          {`${label} : Rp. ${payload[0].value.toLocaleString("id-ID", {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-          })}`}
+      <div className="w-full rounded-[4px] bg-white px-3 py-3 shadow-lg">
+        <p id="label-year" className="mb-4 text-base text-black">
+          {`${label} `}
         </p>
 
-        <p className="text-base text-neutral-600">
-          {`Pendapatan Bulan ${label}.`}
+        <p className="text-base text-black">
+          {`${payload[0].value.toLocaleString("id-ID", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          })} Rupiah`}
         </p>
       </div>
     );
@@ -126,7 +126,7 @@ export default function ChartIncome() {
               <XAxis
                 tickFormatter={customTickXAxis}
                 orientation="bottom"
-                dataKey="year"
+                dataKey="date"
                 tickLine={false}
                 axisLine={false}
                 tickMargin={20}
