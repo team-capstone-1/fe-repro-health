@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ConfigProvider, Menu } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { AiOutlineSchedule, AiOutlineDollarCircle } from "react-icons/ai";
+import { AiOutlineSchedule } from "react-icons/ai";
 import { TfiDashboard } from "react-icons/tfi";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { PiWechatLogoBold } from "react-icons/pi";
@@ -54,16 +54,15 @@ export default function Sidebar() {
     },
     getItem("Dashboard", "2", <TfiDashboard className={iconStyle} />),
     getItem("Janji Temu", "3", <AiOutlineSchedule className={iconStyle} />),
-    getItem("Pendapatan", "4", <AiOutlineDollarCircle className={iconStyle} />),
-    getItem("Artikel", "5", <HiOutlineNewspaper className={iconStyle} />),
-    getItem("Forum", "6", <PiWechatLogoBold className={iconStyle} />),
-    getItem("Profile", "7", <CgProfile className={iconStyle} />),
+    getItem("Artikel", "4", <HiOutlineNewspaper className={iconStyle} />),
+    getItem("Forum", "5", <PiWechatLogoBold className={iconStyle} />),
+    getItem("Profile", "6", <CgProfile className={iconStyle} />),
     {
       style: {
         opacity: 0,
         pointerEvents: "none",
       },
-      className: "pt-20",
+      className: "pt-36",
     },
     {
       type: "divider",
@@ -73,9 +72,23 @@ export default function Sidebar() {
       },
     },
     {
-      label: "Logout",
-      key: "11",
-      icon: <IoIosLogOut onClick={openLogoutModal} className={iconStyle} />,
+      label: "",
+      key: "7",
+      icon: (
+        <div
+          className={`${collapsed ? "-ml-8 px-8" : "-ml-6 py-3 pl-6 pr-16"}`}
+          onClick={openLogoutModal}
+        >
+          {collapsed ? (
+            <IoIosLogOut className="h-5 w-5" />
+          ) : (
+            <span>
+              <IoIosLogOut className="mr-5 h-5 w-5" />
+              Logout
+            </span>
+          )}
+        </div>
+      ),
       danger: true,
     },
   ];
@@ -94,7 +107,7 @@ export default function Sidebar() {
         }}
       >
         <Menu
-          className={`space-y-5 pt-8 transition-all duration-700 ease-out last:text-red-500 sm:max-w-[256px] ${
+          className={`max-w-[256px] space-y-5 pt-8 transition-all duration-700 ease-out ${
             collapsed ? "px-2" : "px-8"
           }`}
           defaultSelectedKeys={["1"]}
