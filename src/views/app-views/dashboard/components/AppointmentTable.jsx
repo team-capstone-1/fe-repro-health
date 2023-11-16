@@ -107,10 +107,12 @@ export default function AppointmentTable() {
           <Card>
             <div className="flex justify-between">
               <p className="mb-4 text-2xl font-semibold">Janji Temu</p>
-              <Link to="#">Lihat semua</Link>
+              <Link to="#" className="text-green-500 hover:text-green-700">
+                Lihat semua
+              </Link>
             </div>
             <Table columns={columns} dataSource={data} pagination={false} />
-            <h6 className="mt-5 font-medium">Menampilkan 5 data teratas</h6>
+            <h6 className="mt-5 text-grey-200">Menampilkan 5 data teratas</h6>
           </Card>
         </Col>
       </Row>

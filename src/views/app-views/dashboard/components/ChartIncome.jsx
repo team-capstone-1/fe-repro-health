@@ -14,7 +14,7 @@ import {
 import {
   DataIncome as data,
   RangePresets as rangePresets,
-} from "@/views/landing-views/constant/graph-income";
+} from "@/views/app-views/dashboard/constant/graph-income";
 
 import { useState } from "react";
 
@@ -48,6 +48,7 @@ export default function ChartIncome() {
   const [selectedRange, setSelectedRange] = useState("");
   const [startDate, setStartDate] = useState(selectedRange[0]);
   const [endDate, setEndDate] = useState(selectedRange[1]);
+  const dateFormat = "DD/MM/YYYY";
 
   const onRangeChange = (dates) => {
     if (dates) {
@@ -63,8 +64,8 @@ export default function ChartIncome() {
 
   const getLabel = () => {
     if (startDate && endDate) {
-      const formattedStartDate = dayjs(startDate).format("DD MMMM, YYYY");
-      const formattedEndDate = dayjs(endDate).format("DD MMMM, YYYY");
+      const formattedStartDate = dayjs(startDate).format("DD MMMM YYYY");
+      const formattedEndDate = dayjs(endDate).format("DD MMMM YYYY");
       return `Pendapatan dari ${formattedStartDate} hingga ${formattedEndDate}`;
     } else {
       return `Pilih Rentang Pendapatan...`;
@@ -79,18 +80,22 @@ export default function ChartIncome() {
             <h3 className="text-2xl font-semibold text-black">
               Grafik Pendapatan
             </h3>
-            <h6 id="label-graph" className="mb-3">
+            <h6 id="label-graph" className="my-2">
               {getLabel()}
             </h6>
 
             <Col span={24}>
               <Space direction="vertical" size={12}>
-                <RangePicker presets={rangePresets} onChange={onRangeChange} />
+                <RangePicker
+                  presets={rangePresets}
+                  onChange={onRangeChange}
+                  format={dateFormat}
+                />
               </Space>
             </Col>
           </div>
 
-          <Wrapper width="100%" height={345}>
+          <Wrapper width="100%" height={340}>
             <BarChart
               // width={770}
               // height={408}
