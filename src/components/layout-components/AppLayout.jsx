@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 export function AppLayout() {
   return (
-    <Layout id="app-layout" className="lg:h-screen">
+    <Layout id="app-layout" className="bg-white">
       <Topbar />
       <main className="flex">
         <Sidebar />
@@ -17,7 +17,7 @@ export function AppLayout() {
 
 function Content() {
   return (
-    <section id="content-app" className="bg-white px-5">
+    <section id="content-app" className="px-5 w-full">
       <Outlet />
     </section>
   );

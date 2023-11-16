@@ -79,18 +79,10 @@ export default function Sidebar() {
       <CgProfile className={iconStyle} id="profile-icon-sidebar" />,
     ),
     {
-      style: {
-        opacity: 0,
-        pointerEvents: "none",
-      },
-      className: "pt-36",
-    },
-    {
       type: "divider",
-      style: {
-        border: "none",
-        borderTop: "2px solid #e8e8e8",
-      },
+      className: `absolute bottom-20 w-16 border-t-2 border-gray-200 transition-all duration-500 ease-out ${
+        collapsed ? "w-16" : "w-48"
+      }`,
     },
     {
       label: "",
@@ -102,23 +94,21 @@ export default function Sidebar() {
           onClick={openLogoutModal}
         >
           {collapsed ? (
-            <IoIosLogOut className="h-5 w-5" id="logout-icon" />
+            <IoIosLogOut className="h-5 w-5 mt-2.5 -ml-1" id="logout-icon" />
           ) : (
-            <span>
-              <IoIosLogOut className="mr-5 h-5 w-5" id="logout-icon" />
+            <span className="">
+              <IoIosLogOut className="mr-5 h-5 w-5 " id="logout-icon" />
               Logout
             </span>
           )}
         </div>
       ),
       danger: true,
+      className: `bottom-5 absolute ml-2 transition-all duration-500 ${collapsed ? "w-16" : "w-44 content-['Logout']"}`,
     },
   ];
   return (
-    <div
-      id="sidebar"
-      className="sticky top-[76px] h-[calc(100vh-75.91px)] min-h-[650px] bg-white sm:top-[83px] sm:max-md:h-[calc(100vh-82.6px)] md:top-[75px] md:h-[calc(100vh-74.63px)]"
-    >
+    <div className="sticky top-[75.91px] bg-white sm:top-[82.6px] md:top-[74.63px] max-h-[500px]">
       <ConfigProvider
         theme={{
           components: {
@@ -132,8 +122,7 @@ export default function Sidebar() {
         }}
       >
         <Menu
-          id="sidebar-menu"
-          className={`max-w-[256px] space-y-5 pt-8 transition-all duration-700 ease-out ${
+          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-8 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
             collapsed ? "px-2" : "px-8"
           }`}
           defaultSelectedKeys={["1"]}
