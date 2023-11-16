@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 function Content() {
   return (
-    <main>
+    <main id="content-landing-page">
       <Outlet />
     </main>
   );
@@ -13,7 +13,7 @@ function Content() {
 
 export function LandingPageLayout() {
   return (
-    <div>
+    <div id="landing-page-layout">
       <Navbar />
       <Content />
       <Footer />

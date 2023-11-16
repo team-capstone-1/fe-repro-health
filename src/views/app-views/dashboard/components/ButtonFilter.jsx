@@ -9,13 +9,16 @@ export default function ButtonFilter() {
   };
   return (
     <>
-      <Row justify="space-between">
+      <Row id="button-filter-wrapper" justify="space-between">
         <Col xs={24} md={12}>
-          <h4 className="mb-4 block font-semibold">Selamat Datang, Dr Andi!</h4>
+          <h4 id="welcome-doctor" className="mb-4 block font-semibold">
+            Selamat Datang, Dr Andi!
+          </h4>
         </Col>
         <Col xs={24} md={12} className="mb-5 text-start md:text-end">
           <Space>
             <Button
+              id="button-filter-monthly"
               type="primary"
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Bulanan"
@@ -27,6 +30,7 @@ export default function ButtonFilter() {
               Bulanan
             </Button>
             <Button
+              id="button-filter-weekly"
               type="primary"
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Mingguan"
@@ -38,6 +42,7 @@ export default function ButtonFilter() {
               Mingguan
             </Button>
             <Button
+              id="button-filter-daily"
               type="primary"
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Harian"

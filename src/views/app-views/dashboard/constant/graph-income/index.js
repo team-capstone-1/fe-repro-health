@@ -3,45 +3,38 @@ import dayjs from "dayjs";
 // dataset
 export const DataIncome = [
   {
-    year: "Januari",
+    date: dayjs().add(-10, "month").format("MMMM YYYY"),
     after: 53000000,
-    // prev: 20,
     amount: 0,
   },
   {
-    year: "Februari",
+    date: dayjs().add(-9, "month").format("MMMM YYYY"),
     after: 43000000,
-    // prev: 20,
     amount: 10000000,
   },
   {
-    year: "Maret",
+    date: dayjs().add(-8, "month").format("MMMM YYYY"),
     after: 33000000,
-    // prev: 20,
     amount: 20000000,
   },
   {
-    year: "April",
+    date: dayjs().add(-7, "month").format("MMMM YYYY"),
     after: 50000000,
-    // prev: 20,
     amount: 30000000,
   },
   {
-    year: "Mei",
+    date: dayjs().add(-6, "month").format("MMMM YYYY"),
     after: 47000000,
-    // prev: 20,
     amount: 40000000,
   },
   {
-    year: "Juni",
+    date: dayjs().add(-5, "month").format("MMMM YYYY"),
     after: 45000000,
-    // prev: 20,
     amount: 50000000,
   },
   {
-    year: "Juli",
+    date: dayjs().add(-4, "month").format("MMMM YYYY"),
     after: 49000000,
-    // prev: 20,
     amount: 60000000,
   },
 ];
@@ -52,15 +45,11 @@ export const RangePresets = [
     value: [dayjs().add(-7, "d"), dayjs()],
   },
   {
+    label: "Last 7 Weeks",
+    value: [dayjs().add(-7, "week"), dayjs()],
+  },
+  {
     label: "Last 7 Month",
     value: [dayjs().add(-7, "month"), dayjs()],
-  },
-  {
-    label: "Last 7 Years",
-    value: [dayjs().add(-7, "years"), dayjs()],
-  },
-  {
-    label: "Last 30 Days",
-    value: [dayjs().add(-30, "d"), dayjs()],
   },
 ];

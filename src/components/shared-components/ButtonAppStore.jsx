@@ -2,13 +2,23 @@ import { AiFillApple } from "react-icons/ai";
 
 export default function ButtonAppStore() {
   return (
-    <button className="flex p-1 ps-2 pe-5 rounded-md text-white bg-black hover:bg-opacity-95 m-1">
-      <span className="text-4xl">
+    <button
+      id="button-app-store"
+      className="m-1 flex rounded-md bg-black p-1 pe-5 ps-2 text-white hover:bg-opacity-95"
+    >
+      <span id="icon-app-store" className="text-4xl">
         <AiFillApple />
       </span>
-      <span className="block ms-2">
-        <div className="text-[0.5rem] md:text-xs">Download on the</div>
-        <div className="text-sm md:text-xl">App Store</div>
+      <span className="ms-2 block">
+        <div
+          id="sub-text-button-app-store"
+          className="text-[0.5rem] md:text-xs"
+        >
+          Download on the
+        </div>
+        <div id="text-button-app-store" className="text-sm md:text-xl">
+          App Store
+        </div>
       </span>
     </button>
   );
