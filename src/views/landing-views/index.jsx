@@ -15,7 +15,7 @@ import {
   DataServiceSection,
   DataBenefitLists,
   DataCtaDoctor,
-} from "@/views/app-views/landing-page/constant/home-page";
+} from "@/views/landing-views/constant/home-page";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 

@@ -1,10 +1,19 @@
 import { Routes, Route } from "react-router-dom";
-import Faq from "@/views/app-views/landing-page/misc/Faq";
-import LandingPage from "@/views/app-views/landing-page";
-import UserTerms from "@/views/app-views/landing-page/misc/UserTerms";
 import PublicRoute from "@/routers/PublicRoute";
-import Doctor from "@/views/app-views/landing-page/misc/DoctorPage";
-import PrivacyPolicy from "@/views/app-views/landing-page/misc/PrivacyPolicy";
+
+import LandingPage from "@/views/landing-views";
+import Doctor from "@/views/landing-views/misc/DoctorPage";
+import UserTerms from "@/views/landing-views/misc/UserTerms";
+import PrivacyPolicy from "@/views/landing-views/misc/PrivacyPolicy";
+import Faq from "@/views/landing-views/misc/Faq";
+
+import Login from "@/views/auth-views/Login";
+import ForgotPassword from "@/views/auth-views/ForgotPassword";
+import Verify from "@/views/auth-views/Verify";
+import ResetPassword from "@/views/auth-views/ResetPassword";
+
+import Dashboard from "@/views/app-views/dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 export default function SetupRoutes() {
   return (
@@ -14,8 +23,15 @@ export default function SetupRoutes() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/ketentuan-pengguna" element={<UserTerms />} />
         <Route path="/join-as-doctor" element={<Doctor />} />
-        <Route path="/kebijakan-privasi" element={<PrivacyPolicy />}/>
+        <Route path="/kebijakan-privasi" element={<PrivacyPolicy />} />
       </Route>
+      <Route path="/" element={<PrivateRoute />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/verify" element={<Verify />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );
 }

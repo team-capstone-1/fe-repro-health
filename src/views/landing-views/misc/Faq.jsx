@@ -8,7 +8,7 @@ import BannerDownload from "@/components/shared-components/BannerDownload";
 
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
-import { DataFaq } from "@/views/app-views/landing-page/constant/faq";
+import { DataFaq } from "@/views/landing-views/constant/faq";
 
 const items = [
   {

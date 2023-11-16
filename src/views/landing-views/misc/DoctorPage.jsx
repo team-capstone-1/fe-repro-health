@@ -9,7 +9,6 @@ import {
   AiOutlineMessage,
 } from "react-icons/ai";
 import doctor from "@/assets/doctor.svg";
-import arrow from "@/assets/arrow.svg";
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
@@ -17,7 +16,7 @@ import { useScrollToTop } from "@/hooks/useScrollToTop";
 import {
   DataBenefitLists,
   DataDoctorPage as doctorPage,
-} from "@/views/app-views/landing-page/constant/doctor-page";
+} from "@/views/landing-views/constant/doctor-page";
 
 export default function DoctorPage() {
   useDocumentTitle(doctorPage.title);
@@ -27,6 +26,7 @@ export default function DoctorPage() {
       <section className="base-container">
         <Breadcrumb currentPage={doctorPage.title} />
       </section>
+
       <section className="base-container py-6 md:flex">
         <div className="md:w-3/5 lg:w-2/3">
           <div className="max-w-[726px]">
@@ -36,12 +36,18 @@ export default function DoctorPage() {
                 {doctorPage.subHeader}
               </p>
               <div className="mt-4 flex flex-wrap gap-4">
-                <Button className="h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6">
+                <Button
+                  type="primary"
+                  className="bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:bg-green-600 2xl:mt-6"
+                >
                   <Link to="mailto:ReproHealthCS@gmail.com">
-                    Hubungi Email Kami
+                    Gabung Bersama Kami
                   </Link>
                 </Button>
-                <Button className="h-10 border-green-500 bg-white px-6 pb-8 pt-2 font-semibold text-green-500 hover:border-green-700 hover:text-green-700 2xl:mt-6">
+                <Button
+                  type="primary"
+                  className="border-green-500 px-6 pb-8 pt-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white 2xl:mt-6"
+                >
                   <Link to="/login">Masuk Sebagai Dokter</Link>
                 </Button>
               </div>
@@ -62,12 +68,14 @@ export default function DoctorPage() {
           </div>
         </div>
       </section>
+
       <section className="base-container py-2 sm:py-8">
         <h4 className="text-[1.1rem] font-bold text-green-900 sm:text-[1.3rem] lg:text-[1.5rem] xl:text-[1.68rem]">
           {doctorPage.headerJoin}
         </h4>
         <HowToJoinList />
       </section>
+
       <section className="px-0 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
         <div className="w-full bg-green-50 px-2 py-4 sm:my-5 sm:px-6 sm:py-8 md:my-10 lg:my-16 lg:px-8 lg:py-8 xl:my-24 2xl:px-10 2xl:py-10">
           <h4 className="font-bold text-green-900 sm:text-[1.5rem] md:text-[1.65] lg:text-[1.8rem] xl:text-[1.9rem]">
@@ -151,7 +159,7 @@ function HowToJoinList() {
               <span>{list.id}. </span>
               {list.title}
             </h5>
-            <p className="mt-3 font-medium">{list.textContent}</p>
+            <p className="mt-2 font-medium">{list.textContent}</p>
           </div>
         </li>
       ))}

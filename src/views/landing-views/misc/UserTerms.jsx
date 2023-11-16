@@ -4,7 +4,7 @@ import BannerDownload from "@/components/shared-components/BannerDownload";
 import {
   DataUserTerms,
   DataTerms,
-} from "@/views/app-views/landing-page/constant/user-terms";
+} from "@/views/landing-views/constant/user-terms";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
