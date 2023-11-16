@@ -8,7 +8,7 @@ export default function Topbar() {
   return (
     <nav
       id="topbar"
-      className="sticky left-0 top-0 z-50 w-full border bg-grey-10"
+      className="sticky left-0 top-0 z-50 w-full border-b bg-grey-10"
     >
       <div className="app-container z-10 flex justify-between py-5 md:py-3">
         <div className="flex items-center">
