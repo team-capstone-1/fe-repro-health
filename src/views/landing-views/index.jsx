@@ -38,18 +38,28 @@ function HeroSection() {
   const heroSection = DataHeroSection;
 
   return (
-    <header className="relative h-[59rem] bg-green-50 pt-8 md:h-[68rem] lg:h-[45rem]">
+    <header
+      id="hero-section"
+      className="relative h-[59rem] bg-green-50 pt-8 md:h-[68rem] lg:h-[45rem]"
+    >
       <div className="absolute h-[38rem] w-full bg-vector-header bg-repeat-x"></div>
       <div className="static grid h-[34.6rem] grid-cols-1 px-2 sm:px-12 lg:grid-cols-2 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
         <div className="z-10 pt-5 md:w-[40rem] md:pt-20">
-          <h3 className="text-green-500">{heroSection.title}</h3>
-          <h1 className="text-green-900">{heroSection.subs}</h1>
+          <h3 id="hero-title" className="text-green-500">
+            {heroSection.title}
+          </h3>
+          <h1 id="hero-sub-title" className="text-green-900">
+            {heroSection.subs}
+          </h1>
           <div className="md:w-[36rem]">
-            <p className="mt-8 text-sm font-medium text-grey-400 md:text-xl">
+            <p
+              id="hero-description"
+              className="mt-8 text-sm font-medium text-grey-400 md:text-xl"
+            >
               {heroSection.description}
             </p>
           </div>
-          <div className="mt-14 flex gap-2 md:gap-10">
+          <div id="hero-button" className="mt-14 flex gap-2 md:gap-10">
             <ButtonAppStore />
             <ButtonGooglePlay />
           </div>
@@ -61,6 +71,7 @@ function HeroSection() {
             sm:block md:-bottom-0 md:right-24 lg:absolute lg:right-14"
           ></div>
           <img
+            id="doctor-img"
             src={doctorImg}
             alt="doctor"
             className="absolute -bottom-0 right-2 sm:hidden"
@@ -79,13 +90,16 @@ function AboutSection() {
       className="h-auto bg-green-50 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
     >
       <div className="absolute hidden h-[21.9rem] w-[24rem] lg:bottom-0 lg:left-16 lg:block">
-        <img src={handPhone} alt="handphone" />
+        <img id="handphone" src={handPhone} alt="handphone" />
       </div>
       <div className="lg:ms-[20rem] lg:mt-10 lg:text-justify">
-        <h2 className="text-2xl text-green-900 sm:text-4xl">
+        <h2 id="about-title" className="text-2xl text-green-900 sm:text-4xl">
           {aboutSection.title}
         </h2>
-        <p className="mt-5 py-2 text-sm font-medium text-grey-400 sm:text-base ">
+        <p
+          id="about-description"
+          className="mt-5 py-2 text-sm font-medium text-grey-400 sm:text-base "
+        >
           {aboutSection.description}
         </p>
       </div>
@@ -101,17 +115,32 @@ function ServicesList() {
         id="services"
         className="h-auto bg-grey-10 p-2 py-8 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
       >
-        <h2 className="my-5 text-center text-2xl text-green-900 md:text-4xl">
+        <h2
+          id="services-title"
+          className="my-5 text-center text-2xl text-green-900 md:text-4xl"
+        >
           {serviceLists.title}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 md:ps-9">
+        <div
+          id="services-content-list"
+          className="grid grid-cols-1 md:grid-cols-3 md:ps-9"
+        >
           {serviceLists.content.map((service) => (
             <div className="p-8" key={service.id}>
               <div className="grid h-16 w-16 place-content-center rounded-full bg-green-50">
-                <img src={service.icon} alt="forum" className={service.class} />
+                <img
+                  id="service-icon"
+                  src={service.icon}
+                  alt="forum"
+                  className={service.class}
+                />
               </div>
-              <h3 className="mt-3 text-2xl text-green-900">{service.title}</h3>
-              <p className="mt-6 text-base">{service.textContent}</p>
+              <h3 id="service-title" className="mt-3 text-2xl text-green-900">
+                {service.title}
+              </h3>
+              <p id="service-content" className="mt-6 text-base">
+                {service.textContent}
+              </p>
             </div>
           ))}
         </div>
@@ -129,16 +158,26 @@ function BenefitList() {
     >
       <div className="grid grid-cols-1">
         <div className="flex justify-center p-2 lg:absolute lg:bottom-8 lg:right-16 lg:h-[21.9rem] lg:w-[30rem]">
-          <img src={doctorVector} alt="doctor" />
+          <img id="doctor-vector" src={doctorVector} alt="doctor" />
         </div>
         <div className="mt-10 w-auto lg:me-[30rem] lg:mt-10 lg:ps-10">
-          <h2 className="text-2xl text-green-900 sm:text-4xl">
+          <h2
+            id="benefit-title"
+            className="text-2xl text-green-900 sm:text-4xl"
+          >
             {benefitLists.title}
           </h2>
-          <ul className="pt-8">
+          <ul id="benefit-list" className="pt-8">
             {benefitLists.content.map((list, index) => (
-              <li key={list.id + index} className="flex items-center pb-3">
-                <span className="me-3 inline-block rounded-full bg-green-50 px-[0.4em] py-[0.4em] text-xl text-green-500">
+              <li
+                id="benefit-list-item"
+                key={list.id + index}
+                className="flex items-center pb-3"
+              >
+                <span
+                  id="benefit-list-item-icon"
+                  className="me-3 inline-block rounded-full bg-green-50 px-[0.4em] py-[0.4em] text-xl text-green-500"
+                >
                   <AiOutlineCheck />
                 </span>
                 {list.textContent}
@@ -153,7 +192,10 @@ function BenefitList() {
 
 function DownloadSection() {
   return (
-    <section className="h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]">
+    <section
+      id="banner-download"
+      className="h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]"
+    >
       <BannerDownload />
     </section>
   );
@@ -162,12 +204,19 @@ function DownloadSection() {
 function DoctorSection() {
   const doctorSection = DataCtaDoctor;
   return (
-    <section className="base-container h-auto w-auto bg-green-100">
+    <section
+      id="cta-doctor"
+      className="base-container h-auto w-auto bg-green-100"
+    >
       <div className="py-[3.25rem] md:text-center">
-        <h2 className="text-[2rem] text-green-900">{doctorSection.title}</h2>
-        <p className="mt-1 text-lg">{doctorSection.subs}</p>
+        <h2 id="cta-doctor-title" className="text-[2rem] text-green-900">
+          {doctorSection.title}
+        </h2>
+        <p id="cta-doctor-description" className="mt-1 text-lg">
+          {doctorSection.subs}
+        </p>
         <div className="mt-6 flex text-white md:justify-center">
-          <Link to="/join-as-doctor">
+          <Link id="link-cta-doctor" to="/join-as-doctor">
             <ButtonCtaDoctor />
           </Link>
         </div>
@@ -178,9 +227,12 @@ function DoctorSection() {
 
 function ButtonCtaDoctor() {
   return (
-    <button className="flex items-center rounded-lg bg-green-500 px-8 py-3 text-base font-semibold">
+    <button
+      id="button-cta-doctor"
+      className="flex items-center rounded-lg bg-green-500 px-8 py-3 text-base font-semibold"
+    >
       Pelajari Lebih Lanjut
-      <span className="ms-1 text-base text-white">
+      <span id="button-cta-doctor-icon" className="ms-1 text-base text-white">
         <FaArrowRight />
       </span>
     </button>

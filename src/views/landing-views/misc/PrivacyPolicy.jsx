@@ -12,26 +12,55 @@ export default function PrivacyPolicy() {
   useScrollToTop();
   return (
     <>
-      <div className="base-container">
+      <div id="breadcrumb-section" className="base-container">
         <Breadcrumb currentPage={DataPrivacyPolicy.title} />
 
-        <section>
-          <h1 className="mb-4 mt-5">{DataPrivacyPolicy.title}</h1>
-          <p className="text-base font-medium">
+        <section id="privacy-policy-section">
+          <h1 id="privacy-policy-title" className="mb-4 mt-5">
+            {DataPrivacyPolicy.title}
+          </h1>
+          <p id="privacy-policy-description" className="text-base font-medium">
             {DataPrivacyPolicy.description}
           </p>
           {DataPrivacy.map((items, indexs) => (
-            <div key={indexs}>
-              <h5 className="mt-3 text-base font-bold">{items.title}</h5>
-              <h5 className="text-base font-medium">{items.subs[0]}</h5>
-              <h5 className="text-base font-medium">{items.subs[1]}</h5>
-              <ul>
+            <div id="privacy-policy-content" key={indexs}>
+              <h5
+                id="privacy-policy-content-title"
+                className="mt-3 text-base font-bold"
+              >
+                {items.title}
+              </h5>
+              <h5
+                id="privacy-policy-content-sub"
+                className="text-base font-medium"
+              >
+                {items.subs[0]}
+              </h5>
+              <h5
+                id="privacy-policy-content-sub-two"
+                className="text-base font-medium"
+              >
+                {items.subs[1]}
+              </h5>
+              <ul id="privacy-policy-content-list">
                 {items.textContent.map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="mx-2 text-base font-medium">
+                  <li
+                    id="privacy-policy-content-list-item"
+                    key={index}
+                    className="flex items-start"
+                  >
+                    <span
+                      id="privacy-policy-content-list-item-number"
+                      className="mx-2 text-base font-medium"
+                    >
                       {index + 1}.
                     </span>
-                    <span className="text-base font-medium">{item}</span>
+                    <span
+                      id="privacy-policy-content-list-item-text"
+                      className="text-base font-medium"
+                    >
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -39,7 +68,7 @@ export default function PrivacyPolicy() {
           ))}
         </section>
 
-        <section className="mb-[2rem] mt-[3.5rem]">
+        <section id="call-to-action" className="mb-[2rem] mt-[3.5rem]">
           <BannerDownload />
         </section>
       </div>

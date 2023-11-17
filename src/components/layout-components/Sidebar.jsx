@@ -8,6 +8,7 @@ import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import LogoutModal from "@/components/layout-components/LogoutModal";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
@@ -25,7 +26,9 @@ export default function Sidebar() {
   const toggleCollapsed = () => {
     setCollapsed((prev) => !prev);
   };
-  const iconStyle = `w-5 h-5  ${collapsed ? "mt-[10px] -ml-[1px]" : "mr-2"}`;
+  const iconStyle = `w-5 h-5  ${
+    collapsed ? "mt-0.5 -ml-[0.6em]" : "mr-1 -ml-2"
+  }`;
   const items = [
     getItem(
       "",
@@ -56,41 +59,43 @@ export default function Sidebar() {
     getItem(
       "Dashboard",
       "2",
-      <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />,
+      <Link to="/dashboard" className="p-2">
+        <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Janji Temu",
       "3",
-      <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Artikel",
       "4",
-      <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Forum",
       "5",
-      <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Profile",
       "6",
-      <CgProfile className={iconStyle} id="profile-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <CgProfile className={iconStyle} id="profile-icon-sidebar" />
+      </Link>,
     ),
     {
-      style: {
-        opacity: 0,
-        pointerEvents: "none",
-      },
-      className: "pt-36",
-    },
-    {
       type: "divider",
-      style: {
-        border: "none",
-        borderTop: "2px solid #e8e8e8",
-      },
+      className: `absolute bottom-20 w-16 border-t-2 border-gray-200 transition-all duration-500 ease-out ${
+        collapsed ? "w-16" : "w-48"
+      }`,
     },
     {
       label: "",
@@ -102,23 +107,23 @@ export default function Sidebar() {
           onClick={openLogoutModal}
         >
           {collapsed ? (
-            <IoIosLogOut className="h-5 w-5" id="logout-icon" />
+            <IoIosLogOut className="-ml-1 mt-2.5 h-5 w-5" id="logout-icon" />
           ) : (
-            <span>
-              <IoIosLogOut className="mr-5 h-5 w-5" id="logout-icon" />
+            <span className="">
+              <IoIosLogOut className="mr-5 h-5 w-5 " id="logout-icon" />
               Logout
             </span>
           )}
         </div>
       ),
       danger: true,
+      className: `bottom-5 absolute ml-2 transition-all duration-500 ${
+        collapsed ? "w-16" : "w-44 content-['Logout']"
+      }`,
     },
   ];
   return (
-    <div
-      id="sidebar"
-      className="sticky top-[76px] h-[calc(100vh-75.91px)] min-h-[650px] bg-white sm:top-[83px] sm:max-md:h-[calc(100vh-82.6px)] md:top-[75px] md:h-[calc(100vh-74.63px)]"
-    >
+    <div className="sticky top-[75.91px] hidden max-h-[500px] bg-white sm:top-[82.6px] sm:block md:top-[74.63px]">
       <ConfigProvider
         theme={{
           components: {
@@ -132,8 +137,7 @@ export default function Sidebar() {
         }}
       >
         <Menu
-          id="sidebar-menu"
-          className={`max-w-[256px] space-y-5 pt-8 transition-all duration-700 ease-out ${
+          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-8 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
             collapsed ? "px-2" : "px-8"
           }`}
           defaultSelectedKeys={["1"]}

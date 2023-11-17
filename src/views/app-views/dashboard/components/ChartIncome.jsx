@@ -76,7 +76,7 @@ export default function ChartIncome() {
     <Row id="chart-income" justify="start">
       <Col span={24} xs={24} md={24} lg={24}>
         <Card>
-          <div className="pl-4">
+          <section>
             <h3 id="title-graph" className="text-2xl font-semibold text-black">
               Grafik Pendapatan
             </h3>
@@ -94,7 +94,7 @@ export default function ChartIncome() {
                 />
               </Space>
             </Col>
-          </div>
+          </section>
 
           <Wrapper id="chart-income-wrapper" width="100%" height={340}>
             <BarChart
@@ -102,13 +102,14 @@ export default function ChartIncome() {
               // width={770}
               // height={408}
               data={data}
-              barGap={5}
+              barGap={0}
               margin={{
                 top: 5,
                 right: 0,
-                left: 10,
+                left: 0,
                 bottom: 10,
               }}
+              // maxBarSize={30}
             >
               <Legend
                 id="legend-chart-income"
@@ -117,7 +118,9 @@ export default function ChartIncome() {
                 iconSize={20}
                 iconType="circle"
                 formatter={(value) => (
-                  <span className="text-black">{value}</span>
+                  <span className="text-xs text-black md:text-[14px] lg:text-[16px]">
+                    {value}
+                  </span>
                 )}
                 wrapperStyle={{
                   paddingBottom: "10px",
@@ -156,7 +159,7 @@ export default function ChartIncome() {
 
               <Bar
                 id="bar-chart-income"
-                barSize={30}
+                barSize={window.innerWidth >= 450 ? 30 : 20}
                 radius={10}
                 dataKey="after"
                 name="Jumlah Pendapatan"
