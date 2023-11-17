@@ -56,7 +56,7 @@ const App = () => {
     getItem(
       "Janji Temu",
       "3",
-      <Link to="#">
+      <Link to="/appointment">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
     ),

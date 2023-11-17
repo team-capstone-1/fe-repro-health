@@ -66,7 +66,7 @@ export default function Sidebar() {
     getItem(
       "Janji Temu",
       "3",
-      <Link to="#" className="p-2">
+      <Link to="/appointment" className="p-2">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
     ),
