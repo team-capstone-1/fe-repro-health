@@ -13,7 +13,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           }`}
         >
           <button
-            className="h-full w-full py-3 font-medium text-sm sm:text-lg"
+            className="h-full w-full py-3 text-sm font-medium sm:text-lg"
             onClick={() => setActiveTab("1")}
           >
             {title[0]}
@@ -27,15 +27,19 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           }`}
         >
           <button
-            className="h-full w-full py-3 font-medium text-sm sm:text-lg"
+            className="h-full w-full py-3 text-sm font-medium sm:text-lg"
             onClick={() => setActiveTab("2")}
           >
             {title[1]}
           </button>
         </div>
       </div>
-      <div className={`${activeTab === "1" ? "block" : "hidden"}`}>{children[0]}</div>
-      <div className={`${activeTab === "2" ? "block" : "hidden"}`}>{children[1]}</div>
+      <div className={`${activeTab === "1" ? "block" : "hidden"}`}>
+        {children[0]}
+      </div>
+      <div className={`${activeTab === "2" ? "block" : "hidden"}`}>
+        {children[1]}
+      </div>
     </>
   );
 }

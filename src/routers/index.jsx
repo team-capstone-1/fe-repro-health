@@ -15,6 +15,7 @@ import Dashboard from "@/views/app-views/dashboard";
 // import DoctorProfile from "@/views/app-views/dashboard/profile/DoctorProfile";
 import Forum from "@/views/app-views/forum";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
+import Profile from "@/views/app-views/profile";
 import PrivateRoute from "@/routers/PrivateRoute";
 import PublicRoute from "@/routers/PublicRoute";
 
@@ -33,6 +34,7 @@ export default function SetupRoutes() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
+        <Route path="/forum" element={<Forum />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
