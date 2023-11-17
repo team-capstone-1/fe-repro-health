@@ -76,7 +76,7 @@ export default function ChartIncome() {
     <Row id="chart-income" justify="start">
       <Col span={24} xs={24} md={24} lg={24}>
         <Card>
-          <div className="pl-4">
+          <section>
             <h3 id="title-graph" className="text-2xl font-semibold text-black">
               Grafik Pendapatan
             </h3>
@@ -94,7 +94,7 @@ export default function ChartIncome() {
                 />
               </Space>
             </Col>
-          </div>
+          </section>
 
           <Wrapper id="chart-income-wrapper" width="100%" height={340}>
             <BarChart
@@ -106,7 +106,7 @@ export default function ChartIncome() {
               margin={{
                 top: 5,
                 right: 0,
-                left: 10,
+                left: 0,
                 bottom: 10,
               }}
               // maxBarSize={30}
