@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
-import PrivateRoute from "./PrivateRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
