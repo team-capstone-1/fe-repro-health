@@ -1,10 +1,16 @@
+import { useState } from "react";
 import { Row, Col, Card, Table, Button, Flex } from "antd";
 
 import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
 import ListFilter from "./ListFilter";
+import DetailPasien from "./DetailPasien";
 
 export default function AppointmentTable() {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
   const columns = [
     {
       title: "ID",
@@ -17,7 +23,7 @@ export default function AppointmentTable() {
       dataIndex: "name",
       key: "name",
       width: 300,
-      render: (text) => <a>{text}</a>,
+      render: (text) => <a onClick={handleOpen}>{text}</a>,
     },
     {
       title: "No Urut",
@@ -80,6 +86,7 @@ export default function AppointmentTable() {
 
   const data = [
     {
+      key: "1",
       id: "#001",
       name: "Naufal Helmi",
       no: "009",
@@ -90,6 +97,7 @@ export default function AppointmentTable() {
       status: ["Menunggu"],
     },
     {
+      key: "2",
       id: "#001",
       name: "Naufal Helmi",
       no: "009",
@@ -100,6 +108,7 @@ export default function AppointmentTable() {
       status: ["Berjalan"],
     },
     {
+      key: "3",
       id: "#001",
       name: "Naufal Helmi",
       no: "009",
@@ -123,6 +132,7 @@ export default function AppointmentTable() {
       icon: `${Icon02}`,
     },
   ];
+
   return (
     <>
       <h3 className="mb-3 font-bold">Janji Temu</h3>
@@ -162,6 +172,8 @@ export default function AppointmentTable() {
           style={{ maxWidth: "100%" }}
         />
       </Card>
+      {/* drawer detail pasien */}
+      {isOpen && <DetailPasien isOpen={isOpen} handleOpen={handleOpen} />}
     </>
   );
 }
