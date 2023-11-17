@@ -102,13 +102,14 @@ export default function ChartIncome() {
               // width={770}
               // height={408}
               data={data}
-              barGap={5}
+              barGap={0}
               margin={{
                 top: 5,
                 right: 0,
                 left: 10,
                 bottom: 10,
               }}
+              // maxBarSize={30}
             >
               <Legend
                 id="legend-chart-income"
@@ -117,7 +118,9 @@ export default function ChartIncome() {
                 iconSize={20}
                 iconType="circle"
                 formatter={(value) => (
-                  <span className="text-black">{value}</span>
+                  <span className="text-xs text-black md:text-[14px] lg:text-[16px]">
+                    {value}
+                  </span>
                 )}
                 wrapperStyle={{
                   paddingBottom: "10px",
@@ -156,7 +159,7 @@ export default function ChartIncome() {
 
               <Bar
                 id="bar-chart-income"
-                barSize={30}
+                barSize={window.innerWidth >= 450 ? 30 : 20}
                 radius={10}
                 dataKey="after"
                 name="Jumlah Pendapatan"
