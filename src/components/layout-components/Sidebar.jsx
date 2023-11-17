@@ -8,6 +8,7 @@ import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import LogoutModal from "@/components/layout-components/LogoutModal";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
@@ -25,7 +26,9 @@ export default function Sidebar() {
   const toggleCollapsed = () => {
     setCollapsed((prev) => !prev);
   };
-  const iconStyle = `w-5 h-5  ${collapsed ? "mt-[10px] -ml-[1px]" : "mr-2"}`;
+  const iconStyle = `w-5 h-5  ${
+    collapsed ? "mt-0.5 -ml-[0.6em]" : "mr-1 -ml-2"
+  }`;
   const items = [
     getItem(
       "",
@@ -56,27 +59,37 @@ export default function Sidebar() {
     getItem(
       "Dashboard",
       "2",
-      <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />,
+      <Link to="/dashboard" className="p-2">
+        <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Janji Temu",
       "3",
-      <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Artikel",
       "4",
-      <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Forum",
       "5",
-      <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Profile",
       "6",
-      <CgProfile className={iconStyle} id="profile-icon-sidebar" />,
+      <Link to="#" className="p-2">
+        <CgProfile className={iconStyle} id="profile-icon-sidebar" />
+      </Link>,
     ),
     {
       type: "divider",

@@ -37,7 +37,7 @@ export default function TotalCards() {
     <>
       <Row gutter={[16, 16]}>
         {data.map((item, i) => (
-          <Col id="total-cards" key={i} span={6} xs={24} md={12} lg={6}>
+          <Col id="total-cards" key={i} span={6} xs={24} md={12} lg={12} xl={6}>
             <Card>
               <div className="grid h-32 content-between">
                 <Flex justify="space-between" align="flex-start">
