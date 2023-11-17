@@ -14,22 +14,14 @@ import LogoutModal from "@/components/layout-components/LogoutModal";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
-  const openLogoutModal = () => {
-    setShowLogoutModal(true);
+  const handleOpenModal = () => {
+    setIsShow((prev) => !prev);
   };
 
-  const closeLogoutModal = () => {
-    setShowLogoutModal(false);
-  };
-
-  const showDrawer = () => {
-    setIsOpen(true);
-  };
-
-  const onClose = () => {
-    setIsOpen(false);
+  const handleOpen = () => {
+    setIsOpen((prev) => !prev);
   };
 
   const LogoutItem = () => {
@@ -38,7 +30,7 @@ const App = () => {
         <button
           id="logout-button-drawer"
           className="flex w-full flex-row rounded-lg py-[0.6rem] text-sm text-negative hover:bg-negative hover:text-white "
-          onClick={openLogoutModal}
+          onClick={handleOpenModal}
         >
           <span className="ms-4">
             <IoIosLogOut
@@ -96,7 +88,7 @@ const App = () => {
         <Space>
           <BsList
             className="m-1 cursor-pointer text-xl sm:hidden"
-            onClick={showDrawer}
+            onClick={handleOpen}
           />
         </Space>
         <Drawer
@@ -104,13 +96,12 @@ const App = () => {
           title={<DrawerTitle />}
           placement="left"
           closable={true}
-          onClose={onClose}
+          onClose={handleOpen}
           open={isOpen}
           footer={<LogoutItem />}
-          className="bg-grey-10"
         >
           <Menu
-            className="flex flex-col gap-1"
+            className="flex flex-col gap-1 border-0"
             defaultSelectedKeys={["1"]}
             mode="inline"
             theme="light"
@@ -119,7 +110,7 @@ const App = () => {
         </Drawer>
       </ConfigProvider>
       {/* Logout Modal */}
-      {showLogoutModal && <LogoutModal closeModal={closeLogoutModal} />}
+      {isShow && <LogoutModal closeModal={handleOpenModal} />}
     </>
   );
 };
