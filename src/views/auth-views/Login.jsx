@@ -1,7 +1,6 @@
 import { useState } from "react";
 import loginIllus from "@/assets/login-illustration.svg";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
-import { MdError } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -31,7 +30,9 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmitHandler = (data) => console.log(data);
+  const onSubmitHandler = (data) => {
+    console.log(data);
+  };
 
   return (
     <section className="flex h-screen items-center justify-center xl:scale-90">
@@ -48,7 +49,7 @@ const Login = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmitHandler)} className="mt-8">
+            <form id="login-form" onSubmit={handleSubmit(onSubmitHandler)} className="mt-8">
               {/* Email */}
               <div>
                 <label className="text-base font-medium text-grey-300">
@@ -69,35 +70,21 @@ const Login = () => {
                   </div>
                   <input
                     {...register("email")}
-                    onFocus={() => setIsFocusEmail(true)}
+                    onFocus={() => {
+                      setIsFocusEmail(true);
+                    }}
                     onBlur={() => setIsFocusEmail(false)}
                     id="email"
                     type="email"
-                    className={`block w-full rounded-lg border border-grey-100 p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
+                    className={`block w-full rounded-lg border p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.email
                         ? "border-[#fc4547] text-[#fc4547]"
                         : "border-grey-100 text-grey-100"
                     }`}
-                    placeholder="Enter your email address"
+                    placeholder="Masukkan email anda"
                   />
-                  <div
-                    className={`absolute inset-y-0 end-0 items-center pe-4 ${
-                      errors.email ? "flex" : "hidden"
-                    }`}
-                  >
-                    <MdError
-                      color={`${
-                        isFocusEmail
-                          ? "#0d0d0d"
-                          : errors.email
-                          ? "#fc4547"
-                          : "#b9b9b9"
-                      }`}
-                      size={24}
-                    />
-                  </div>
                 </div>
-                <span className=" text-xs text-[#fc4547]">
+                <span className=" text-xs text-red-500">
                   {errors.email?.message}
                 </span>
               </div>
@@ -122,7 +109,9 @@ const Login = () => {
                   </div>
                   <input
                     {...register("password")}
-                    onFocus={() => setIsFocusPass(true)}
+                    onFocus={() => {
+                      setIsFocusPass(true);
+                    }}
                     onBlur={() => setIsFocusPass(false)}
                     id="password"
                     type="password"
@@ -131,24 +120,8 @@ const Login = () => {
                         ? "border-[#fc4547] text-[#fc4547]"
                         : "border-grey-100 text-grey-100"
                     }`}
-                    placeholder="Enter your password"
+                    placeholder="Masukkan kata sandi anda"
                   />
-                  <div
-                    className={`absolute inset-y-0 end-0 items-center pe-4 ${
-                      errors.password ? "flex" : "hidden"
-                    }`}
-                  >
-                    <MdError
-                      color={`${
-                        isFocusPass
-                          ? "#0d0d0d"
-                          : errors.password
-                          ? "#fc4547"
-                          : "#b9b9b9"
-                      }`}
-                      size={24}
-                    />
-                  </div>
                 </div>
                 <span className=" text-xs text-red-500">
                   {errors.password?.message}
@@ -182,10 +155,7 @@ const Login = () => {
 
               {/* Button */}
               <div className="mt-16">
-                <button
-                  id="submit-button"
-                  className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600"
-                >
+                <button id="submit-button" className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600">
                   Masuk
                 </button>
               </div>
@@ -193,7 +163,7 @@ const Login = () => {
           </div>
 
           {/* Illustration */}
-          <div className="absolute hidden translate-x-[40%] py-5 xl:block">
+          <div id="login-illustration" className="absolute hidden translate-x-[40%] py-5 xl:block">
             <img
               className="-z-10 w-[85%]"
               src={loginIllus}
