@@ -9,12 +9,12 @@ const ForgotPassword = () => {
     <section className="flex h-screen items-center justify-center xl:scale-95">
       <div className="base-container">
         <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-14 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">
-          <button onClick={() => navigate(-1)} className="flex gap-3">
+          <button id="back-button" onClick={() => navigate(-1)} className="flex gap-3">
             <AiOutlineArrowLeft color="#989898" size={24} />
             <p className="text-base font-semibold text-grey-900">Kembali</p>
           </button>
           <div className="mt-[26px] grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
-            <form className="flex flex-col gap-12 lg:gap-20">
+            <form id="forgot-password-form" className="flex flex-col gap-12 lg:gap-20">
               {/* Title */}
               <div>
                 <h3 className="text-grey-900">Lupa Kata Sandi Anda</h3>
@@ -38,6 +38,7 @@ const ForgotPassword = () => {
               {/* Button */}
               <div>
                 <button
+                  id="submit-button"
                   type="submit"
                   onClick={() => navigate("/verify")}
                   className="flex w-full items-center justify-center gap-2 rounded-lg bg-green-500 px-8 py-4 text-base font-semibold text-grey-10 hover:bg-green-600"
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
             </form>
 
             {/* Illustration */}
-            <div className="hidden lg:block">
+            <div id="forgot-password-illustration" className="hidden lg:block">
               <img
                 className="w-full"
                 src={forgotPasswordIllus}
