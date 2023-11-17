@@ -17,7 +17,7 @@ export function AppLayout() {
 
 function Content() {
   return (
-    <section id="content-app" className="px-5 w-full">
+    <section id="content-app" className="w-full overflow-x-hidden px-5">
       <Outlet />
     </section>
   );

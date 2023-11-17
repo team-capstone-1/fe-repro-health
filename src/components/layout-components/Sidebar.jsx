@@ -94,7 +94,7 @@ export default function Sidebar() {
           onClick={openLogoutModal}
         >
           {collapsed ? (
-            <IoIosLogOut className="h-5 w-5 mt-2.5 -ml-1" id="logout-icon" />
+            <IoIosLogOut className="-ml-1 mt-2.5 h-5 w-5" id="logout-icon" />
           ) : (
             <span className="">
               <IoIosLogOut className="mr-5 h-5 w-5 " id="logout-icon" />
@@ -104,11 +104,13 @@ export default function Sidebar() {
         </div>
       ),
       danger: true,
-      className: `bottom-5 absolute ml-2 transition-all duration-500 ${collapsed ? "w-16" : "w-44 content-['Logout']"}`,
+      className: `bottom-5 absolute ml-2 transition-all duration-500 ${
+        collapsed ? "w-16" : "w-44 content-['Logout']"
+      }`,
     },
   ];
   return (
-    <div className="sticky top-[75.91px] bg-white sm:top-[82.6px] md:top-[74.63px] max-h-[500px]">
+    <div className="sticky top-[75.91px] hidden max-h-[500px] bg-white sm:top-[82.6px] sm:block md:top-[74.63px]">
       <ConfigProvider
         theme={{
           components: {
