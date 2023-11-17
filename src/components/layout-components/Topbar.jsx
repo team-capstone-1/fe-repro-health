@@ -1,5 +1,6 @@
 import { IoNotificationsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
 
 import profileDoctor from "@/assets/profile-doctor.svg";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
@@ -12,12 +13,13 @@ export default function Topbar() {
     >
       <div className="app-container z-10 flex justify-between py-5 md:py-3">
         <div className="flex items-center">
+          <DrawerSidebar />
           <Link to="/">
             <img
               id="logo-reprohealth-topbar"
               src={logoReproHealth}
               alt="logo"
-              className="w-28 cursor-pointer md:w-40"
+              className="hidden w-28 cursor-pointer sm:block md:w-40"
             />
           </Link>
         </div>
