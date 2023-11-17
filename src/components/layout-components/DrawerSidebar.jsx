@@ -49,27 +49,37 @@ const App = () => {
     getItem(
       "Dashboard",
       "2",
-      <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />,
+      <Link to="/dashboard">
+        <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Janji Temu",
       "3",
-      <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />,
+      <Link to="#">
+        <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Artikel",
       "4",
-      <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />,
+      <Link to="#">
+        <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Forum",
       "5",
-      <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />,
+      <Link to="#">
+        <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
+      </Link>,
     ),
     getItem(
       "Profile",
       "6",
-      <CgProfile className={iconStyle} id="profile-icon-sidebar" />,
+      <Link to="#">
+        <CgProfile className={iconStyle} id="profile-icon-sidebar" />
+      </Link>,
     ),
   ];
 
