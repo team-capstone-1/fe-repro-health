@@ -8,7 +8,7 @@ import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import LogoutModal from "@/components/layout-components/LogoutModal";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
@@ -80,7 +80,7 @@ export default function Sidebar() {
     getItem(
       "Forum",
       "5",
-      <Link to="#" className="p-2">
+      <Link to="/forum" className="p-2">
         <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
       </Link>,
     ),
@@ -137,7 +137,7 @@ export default function Sidebar() {
         }}
       >
         <Menu
-          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-8 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
+          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-5 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
             collapsed ? "px-2" : "px-8"
           }`}
           defaultSelectedKeys={["1"]}

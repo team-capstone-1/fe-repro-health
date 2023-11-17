@@ -4,7 +4,7 @@ export function Tabs({ children }) {
   const [activeTab, setActiveTab] = useState("1");
   return (
     <>
-      <div className="mt-[2.4em] flex w-full text-lg">
+      <div className="mt-[0.5em] sm:mt-[1em] flex w-full text-lg">
         <div
           className={`w-1/2 ${
             activeTab === "1"
@@ -13,10 +13,10 @@ export function Tabs({ children }) {
           }`}
         >
           <button
-            className="h-full w-full py-3"
+            className="h-full w-full py-3 font-medium"
             onClick={() => setActiveTab("1")}
           >
-            tab 1
+            Semua Diskusi
           </button>
         </div>
         <div
@@ -27,10 +27,10 @@ export function Tabs({ children }) {
           }`}
         >
           <button
-            className="h-full w-full py-3"
+            className="h-full w-full py-3 font-medium"
             onClick={() => setActiveTab("2")}
           >
-            tab 2
+            Belum Dijawab
           </button>
         </div>
       </div>
