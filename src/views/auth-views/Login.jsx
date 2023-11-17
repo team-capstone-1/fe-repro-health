@@ -30,7 +30,9 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmitHandler = (data) => console.log(data);
+  const onSubmitHandler = (data) => {
+    console.log(data);
+  };
 
   return (
     <section className="flex h-screen items-center justify-center xl:scale-90">
@@ -72,35 +74,21 @@ const Login = () => {
                   </div>
                   <input
                     {...register("email")}
-                    onFocus={() => setIsFocusEmail(true)}
+                    onFocus={() => {
+                      setIsFocusEmail(true);
+                    }}
                     onBlur={() => setIsFocusEmail(false)}
                     id="email"
                     type="email"
-                    className={`block w-full rounded-lg border border-grey-100 p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
+                    className={`block w-full rounded-lg border p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.email
                         ? "border-[#fc4547] text-[#fc4547]"
                         : "border-grey-100 text-grey-100"
                     }`}
-                    placeholder="Enter your email address"
+                    placeholder="Masukkan email anda"
                   />
-                  <div
-                    className={`absolute inset-y-0 end-0 items-center pe-4 ${
-                      errors.email ? "flex" : "hidden"
-                    }`}
-                  >
-                    <MdError
-                      color={`${
-                        isFocusEmail
-                          ? "#0d0d0d"
-                          : errors.email
-                          ? "#fc4547"
-                          : "#b9b9b9"
-                      }`}
-                      size={24}
-                    />
-                  </div>
                 </div>
-                <span className=" text-xs text-[#fc4547]">
+                <span className=" text-xs text-red-500">
                   {errors.email?.message}
                 </span>
               </div>
@@ -125,7 +113,9 @@ const Login = () => {
                   </div>
                   <input
                     {...register("password")}
-                    onFocus={() => setIsFocusPass(true)}
+                    onFocus={() => {
+                      setIsFocusPass(true);
+                    }}
                     onBlur={() => setIsFocusPass(false)}
                     id="password"
                     type={`${visible ? "text" : "password"}`}
@@ -134,7 +124,7 @@ const Login = () => {
                         ? "border-[#fc4547] text-[#fc4547]"
                         : "border-grey-100 text-grey-100"
                     }`}
-                    placeholder="Enter your password"
+                    placeholder="Masukkan kata sandi anda"
                   />
                   <div
                     onClick={() => setVisible(!visible)}
@@ -208,7 +198,10 @@ const Login = () => {
           </div>
 
           {/* Illustration */}
-          <div className="absolute hidden translate-x-[40%] py-5 xl:block">
+          <div
+            id="login-illustration"
+            className="absolute hidden translate-x-[40%] py-5 xl:block"
+          >
             <img
               className="-z-10 w-[85%]"
               src={loginIllus}
