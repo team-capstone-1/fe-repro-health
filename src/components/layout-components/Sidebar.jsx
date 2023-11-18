@@ -87,7 +87,7 @@ export default function Sidebar() {
     getItem(
       "Profile",
       "6",
-      <Link to="#" className="p-2">
+      <Link to="/profil" className="p-2">
         <CgProfile className={iconStyle} id="profile-icon-sidebar" />
       </Link>,
     ),
