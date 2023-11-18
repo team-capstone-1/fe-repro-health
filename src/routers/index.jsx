@@ -13,7 +13,7 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
-import DoctorProfile from "@/views/app-views/dashboard/profile/DoctorProfile";
+import DoctorProfile from "@/views/app-views/profile/components/DoctorProfile";
 import PrivateRoute from "./PrivateRoute";
 
 export default function SetupRoutes() {
