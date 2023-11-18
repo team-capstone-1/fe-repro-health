@@ -1,28 +1,9 @@
-import { ConfigProvider, Steps } from "antd";
 import { useState } from "react";
+import { ConfigProvider, Steps } from "antd";
+import { DataEducation as education } from "../constant/data-education";
 
-const itemsEdu = [
-  {
-    title: "Program Magister Kedokteran, Universitas Gadjah Mada, ",
-    description: "Program Kedokteran",
-  },
-  {
-    title: "Program Residen Dokter Spesialis,  Rumah Sakit Sejahtera",
-    description: "Residency Program Kedokteran Internal",
-  },
-  {
-    title: "Program Internship Dokter Umum, RSUP Klaten",
-    description: "",
-  },
-  {
-    title: "Sarjana Kedokteran, Universitas Gadjah Mada, Fakultas Kedokteran",
-    description: "",
-  },
-];
-
-console.log(itemsEdu);
 export default function Education() {
-  const [current, setCurrent] = useState(itemsEdu.length - 2);
+  const [current, setCurrent] = useState(education.length - 2);
 
   const onChange = (value) => {
     // console.log("onChange:", value);
@@ -30,7 +11,7 @@ export default function Education() {
   };
 
   return (
-    <section>
+    <section id="profile-education-section">
       <ConfigProvider
         theme={{
           components: {
@@ -52,7 +33,7 @@ export default function Education() {
           current={current}
           onChange={onChange}
           direction="vertical"
-          items={itemsEdu}
+          items={education}
           className="font-medium"
         />
       </ConfigProvider>
