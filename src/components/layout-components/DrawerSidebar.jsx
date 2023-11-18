@@ -70,7 +70,7 @@ const App = () => {
     getItem(
       "Forum",
       "5",
-      <Link to="#">
+      <Link to="/forum">
         <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
       </Link>,
     ),

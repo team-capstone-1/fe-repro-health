@@ -4,7 +4,7 @@ import { Row, Col, Card, Table, Button, Flex } from "antd";
 import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
 import ListFilter from "./ListFilter";
-import DetailPasien from "./DetailPasien";
+import DetailPatient from "./DetailPatient";
 
 export default function AppointmentTable() {
   const [isOpen, setIsOpen] = useState(false);
@@ -173,7 +173,7 @@ export default function AppointmentTable() {
         />
       </Card>
       {/* drawer detail pasien */}
-      {isOpen && <DetailPasien isOpen={isOpen} handleOpen={handleOpen} />}
+      {isOpen && <DetailPatient isOpen={isOpen} handleOpen={handleOpen} />}
     </>
   );
 }

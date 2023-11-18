@@ -124,3 +124,7 @@ p {
     font-size: 16px;
   }
 }
+
+.big-calendar table thead tr > th {
+  display: none;
+}
