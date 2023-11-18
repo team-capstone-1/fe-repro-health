@@ -1,9 +1,9 @@
-import { Card, Col, ConfigProvider, Row, Tabs } from "antd";
+import { Card, ConfigProvider, Tabs } from "antd";
 import React from "react";
 import WorkExperience from "./WorkExperience";
 import Education from "./Education";
 
-function TabsDoctor() {
+export default function TabsDoctor() {
   const onChange = (key) => {
     console.log(key);
   };
@@ -27,18 +27,18 @@ function TabsDoctor() {
   ];
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#14c6a4",
-        },
-      }}
-    >
-      <Card>
-        <Tabs defaultActiveKey="1" items={tabs} onChange={onChange} />
-      </Card>
-    </ConfigProvider>
+    <section id="tabs-profile">
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#14c6a4",
+          },
+        }}
+      >
+        <Card>
+          <Tabs defaultActiveKey="1" items={tabs} onChange={onChange} />
+        </Card>
+      </ConfigProvider>
+    </section>
   );
 }
-
-export default TabsDoctor;
