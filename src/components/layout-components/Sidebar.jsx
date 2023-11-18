@@ -8,7 +8,7 @@ import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import LogoutModal from "@/components/layout-components/LogoutModal";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
