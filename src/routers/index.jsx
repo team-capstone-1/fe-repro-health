@@ -13,8 +13,8 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
-import DoctorProfile from "@/views/app-views/profile/components/DoctorProfile";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "@/views/app-views/profile";
 
 export default function SetupRoutes() {
   return (
@@ -28,7 +28,7 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profil" element={<DoctorProfile />} />
+        <Route path="/profil" element={<Profile />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
