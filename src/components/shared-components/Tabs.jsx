@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Tabs({ children }) {
+export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
   const [activeTab, setActiveTab] = useState("1");
   return (
     <>
@@ -13,10 +13,10 @@ export function Tabs({ children }) {
           }`}
         >
           <button
-            className="h-full w-full py-3 font-medium"
+            className="h-full w-full py-3 font-medium text-sm sm:text-lg"
             onClick={() => setActiveTab("1")}
           >
-            Semua Diskusi
+            {title[0]}
           </button>
         </div>
         <div
@@ -27,10 +27,10 @@ export function Tabs({ children }) {
           }`}
         >
           <button
-            className="h-full w-full py-3 font-medium"
+            className="h-full w-full py-3 font-medium text-sm sm:text-lg"
             onClick={() => setActiveTab("2")}
           >
-            Belum Dijawab
+            {title[1]}
           </button>
         </div>
       </div>
@@ -39,38 +39,3 @@ export function Tabs({ children }) {
     </>
   );
 }
-
-// import { Tabs } from "antd";
-// const onChange = (key) => {
-//   console.log(key);
-// };
-// const items = [
-//   {
-//     key: "1",
-//     label: "Tab 1",
-//     children: "Content of Tab Pane 1",
-//   },
-//   {
-//     key: "2",
-//     label: "Tab 2",
-//     children: "Content of Tab Pane 2",
-//   },
-// ];
-
-// export default function Forum() {
-//   return (
-//     <>
-//       <div className="w-full flex justify-evenly">
-//         <div className="w-full flex justify-evenly">
-//           <Tabs
-//             className="w-full flex justify-evenly"
-//             tabBarStyle={{ color: "#0d0d0d"}}
-//             defaultActiveKey="1"
-//             items={items}
-//             onChange={onChange}
-//           />
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
