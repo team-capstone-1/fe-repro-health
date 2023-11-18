@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Button, Card, Drawer, Flex } from "antd";
 import { DataPasien } from "@/views/app-views/appointment/constant/detail-pasien";
+import ModalConfirmAppointment from "@/components/shared-components/ModalConfirmAppointment";
 
-export default function DetailPasien({ handleOpen, isOpen }) {
+export default function DetailPatient({ handleOpen, isOpen }) {
   return (
     <Drawer
       width={500}
@@ -26,29 +28,41 @@ const HeaderDrawer = () => {
 const ContentDrawer = () => {
   return (
     <>
-      <Card id="card-pasien-detail" className="mt-0">
-        <Flex justify="center">
-          <img
-            src={DataPasien.image}
-            alt="pasien"
-            className="h-[6.25rem] w-[6.25rem] rounded-full border bg-white"
-          />
-        </Flex>
-        <Flex justify="center" className="mt-2">
-          <h5 className="font-medium">{DataPasien.name}</h5>
-        </Flex>
-        {DataPasien.detail.map((item, i) => (
-          <Flex justify="space-between" className="mt-2" key={i}>
-            <p className="text-xs font-normal sm:text-sm">
-              {Object.keys(item)}
-            </p>
-            <p className="text-xs font-medium sm:text-sm">
-              {Object.values(item)}
-            </p>
-          </Flex>
-        ))}
-      </Card>
+      <CardDetailPatient />
+      <CardDetailAppointment />
+    </>
+  );
+};
 
+const CardDetailPatient = () => (
+  <Card id="card-pasien-detail" className="mt-0">
+    <Flex justify="center">
+      <img
+        src={DataPasien.image}
+        alt="pasien"
+        className="h-[6.25rem] w-[6.25rem] rounded-full border bg-white"
+      />
+    </Flex>
+    <Flex justify="center" className="mt-2">
+      <h5 className="font-medium">{DataPasien.name}</h5>
+    </Flex>
+    {DataPasien.detail.map((item, i) => (
+      <Flex justify="space-between" className="mt-2" key={i}>
+        <p className="text-xs font-normal sm:text-sm">{Object.keys(item)}</p>
+        <p className="text-xs font-medium sm:text-sm">{Object.values(item)}</p>
+      </Flex>
+    ))}
+  </Card>
+);
+
+const CardDetailAppointment = () => {
+  const [isShow, setIsShow] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsShow((prev) => !prev);
+  };
+  return (
+    <>
       <Card id="card-informasi-janji-temu" className="mt-4">
         <Flex>
           <h5 className="font-medium">{DataPasien.appointment}</h5>
@@ -91,10 +105,18 @@ const ContentDrawer = () => {
               <Button
                 type="primary"
                 className="bg-green-500 px-10 pb-8 pt-2 hover:bg-green-600 disabled:bg-grey-100 disabled:text-grey-200"
+                onClick={handleOpenModal}
               >
                 Konfirmasi Sekarang
               </Button>
             </Flex>
+            {isShow && (
+              <ModalConfirmAppointment
+                closeModal={handleOpenModal}
+                textTitle="Terima Janji Temu"
+                textContent="menerima"
+              />
+            )}
           </>
         )}
         {DataPasien.status === "Berjalan" && (
@@ -109,10 +131,18 @@ const ContentDrawer = () => {
               <Button
                 type="primary"
                 className="bg-green-500 px-10 pb-8 pt-2 hover:bg-green-600 disabled:bg-grey-100 disabled:text-grey-200"
+                onClick={handleOpenModal}
               >
                 Selesaikan Sekarang
               </Button>
             </Flex>
+            {isShow && (
+              <ModalConfirmAppointment
+                closeModal={handleOpenModal}
+                textTitle="Selesaikan Janji Temu"
+                textContent="menyelesaikan"
+              />
+            )}
           </>
         )}
         {DataPasien.status === "Dibatalkan" && (

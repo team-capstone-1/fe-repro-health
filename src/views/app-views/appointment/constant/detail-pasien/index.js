@@ -47,5 +47,5 @@ export const DataPasien = {
       "Total Biaya": "Rp. 100.000",
     },
   ],
-  status: "Menunggu",
+  status: "Berjalan",
 };

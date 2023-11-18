@@ -11,6 +11,7 @@ export default function Calendar() {
   const days = ["M", "S", "S", "R", "K", "J", "S"];
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
+  console.log(today.toDate());
 
   const dateSchedule = { nanoseconds: 807000000, seconds: 1699780986 };
   const newDate = new Date(
