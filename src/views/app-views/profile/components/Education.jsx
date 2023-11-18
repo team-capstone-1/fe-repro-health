@@ -22,7 +22,7 @@ const itemsEdu = [
 
 console.log(itemsEdu);
 export default function Education() {
-  const [current, setCurrent] = useState(itemsEdu.length - 1);
+  const [current, setCurrent] = useState(itemsEdu.length - 2);
 
   const onChange = (value) => {
     // console.log("onChange:", value);
@@ -35,17 +35,15 @@ export default function Education() {
         theme={{
           components: {
             Steps: {
-              titleLineHeight: 2,
               descriptionMaxWidth: "200px",
               dotSize: 10,
               dotCurrentSize: 15,
+              lineHeight: "25px",
             },
           },
           token: {
             colorPrimary: "#14c6a4",
-            colorTextLabel: "red",
-            colorBgTextHover: "green",
-            colorPrimaryBorder: "blue",
+            colorText: "#0D0D0D",
           },
         }}
       >
@@ -55,6 +53,7 @@ export default function Education() {
           onChange={onChange}
           direction="vertical"
           items={itemsEdu}
+          className="font-medium"
         />
       </ConfigProvider>
     </section>
