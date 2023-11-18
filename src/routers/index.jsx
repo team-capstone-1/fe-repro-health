@@ -12,6 +12,7 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
+import DoctorProfile from "@/views/app-views/dashboard/profile/DoctorProfile";
 import Forum from "@/views/app-views/forum";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import PrivateRoute from "@/routers/PrivateRoute";
