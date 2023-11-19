@@ -13,14 +13,11 @@ const Login = () => {
     email: yup
       .string()
       .required("Email harus diisi")
-      .email("Email harus sesuai")
-      .oneOf(["dummy@example.com"], "Email tidak valid"),
+      .email("Email tidak valid"),
     password: yup
       .string()
       .required("Kata sandi harus diisi")
-      .min(8, "Kata sandi minimal 8 karakter")
-      .oneOf(["helloworld"], "Kata sandi tidak valid"),
-    // .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, "Password")
+      .min(8, "Kata sandi minimal 8 karakter"),
   });
 
   const {
@@ -88,22 +85,6 @@ const Login = () => {
                     }`}
                     placeholder="Masukkan email anda"
                   />
-                  <div
-                    className={`absolute inset-y-0 end-0 items-center pe-4 ${
-                      errors.email ? "flex" : "hidden"
-                    }`}
-                  >
-                    <MdError
-                      color={`${
-                        isFocusEmail
-                          ? "#0d0d0d"
-                          : errors.email
-                          ? "#fc4547"
-                          : "#b9b9b9"
-                      }`}
-                      size={24}
-                    />
-                  </div>
                 </div>
                 <span className=" text-xs text-red-500">
                   {errors.email?.message}
@@ -143,22 +124,6 @@ const Login = () => {
                     }`}
                     placeholder="Masukkan kata sandi anda"
                   />
-                  <div
-                    className={`absolute inset-y-0 end-0 items-center pe-4 ${
-                      errors.password ? "flex" : "hidden"
-                    }`}
-                  >
-                    <MdError
-                      color={`${
-                        isFocusPass
-                          ? "#0d0d0d"
-                          : errors.password
-                          ? "#fc4547"
-                          : "#b9b9b9"
-                      }`}
-                      size={24}
-                    />
-                  </div>
                 </div>
                 <span className=" text-xs text-red-500">
                   {errors.password?.message}
