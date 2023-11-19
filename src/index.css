@@ -20,6 +20,26 @@
   @apply flex h-8 w-8 cursor-pointer place-content-center items-center rounded-full border-2 border-white hover:border-green-100 hover:text-green-100 hover:duration-300;
 }
 
+.ant-timeline-item-head-custom {
+  padding-block: 0 !important;
+}
+
+.ant-tabs-content-holder{
+  margin: 2px;
+  padding: 3px;
+
+}
+
+.ant-timeline-item-label{
+  /* text-align: left !important;
+  justify-content: flex-end !important;
+  width: 10rem !important; */
+}
+
+/* .ant-timeline-item-left {
+  left: -2rem;
+} */
+
 h1,
 h2,
 h3,
