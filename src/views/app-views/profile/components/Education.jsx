@@ -1,25 +1,16 @@
-import { useState } from "react";
-import { ConfigProvider, Steps } from "antd";
+import { ConfigProvider, Timeline } from "antd";
 import { DataEducation as education } from "../constant/data-education";
 
 export default function Education() {
-  const [current, setCurrent] = useState(education.length - 2);
-
-  const onChange = (value) => {
-    // console.log("onChange:", value);
-    setCurrent(value);
-  };
-
   return (
-    <section id="profile-education-section">
+    <section id="profile-education-section" className="mt-10">
       <ConfigProvider
         theme={{
           components: {
-            Steps: {
-              descriptionMaxWidth: "200px",
-              dotSize: 10,
-              dotCurrentSize: 15,
-              lineHeight: "25px",
+            Timeline: {
+              dotBorderWidth: 6,
+              itemPaddingBottom: "50px",
+              tailColor: "rgba(217, 217, 217, 0.7)",
             },
           },
           token: {
@@ -28,13 +19,11 @@ export default function Education() {
           },
         }}
       >
-        <Steps
-          progressDot
-          current={current}
-          onChange={onChange}
-          direction="vertical"
+        <Timeline
           items={education}
-          className="font-medium"
+          mode="left"
+          className=""
+          style={{ display: "inline-block" }}
         />
       </ConfigProvider>
     </section>
