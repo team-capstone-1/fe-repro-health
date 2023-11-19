@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDebounce } from "@/hooks/useDebounce";
 
-export default function SemuaDiskusi() {
+export default function NotAnsweredYet() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
@@ -13,9 +13,9 @@ export default function SemuaDiskusi() {
 
   useEffect(() => {
     setLoading(true);
-    let sortByQuery = "";
-    if (showBy === "terbaru") sortByQuery = "time";
-    else if (showBy === "populer") sortByQuery = "title";
+    let querySortBy = "";
+    if (showBy === "terbaru") querySortBy = "time";
+    else if (showBy === "populer") querySortBy = "title";
     try {
       const fetchData = async () => {
         const { data } = await axios.get(
@@ -23,12 +23,14 @@ export default function SemuaDiskusi() {
           {
             params: {
               search: searchQuery,
-              sortBy: sortByQuery,
+              //   status: false,
+              sortBy: querySortBy,
               order: "desc",
             },
           },
         );
-        setData(data);
+        const newData = data.filter((listData) => listData.status === false);
+        setData(newData);
         setLoading(false);
       };
       fetchData();
@@ -40,16 +42,15 @@ export default function SemuaDiskusi() {
 
   return (
     <div className="mt-4 pb-10 sm:px-2 md:px-5">
-      <div className="relative focus:bg-black">
+      <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
           <BsSearch className="text-gray-400" />
         </div>
         <input
-          id="search-bar-forum-1"
           type="text"
+          id="search-bar-forum-2"
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 ps-10 text-sm focus:outline-green-500 sm:p-5 sm:ps-14"
           placeholder="Cari kata kunci"
-          name="search"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
@@ -85,55 +86,53 @@ export default function SemuaDiskusi() {
             Pencarian tidak ditemukan
           </div>
         )}
-        {!loading &&
-          data.length > 0 &&
-          data.map((list) => (
-            <div
-              key={list.question}
-              className="rounded-md px-6 py-4 ring-1 ring-slate-300 max-[350px]:px-2"
-            >
-              {list.status === true ? (
-                <h6 className="text-right text-green-500">Sudah Terjawab</h6>
-              ) : (
+        {data.map(
+          (list) =>
+            !loading &&
+            list.question.length > 0 && (
+              <div
+                key={list.question}
+                className="rounded-md px-6 py-4 ring-1 ring-slate-300 max-[350px]:px-2"
+              >
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
-              )}
-              <div className="flex justify-between">
-                <h5 className="text-xl font-bold">{list.title}</h5>
-                <h6 className="pt-1.5 text-slate-400">{list.time}</h6>
-              </div>
-              <div className="flex gap-3 py-3">
-                <div className="flex">
-                  <img
-                    className="h-12 w-12 rounded-full hover:opacity-80"
-                    src={list.authorProfile}
-                    alt="patient profile"
-                  />
-                  <img
-                    className="-ml-4 h-12 w-12 rounded-full hover:opacity-80"
-                    src={list.doctorProfile}
-                    alt="doctor profile"
-                  />
+                <div className="flex justify-between">
+                  <h5 className="text-xl font-bold">{list.title}</h5>
+                  <h6 className="pt-1.5 text-slate-400">{list.time}</h6>
                 </div>
-                <div className="flex flex-col justify-center">
-                  <h5 className="text-sm max-[350px]:text-xs">
-                    Oleh : {list.author}
-                  </h5>
-                  <h5 className="text-sm max-[350px]:text-xs">
-                    Dijawab oleh {list.answeredBy}
-                  </h5>
+                <div className="flex gap-3 py-3">
+                  <div className="flex">
+                    <img
+                      className="h-12 w-12 rounded-full hover:opacity-80"
+                      src={list.authorProfile}
+                      alt="patient profile"
+                    />
+                    <img
+                      className="-ml-4 h-12 w-12 rounded-full hover:opacity-80"
+                      src={list.doctorProfile}
+                      alt="doctor profile"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <h5 className="text-sm max-[350px]:text-xs">
+                      Oleh : {list.author}
+                    </h5>
+                    <h5 className="text-sm max-[350px]:text-xs">
+                      Dijawab oleh {list.answeredBy}
+                    </h5>
+                  </div>
+                </div>
+                <div>{list.question}</div>
+                <div className="flex justify-end">
+                  <Link
+                    to={list.id}
+                    className=" text-green-900 underline hover:text-green-500"
+                  >
+                    Lihat lebih lanjut
+                  </Link>
                 </div>
               </div>
-              <div>{list.question}</div>
-              <div className="flex justify-end">
-                <Link
-                  to={list.id}
-                  className=" text-green-900 underline hover:text-green-500 max-[350px]:text-xs"
-                >
-                  Lihat lebih lanjut
-                </Link>
-              </div>
-            </div>
-          ))}
+            ),
+        )}
       </ul>
     </div>
   );
