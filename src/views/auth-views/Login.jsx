@@ -30,6 +30,7 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const onSubmitHandler = (data) => {
     console.log(data);
   };
@@ -170,10 +171,11 @@ const Login = () => {
                   <div className="flex h-5 items-center gap-2">
                     <input
                       type="checkbox"
+                      id="rememberCheck"
                       className="h-4 w-4 rounded border border-grey-200 accent-white focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
                     />
                     <label
-                      htmlFor=""
+                      htmlFor="rememberCheck"
                       className="text-base font-medium text-grey-200"
                     >
                       Ingatkan saya
