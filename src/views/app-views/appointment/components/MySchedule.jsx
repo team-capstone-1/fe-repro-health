@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { Card, ConfigProvider } from "antd";
 import { Calendar } from "antd";
-import { useState } from "react";
+import React, { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { months } from "@/utils/GenerateDate";
 import { Response } from "@/views/app-views/appointment/constant/my-schedule";
@@ -16,13 +16,17 @@ export default function MySchedule() {
         <ul className="flex flex-col items-end">
           {listData.map((item, index) => (
             <li
-              className="flex w-full items-center justify-between"
+              className={`flex w-full items-center  ${
+                item.type === "Tidak Masuk" ? "justify-end" : "justify-between"
+              }`}
               key={index}
             >
               <div
                 className={`grid h-4 w-4 content-center rounded-full bg-negative text-center 
               text-[0.6rem] font-light text-white ${
-                !item.appointment ? "hidden" : "block"
+                !item.appointment || item.type === "Tidak Masuk"
+                  ? "hidden"
+                  : "block"
               }`}
               >
                 {item.appointment}
@@ -39,6 +43,7 @@ export default function MySchedule() {
       </>
     );
   };
+
   const cellRender = (current, info) => {
     if (info.type === "date") return dateCellRender(current);
     return info.originNode;
@@ -86,7 +91,8 @@ const HeaderRender = ({ onChange }) => {
             id="month-year-calender"
             className="select-none text-base font-semibold"
           >
-            {months[today.month()]} {today.year()}
+            {months[today.month()]}
+            {today.year()}
           </h6>
           <GrFormPrevious
             id="button-previous-month"
@@ -147,7 +153,7 @@ const Indicator = ({ text, type }) => {
       {type === "Libur" ? (
         <div
           id="indicator-wrapper"
-          className={`flex rounded-sm pe-2 text-end leading-5 ${bgColor} ${textColor}`}
+          className={`flex rounded-sm px-2 text-end leading-5 ${bgColor} ${textColor}`}
         >
           {text}
         </div>
