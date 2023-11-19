@@ -30,6 +30,9 @@ export default function TabsDoctor() {
     <section id="tabs-profile">
       <ConfigProvider
         theme={{
+          components: {
+            Tabs: {},
+          },
           token: {
             colorPrimary: "#14c6a4",
           },
