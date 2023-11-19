@@ -30,6 +30,7 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const onSubmitHandler = (data) => {
     console.log(data);
   };
