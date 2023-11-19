@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Row, Col, Card, Table, Button, Flex } from "antd";
 
+import Utils from "@/utils";
 import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
 import ListFilter from "./ListFilter";
@@ -11,6 +12,7 @@ export default function AppointmentTable() {
   const handleOpen = () => {
     setIsOpen((prev) => !prev);
   };
+
   const columns = [
     {
       title: "ID",
@@ -23,7 +25,6 @@ export default function AppointmentTable() {
       dataIndex: "name",
       key: "name",
       width: 300,
-      render: (text) => <a onClick={handleOpen}>{text}</a>,
     },
     {
       title: "No Urut",
@@ -48,7 +49,9 @@ export default function AppointmentTable() {
       dataIndex: "payment",
       key: "payment",
       width: 200,
-      render: (text) => <span className="text-green-500">{text}</span>,
+      render: (val) => (
+        <span className="text-green-500">{Utils.thousandSeparator(val)}</span>
+      ),
     },
     {
       title: "Metode",
@@ -66,11 +69,13 @@ export default function AppointmentTable() {
           {status.map((tag) => {
             let color;
             if (tag === "Berjalan") {
-              color = "text-link bg-link-25 cursor-default";
+              color = "text-link bg-link-25 cursor-default w-28";
             } else if (tag === "Menunggu") {
-              color = "text-warning bg-warning-25 cursor-default";
+              color = "text-warning bg-warning-25 cursor-default w-28";
+            } else if (tag === "Selesai") {
+              color = "text-positive bg-positive-25 cursor-default w-28";
             } else {
-              color = "text-negative bg-negative-25 cursor-default";
+              color = "text-negative bg-negative-25 cursor-default w-28";
             }
 
             return (
@@ -86,39 +91,46 @@ export default function AppointmentTable() {
 
   const data = [
     {
-      key: "1",
       id: "#001",
       name: "Naufal Helmi",
       no: "009",
       date: "23/10/23",
       session: "Pagi",
-      payment: "Rp 123.000",
+      payment: 123000,
       method: "Bayar di Klinik",
       status: ["Menunggu"],
     },
     {
-      key: "2",
       id: "#001",
       name: "Naufal Helmi",
       no: "009",
       date: "23/10/23",
       session: "Pagi",
-      payment: "Rp 123.000",
+      payment: 123000,
       method: "Bayar di Klinik",
       status: ["Berjalan"],
     },
     {
-      key: "3",
       id: "#001",
       name: "Naufal Helmi",
       no: "009",
       date: "23/10/23",
       session: "Pagi",
-      payment: "Rp 123.000",
+      payment: 123000,
       method: "Bayar di Klinik",
       status: ["Dibatalkan"],
     },
-  ];
+    {
+      id: "#001",
+      name: "Naufal Helmi",
+      no: "009",
+      date: "23/10/23",
+      session: "Pagi",
+      payment: 123000,
+      method: "Bayar di Klinik",
+      status: ["Selesai"],
+    },
+  ].map((item, i) => ({ ...item, key: (i + 1).toString() }));
 
   const card = [
     {
@@ -136,7 +148,7 @@ export default function AppointmentTable() {
   return (
     <>
       <h3 className="mb-3 font-bold">Janji Temu</h3>
-      <Row gutter={[16]} className="mb-4">
+      <Row gutter={[16, 16]} className="mb-4" id="appointment-card">
         {card.map((item, i) => (
           <Col id="total-cards" key={i} span={6} xs={24} md={8} lg={7}>
             <Card>
@@ -162,14 +174,17 @@ export default function AppointmentTable() {
           </Col>
         ))}
       </Row>
-      <Card id="appointment-table-list">
+      <Card>
         <ListFilter />
         <Table
-          id="list-appointment"
+          id="appointment-table-list"
           columns={columns}
           dataSource={data}
           scroll={{ x: true }}
           style={{ maxWidth: "100%" }}
+          onRow={(val) => ({
+            onClick: () => handleOpen(val),
+          })}
         />
       </Card>
       {/* drawer detail pasien */}
