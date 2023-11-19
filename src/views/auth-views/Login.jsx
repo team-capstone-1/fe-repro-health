@@ -13,14 +13,11 @@ const Login = () => {
     email: yup
       .string()
       .required("Email harus diisi")
-      .email("Email harus sesuai")
-      .oneOf(["dummy@example.com"], "Email tidak valid"),
+      .email("Email tidak valid"),
     password: yup
       .string()
       .required("Kata sandi harus diisi")
-      .min(8, "Kata sandi minimal 8 karakter")
-      .oneOf(["helloworld"], "Kata sandi tidak valid"),
-    // .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, "Password")
+      .min(8, "Kata sandi minimal 8 karakter"),
   });
 
   const {
