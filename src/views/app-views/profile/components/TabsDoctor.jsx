@@ -1,7 +1,8 @@
 import { Card, ConfigProvider, Tabs } from "antd";
-import React from "react";
+
 import WorkExperience from "./WorkExperience";
 import Education from "./Education";
+import Certificate from "./Certificate";
 
 export default function TabsDoctor() {
   const onChange = (key) => {
@@ -22,7 +23,7 @@ export default function TabsDoctor() {
     {
       key: "3",
       label: <p className="w-[420px] text-center">Sertifikasi</p>,
-      children: "Content of Tab Pane 3",
+      children: <Certificate />,
     },
   ];
 
