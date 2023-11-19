@@ -40,7 +40,7 @@ export default function TabsDoctor() {
         }}
       >
         <Card>
-          <Tabs defaultActiveKey="1" items={tabs} onChange={onChange} />
+          <Tabs defaultActiveKey="3" items={tabs} onChange={onChange} />
         </Card>
       </ConfigProvider>
     </section>
