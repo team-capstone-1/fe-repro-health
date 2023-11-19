@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
 
 import LandingPage from "@/views/landing-views";
@@ -15,6 +15,7 @@ import ResetPassword from "@/views/auth-views/ResetPassword";
 import Dashboard from "@/views/app-views/dashboard";
 import Forum from "@/views/app-views/forum";
 import PrivateRoute from "@/routers/PrivateRoute";
+import Notfound from "@/views/error-views/Notfound";
 
 export default function SetupRoutes() {
   return (
@@ -34,6 +35,11 @@ export default function SetupRoutes() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/verify" element={<Verify />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+
+      <Route>
+        <Route path="/404" element={<Notfound />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
+      </Route>
     </Routes>
   );
 }
