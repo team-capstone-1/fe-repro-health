@@ -3,10 +3,31 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import codeVerifyIllus from "@/assets/code-verify-illustration.svg";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Verify = () => {
   const navigate = useNavigate();
   const [isFocusCode, setIsFocusCode] = useState(false);
+
+  const schema = yup.object().shape({
+    code: yup
+      .string()
+      .required("Kode Verifikasi harus diisi")
+      .oneOf(["123456"], "Kode Verifikasi salah"),
+  });
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmitHandler = (data) => {
+    console.log(data);
+  };
 
   return (
     <section className="flex h-screen items-center justify-center xl:scale-95">
@@ -21,7 +42,11 @@ const Verify = () => {
             <p className="text-base font-semibold text-grey-900">Kembali</p>
           </button>
           <div className="mt-[26px] grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
-            <form id="verify-form" className="flex flex-col gap-12 lg:gap-20">
+            <form
+              onSubmit={handleSubmit(onSubmitHandler)}
+              id="verify-form"
+              className="flex flex-col gap-12 lg:gap-20"
+            >
               {/* Title */}
               <div>
                 <h3 className="text-grey-900">Masukkan Kode Verifikasi</h3>
@@ -35,11 +60,16 @@ const Verify = () => {
               <div>
                 <div className="relative mt-2">
                   <input
+                    {...register("code")}
                     onFocus={() => setIsFocusCode(true)}
                     onBlur={() => setIsFocusCode(false)}
                     id="code-verify"
                     type="number"
-                    className="block w-full rounded-lg border border-grey-100 bg-gray-50 p-4 pe-14 text-base text-grey-100 focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900"
+                    className={`block w-full rounded-lg border bg-gray-50 p-4 pe-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
+                      errors.code
+                        ? "border-[#fc4547] text-[#fc4547]"
+                        : "border-grey-100 text-grey-100"
+                    }`}
                     placeholder="Masukkan kode verifikasi"
                   />
                   <button
@@ -48,11 +78,20 @@ const Verify = () => {
                     className="absolute inset-y-0 end-0 flex items-center pe-4"
                   >
                     <IoSend
-                      color={`${isFocusCode === false ? "#686868" : "#0d0d0d"}`}
+                      color={`${
+                        isFocusCode
+                          ? "#0d0d0d"
+                          : errors.code
+                          ? "#fc4547"
+                          : "#b9b9b9"
+                      }`}
                       size={24}
                     />
                   </button>
                 </div>
+                <span className="text-xs text-red-500">
+                  {errors.code?.message}
+                </span>
                 <div className="mt-4">
                   <button
                     id="get-code"
