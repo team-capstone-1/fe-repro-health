@@ -39,7 +39,7 @@ export default function SemuaDiskusi() {
   }, [showBy, searchQuery]);
 
   return (
-    <div className="mt-4 pb-10 sm:px-5">
+    <div className="mt-4 pb-10 sm:px-2 md:px-5">
       <div className="relative focus:bg-black">
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
           <BsSearch className="text-gray-400" />
@@ -126,7 +126,7 @@ export default function SemuaDiskusi() {
               <div>{list.question}</div>
               <div className="flex justify-end">
                 <Link
-                  to={list.link}
+                  to={list.id}
                   className=" text-green-900 underline hover:text-green-500 max-[350px]:text-xs"
                 >
                   Lihat lebih lanjut
