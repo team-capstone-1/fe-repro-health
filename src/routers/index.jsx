@@ -28,7 +28,7 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/profil" element={<Profile />} />
+        <Route path="/profil" element={<Profile />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
