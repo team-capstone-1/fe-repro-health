@@ -1,6 +1,7 @@
 import { useState } from "react";
 import loginIllus from "@/assets/login-illustration.svg";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +9,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const Login = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPass, setIsFocusPass] = useState(false);
+
+  const [visible, setVisible] = useState(false)
 
   const schema = yup.object().shape({
     email: yup
@@ -116,7 +119,7 @@ const Login = () => {
                     }}
                     onBlur={() => setIsFocusPass(false)}
                     id="password"
-                    type="password"
+                    type={`${visible ? "text" : "password"}`}
                     className={`block w-full rounded-lg border p-4 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.password
                         ? "border-[#fc4547] text-[#fc4547]"
@@ -124,6 +127,27 @@ const Login = () => {
                     }`}
                     placeholder="Masukkan kata sandi anda"
                   />
+                  <div onClick={() => setVisible(!visible)} className="absolute inset-y-0 end-0 flex items-center pe-4 cursor-pointer">
+                    {visible ? 
+                      <FaRegEyeSlash
+                        color={`${
+                          isFocusPass
+                            ? "0d0d0d"
+                            : errors.password
+                            ? "#fc4547"
+                            : "#b9b9b9"
+                        }`}
+                        size={24}
+                      /> : <FaRegEye color={`${
+                        isFocusPass
+                          ? "0d0d0d"
+                          : errors.password
+                          ? "#fc4547"
+                          : "#b9b9b9"
+                      }`} size={24} />
+                    
+                    }
+                  </div>
                 </div>
                 <span className=" text-xs text-red-500">
                   {errors.password?.message}
