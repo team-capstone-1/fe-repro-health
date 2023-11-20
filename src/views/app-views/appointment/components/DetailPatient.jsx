@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Card, Drawer, Flex } from "antd";
 import { DataPasien } from "@/views/app-views/appointment/constant/detail-pasien";
 import ModalConfirmAppointment from "@/components/shared-components/ModalConfirmAppointment";
+import ModalPaymentAppointment from "@/components/shared-components/ModalPaymentAppointment";
 
 export default function DetailPatient({ handleOpen, isOpen }) {
   return (
@@ -57,9 +58,13 @@ const CardDetailPatient = () => (
 
 const CardDetailAppointment = () => {
   const [isShow, setIsShow] = useState(false);
+  const [isShowPayment, setIsShowPayment] = useState(false);
 
   const handleOpenModal = () => {
     setIsShow((prev) => !prev);
+  };
+  const handleOpenModalPayment = () => {
+    setIsShowPayment((prev) => !prev);
   };
   return (
     <>
@@ -76,10 +81,13 @@ const CardDetailAppointment = () => {
                 </p>
                 <p className="flex flex-col items-end text-xs font-medium sm:text-sm">
                   {Object.values(item)}
-                  <span className="text-xs text-positive">
+                  <span onClick={handleOpenModalPayment} className="text-xs text-positive cursor-pointer">
                     Lihat Bukti Transfer
                   </span>
                 </p>
+                {isShowPayment && (
+                  <ModalPaymentAppointment closeModal={handleOpenModalPayment} />
+                )}
               </>
             ) : (
               <>

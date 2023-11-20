@@ -47,5 +47,28 @@ export const DataPasien = {
       "Total Biaya": "Rp. 100.000",
     },
   ],
+  paymentDetail:[
+    {
+      "No. Ref": "0000086886456"
+    },
+    {
+      "Tanggal Pembayaran": "23-10-2003,  13:22 WIB"
+    },
+    {
+      "Metode Pembayaran": "Transfer Bank"
+    },
+    {
+      "Nama Pengirim": "Supriyadi"
+    },
+    {
+      "Nominal": "Rp 113.456"
+    },
+    {
+      "Biaya Admin": "Rp 10.000"
+    },
+    {
+      "Total": "Rp 123.456"
+    },
+  ],
   status: "Berjalan",
 };
