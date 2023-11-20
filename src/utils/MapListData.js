@@ -1,4 +1,4 @@
-const formatStrDayJs = (date) => {
+export const formatStrDayJs = (date) => {
   return date.format("DD-MM-YYYY");
 };
 export const mapListData = (data, eventDate) => {
