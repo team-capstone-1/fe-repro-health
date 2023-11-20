@@ -15,7 +15,7 @@ export default function MySchedule() {
   const [displayedDate, setDisplayedDate] = useState(currentDate);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  const handleOpen = () => {
+  const handleOpenDrawer = () => {
     setIsOpen((prev) => !prev);
   };
 
@@ -139,7 +139,7 @@ export default function MySchedule() {
   };
 
   const onSelect = (date) => {
-    handleOpen();
+    handleOpenDrawer();
     setSelectedDate(date);
   };
 
@@ -158,7 +158,7 @@ export default function MySchedule() {
   };
 
   const handlePanelChange = () => {
-    handleOpen();
+    handleOpenDrawer();
   };
 
   return (
@@ -186,7 +186,7 @@ export default function MySchedule() {
       {/* Drawer Detail Schedule */}
       <DetailSchedule
         isOpen={isOpen}
-        handleOpen={handleOpen}
+        handleOpenDrawer={handleOpenDrawer}
         date={selectedDate}
       />
     </>

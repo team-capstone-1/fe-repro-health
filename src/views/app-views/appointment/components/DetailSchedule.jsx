@@ -1,18 +1,8 @@
-import {
-  Badge,
-  Button,
-  Collapse,
-  ConfigProvider,
-  Divider,
-  Drawer,
-  Flex,
-  Switch,
-  Tooltip,
-  theme,
-} from "antd";
+import { useState } from "react";
+import { Badge, Button, Collapse, Drawer, Flex, Switch, Tooltip } from "antd";
 import { months } from "@/utils/GenerateDate";
 import { FiInfo } from "react-icons/fi";
-import { useState } from "react";
+import ModalConfirmSchedule from "@/components/shared-components/ModalConfirmSchedule";
 
 const ListAppointment = () => {
   return (
@@ -68,7 +58,11 @@ const items = (panelStyle) => [
   },
 ];
 
-export default function DrawerDetailSchedule({ handleOpen, isOpen, date }) {
+export default function DrawerDetailSchedule({
+  handleOpenDrawer,
+  isOpen,
+  date,
+}) {
   const HeaderDrawer = () => {
     return (
       <div className="ps-5">
@@ -84,15 +78,21 @@ export default function DrawerDetailSchedule({ handleOpen, isOpen, date }) {
       width={500}
       title={<HeaderDrawer />}
       placement="right"
-      onClose={handleOpen}
+      onClose={handleOpenDrawer}
       open={isOpen}
     >
-      <DrawerContent handleOpen={handleOpen} />
+      <DrawerContent handleOpenDrawer={handleOpenDrawer} selectedDate={date} />
     </Drawer>
   );
 }
 
-const DrawerContent = ({ handleOpen }) => {
+const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
+  const [isShow, setIsShow] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsShow((prev) => !prev);
+    handleOpenDrawer();
+  };
   const text = (
     <span className="text-black">
       Anda hanya dapat mengubah jadwal dari hari yang akan datang
@@ -105,6 +105,11 @@ const DrawerContent = ({ handleOpen }) => {
     borderRadius: 5,
     border: "none",
   };
+  const textDate = (
+    <span>
+      {selectedDate.date()} {months[selectedDate.month()]} {selectedDate.year()}
+    </span>
+  );
 
   return (
     <div className="flex flex-col gap-4 overflow-hidden">
@@ -140,11 +145,19 @@ const DrawerContent = ({ handleOpen }) => {
           type="primary"
           className="bg-green-500 px-10 pb-8 pt-2 hover:bg-green-600 disabled:bg-grey-100 disabled:text-grey-200"
           // disabled
-          onClick={handleOpen}
+          onClick={handleOpenModal}
         >
           Simpan Perubahan
         </Button>
       </Flex>
+      {isShow && (
+        <ModalConfirmSchedule
+          handleOpenDrawer={handleOpenDrawer}
+          closeModal={handleOpenModal}
+          textDate={textDate}
+          textSession="Malam"
+        />
+      )}
     </div>
   );
 };

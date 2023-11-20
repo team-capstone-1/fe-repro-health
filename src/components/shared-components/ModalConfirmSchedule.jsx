@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IoIosWarning } from "react-icons/io";
 
 export default function ModalConfirmSchedule({
+  handleOpenDrawer,
   closeModal,
   textDate,
   textSession,
@@ -12,11 +13,13 @@ export default function ModalConfirmSchedule({
   const handleOk = () => {
     setIsModalOpen(false);
     closeModal();
+    handleOpenDrawer();
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
     closeModal();
+    handleOpenDrawer();
   };
   return (
     <>
