@@ -32,6 +32,7 @@ export default function SetupRoutes() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
+        <Route path="/profil" element={<Profile />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
