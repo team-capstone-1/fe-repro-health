@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import { useState } from "react";
+import { Button, Modal, notification } from "antd";
 import { PiSealCheck } from "react-icons/pi";
+
 const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleOk = () => {
+    openNotification();
+
     setIsOpen(false);
     closeModal();
   };
@@ -64,3 +67,22 @@ const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
   );
 };
 export default ModalConfirmAppointment;
+
+const openNotification = () => {
+  notification.open({
+    message: (
+      <p className="font-medium text-[#FBFBFB]">
+        Pasien berhasil diverifikasi !
+      </p>
+    ),
+  });
+
+  notification.config({
+    top: 60,
+    placement: "topRight",
+    closeIcon: <p className="text-[#93E5D5]">Abaikan</p>,
+    duration: 5,
+    className: "bg-green-500 h-[64px]",
+    stack: true,
+  });
+};
