@@ -7,8 +7,8 @@ export default function DoctorProfile() {
     <>
       <Card>
         <h3>Profil</h3>
-        <div className="flex items-center space-x-7">
-          <div id="doctor-image">
+        <div className="flex flex-col md:flex-row items-center md:space-x-7">
+          <div id="doctor-image" >
             <img
               className="h-48 w-48 md:w-40"
               id="doctor-image"
@@ -16,7 +16,7 @@ export default function DoctorProfile() {
               alt="profile-doctor"
             />
           </div>
-          <div className="flex space-x-7">
+          <div className="md:flex md:flex-row md:space-x-7 md:space-y-0 md:text-left flex flex-col my-5 mx-10 text-center space-y-7">
             <div className="flex flex-col" id="doctor-information">
               <p className="text-sm font-semibold text-grey-900 md:text-base">
                 Dr. Andi Cahaya, Sp.OG
@@ -26,7 +26,7 @@ export default function DoctorProfile() {
               </p>
               <p className="mt-2 capitalize">10 tahun pengalaman</p>
             </div>
-            <div className="flex w-[40%] space-x-3" id="doctor-address">
+            <div className="md:flex md:w-[40%] md:space-x-3" id="doctor-address">
               <p className="text-sm font-semibold text-grey-900 md:text-base">
                 Alamat
               </p>
@@ -35,7 +35,7 @@ export default function DoctorProfile() {
                 Kec. Depok, Kabupaten Sleman, DIY
               </p>
             </div>
-            <div className="flex space-x-3" id="doctor-contacts">
+            <div className="flex space-x-3 justify-center text-left" id="doctor-contacts">
               <div className="flex-col">
                 <p className="text-sm font-semibold text-grey-900 md:text-base">
                   Email

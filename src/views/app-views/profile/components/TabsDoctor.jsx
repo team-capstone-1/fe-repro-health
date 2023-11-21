@@ -1,6 +1,8 @@
 import { Card, ConfigProvider, Tabs } from "antd";
-import React from "react";
+
 import WorkExperience from "./WorkExperience";
+import Education from "./Education";
+import Certificate from "./Certificate";
 
 export default function TabsDoctor() {
   const onChange = (key) => {
@@ -10,18 +12,18 @@ export default function TabsDoctor() {
   const tabs = [
     {
       key: "1",
-      label: <p className="w-[430px] text-center">Pengalaman kerja</p>,
+      label: <p className="w-[420px] text-center">Pengalaman kerja</p>,
       children: <WorkExperience />,
     },
     {
       key: "2",
-      label: <p className="w-[430px] text-center">Pendidikan</p>,
-      children: "Content of Tab Pane 2",
+      label: <p className="w-[420px] text-center">Pendidikan</p>,
+      children: <Education />,
     },
     {
       key: "3",
-      label: <p className="w-[430px] text-center">Sertifikasi</p>,
-      children: "Content of Tab Pane 3",
+      label: <p className="w-[420px] text-center">Sertifikasi</p>,
+      children: <Certificate />,
     },
   ];
 
@@ -29,13 +31,16 @@ export default function TabsDoctor() {
     <section id="tabs-profile">
       <ConfigProvider
         theme={{
+          components: {
+            Tabs: {},
+          },
           token: {
             colorPrimary: "#14c6a4",
           },
         }}
       >
         <Card>
-          <Tabs defaultActiveKey="1" items={tabs} onChange={onChange} />
+          <Tabs defaultActiveKey="3" items={tabs} onChange={onChange} />
         </Card>
       </ConfigProvider>
     </section>
