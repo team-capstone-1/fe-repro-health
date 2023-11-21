@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Badge, Button, Collapse, Drawer, Flex, Switch, Tooltip } from "antd";
 import { months } from "@/utils/GenerateDate";
 import { FiInfo } from "react-icons/fi";
+import { formatStrDayJs } from "@/utils/MapListData";
+import { getListDataByDate } from "@/utils/GetListData";
+
 import ModalConfirmSchedule from "@/components/shared-components/ModalConfirmSchedule";
 
 const ListAppointment = () => {
@@ -89,10 +92,15 @@ export default function DrawerDetailSchedule({
 const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   const [isShow, setIsShow] = useState(false);
 
+  const strDate = formatStrDayJs(selectedDate);
+
+  const listData = getListDataByDate(strDate);
+
   const handleOpenModal = () => {
     setIsShow((prev) => !prev);
     handleOpenDrawer();
   };
+
   const text = (
     <span className="text-black">
       Anda hanya dapat mengubah jadwal dari hari yang akan datang
@@ -105,11 +113,147 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
     borderRadius: 5,
     border: "none",
   };
+
   const textDate = (
     <span>
       {selectedDate.date()} {months[selectedDate.month()]} {selectedDate.year()}
     </span>
   );
+
+  const Morning = () => {
+    const [isChecked, setIsChecked] = useState(true);
+
+    const handleCheck = () => {
+      setIsChecked((prev) => !prev);
+    };
+
+    const CheckType = () => {
+      if (listData === null) {
+        setIsChecked(false);
+      } else if (
+        listData[0]?.type === "Masuk" &&
+        listData[0]?.content === "Pagi"
+      ) {
+        setIsChecked(true);
+      } else if (listData[0]?.type === "Libur") {
+        setIsChecked(false);
+      } else {
+        setIsChecked(false);
+      }
+    };
+
+    useEffect(() => {
+      CheckType();
+    }, []);
+
+    const onChange = (checked) => {
+      handleCheck();
+      console.log(`switch to ${checked}`);
+    };
+    return (
+      <>
+        <Flex justify="space-between" align="center">
+          <div>
+            <h6 className="text-base font-semibold">Pagi</h6>
+            <p>08.00 - 11.00</p>
+          </div>
+          <div>
+            <Switch
+              checked={isChecked}
+              onChange={onChange}
+              className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
+            />
+          </div>
+        </Flex>
+      </>
+    );
+  };
+
+  const Noon = () => {
+    const [isChecked, setIsChecked] = useState(true);
+
+    const CheckType = () => {
+      if (listData === null) {
+        setIsChecked(false);
+      } else if (
+        (listData[1]?.type === "Masuk" && listData[1]?.content === "Siang") ||
+        (listData[0]?.type === "Masuk" && listData[0]?.content === "Siang")
+      ) {
+        setIsChecked(true);
+      } else if (listData[0]?.type === "Libur") {
+        setIsChecked(false);
+      } else {
+        setIsChecked(false);
+      }
+    };
+
+    useEffect(() => {
+      CheckType();
+    }, []);
+
+    const onChange = (checked) => {
+      setIsChecked((prev) => !prev);
+      console.log(`switch to ${checked}`);
+    };
+    return (
+      <Flex justify="space-between" align="center">
+        <div>
+          <h6 className="text-base font-semibold">Siang</h6>
+          <p>13.00 - 15.30</p>
+        </div>
+        <div>
+          <Switch
+            checked={isChecked}
+            onChange={onChange}
+            className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
+          />
+        </div>
+      </Flex>
+    );
+  };
+
+  const Night = () => {
+    const [isChecked, setIsChecked] = useState(true);
+
+    const CheckType = () => {
+      if (listData === null) {
+        setIsChecked(false);
+      } else if (
+        (listData[1]?.type === "Masuk" && listData[1]?.content === "Malam") ||
+        (listData[2]?.type === "Masuk" && listData[2]?.content === "Malam")
+      ) {
+        setIsChecked(true);
+      } else if (listData[0]?.type === "Libur") {
+        setIsChecked(false);
+      } else {
+        setIsChecked(false);
+      }
+    };
+
+    useEffect(() => {
+      CheckType();
+    }, []);
+
+    const onChange = (checked) => {
+      setIsChecked((prev) => !prev);
+      console.log(`switch to ${checked}`);
+    };
+    return (
+      <Flex justify="space-between" align="center">
+        <div>
+          <h6 className="text-base font-semibold">Malam</h6>
+          <p>18.30 - 20.30</p>
+        </div>
+        <div>
+          <Switch
+            checked={isChecked}
+            onChange={onChange}
+            className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
+          />
+        </div>
+      </Flex>
+    );
+  };
 
   return (
     <div id="drawer-content" className="flex flex-col gap-4 overflow-hidden">
@@ -160,77 +304,5 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
         />
       )}
     </div>
-  );
-};
-
-const Morning = () => {
-  const [isChecked, setIsChecked] = useState(true);
-
-  const onChange = (checked) => {
-    setIsChecked((prev) => !prev);
-    console.log(`switch to ${checked}`);
-  };
-  return (
-    <Flex justify="space-between" align="center">
-      <div>
-        <h6 className="text-base font-semibold">Pagi</h6>
-        <p>08.00 - 11.00</p>
-      </div>
-      <div>
-        <Switch
-          checked={isChecked}
-          onChange={onChange}
-          className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
-        />
-      </div>
-    </Flex>
-  );
-};
-
-const Noon = () => {
-  const [isChecked, setIsChecked] = useState(true);
-
-  const onChange = (checked) => {
-    setIsChecked((prev) => !prev);
-    console.log(`switch to ${checked}`);
-  };
-  return (
-    <Flex justify="space-between" align="center">
-      <div>
-        <h6 className="text-base font-semibold">Siang</h6>
-        <p>13.00 - 15.30</p>
-      </div>
-      <div>
-        <Switch
-          checked={isChecked}
-          onChange={onChange}
-          className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
-        />
-      </div>
-    </Flex>
-  );
-};
-
-const Night = () => {
-  const [isChecked, setIsChecked] = useState(true);
-
-  const onChange = (checked) => {
-    setIsChecked((prev) => !prev);
-    console.log(`switch to ${checked}`);
-  };
-  return (
-    <Flex justify="space-between" align="center">
-      <div>
-        <h6 className="text-base font-semibold">Malam</h6>
-        <p>18.30 - 20.30</p>
-      </div>
-      <div>
-        <Switch
-          checked={isChecked}
-          onChange={onChange}
-          className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
-        />
-      </div>
-    </Flex>
   );
 };

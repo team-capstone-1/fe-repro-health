@@ -79,7 +79,7 @@ export const Response = {
     {
       date: "14-11-2023",
       listData: [
-        { type: "Masuk", content: "Siang", appointment: 2 },
+        { type: "Tidak Masuk", content: "Siang", appointment: 2 },
         { type: "Tidak Masuk", content: "Malam", appointment: 2 },
       ],
     },
