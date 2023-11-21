@@ -1,16 +1,18 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { Button } from "antd";
+
+import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
 
 export default function DiscussionDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isShow, setIsShow] = useState(false);
   const { questionId } = useParams();
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -35,9 +37,12 @@ export default function DiscussionDetail() {
     }
   }, []);
 
+  const handleShowModal = () => {
+    setIsShow((prev) => !prev);
+  };
   const onSubmit = (data) => {
+    handleShowModal();
     console.log({ data });
-    navigate(0);
   };
 
   return (
@@ -122,6 +127,12 @@ export default function DiscussionDetail() {
           </div>
         )}
       </div>
+      {isShow && (
+        <ModalConfirmForumAnswer
+          closeModal={handleShowModal}
+          authorName={data[0]?.author}
+        />
+      )}
     </>
   );
 }
