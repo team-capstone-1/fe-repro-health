@@ -73,7 +73,7 @@ export default function Sidebar() {
     getItem(
       "Artikel",
       "4",
-      <Link to="#" className="p-2">
+      <Link to="/artikel" className="p-2">
         <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />
       </Link>,
     ),

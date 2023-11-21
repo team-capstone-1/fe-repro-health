@@ -1,5 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 
+import PublicRoute from "@/routers/PublicRoute";
+import PrivateRoute from "@/routers/PrivateRoute";
+
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
 import UserTerms from "@/views/landing-views/misc/UserTerms";
@@ -13,8 +16,7 @@ import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
 import Forum from "@/views/app-views/forum";
-import PrivateRoute from "@/routers/PrivateRoute";
-import PublicRoute from "@/routers/PublicRoute";
+import Article from "@/views/app-views/article";
 
 export default function SetupRoutes() {
   return (
@@ -29,6 +31,7 @@ export default function SetupRoutes() {
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/artikel" element={<Article />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />

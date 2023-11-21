@@ -29,7 +29,9 @@ export default function Topbar() {
           className="flex items-center gap-1 sm:gap-3"
         >
           <div id="notification-icon-topbar" className="text-xl md:text-2xl">
-            <IoNotificationsOutline />
+            <Link to="notifikasi">
+              <IoNotificationsOutline />
+            </Link>
           </div>
           <div className="h-8 w-8 rounded-full bg-slate-700 md:h-11 md:w-11">
             <img
