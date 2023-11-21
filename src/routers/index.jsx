@@ -14,7 +14,6 @@ import ResetPassword from "@/views/auth-views/ResetPassword";
 import Dashboard from "@/views/app-views/dashboard";
 import Profile from "@/views/app-views/profile";
 import Forum from "@/views/app-views/forum";
-import Profile from "@/views/app-views/profile";
 import PrivateRoute from "@/routers/PrivateRoute";
 import PublicRoute from "@/routers/PublicRoute";
 
