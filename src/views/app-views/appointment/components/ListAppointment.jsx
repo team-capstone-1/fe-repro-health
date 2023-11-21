@@ -24,7 +24,7 @@ export default function AppointmentTable() {
       title: "Nama Pasien",
       dataIndex: "name",
       key: "name",
-      width: 300,
+      width: 250,
     },
     {
       title: "No Urut",
@@ -42,7 +42,7 @@ export default function AppointmentTable() {
       title: "Sesi",
       dataIndex: "session",
       key: "session",
-      width: 100,
+      width: 150,
     },
     {
       title: "Pembayaran",
@@ -57,7 +57,7 @@ export default function AppointmentTable() {
       title: "Metode",
       dataIndex: "method",
       key: "method",
-      width: 300,
+      width: 200,
     },
     {
       title: "Status",
@@ -95,7 +95,7 @@ export default function AppointmentTable() {
       name: "Naufal Helmi",
       no: "009",
       date: "23/10/23",
-      session: "Pagi",
+      session: "Malam",
       payment: 123000,
       method: "Bayar di Klinik",
       status: ["Menunggu"],
