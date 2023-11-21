@@ -1,10 +1,13 @@
-import { Modal, Divider, Flex } from "antd";
+import { Modal, Divider, Flex, Image } from "antd";
 import { useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import { DataPasien } from "@/views/app-views/appointment/constant/detail-pasien";;
+import { DataPasien } from "@/views/app-views/appointment/constant/detail-pasien";
+import siluetTF from "@/assets/silluet-bukti-tf.png"
+import buktiTF from "@/assets/bukti-tf.png"
 
 const ModalPaymentAppointment = ({ closeModal }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [imagePreview, setImagePreview] = useState(false);
 
   const handleCancel = () => {
     setIsOpen(false);
@@ -59,6 +62,22 @@ const ModalPaymentAppointment = ({ closeModal }) => {
                 </Flex>
               ))}
             </div>
+            <div className="flex justify-start gap-2 mt-2">
+              <Image onClick={() => setImagePreview(true)} className="rounded-lg w-[100px]" src={siluetTF} />
+            </div>
+            {imagePreview && (
+              <Modal
+                open={imagePreview}
+                onCancel={() => setImagePreview(false)}
+                footer={null}
+              >
+                <Image
+                  className="rounded-lg"
+                  src={buktiTF}
+                  preview={false}
+                />
+              </Modal>
+            )}
           </div>
         </div>
       }
