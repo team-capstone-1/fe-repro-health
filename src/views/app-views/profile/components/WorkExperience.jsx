@@ -62,6 +62,7 @@ export default function WorkExperience() {
           },
         }}
       >
+        
         <Timeline
           mode="left"
           items={timelineItems}
