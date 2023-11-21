@@ -32,13 +32,17 @@ export default function MySchedule() {
     return (
       <>
         <div
+          id="header-calendar"
           className="mb-3 flex flex-col justify-between lg:flex-row"
           style={{
             padding: 8,
           }}
         >
           <h3 className="mb-5 font-bold">Jadwal Saya</h3>
-          <div className="flex items-center gap-5">
+          <div
+            id="month-year-calendar-wrapper"
+            className="flex items-center gap-5"
+          >
             <h6
               id="month-year-calender"
               className="select-none text-base font-semibold"
@@ -67,7 +71,10 @@ export default function MySchedule() {
             />
           </div>
         </div>
-        <ul className="grid grid-cols-7 place-items-start rounded-tl-lg rounded-tr-lg border">
+        <ul
+          id="days-calendar"
+          className="grid grid-cols-7 place-items-start rounded-tl-lg rounded-tr-lg border"
+        >
           {days.map((day, index) => (
             <li
               key={index}
@@ -87,6 +94,7 @@ export default function MySchedule() {
     return (
       <>
         <div
+          id="date-cell-wrapper"
           className={`h-36 w-full border p-2  px-4 text-left hover:bg-green-50 ${
             value.date() === dayjs().date() &&
             value.month() === dayjs().month() &&
@@ -96,6 +104,7 @@ export default function MySchedule() {
           }`}
         >
           <div
+            id="date-cell"
             className={`${
               value.day() === 0 && value.month() === displayedDate.month()
                 ? "text-negative"
@@ -104,8 +113,7 @@ export default function MySchedule() {
           >
             {value.date()}
           </div>
-
-          <div className="flex h-[80%] flex-col justify-end">
+          <div id="list-schedule" className="flex h-[80%] flex-col justify-end">
             {listData.map((item, index) => (
               <div
                 className={`flex w-full items-center rounded-bl-lg rounded-tl-lg border-b border-r border-t pe-2  ${
@@ -162,7 +170,7 @@ export default function MySchedule() {
   };
 
   return (
-    <section className="my-5">
+    <section id="calendar-schedule" className="my-5">
       <Card className="overflow-x-auto">
         <ConfigProvider
           theme={{

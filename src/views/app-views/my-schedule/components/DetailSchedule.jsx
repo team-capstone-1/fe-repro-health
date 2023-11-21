@@ -112,7 +112,7 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   );
 
   return (
-    <div className="flex flex-col gap-4 overflow-hidden">
+    <div id="drawer-content" className="flex flex-col gap-4 overflow-hidden">
       <Flex align="center" gap={5} className="text-green-500">
         <h5 className="text-base font-semibold">Jadwal Saya</h5>
         <Tooltip placement="right" title={text} color="white" arrow={true}>
@@ -123,12 +123,12 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
       <Noon />
       <Night />
 
-      <Flex>
+      <Flex id="jadwal-janji-temu">
         <h5 className="text-base font-semibold text-green-500">
           Jadwal Janji Temu
         </h5>
       </Flex>
-      <div className="w-full">
+      <div id="list-janji-temu" className="w-full">
         <Collapse
           accordion
           bordered={false}
@@ -142,6 +142,7 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
 
       <Flex justify="center" className="mt-5">
         <Button
+          id="button-submit"
           type="primary"
           className="bg-green-500 px-10 pb-8 pt-2 hover:bg-green-600 disabled:bg-grey-100 disabled:text-grey-200"
           // disabled
