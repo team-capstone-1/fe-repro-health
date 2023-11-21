@@ -80,14 +80,14 @@ export default function Sidebar() {
     getItem(
       "Forum",
       "5",
-      <Link to="/forum" className="p-2">
+      <Link to="#" className="p-2">
         <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Profile",
       "6",
-      <Link to="/profil" className="p-2">
+      <Link to="#" className="p-2">
         <CgProfile className={iconStyle} id="profile-icon-sidebar" />
       </Link>,
     ),
