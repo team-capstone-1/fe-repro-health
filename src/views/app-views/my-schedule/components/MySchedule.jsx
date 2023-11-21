@@ -4,7 +4,7 @@ import { Calendar } from "antd";
 import { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { months } from "@/utils/GenerateDate";
-import { Response } from "@/views/app-views/appointment/constant/my-schedule";
+import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
 import { mapListData } from "@/utils/MapListData";
 
 import DetailSchedule from "./DetailSchedule";
@@ -67,12 +67,12 @@ export default function MySchedule() {
             />
           </div>
         </div>
-        <ul className="grid grid-cols-7 place-items-start">
+        <ul className="grid grid-cols-7 place-items-start rounded-tl-lg rounded-tr-lg border">
           {days.map((day, index) => (
             <li
               key={index}
-              className={`ps-3 text-base font-medium uppercase ${
-                index === 0 ? "text-negative" : "text-black"
+              className={`h-full w-full border-l pb-2 ps-3 pt-2 text-base font-medium uppercase ${
+                index === 0 ? "border-l-0 text-negative" : "text-black"
               }`}
             >
               {day}
@@ -87,11 +87,11 @@ export default function MySchedule() {
     return (
       <>
         <div
-          className={`h-36 w-full p-2 px-4 text-left hover:bg-green-50 ${
+          className={`h-36 w-full border p-2  px-4 text-left hover:bg-green-50 ${
             value.date() === dayjs().date() &&
             value.month() === dayjs().month() &&
             value.year() === dayjs().year()
-              ? "border-t-4 border-green-600"
+              ? "border-t-4 border-green-600 border-b-inherit border-l-inherit border-r-inherit"
               : ""
           }`}
         >
@@ -105,10 +105,10 @@ export default function MySchedule() {
             {value.date()}
           </div>
 
-          <div className="flex h-[60%] flex-col justify-end">
+          <div className="flex h-[80%] flex-col justify-end">
             {listData.map((item, index) => (
               <div
-                className={`flex w-full items-center  ${
+                className={`flex w-full items-center rounded-bl-lg rounded-tl-lg border-b border-r border-t pe-2  ${
                   item.type === "Tidak Masuk"
                     ? "justify-start"
                     : "justify-between"
@@ -162,7 +162,7 @@ export default function MySchedule() {
   };
 
   return (
-    <>
+    <section className="my-5">
       <Card className="overflow-x-auto">
         <ConfigProvider
           theme={{
@@ -189,7 +189,7 @@ export default function MySchedule() {
         handleOpenDrawer={handleOpenDrawer}
         date={selectedDate}
       />
-    </>
+    </section>
   );
 }
 

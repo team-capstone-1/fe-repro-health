@@ -128,3 +128,7 @@ p {
 .big-calendar table thead tr > th {
   display: none;
 }
+
+.ant-picker-body {
+  padding-top: 0px !important;
+}
