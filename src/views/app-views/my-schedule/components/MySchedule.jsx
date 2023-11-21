@@ -117,11 +117,11 @@ export default function MySchedule() {
           <div id="list-schedule" className="flex h-[80%] flex-col justify-end">
             {listData.map((item, index) => (
               <div
-                className={`flex w-full items-center rounded-bl-lg rounded-tl-lg border-b border-r border-t pe-2  ${
+                className={`flex w-full items-center rounded-bl-lg rounded-tl-lg pe-2 shadow-sm ${
                   item.type === "Tidak Masuk"
                     ? "justify-start"
                     : "justify-between"
-                }`}
+                } ${item.type === "Libur" ? "pe-0" : ""}`}
                 key={index}
               >
                 <Indicator
