@@ -56,7 +56,7 @@ const App = () => {
     getItem(
       "Janji Temu",
       "3",
-      <Link to="/appointment">
+      <Link to="/#">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
     ),
@@ -70,7 +70,7 @@ const App = () => {
     getItem(
       "Forum",
       "5",
-      <Link to="/forum">
+      <Link to="/#">
         <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
       </Link>,
     ),

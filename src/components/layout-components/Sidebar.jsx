@@ -7,8 +7,9 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
-import LogoutModal from "@/components/layout-components/LogoutModal";
 import { Link } from "react-router-dom";
+
+import LogoutModal from "@/components/layout-components/LogoutModal";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
@@ -66,7 +67,7 @@ export default function Sidebar() {
     getItem(
       "Janji Temu",
       "3",
-      <Link to="/appointment" className="p-2">
+      <Link to="/#" className="p-2">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
     ),
@@ -80,7 +81,7 @@ export default function Sidebar() {
     getItem(
       "Forum",
       "5",
-      <Link to="/forum" className="p-2">
+      <Link to="/#" className="p-2">
         <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
       </Link>,
     ),
