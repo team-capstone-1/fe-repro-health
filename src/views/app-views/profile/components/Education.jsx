@@ -33,12 +33,12 @@ export default function Education() {
       <div className="ms-[5px] sm:ms-[10px] lg:ms-[20px]">
         <ul key={education.id} className="w-[200px] sm:w-[250px] lg:w-[500px]">
           <li>
-            <p className="text-xs font-medium sm:text-sm lg:w-[700px] lg:text-base">
+            <p className="text-xs font-medium sm:w-[300px] sm:text-sm md:w-[500px] lg:w-[700px] lg:text-base">
               {education.title_program}, {education.university}
             </p>
           </li>
           <li>
-            <p className="text-[10px] font-light text-[#686868] sm:text-sm lg:text-sm">
+            <p className="text-[10px] font-light text-[#686868] sm:w-[300px] sm:text-sm md:w-[500px] lg:w-[700px] lg:text-sm">
               {education.education_program}
             </p>
           </li>
