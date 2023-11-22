@@ -52,7 +52,7 @@ export function TabsDoctorProfile({
 
   return (
     <>
-      <section className="mt-[2.4em] flex w-full text-lg">
+      <section className=" flex w-full text-lg">
         <div
           className={`w-1/3 ${
             activeTab === "1"
@@ -61,7 +61,7 @@ export function TabsDoctorProfile({
           }`}
         >
           <button
-            className="h-full w-full py-3 text-xs font-medium sm:text-sm lg:text-lg"
+            className="h-full w-full py-3 text-[10px] text-sm font-medium md:text-base xl:text-lg"
             onClick={() => setActiveTab("1")}
           >
             {title[0]}
@@ -76,7 +76,7 @@ export function TabsDoctorProfile({
           }`}
         >
           <button
-            className="h-full w-full py-3 text-xs font-medium sm:text-sm lg:text-lg"
+            className="h-full w-full py-3 text-[10px] text-sm font-medium md:text-base xl:text-lg"
             onClick={() => setActiveTab("2")}
           >
             {title[1]}
@@ -91,7 +91,7 @@ export function TabsDoctorProfile({
           }`}
         >
           <button
-            className="h-full w-full py-3 text-xs font-medium sm:text-sm lg:text-lg"
+            className="h-full w-full py-3 text-[10px] text-sm font-medium md:text-base xl:text-lg"
             onClick={() => setActiveTab("3")}
           >
             {title[2]}
