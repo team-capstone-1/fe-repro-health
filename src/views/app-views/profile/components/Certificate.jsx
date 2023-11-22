@@ -108,7 +108,7 @@ export default function Certificate() {
       title: "Ukuran File",
       dataIndex: "file_size",
       key: "file_size",
-      width: 100,
+      width: 150,
     },
     // {
     //   title: "Detail",

@@ -35,15 +35,15 @@ export default function WorkExperience() {
       />
     ),
     children: (
-      <div className="ms-[20px]">
-        <div className="w-[500px] sm:w-[250px] lg:w-[500px]">
-          <p className="text-xs font-medium sm:text-sm lg:text-base">
+      <div className="ms-[5px] sm:ms-[10px] lg:ms-[20px]">
+        <div className="w-[180px] sm:w-[250px] lg:w-[500px]">
+          <p className="text-xs font-medium sm:text-sm lg:w-[800px] lg:text-base">
             {items.job}
           </p>
         </div>
         {items.position.map((desc, descIndex) => (
-          <ul key={descIndex} className="w-[500px] sm:w-[250px] lg:w-[500px]">
-            <li className="ms-3 text-[10px] font-light text-[#686868] sm:text-sm lg:text-sm">
+          <ul key={descIndex} className="w-[210px] sm:w-[250px] lg:w-[500px]">
+            <li className="ms-3 text-[10px] font-light text-[#686868] sm:text-sm lg:w-[700px] lg:text-sm">
               &bull; {desc}
             </li>
           </ul>

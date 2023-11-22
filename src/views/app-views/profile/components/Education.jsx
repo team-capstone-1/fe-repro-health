@@ -30,10 +30,10 @@ export default function Education() {
     ),
 
     children: (
-      <div className="ms-[20px]">
-        <ul key={education.id} className="w-[500px] sm:w-[250px] lg:w-[500px]">
+      <div className="ms-[5px] sm:ms-[10px] lg:ms-[20px]">
+        <ul key={education.id} className="w-[200px] sm:w-[250px] lg:w-[500px]">
           <li>
-            <p className="text-xs font-medium sm:text-sm lg:text-base">
+            <p className="text-xs font-medium sm:text-sm lg:w-[700px] lg:text-base">
               {education.title_program}, {education.university}
             </p>
           </li>
