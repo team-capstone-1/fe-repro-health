@@ -110,26 +110,13 @@ export default function Certificate() {
       key: "file_size",
       width: 150,
     },
-    // {
-    //   title: "Detail",
-    //   dataIndex: "details",
-    //   key: "details",
-    //   width: 100,
-    //   align: "center",
-    // },
   ];
 
   return (
     <section id="profile-certificate-section" className="my-10">
       <Form layout="vertical">
         <Row gutter={[16, 8]}>
-          <Col
-            span={24}
-            lg={{ span: 7, offset: 0 }}
-            md={{ span: 8, offset: 2 }}
-            xl={{ span: 7, offset: 0 }}
-            className="text-start"
-          >
+          <Col span={24} md={12} lg={10} xl={8} className="text-start">
             <Form.Item name="search" id="search-certificate">
               <Input
                 placeholder="Cari Sertifikat"
