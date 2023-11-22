@@ -59,7 +59,7 @@ export default function NotAnsweredYet() {
         <div
           className={`cursor-pointer rounded-3xl px-5 py-1 ring-1 ${
             showBy === "populer"
-              ? "bg-green-500 text-white ring-green-700"
+              ? "bg-green-500 text-white ring-green-500"
               : "text-green-500 ring-green-500"
           }`}
           onClick={() => setShowBy("populer")}
@@ -69,7 +69,7 @@ export default function NotAnsweredYet() {
         <div
           className={`cursor-pointer rounded-3xl px-5 py-1 ring-1 ${
             showBy === "terbaru"
-              ? "bg-green-500 text-white ring-green-700"
+              ? "bg-green-500 text-white ring-green-500"
               : "text-green-500 ring-green-500"
           }`}
           onClick={() => setShowBy("terbaru")}
@@ -96,7 +96,9 @@ export default function NotAnsweredYet() {
               >
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
                 <div className="flex justify-between">
-                  <h5 className="text-xl font-bold">{list.title}</h5>
+                  <Link to={list.id}>
+                    <h5 className="text-xl font-bold">{list.title}</h5>
+                  </Link>
                   <h6 className="pt-1.5 text-slate-400">{list.time}</h6>
                 </div>
                 <div className="flex gap-3 py-3">
@@ -125,7 +127,7 @@ export default function NotAnsweredYet() {
                 <div className="flex justify-end">
                   <Link
                     to={list.id}
-                    className=" text-green-900 underline hover:text-green-500"
+                    className="text-green-900 underline hover:text-green-500"
                   >
                     Lihat lebih lanjut
                   </Link>
