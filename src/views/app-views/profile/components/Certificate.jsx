@@ -159,8 +159,8 @@ export default function Certificate() {
                 dataSource={DataSource}
                 columns={columns}
                 pagination={false}
-                scroll={{ x: true }}
-                style={{ maxWidth: "100%" }}
+                scroll={{ x: 1000 }}
+                style={{ maxWidth: "100vw" }}
                 className="shadow-sm"
                 bordered
                 onRow={(val) => ({
