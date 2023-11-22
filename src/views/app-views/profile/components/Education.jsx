@@ -24,21 +24,21 @@ export default function Education() {
 
   const educationItems = educations.map((education, index) => ({
     label: (
-      <p className="me-[90px] font-semibold ">
+      <p className="text-xs font-semibold sm:me-[40px] sm:text-sm lg:me-[90px] lg:text-base">
         {education.starting_date} - {education.end_date}
       </p>
     ),
 
     children: (
       <div className="ms-[20px]">
-        <ul key={education.id} className="w-[500px]">
+        <ul key={education.id} className="w-[500px] sm:w-[250px] lg:w-[500px]">
           <li>
-            <p className="text-base font-medium">
+            <p className="text-xs font-medium sm:text-sm lg:text-base">
               {education.title_program}, {education.university}
             </p>
           </li>
           <li>
-            <p className="text-sm font-light text-[#686868]">
+            <p className="text-[10px] font-light text-[#686868] sm:text-sm lg:text-sm">
               {education.education_program}
             </p>
           </li>
