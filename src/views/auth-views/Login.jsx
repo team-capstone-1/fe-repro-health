@@ -10,7 +10,7 @@ const Login = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPass, setIsFocusPass] = useState(false);
 
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const schema = yup.object().shape({
     email: yup
@@ -127,8 +127,11 @@ const Login = () => {
                     }`}
                     placeholder="Masukkan kata sandi anda"
                   />
-                  <div onClick={() => setVisible(!visible)} className="absolute inset-y-0 end-0 flex items-center pe-4 cursor-pointer">
-                    {visible ? 
+                  <div
+                    onClick={() => setVisible(!visible)}
+                    className="absolute inset-y-0 end-0 flex cursor-pointer items-center pe-4"
+                  >
+                    {visible ? (
                       <FaRegEyeSlash
                         color={`${
                           isFocusPass
@@ -138,15 +141,19 @@ const Login = () => {
                             : "#b9b9b9"
                         }`}
                         size={24}
-                      /> : <FaRegEye color={`${
-                        isFocusPass
-                          ? "0d0d0d"
-                          : errors.password
-                          ? "#fc4547"
-                          : "#b9b9b9"
-                      }`} size={24} />
-                    
-                    }
+                      />
+                    ) : (
+                      <FaRegEye
+                        color={`${
+                          isFocusPass
+                            ? "0d0d0d"
+                            : errors.password
+                            ? "#fc4547"
+                            : "#b9b9b9"
+                        }`}
+                        size={24}
+                      />
+                    )}
                   </div>
                 </div>
                 <span className=" text-xs text-red-500">
