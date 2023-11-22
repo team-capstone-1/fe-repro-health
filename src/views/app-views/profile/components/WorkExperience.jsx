@@ -23,7 +23,11 @@ export default function WorkExperience() {
   };
 
   const timelineItems = data.map((items, index) => ({
-    label: <p className="me-[90px] font-semibold">{items.year}</p>,
+    label: (
+      <p className="text-xs font-semibold sm:me-[40px] sm:text-sm lg:me-[90px] lg:text-base">
+        {items.year}
+      </p>
+    ),
     dot: (
       <CustomDot
         onClick={() => handleDotClick(index)}
@@ -32,12 +36,14 @@ export default function WorkExperience() {
     ),
     children: (
       <div className="ms-[20px]">
-        <div className="w-[500px]">
-          <p className="w-[50rem] font-medium">{items.job}</p>
+        <div className="w-[500px] sm:w-[250px] lg:w-[500px]">
+          <p className="text-xs font-medium sm:text-sm lg:text-base">
+            {items.job}
+          </p>
         </div>
         {items.position.map((desc, descIndex) => (
-          <ul key={descIndex} className="w-[500px] ">
-            <li className="ml-3 w-[50rem] text-sm font-light text-[#686868]">
+          <ul key={descIndex} className="w-[500px] sm:w-[250px] lg:w-[500px]">
+            <li className="ms-3 text-[10px] font-light text-[#686868] sm:text-sm lg:text-sm">
               &bull; {desc}
             </li>
           </ul>
