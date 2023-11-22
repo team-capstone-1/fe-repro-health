@@ -4,7 +4,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
   const [activeTab, setActiveTab] = useState("1");
   return (
     <>
-      <div className="mt-[0.5em] sm:mt-[1em] flex w-full text-lg">
+      <div className="mt-[2.4em] flex w-full text-lg">
         <div
           className={`w-1/2 ${
             activeTab === "1"
