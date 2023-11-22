@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, notification } from "antd";
 import { useState } from "react";
 import { IoIosWarning } from "react-icons/io";
 
@@ -11,6 +11,7 @@ export default function ModalConfirmSchedule({
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleOk = () => {
+    openNotification();
     setIsModalOpen(false);
     closeModal();
     handleOpenDrawer();
@@ -65,3 +66,21 @@ export default function ModalConfirmSchedule({
     </>
   );
 }
+
+const openNotification = () => {
+  notification.open({
+    message: (
+      <p className="font-medium text-[#FBFBFB]">Jadwal berhasil diubah !</p>
+    ),
+  });
+
+  notification.config({
+    top: 75,
+    placement: "topLeft",
+    // closeIcon: <p className="bg-transparent text-[#93E5D5]">Abaikan</p>,
+    closeIcon: false,
+    duration: 3,
+    className: "bg-green-500 h-[64px] flex w-screen",
+    stack: true,
+  });
+};

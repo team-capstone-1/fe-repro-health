@@ -21,7 +21,7 @@ export default function AppointmentTable() {
       title: "No Urut",
       dataIndex: "no",
       key: "no",
-      width: 100,
+      width: 150,
     },
     {
       title: "Tanggal",
@@ -39,7 +39,7 @@ export default function AppointmentTable() {
       title: "Pembayaran",
       dataIndex: "payment",
       key: "payment",
-      width: 200,
+      width: 150,
       render: (val) => (
         <span className="text-green-500">{Utils.thousandSeparator(val)}</span>
       ),
@@ -135,7 +135,7 @@ export default function AppointmentTable() {
           </p>
           <Link
             id="link-to-all-appointment-table"
-            to="#"
+            to="/appointment"
             className="text-green-500 hover:text-green-700"
           >
             Lihat semua
