@@ -8,6 +8,10 @@ import { useState } from "react";
 export default function Certificate() {
   const [visible, setVisible] = useState(false);
 
+  const handleOpen = () => {
+    setVisible(true);
+  };
+
   const DataSource = [
     {
       id: 1,
@@ -132,7 +136,7 @@ export default function Certificate() {
                 size="large"
                 allowClear
                 prefix={<IoMdSearch />}
-                className="h-[3.14rem]"
+                className="h-[3.14rem] hover:border-green-500 "
               />
             </Form.Item>
           </Col>
@@ -159,21 +163,21 @@ export default function Certificate() {
                 style={{ maxWidth: "100%" }}
                 className="shadow-sm"
                 bordered
-                onRow={() => ({
-                  onClick: () => {
-                    setVisible(true);
-                  },
+                onRow={(val) => ({
+                  onClick: () => handleOpen(val),
                 })}
               />
+
               <Image
                 width={200}
                 style={{
                   display: "none",
                 }}
-                src={DataSource.map((val) => val.details)}
+                // src={DataSource.map((val) => val.details)}
                 preview={{
+                  movable: true,
                   visible,
-                  // src: ,
+                  src: DataSource.map((val) => val.details),
                   onVisibleChange: (value) => {
                     setVisible(value);
                   },
