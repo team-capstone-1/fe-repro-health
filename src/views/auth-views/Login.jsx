@@ -127,11 +127,8 @@ const Login = () => {
                     }`}
                     placeholder="Masukkan kata sandi anda"
                   />
-                  <div
-                    onClick={() => setVisible(!visible)}
-                    className="absolute inset-y-0 end-0 flex cursor-pointer items-center pe-4"
-                  >
-                    {visible ? (
+                  <div onClick={() => setVisible(!visible)} className="absolute inset-y-0 end-0 flex items-center pe-4 cursor-pointer">
+                    {visible ? 
                       <FaRegEyeSlash
                         color={`${
                           isFocusPass
