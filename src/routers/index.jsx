@@ -13,6 +13,7 @@ import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
 import Forum from "@/views/app-views/forum";
+import Notification from "@/views/app-views/notification"
 import PrivateRoute from "@/routers/PrivateRoute";
 import PublicRoute from "@/routers/PublicRoute";
 
@@ -29,6 +30,7 @@ export default function SetupRoutes() {
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/notif" element={<Notification />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
