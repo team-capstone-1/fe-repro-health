@@ -120,7 +120,7 @@ export default function Certificate() {
   ];
 
   return (
-    <section id="profile-certificate-section" className="my-10 ms-[3rem]">
+    <section id="profile-certificate-section" className="my-10">
       <Form layout="vertical">
         <Row gutter={[16, 8]}>
           <Col

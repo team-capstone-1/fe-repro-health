@@ -52,7 +52,7 @@ export function TabsDoctorProfile({
 
   return (
     <>
-      <section className="mt-[2.4em] flex w-full text-lg">
+      <section className=" flex w-full text-lg">
         <div
           className={`w-1/3 ${
             activeTab === "1"
