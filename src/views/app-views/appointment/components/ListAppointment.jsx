@@ -25,12 +25,14 @@ export default function AppointmentTable() {
       dataIndex: "name",
       key: "name",
       width: 250,
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: "No Urut",
       dataIndex: "no",
       key: "no",
-      width: 100,
+      width: 150,
+      sorter: (a, b) => a.no - b.no,
     },
     {
       title: "Tanggal",
@@ -43,12 +45,27 @@ export default function AppointmentTable() {
       dataIndex: "session",
       key: "session",
       width: 150,
+      filters: [
+        {
+          text: "Pagi",
+          value: "Pagi",
+        },
+        {
+          text: "Siang",
+          value: "Siang",
+        },
+        {
+          text: "Malam",
+          value: "Malam",
+        },
+      ],
+      onFilter: (value, record) => record.session.indexOf(value) === 0,
     },
     {
       title: "Pembayaran",
       dataIndex: "payment",
       key: "payment",
-      width: 200,
+      width: 150,
       render: (val) => (
         <span className="text-green-500">{Utils.thousandSeparator(val)}</span>
       ),
@@ -92,28 +109,28 @@ export default function AppointmentTable() {
   const data = [
     {
       id: "#001",
-      name: "Naufal Helmi",
-      no: "009",
+      name: "Alfhiyana",
+      no: "006",
       date: "23/10/23",
       session: "Malam",
-      payment: 123000,
+      payment: 12300000,
       method: "Bayar di Klinik",
       status: ["Menunggu"],
     },
     {
-      id: "#001",
-      name: "Naufal Helmi",
-      no: "009",
+      id: "#002",
+      name: "Xavier",
+      no: "007",
       date: "23/10/23",
       session: "Pagi",
-      payment: 123000,
+      payment: 1230000,
       method: "Bayar di Klinik",
       status: ["Berjalan"],
     },
     {
-      id: "#001",
+      id: "#003",
       name: "Naufal Helmi",
-      no: "009",
+      no: "008",
       date: "23/10/23",
       session: "Pagi",
       payment: 123000,
@@ -121,12 +138,12 @@ export default function AppointmentTable() {
       status: ["Dibatalkan"],
     },
     {
-      id: "#001",
-      name: "Naufal Helmi",
+      id: "#004",
+      name: "Helmi Naufal",
       no: "009",
       date: "23/10/23",
       session: "Pagi",
-      payment: 123000,
+      payment: 12300,
       method: "Bayar di Klinik",
       status: ["Selesai"],
     },
@@ -144,6 +161,10 @@ export default function AppointmentTable() {
       icon: `${Icon02}`,
     },
   ];
+
+  const onChange = (pagination, filters, sorter) => {
+    console.log("params", pagination, filters, sorter);
+  };
 
   return (
     <>
@@ -180,6 +201,7 @@ export default function AppointmentTable() {
           id="appointment-table-list"
           columns={columns}
           dataSource={data}
+          onChange={onChange}
           scroll={{ x: true }}
           style={{ maxWidth: "100%" }}
           onRow={(val) => ({
