@@ -117,24 +117,30 @@ export default function MySchedule() {
           <div id="list-schedule" className="flex h-[80%] flex-col justify-end">
             {listData.map((item, index) => (
               <div
-                className={`flex w-full items-center rounded-bl-lg rounded-tl-lg pe-2 shadow-sm ${
+                className={`flex w-full items-center rounded-bl-lg rounded-tl-lg shadow-sm ${
                   item.type === "Tidak Masuk"
                     ? "justify-start"
                     : "justify-between"
-                } ${item.type === "Libur" ? "pe-0" : ""}`}
+                } ${item.type === "Libur" ? "pe-0" : "pe-2"}`}
                 key={index}
               >
                 <Indicator
                   text={item.content}
                   type={item.type}
                   appointment={item.appointment}
+                  date={value}
+                  displayedDate={displayedDate}
                 />
                 <div
-                  className={`grid h-4 w-4 content-center rounded-full bg-negative text-center 
+                  className={`grid h-4 w-4 content-center rounded-full  text-center 
               text-[0.6rem] font-light text-white ${
                 !item.appointment || item.type === "Tidak Masuk"
                   ? "hidden"
                   : "block"
+              } ${
+                value.month() !== displayedDate.month()
+                  ? "bg-grey-50"
+                  : "bg-negative"
               }`}
                 >
                   {item.appointment}
