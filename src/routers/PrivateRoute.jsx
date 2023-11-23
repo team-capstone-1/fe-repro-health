@@ -1,11 +1,24 @@
-import React from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+
+import { authService } from "@/configs/Auth";
 import { AppLayout } from "@/components/layout-components/AppLayout";
-import { Outlet } from "react-router-dom";
 
 export default function PrivateRoute() {
-  return (
-    <AppLayout>
-      <Outlet />
-    </AppLayout>
-  );
+  const location = useLocation();
+  const { pathname } = location;
+
+  let path = "/login";
+
+  if (pathname !== "/") {
+    path += `?return_to=${pathname.slice(1, pathname.length)}`;
+  }
+
+  if (authService.isAuthorized()) {
+    return (
+      <AppLayout>
+        <Outlet />
+      </AppLayout>
+    );
+  }
+  return <Navigate to={path} />;
 }

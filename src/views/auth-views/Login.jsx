@@ -1,16 +1,21 @@
+import * as yup from "yup";
 import { useState } from "react";
-import loginIllus from "@/assets/login-illustration.svg";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import loginIllus from "@/assets/login-illustration.svg";
+import { APIAuth } from "@/apis/APIAuth";
 
 const Login = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPass, setIsFocusPass] = useState(false);
-
   const [visible, setVisible] = useState(false);
+
+  const navigate = useNavigate();
+  const { search } = useLocation();
 
   const schema = yup.object().shape({
     email: yup
@@ -32,7 +37,22 @@ const Login = () => {
   });
 
   const onSubmitHandler = (data) => {
-    console.log(data);
+    let returnTo = "/";
+    const params = new URLSearchParams(search);
+    const redirectTo = params.get("return_to");
+    APIAuth.login(data).then(async (response) => {
+      if (response.message === "fail login") {
+        alert("invalid email or password!");
+      }
+      if (response.message === "success login doctor account") {
+        if (redirectTo) {
+          returnTo += redirectTo;
+          return navigate(returnTo);
+        } else {
+          navigate(returnTo);
+        }
+      }
+    });
   };
 
   return (

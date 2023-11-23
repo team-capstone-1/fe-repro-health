@@ -12,12 +12,12 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
-// import DoctorProfile from "@/views/app-views/dashboard/profile/DoctorProfile";
 import Forum from "@/views/app-views/forum";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
 import PrivateRoute from "@/routers/PrivateRoute";
 import PublicRoute from "@/routers/PublicRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 export default function SetupRoutes() {
   return (
@@ -35,10 +35,12 @@ export default function SetupRoutes() {
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/verify" element={<Verify />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/" element={<ProtectedRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify" element={<Verify />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+      </Route>
     </Routes>
   );
 }
