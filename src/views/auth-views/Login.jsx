@@ -12,6 +12,7 @@ import { APIAuth } from "@/apis/APIAuth";
 const Login = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPass, setIsFocusPass] = useState(false);
+  const [isRemembered, setIsRemembered] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const navigate = useNavigate();
@@ -37,22 +38,38 @@ const Login = () => {
   });
 
   const onSubmitHandler = (data) => {
-    let returnTo = "/";
+    let returnTo = "/dashboard";
     const params = new URLSearchParams(search);
     const redirectTo = params.get("return_to");
-    APIAuth.login(data).then(async (response) => {
-      if (response.message === "fail login") {
-        alert("invalid email or password!");
-      }
-      if (response.message === "success login doctor account") {
-        if (redirectTo) {
-          returnTo += redirectTo;
-          return navigate(returnTo);
-        } else {
-          navigate(returnTo);
+    if (isRemembered) {
+      APIAuth.loginWithRememberMe(data, isRemembered).then(async (response) => {
+        if (response.message === "fail login") {
+          alert("invalid email or password!");
         }
-      }
-    });
+        if (response.message === "success login doctor account") {
+          if (redirectTo) {
+            returnTo += redirectTo;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        }
+      });
+    } else {
+      APIAuth.login(data).then(async (response) => {
+        if (response.message === "fail login") {
+          alert("invalid email or password!");
+        }
+        if (response.message === "success login doctor account") {
+          if (redirectTo) {
+            returnTo += redirectTo;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        }
+      });
+    }
   };
 
   return (
@@ -188,6 +205,9 @@ const Login = () => {
                     <input
                       type="checkbox"
                       id="rememberCheck"
+                      onChange={(e) => {
+                        setIsRemembered(e.target.checked);
+                      }}
                       className="h-4 w-4 rounded border border-grey-200 accent-white focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
                     />
                     <label

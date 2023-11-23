@@ -13,9 +13,16 @@ export class AuthService {
     return token;
   }
 
-  storeCredentialsToCookie({ token }) {
-    const expires = new Date(new Date().getTime() + 6 * 24 * 60 * 60 * 1000);
-    if (token) Cookies.set("token", token, { expires });
+  storeCredentialsToCookie({ token, isRemembered }) {
+    if (!isRemembered) {
+      // set expired 1 days
+      const expires = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+      Cookies.set("token", token, { expires });
+    } else {
+      // set expired after 14 days
+      const expires = new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000);
+      Cookies.set("token", token, { expires });
+    }
   }
 
   clearCredentialsFromCookie() {
