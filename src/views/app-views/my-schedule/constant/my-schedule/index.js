@@ -1,9 +1,69 @@
+// Contoh Response dari API
+
+// const response = {
+//   doctor_id: "uuid",
+//   data: [
+//     {
+//       date: "30-10-2023",
+//       listData: [
+//         {
+//           type: "Masuk",
+//           content: "Pagi",
+//           appointment: [
+//             {
+//               patient: "Anastasia Amalia",
+//               id: 9,
+//             },
+//             {
+//               patient: "Supriyadi",
+//               id: 10,
+//             },
+//           ],
+//         },
+//         {
+//           type: "Masuk",
+//           content: "Siang",
+//           appointment: [
+//             {
+//               patient: "Anastasia Amalia",
+//               id: 9,
+//             },
+//             {
+//               patient: "Supriyadi",
+//               id: 10,
+//             },
+//           ],
+//         },
+//         {
+//           type: "Tidak Masuk",
+//           content: "Malam",
+//           appointment: [
+//             {
+//               patient: "Anastasia Amalia",
+//               id: 9,
+//             },
+//             {
+//               patient: "Supriyadi",
+//               id: 10,
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   ],
+// };
+
 export const Response = {
+  doctor_id: "uuid",
   data: [
     {
       date: "30-10-2023",
       listData: [
-        { type: "Masuk", content: "Pagi", appointment: 2 },
+        {
+          type: "Masuk",
+          content: "Pagi",
+          appointment: 2,
+        },
         { type: "Masuk", content: "Siang", appointment: 2 },
         { type: "Tidak Masuk", content: "Malam", appointment: 2 },
       ],
