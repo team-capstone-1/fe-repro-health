@@ -7,6 +7,7 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
+
 import LogoutModal from "@/components/layout-components/LogoutModal";
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlinePeopleAlt } from "react-icons/md";
@@ -48,10 +49,7 @@ export default function Sidebar() {
               className="cursor-default text-black"
             />
           ) : (
-            <span
-              id="hide-toggle"
-              className="text-black"
-            >
+            <span id="hide-toggle" className="text-black">
               <LeftOutlined className="pr-5" />
               Sembunyikan
             </span>
@@ -59,7 +57,7 @@ export default function Sidebar() {
         </div>
       ),
       disabled: true,
-      className: "cursor-default hover:bg-gray-200 transition-all duration-700"
+      className: "cursor-default hover:bg-gray-200 transition-all duration-700",
     },
     {
       type: "divider",
@@ -78,6 +76,7 @@ export default function Sidebar() {
     ),
     getItem(
       "Janji Temu",
+
       "janji-temu",
       <Link to="/janji-temu" className="p-2">
         <MdOutlinePeopleAlt className={iconStyle} id="dashboard-icon-sidebar" />

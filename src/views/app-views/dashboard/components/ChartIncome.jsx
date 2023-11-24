@@ -40,8 +40,17 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function ChartIncome() {
-  const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
+  // const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
+  const customTickYAxis = (values) => {
+    if (values > 99000000) {
+      return `${values.toString().slice(0, 3)} jt`;
+    } else {
+      return `${values.toString().slice(0, 2)} jt`;
+    }
+  };
   const customTickXAxis = (value) => value.slice(0, 3);
+
+  const mobileSize = window.innerWidth >= 450;
 
   const { RangePicker } = DatePicker;
 
@@ -55,6 +64,7 @@ export default function ChartIncome() {
       setStartDate(dates[0]);
       setEndDate(dates[1]);
       setSelectedRange(dates);
+      console.log(dates);
     } else {
       setStartDate("");
       setEndDate("");
@@ -142,12 +152,15 @@ export default function ChartIncome() {
               <YAxis
                 tickFormatter={customTickYAxis}
                 orientation="left"
-                type="string"
-                dataKey="amount"
+                type="number"
+                // dataKey="amount"
                 tickLine={false}
                 axisLine={false}
-                tickMargin={20}
-                // ticks={[0, 10, 20, 30, 40, 50, 60]} custom show tick
+                tickMargin={10}
+                // ticks={[0, 10, 20, 30, 40, 50, 60]}
+                custom
+                show
+                tick
                 className="text-base"
               />
 
@@ -159,8 +172,9 @@ export default function ChartIncome() {
 
               <Bar
                 id="bar-chart-income"
-                barSize={window.innerWidth >= 450 ? 30 : 20}
-                radius={10}
+                barSize={mobileSize || data.length < 20 ? 30 : 5}
+                // barSize={data.length < 8 ? 30 : 20}
+                radius={data.length < 10 ? 10 : 2}
                 dataKey="after"
                 name="Jumlah Pendapatan"
                 fill="rgba(20, 198, 164, 1)"

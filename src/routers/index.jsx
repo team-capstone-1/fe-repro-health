@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import PublicRoute from "@/routers/PublicRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
@@ -18,7 +19,8 @@ import Chatbot from "@/views/app-views/chatbot";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
 import PrivateRoute from "@/routers/PrivateRoute";
-import PublicRoute from "@/routers/PublicRoute";
+import Appointment from "@/views/app-views/appointment";
+import MySchedule from "@/views/app-views/my-schedule/components/MySchedule";
 
 export default function SetupRoutes() {
   return (
@@ -32,6 +34,8 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/jadwal-saya" element={<MySchedule />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/asisten-dokter" element={<Chatbot />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
