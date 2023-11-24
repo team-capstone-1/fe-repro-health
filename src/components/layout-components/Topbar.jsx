@@ -25,10 +25,7 @@ export default function Topbar() {
           </Link>
         </div>
 
-        <div
-          id="profile-doctor-topbar"
-          className="flex items-center gap-1 sm:gap-3"
-        >
+        <div id="profile-doctor-topbar" className="flex items-center gap-3">
           <div
             id="bot-icon-topbar"
             className="flex items-center justify-center text-xl md:text-2xl"
@@ -38,7 +35,7 @@ export default function Topbar() {
             </Link>
           </div>
           <div id="notification-icon-topbar" className="text-xl md:text-2xl">
-            <Link to="/pemberitahuan" className="hover:text-green-500">
+            <Link to="/notifikasi" className="hover:text-green-500">
               <IoNotificationsOutline />
             </Link>
           </div>
