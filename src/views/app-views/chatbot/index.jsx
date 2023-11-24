@@ -60,6 +60,7 @@ export default function Chatbot() {
           <h1 className="text-2xl">Asisten Dokter</h1>
           <div className="py-5">
             <Button
+              id="add-new-message"
               className="w-full border-2 border-green-500 pb-8 pt-2 font-semibold text-green-500 hover:ring-green-500"
               onClick={() => handleAddBtn()}
             >
@@ -72,6 +73,7 @@ export default function Chatbot() {
           <div className="mt-3 flex flex-col gap-3">
             {lists.map((list) => (
               <div
+                id="chat-history"
                 key={list.id}
                 className={`flex cursor-pointer items-center justify-between rounded-md px-3.5 py-2.5 ring-2 ${
                   selectedList[0]?.id === list.id
@@ -180,6 +182,7 @@ export default function Chatbot() {
                   maxLength={1024}
                 />
                 <button
+                  id="send-message"
                   type="submit"
                   className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer pb-0.5"
                 >
