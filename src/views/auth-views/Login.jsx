@@ -1,16 +1,22 @@
+import * as yup from "yup";
 import { useState } from "react";
-import loginIllus from "@/assets/login-illustration.svg";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import loginIllus from "@/assets/login-illustration.svg";
+import { APIAuth } from "@/apis/APIAuth";
 
 const Login = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPass, setIsFocusPass] = useState(false);
-
+  const [isRemembered, setIsRemembered] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  const navigate = useNavigate();
+  const { search } = useLocation();
 
   const schema = yup.object().shape({
     email: yup
@@ -32,7 +38,38 @@ const Login = () => {
   });
 
   const onSubmitHandler = (data) => {
-    console.log(data);
+    let returnTo = "/dashboard";
+    const params = new URLSearchParams(search);
+    const redirectTo = params.get("return_to");
+    if (isRemembered) {
+      APIAuth.loginWithRememberMe(data, isRemembered).then(async (response) => {
+        if (response.message === "fail login") {
+          alert("invalid email or password!");
+        }
+        if (response.message === "success login doctor account") {
+          if (redirectTo) {
+            returnTo += redirectTo;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        }
+      });
+    } else {
+      APIAuth.login(data).then(async (response) => {
+        if (response.message === "fail login") {
+          alert("invalid email or password!");
+        }
+        if (response.message === "success login doctor account") {
+          if (redirectTo) {
+            returnTo += redirectTo;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        }
+      });
+    }
   };
 
   return (
@@ -57,7 +94,10 @@ const Login = () => {
             >
               {/* Email */}
               <div>
-                <label className="text-base font-medium text-grey-300">
+                <label
+                  htmlFor="email"
+                  className="text-base font-medium text-grey-300"
+                >
                   Email
                 </label>
                 <div className="relative mt-2">
@@ -81,6 +121,7 @@ const Login = () => {
                     onBlur={() => setIsFocusEmail(false)}
                     id="email"
                     type="email"
+                    autoComplete="email-doctor"
                     className={`block w-full rounded-lg border p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.email
                         ? "border-[#fc4547] text-[#fc4547]"
@@ -96,7 +137,10 @@ const Login = () => {
 
               {/* Passoword */}
               <div className="mt-2">
-                <label className="text-base font-medium text-grey-300">
+                <label
+                  htmlFor="password"
+                  className="text-base font-medium text-grey-300"
+                >
                   Kata Sandi
                 </label>
                 <div className="relative mt-2">
@@ -119,6 +163,7 @@ const Login = () => {
                     }}
                     onBlur={() => setIsFocusPass(false)}
                     id="password"
+                    autoComplete="current-password"
                     type={`${visible ? "text" : "password"}`}
                     className={`block w-full rounded-lg border p-4 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.password
@@ -168,6 +213,9 @@ const Login = () => {
                     <input
                       type="checkbox"
                       id="rememberCheck"
+                      onChange={(e) => {
+                        setIsRemembered(e.target.checked);
+                      }}
                       className="h-4 w-4 rounded border border-grey-200 accent-white focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
                     />
                     <label

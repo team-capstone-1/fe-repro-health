@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import PublicRoute from "@/routers/PublicRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
@@ -13,12 +12,13 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
-// import DoctorProfile from "@/views/app-views/dashboard/profile/DoctorProfile";
 import Forum from "@/views/app-views/forum";
 import Chatbot from "@/views/app-views/chatbot";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
 import PrivateRoute from "@/routers/PrivateRoute";
+import PublicRoute from "@/routers/PublicRoute";
+import ProtectedRoute from "./ProtectedRoute";
 import Appointment from "@/views/app-views/appointment";
 import MySchedule from "@/views/app-views/my-schedule/components/MySchedule";
 
@@ -41,10 +41,12 @@ export default function SetupRoutes() {
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/lupa-password" element={<ForgotPassword />} />
-      <Route path="/verifikasi" element={<Verify />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/" element={<ProtectedRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify" element={<Verify />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+      </Route>
     </Routes>
   );
 }
