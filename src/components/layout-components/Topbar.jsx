@@ -41,15 +41,15 @@ export default function Topbar() {
           </div>
           <div id="profile-doctor-topbar" className="flex items-center">
             <div className="h-8 w-8 rounded-full bg-slate-700 md:h-11 md:w-11">
-              <Link to="/profil">
+              <a href="/profil">
                 <img
                   id="profile-doctor-topbar"
                   src={profileDoctor}
                   alt="profile-doctor"
                 />
-              </Link>
+              </a>
             </div>
-            <Link to="/profil" className="hover:text-green-500">
+            <a href="/profil" className="hover:text-green-500">
               <div className="ml-2">
                 <h6
                   id="doctor-name-topbar"
@@ -64,7 +64,7 @@ export default function Topbar() {
                   Spesialis Kandungan
                 </span>
               </div>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
