@@ -13,6 +13,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           }`}
         >
           <button
+            id="tab-1"
             className="h-full w-full py-3 text-sm font-medium sm:text-lg"
             onClick={() => setActiveTab("1")}
           >
@@ -27,6 +28,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           }`}
         >
           <button
+            id="tab-2"
             className="h-full w-full py-3 text-sm font-medium sm:text-lg"
             onClick={() => setActiveTab("2")}
           >
@@ -47,7 +49,7 @@ export function TabsDoctorProfile({
 
   return (
     <>
-      <section className=" flex w-full text-lg">
+      <section className="flex w-full text-lg">
         <div
           className={`w-1/3 ${
             activeTab === "1"
@@ -56,6 +58,7 @@ export function TabsDoctorProfile({
           }`}
         >
           <button
+            id="doctor-tab-1"
             className="h-full w-full py-3 text-[10px] text-sm font-medium md:text-base xl:text-lg"
             onClick={() => setActiveTab("1")}
           >
@@ -71,6 +74,7 @@ export function TabsDoctorProfile({
           }`}
         >
           <button
+            id="doctor-tab-2"
             className="h-full w-full py-3 text-[10px] text-sm font-medium md:text-base xl:text-lg"
             onClick={() => setActiveTab("2")}
           >
@@ -94,7 +98,11 @@ export function TabsDoctorProfile({
         </div>
       </section>
 
-      {activeTab === "1" ? children[0] : activeTab === "2" ? children[1] : children[2]}
+      {activeTab === "1"
+        ? children[0]
+        : activeTab === "2"
+        ? children[1]
+        : children[2]}
     </>
   );
 }
