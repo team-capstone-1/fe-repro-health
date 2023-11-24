@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Card, Table, Button } from "antd";
 
+import Utils from "@/utils";
+
 export default function AppointmentTable() {
   const columns = [
     {
@@ -13,14 +15,13 @@ export default function AppointmentTable() {
       title: "Nama Pasien",
       dataIndex: "name",
       key: "name",
-      width: 300,
-      render: (text) => <a>{text}</a>,
+      width: 250,
     },
     {
       title: "No Urut",
       dataIndex: "no",
       key: "no",
-      width: 100,
+      width: 150,
     },
     {
       title: "Tanggal",
@@ -32,20 +33,22 @@ export default function AppointmentTable() {
       title: "Sesi",
       dataIndex: "session",
       key: "session",
-      width: 100,
+      width: 150,
     },
     {
       title: "Pembayaran",
       dataIndex: "payment",
       key: "payment",
-      width: 200,
-      render: (text) => <span className="text-green-500">{text}</span>,
+      width: 150,
+      render: (val) => (
+        <span className="text-green-500">{Utils.thousandSeparator(val)}</span>
+      ),
     },
     {
       title: "Metode",
       dataIndex: "method",
       key: "method",
-      width: 300,
+      width: 200,
     },
     {
       title: "Status",
@@ -57,11 +60,13 @@ export default function AppointmentTable() {
           {status.map((tag) => {
             let color;
             if (tag === "Berjalan") {
-              color = "text-link bg-link-25 cursor-default";
+              color = "text-link bg-link-25 cursor-default w-28";
             } else if (tag === "Menunggu") {
-              color = "text-warning bg-warning-25 cursor-default";
+              color = "text-warning bg-warning-25 cursor-default w-28";
+            } else if (tag === "Selesai") {
+              color = "text-positive bg-positive-25 cursor-default w-28";
             } else {
-              color = "text-negative bg-negative-25 cursor-default";
+              color = "text-negative bg-negative-25 cursor-default w-28";
             }
 
             return (
@@ -82,7 +87,7 @@ export default function AppointmentTable() {
       no: "009",
       date: "23/10/23",
       session: "Pagi",
-      payment: "Rp 123.000",
+      payment: 123000,
       method: "Bayar di Klinik",
       status: ["Menunggu"],
     },
@@ -92,7 +97,7 @@ export default function AppointmentTable() {
       no: "009",
       date: "23/10/23",
       session: "Pagi",
-      payment: "Rp 123.000",
+      payment: 123000,
       method: "Bayar di Klinik",
       status: ["Berjalan"],
     },
@@ -102,11 +107,21 @@ export default function AppointmentTable() {
       no: "009",
       date: "23/10/23",
       session: "Pagi",
-      payment: "Rp 123.000",
+      payment: 123000,
       method: "Bayar di Klinik",
       status: ["Dibatalkan"],
     },
-  ];
+    {
+      id: "#001",
+      name: "Naufal Helmi",
+      no: "009",
+      date: "23/10/23",
+      session: "Pagi",
+      payment: 123000,
+      method: "Bayar di Klinik",
+      status: ["Selesai"],
+    },
+  ].map((item, i) => ({ ...item, key: (i + 1).toString() }));
 
   return (
     <>
@@ -120,7 +135,7 @@ export default function AppointmentTable() {
           </p>
           <Link
             id="link-to-all-appointment-table"
-            to="#"
+            to="/appointment"
             className="text-green-500 hover:text-green-700"
           >
             Lihat semua

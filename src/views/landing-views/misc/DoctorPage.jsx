@@ -52,7 +52,7 @@ export default function DoctorPage() {
                 </Button>
                 <Button
                   id="login-as-doctor-button"
-                  type="primary"
+                  ghost
                   className="border-green-500 px-6 pb-8 pt-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white 2xl:mt-6"
                 >
                   <Link to="/login">Masuk Sebagai Dokter</Link>

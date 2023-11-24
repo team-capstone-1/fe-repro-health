@@ -7,12 +7,17 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
+
 import LogoutModal from "@/components/layout-components/LogoutModal";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { MdOutlinePeopleAlt } from "react-icons/md";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const location = useLocation();
+  const regex = /([a-zA-Z]+)/;
+  const selectedKeys = location.pathname.match(regex)[0];
 
   const openLogoutModal = () => {
     console.log("Opening Logout Modal");
@@ -26,28 +31,34 @@ export default function Sidebar() {
   const toggleCollapsed = () => {
     setCollapsed((prev) => !prev);
   };
-  const iconStyle = `w-5 h-5  ${
+  const iconStyle = `w-5 h-5 text-slate-5 ${
     collapsed ? "mt-0.5 -ml-[0.6em]" : "mr-1 -ml-2"
   }`;
   const items = [
-    getItem(
-      "",
-      "1",
-      <div
-        id="toggle-collapse"
-        className={`${collapsed ? "-ml-8 px-8" : "-ml-6 py-3 pl-6 pr-12"}`}
-        onClick={toggleCollapsed}
-      >
-        {collapsed ? (
-          <RightOutlined id="show-toggle" />
-        ) : (
-          <span id="hide-toggle">
-            <LeftOutlined className="pr-5" />
-            Hide Panel
-          </span>
-        )}
-      </div>,
-    ),
+    {
+      label: "",
+      icon: (
+        <div
+          id="toggle-collapse"
+          className={`${collapsed ? "-ml-8 px-8" : "-ml-6 py-3 pl-6 pr-12"}`}
+          onClick={toggleCollapsed}
+        >
+          {collapsed ? (
+            <RightOutlined
+              id="show-toggle"
+              className="cursor-default text-black"
+            />
+          ) : (
+            <span id="hide-toggle" className="text-black">
+              <LeftOutlined className="pr-5" />
+              Sembunyikan
+            </span>
+          )}
+        </div>
+      ),
+      disabled: true,
+      className: "cursor-default hover:bg-gray-200 transition-all duration-700",
+    },
     {
       type: "divider",
       style: {
@@ -58,36 +69,44 @@ export default function Sidebar() {
     },
     getItem(
       "Dashboard",
-      "2",
+      "dashboard",
       <Link to="/dashboard" className="p-2">
         <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Janji Temu",
-      "3",
-      <Link to="#" className="p-2">
+
+      "janji-temu",
+      <Link to="/janji-temu" className="p-2">
+        <MdOutlinePeopleAlt className={iconStyle} id="dashboard-icon-sidebar" />
+      </Link>,
+    ),
+    getItem(
+      "Jadwal Saya",
+      "jadwal-saya",
+      <Link to="/jadwal-saya" className="p-2">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Artikel",
-      "4",
-      <Link to="#" className="p-2">
+      "artikel",
+      <Link to="/artikel" className="p-2">
         <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Forum",
-      "5",
-      <Link to="#" className="p-2">
+      "forum",
+      <Link to="/forum" className="p-2">
         <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
       </Link>,
     ),
     getItem(
-      "Profile",
-      "6",
-      <Link to="#" className="p-2">
+      "Profil",
+      "profil",
+      <Link to="/profil" className="p-2">
         <CgProfile className={iconStyle} id="profile-icon-sidebar" />
       </Link>,
     ),
@@ -99,7 +118,7 @@ export default function Sidebar() {
     },
     {
       label: "",
-      key: "7",
+      key: "8",
       icon: (
         <div
           id="logout-button"
@@ -122,6 +141,7 @@ export default function Sidebar() {
       }`,
     },
   ];
+
   return (
     <div className="sticky top-[75.91px] hidden max-h-[500px] bg-white sm:top-[82.6px] sm:block md:top-[74.63px]">
       <ConfigProvider
@@ -137,10 +157,10 @@ export default function Sidebar() {
         }}
       >
         <Menu
-          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-8 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
+          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-5 font-medium text-grey-200 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
             collapsed ? "px-2" : "px-8"
           }`}
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[selectedKeys]}
           mode="inline"
           theme="light"
           inlineCollapsed={collapsed}
@@ -153,12 +173,13 @@ export default function Sidebar() {
   );
 }
 
-function getItem(label, key, icon, children, type) {
+function getItem(label, key, icon, children, type, disabled) {
   return {
     key,
     icon,
     children,
     label,
     type,
+    disabled,
   };
 }
