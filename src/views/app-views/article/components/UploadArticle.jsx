@@ -11,6 +11,8 @@ import "react-quill/dist/quill.snow.css";
 const UploadArticle = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [value, setValue] = useState("");
+  const MAX_IMAGE_SIZE = 25000000
+  const ALLOWED_IMAGE_TYPE = ["image/jpg", "image/png"]
 
   //   Module from React Quill
   const module = {
@@ -27,26 +29,13 @@ const UploadArticle = () => {
     ],
   };
 
-  //   Handle Image Preview
-  const handleImagePreview = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setImagePreview(null);
-    }
-  };
-
   const schema = yup.object().shape({
     title: yup.string().required("Judul harus diisi"),
     tags: yup.string().required("Tags harus diisi"),
     reference: yup.string().required("Referensi harus diisi"),
+    image: yup.mixed().test("required", "Gambar harus diisi", (value) => {return value && value.length}).test("fileSize", "Ukuran file terlalu besar, maksimal 20 MB", (value) => {if (!value || !value[0]) return true; return value[0].size <= MAX_IMAGE_SIZE;}).test("fileType", "Format file tidak valid, hanya file gambar yang diperbolehkan", (value) => {if (!value || !value[0]) return true; return ALLOWED_IMAGE_TYPE.includes(value[0].type);}),
     desc: yup.string().required("Deskripsi gambar harus diisi"),
+    content: yup.string().required("Isi artikel harus diisi")
   });
 
   const {
@@ -57,7 +46,18 @@ const UploadArticle = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitArticle = (data) => {
+  const convertImage = file => {
+    const reader = new FileReader();
+    reader.onloaded = () => {
+      setImagePreview(reader.result)
+    }
+    reader.readAsDataURL(file);
+  }
+
+  const onSubmitArticle = data => {
+    if (Array.isArray(data.files) && data.files.length > 0) {
+      convertImage(data.files[0]);
+    }
     console.log(data);
   };
 
@@ -185,16 +185,19 @@ const UploadArticle = () => {
                       </div>
                     )}
                     <input
+                      {...register("image")}
                       id="dropzone-file"
                       type="file"
                       className="hidden"
-                      onChange={(e) => handleImagePreview(e)}
+                      // onChange={(e) => handleImagePreview(e)}
+                      accept=".jpg, .png"
                     />
                   </label>
                   <div className="flex flex-col pt-2">
                     <p className="text-sm text-grey-200">
                       Maksimum ukuran file: 20MB
                     </p>
+                    {errors.image && <span className="text-xs text-negative pt-1">{errors.image.message}</span>}
                   </div>
                 </div>
 
@@ -238,13 +241,13 @@ const UploadArticle = () => {
                   Isi Artikel
                 </label>
                 <ReactQuill
+                  {...register("content")}
                   className="mt-2"
                   theme="snow"
                   modules={module}
-                  value={value}
-                  onChange={setValue}
                   placeholder="Tuliskan deskripsi terkait artikel"
                 />
+                <span className="text-xs text-negative pt-1">{errors.content?.message}</span>
               </div>
             </Flex>
           </Col>
