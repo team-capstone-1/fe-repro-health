@@ -1,45 +1,43 @@
+import { useEffect, useState } from "react";
 import { ConfigProvider, Timeline } from "antd";
-import { DataEducations as educations } from "../constant/data-education";
-import { useState } from "react";
+import { APIProfile } from "@/apis/APIProfile";
 
 export default function Education() {
-  const CustomDot = ({ onClick, selected }) => (
-    <button
-      onClick={onClick}
-      style={{
-        width: 16,
-        height: 16,
-        border: "2px solid #14C6A4",
-        borderRadius: "100%",
-        backgroundColor: selected ? "#14C6A4" : "transparent",
-      }}
-    />
-  );
-
   const [selectedDot, setSelectedDot] = useState(0);
+  const [dataDoctor, setDataDoctor] = useState([]);
+
+  useEffect(() => {
+    const fetchDoctorEducations = async () => {
+      const result = await APIProfile.getDoctorEducationHistories();
+      if (result?.message === "success get doctor educations") {
+        setDataDoctor(result.response);
+      }
+    };
+    fetchDoctorEducations();
+  }, []);
 
   const handleDotClick = (index) => {
     setSelectedDot(index);
   };
 
-  const educationItems = educations.map((education, index) => ({
+  const educationItems = dataDoctor?.map((item, index) => ({
     label: (
       <p className="text-xs font-semibold sm:me-[40px] sm:text-sm lg:me-[90px] lg:text-base">
-        {education.starting_date} - {education.end_date}
+        {item.start_date?.slice(0, 4)} - {item.end_date?.slice(0, 4)}
       </p>
     ),
 
     children: (
       <div className="ms-[5px] sm:ms-[10px] lg:ms-[20px]">
-        <ul key={education.id} className="w-[200px] sm:w-[250px] lg:w-[500px]">
+        <ul key={item.id} className="w-[200px] sm:w-[250px] lg:w-[500px]">
           <li>
             <p className="text-xs font-semibold sm:w-[300px] md:w-[420px] md:text-sm lg:w-[550px] lg:text-base xl:w-[800px]">
-              {education.title_program}, {education.university}
+              {item.university}
             </p>
           </li>
           <li>
             <p className="text-xs font-light text-[#686868] sm:w-[300px] md:w-[420px] md:text-sm lg:w-[550px] lg:text-sm xl:w-[800px]">
-              {education.education_program}
+              {item.education_program}
             </p>
           </li>
         </ul>
@@ -79,3 +77,16 @@ export default function Education() {
     </section>
   );
 }
+
+const CustomDot = ({ onClick, selected }) => (
+  <button
+    onClick={onClick}
+    style={{
+      width: 16,
+      height: 16,
+      border: "2px solid #14C6A4",
+      borderRadius: "100%",
+      backgroundColor: selected ? "#14C6A4" : "transparent",
+    }}
+  />
+);

@@ -1,7 +1,22 @@
-import profileDoctor from "@/assets/profile-doctor.svg";
+import { useEffect, useState } from "react";
 import { Card } from "antd";
 
+import { APIProfile } from "@/apis/APIProfile";
+
 export default function DoctorProfile() {
+  const [dataDoctor, setDataDoctor] = useState(null);
+
+  useEffect(() => {
+    const fetchDoctorProfile = () => {
+      APIProfile.getDoctorProfile().then(async (result) => {
+        if (result?.message === "success get doctor profile") {
+          setDataDoctor(result.response);
+        }
+      });
+    };
+    fetchDoctorProfile();
+  }, []);
+
   return (
     <>
       <Card>
@@ -10,16 +25,16 @@ export default function DoctorProfile() {
           <div className="flex justify-center md:col-span-1 lg:col-span-3 xl:col-span-2">
             <div id="doctor-image">
               <img
-                className="my-5 h-48 w-48 md:my-0 md:w-36"
-                src={profileDoctor}
+                src={dataDoctor?.profile_image}
                 alt="profile-doctor"
+                className="my-5 h-32 w-32 rounded-full md:my-0 md:h-36 md:w-36"
               />
             </div>
           </div>
           <div className="flex justify-start md:col-span-1 lg:col-span-4 lg:justify-center xl:col-span-3">
             <div id="doctor-information" className="flex flex-col">
               <p className="text-sm font-semibold text-grey-900 md:text-base">
-                Dr. Andi Cahaya, Sp.OG
+                {dataDoctor?.name}
               </p>
               <p className="text-sm font-medium text-grey-300 md:text-base">
                 Spesialis Kandungan
@@ -35,10 +50,7 @@ export default function DoctorProfile() {
               <p className="text-sm font-semibold text-grey-900 md:text-base">
                 Alamat
               </p>
-              <p className="text-sm md:text-base">
-                Klinik Nasional. Jl. Bedrek No.47e, Sanggrahan, Condongcatur,
-                Kec. Depok, Kabupaten Sleman, DIY
-              </p>
+              <p className="text-sm md:text-base">{dataDoctor?.address}</p>
             </div>
           </div>
           <div className="flex md:col-span-1 lg:col-span-5 xl:col-span-3">
@@ -52,8 +64,8 @@ export default function DoctorProfile() {
                 </p>
               </div>
               <div className="flex-col">
-                <p className="text-sm md:text-base">andicahyo@gmail.com</p>
-                <p className="text-sm md:text-base">+62 812345865</p>
+                <p className="text-sm md:text-base">{dataDoctor?.email}</p>
+                <p className="text-sm md:text-base">{dataDoctor?.phone}</p>
               </div>
             </div>
           </div>
