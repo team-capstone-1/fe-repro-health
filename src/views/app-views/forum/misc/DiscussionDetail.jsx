@@ -49,6 +49,7 @@ export default function DiscussionDetail() {
     <>
       <div className="px-6 pt-4">
         <Link
+          id="back-to-forum"
           className="text-lg font-medium text-slate-500 hover:text-green-500"
           to="/forum"
         >
@@ -114,6 +115,7 @@ export default function DiscussionDetail() {
                     />
                     <div className="flex justify-end">
                       <Button
+                        id="send-reply"
                         className="me-0 mt-12 w-36 bg-green-500 text-white"
                         htmlType="submit"
                       >
