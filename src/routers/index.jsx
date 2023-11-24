@@ -19,7 +19,7 @@ import Chatbot from "@/views/app-views/chatbot";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
 import Appointment from "@/views/app-views/appointment";
-import MySchedule from "@/views/app-views/my-schedule/components/MySchedule";
+import MySchedule from "@/views/app-views/my-schedule";
 
 export default function SetupRoutes() {
   return (
