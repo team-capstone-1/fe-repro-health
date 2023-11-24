@@ -12,8 +12,6 @@ import LogoutModal from "@/components/layout-components/LogoutModal";
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 
-import LogoutModal from "@/components/layout-components/LogoutModal";
-
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -51,10 +49,7 @@ export default function Sidebar() {
               className="cursor-default text-black"
             />
           ) : (
-            <span
-              id="hide-toggle"
-              className="text-black"
-            >
+            <span id="hide-toggle" className="text-black">
               <LeftOutlined className="pr-5" />
               Sembunyikan
             </span>
@@ -62,7 +57,7 @@ export default function Sidebar() {
         </div>
       ),
       disabled: true,
-      className: "cursor-default hover:bg-gray-200 transition-all duration-700"
+      className: "cursor-default hover:bg-gray-200 transition-all duration-700",
     },
     {
       type: "divider",
