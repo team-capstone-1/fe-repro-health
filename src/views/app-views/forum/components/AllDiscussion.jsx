@@ -63,7 +63,9 @@ export default function AllDiscussion() {
           }`}
           onClick={() => setShowBy("populer")}
         >
-          <button className="h-full w-full">Populer</button>
+          <button id="popular-1" className="h-full w-full">
+            Populer
+          </button>
         </div>
         <div
           className={`cursor-pointer rounded-3xl px-5 py-1 ring-1 ${
@@ -73,7 +75,9 @@ export default function AllDiscussion() {
           }`}
           onClick={() => setShowBy("terbaru")}
         >
-          <button className="h-full w-full">Terbaru</button>
+          <button id="news-1" className="h-full w-full">
+            Terbaru
+          </button>
         </div>
       </div>
       <ul className="flex flex-col gap-6">
@@ -98,7 +102,11 @@ export default function AllDiscussion() {
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
               )}
               <div className="flex justify-between">
-                <Link to={list.id} className="hover:text-green-500">
+                <Link
+                  id="forum-title-1"
+                  to={list.id}
+                  className="hover:text-green-500"
+                >
                   <h5 className="text-xl font-bold">{list.title}</h5>
                 </Link>
                 <h6 className="pt-1.5 text-slate-400">{list.time}</h6>
@@ -128,6 +136,7 @@ export default function AllDiscussion() {
               <div>{list.question}</div>
               <div className="flex justify-end">
                 <Link
+                  id="see-more-1"
                   to={list.id}
                   className="text-green-900 underline hover:text-green-500 max-[350px]:text-xs"
                 >
