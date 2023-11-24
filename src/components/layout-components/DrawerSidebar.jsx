@@ -59,14 +59,14 @@ const App = () => {
     ),
     getItem(
       "Janji Temu",
-      "janji-temu",
+      "janji",
       <Link to="/janji-temu" className="p-2">
         <MdOutlinePeopleAlt className={iconStyle} id="dashboard-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Jadwal Saya",
-      "jadwal-saya",
+      "jadwal",
       <Link to="/jadwal-saya" className="p-2">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,

@@ -18,6 +18,8 @@ export default function Sidebar() {
   const location = useLocation();
   const regex = /([a-zA-Z]+)/;
   const selectedKeys = location.pathname.match(regex)[0];
+  // console.log(location.pathname.slice(1));
+  console.log(selectedKeys);
 
   const openLogoutModal = () => {
     console.log("Opening Logout Modal");
@@ -75,14 +77,14 @@ export default function Sidebar() {
     ),
     getItem(
       "Janji Temu",
-      "janji-temu",
+      "janji",
       <Link to="/janji-temu" className="p-2">
         <MdOutlinePeopleAlt className={iconStyle} id="dashboard-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Jadwal Saya",
-      "jadwal-saya",
+      "jadwal",
       <Link to="/jadwal-saya" className="p-2">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
