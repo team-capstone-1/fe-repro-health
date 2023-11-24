@@ -158,7 +158,7 @@ export default function Sidebar() {
         }}
       >
         <Menu
-          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-8 font-medium text-grey-200 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
+          className={`relative flex h-[calc(100vh-75.91px)] min-h-[500px] max-w-[256px] flex-col space-y-5 pt-5 font-medium text-grey-200 transition-all duration-700 ease-out sm:max-md:h-[calc(100vh-82.6px)] ${
             collapsed ? "px-2" : "px-8"
           }`}
           defaultSelectedKeys={[selectedKeys]}
