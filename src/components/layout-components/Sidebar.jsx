@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ConfigProvider, Menu } from "antd";
+import { Link, useLocation } from "react-router-dom";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { TfiDashboard } from "react-icons/tfi";
@@ -7,10 +8,9 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
+import { MdOutlinePeopleAlt } from "react-icons/md";
 
 import LogoutModal from "@/components/layout-components/LogoutModal";
-import { Link, useLocation } from "react-router-dom";
-import { MdOutlinePeopleAlt } from "react-icons/md";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
@@ -40,14 +40,13 @@ export default function Sidebar() {
       icon: (
         <div
           id="toggle-collapse"
-          className={`${collapsed ? "-ml-8 px-8" : "-ml-6 py-3 pl-6 pr-12"}`}
+          className={`cursor-pointer ${
+            collapsed ? "-ml-8 px-8" : "-ml-6 py-3 pl-6 pr-12"
+          }`}
           onClick={toggleCollapsed}
         >
           {collapsed ? (
-            <RightOutlined
-              id="show-toggle"
-              className="cursor-default text-black"
-            />
+            <RightOutlined id="show-toggle" className=" text-black" />
           ) : (
             <span id="hide-toggle" className="text-black">
               <LeftOutlined className="pr-5" />
@@ -76,7 +75,6 @@ export default function Sidebar() {
     ),
     getItem(
       "Janji Temu",
-
       "janji-temu",
       <Link to="/janji-temu" className="p-2">
         <MdOutlinePeopleAlt className={iconStyle} id="dashboard-icon-sidebar" />
@@ -130,7 +128,7 @@ export default function Sidebar() {
           ) : (
             <span className="">
               <IoIosLogOut className="mr-5 h-5 w-5 " id="logout-icon" />
-              Logout
+              Keluar
             </span>
           )}
         </div>

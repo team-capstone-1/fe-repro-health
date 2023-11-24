@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
+import PrivateRoute from "@/routers/PrivateRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
@@ -13,12 +14,10 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
-// import DoctorProfile from "@/views/app-views/dashboard/profile/DoctorProfile";
 import Forum from "@/views/app-views/forum";
 import Chatbot from "@/views/app-views/chatbot";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
-import PrivateRoute from "@/routers/PrivateRoute";
 import Appointment from "@/views/app-views/appointment";
 import MySchedule from "@/views/app-views/my-schedule/components/MySchedule";
 
@@ -34,7 +33,7 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/janji-temu" element={<Appointment />} />
         <Route path="/jadwal-saya" element={<MySchedule />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/asisten-dokter" element={<Chatbot />} />
@@ -44,7 +43,7 @@ export default function SetupRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/lupa-password" element={<ForgotPassword />} />
       <Route path="/verifikasi" element={<Verify />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/atur-ulang-password" element={<ResetPassword />} />
     </Routes>
   );
 }

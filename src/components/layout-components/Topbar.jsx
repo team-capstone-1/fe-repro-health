@@ -1,7 +1,8 @@
-import { IoNotificationsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
+import { IoNotificationsOutline } from "react-icons/io5";
+import { PiRobot } from "react-icons/pi";
 
+import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
 import profileDoctor from "@/assets/profile-doctor.svg";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 
@@ -28,29 +29,45 @@ export default function Topbar() {
           id="profile-doctor-topbar"
           className="flex items-center gap-1 sm:gap-3"
         >
+          <div
+            id="bot-icon-topbar"
+            className="flex items-center justify-center text-xl md:text-2xl"
+          >
+            <Link to="/asisten-dokter" className="hover:text-green-500">
+              <PiRobot />
+            </Link>
+          </div>
           <div id="notification-icon-topbar" className="text-xl md:text-2xl">
-            <IoNotificationsOutline />
+            <Link to="/pemberitahuan" className="hover:text-green-500">
+              <IoNotificationsOutline />
+            </Link>
           </div>
-          <div className="h-8 w-8 rounded-full bg-slate-700 md:h-11 md:w-11">
-            <img
-              id="profile-doctor-topbar"
-              src={profileDoctor}
-              alt="profile-doctor"
-            />
-          </div>
-          <div>
-            <h6
-              id="doctor-name-topbar"
-              className="text-xs leading-none sm:text-sm md:text-base"
-            >
-              Dr. Andi Cahaya, Sp.OG
-            </h6>
-            <span
-              id="doctor-specialist-topbar"
-              className="text-xs font-medium leading-none md:text-sm"
-            >
-              Spesialis Kandungan
-            </span>
+          <div id="profile-doctor-topbar" className="flex items-center">
+            <div className="h-8 w-8 rounded-full bg-slate-700 md:h-11 md:w-11">
+              <Link to="/profil">
+                <img
+                  id="profile-doctor-topbar"
+                  src={profileDoctor}
+                  alt="profile-doctor"
+                />
+              </Link>
+            </div>
+            <Link to="/profil" className="hover:text-green-500">
+              <div className="ml-2">
+                <h6
+                  id="doctor-name-topbar"
+                  className="text-xs leading-none sm:text-sm md:text-base"
+                >
+                  Dr. Andi Cahaya, Sp.OG
+                </h6>
+                <span
+                  id="doctor-specialist-topbar"
+                  className="text-xs font-medium leading-none md:text-sm"
+                >
+                  Spesialis Kandungan
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
