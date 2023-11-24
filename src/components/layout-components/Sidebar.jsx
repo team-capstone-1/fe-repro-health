@@ -18,8 +18,6 @@ export default function Sidebar() {
   const location = useLocation();
   const regex = /([a-zA-Z]+)/;
   const selectedKeys = location.pathname.match(regex)[0];
-  // console.log(location.pathname.slice(1));
-  console.log(selectedKeys);
 
   const openLogoutModal = () => {
     console.log("Opening Logout Modal");
