@@ -34,12 +34,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           </button>
         </div>
       </div>
-      <div className={`${activeTab === "1" ? "block" : "hidden"}`}>
-        {children[0]}
-      </div>
-      <div className={`${activeTab === "2" ? "block" : "hidden"}`}>
-        {children[1]}
-      </div>
+      {activeTab === "1" ? children[0] : children[1]}
     </>
   );
 }
@@ -99,17 +94,7 @@ export function TabsDoctorProfile({
         </div>
       </section>
 
-      <div className={`${activeTab === "1" ? "block" : "hidden"}`}>
-        {children[0]}
-      </div>
-
-      <div className={`${activeTab === "2" ? "block" : "hidden"}`}>
-        {children[1]}
-      </div>
-
-      <div className={`${activeTab === "3" ? "block" : "hidden"}`}>
-        {children[2]}
-      </div>
+      {activeTab === "1" ? children[0] : activeTab === "2" ? children[1] : children[2]}
     </>
   );
 }
