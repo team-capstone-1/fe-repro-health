@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import PublicRoute from "@/routers/PublicRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
