@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDebounce } from "@/hooks/useDebounce";
 
-export default function BelumDijawab() {
+export default function NotAnsweredYet() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
@@ -41,7 +41,7 @@ export default function BelumDijawab() {
   }, [showBy, searchQuery]);
 
   return (
-    <div className="mt-4 pb-10 sm:px-5">
+    <div className="mt-4 pb-10 sm:px-2 md:px-5">
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
           <BsSearch className="text-gray-400" />
@@ -59,7 +59,7 @@ export default function BelumDijawab() {
         <div
           className={`cursor-pointer rounded-3xl px-5 py-1 ring-1 ${
             showBy === "populer"
-              ? "bg-green-500 text-white ring-green-700"
+              ? "bg-green-500 text-white ring-green-500"
               : "text-green-500 ring-green-500"
           }`}
           onClick={() => setShowBy("populer")}
@@ -69,7 +69,7 @@ export default function BelumDijawab() {
         <div
           className={`cursor-pointer rounded-3xl px-5 py-1 ring-1 ${
             showBy === "terbaru"
-              ? "bg-green-500 text-white ring-green-700"
+              ? "bg-green-500 text-white ring-green-500"
               : "text-green-500 ring-green-500"
           }`}
           onClick={() => setShowBy("terbaru")}
@@ -96,7 +96,9 @@ export default function BelumDijawab() {
               >
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
                 <div className="flex justify-between">
-                  <h5 className="text-xl font-bold">{list.title}</h5>
+                  <Link to={list.id}>
+                    <h5 className="text-xl font-bold">{list.title}</h5>
+                  </Link>
                   <h6 className="pt-1.5 text-slate-400">{list.time}</h6>
                 </div>
                 <div className="flex gap-3 py-3">
@@ -124,8 +126,8 @@ export default function BelumDijawab() {
                 <div>{list.question}</div>
                 <div className="flex justify-end">
                   <Link
-                    to={list.link}
-                    className=" text-green-900 underline hover:text-green-500"
+                    to={list.id}
+                    className="text-green-900 underline hover:text-green-500"
                   >
                     Lihat lebih lanjut
                   </Link>

@@ -13,7 +13,11 @@ import Verify from "@/views/auth-views/Verify";
 import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
+// import DoctorProfile from "@/views/app-views/dashboard/profile/DoctorProfile";
 import Forum from "@/views/app-views/forum";
+import Chatbot from "@/views/app-views/chatbot";
+import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
+import Profile from "@/views/app-views/profile";
 import PrivateRoute from "@/routers/PrivateRoute";
 import Appointment from "@/views/app-views/appointment";
 import MySchedule from "@/views/app-views/my-schedule/components/MySchedule";
@@ -25,7 +29,7 @@ export default function SetupRoutes() {
         <Route index element={<LandingPage />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/ketentuan-pengguna" element={<UserTerms />} />
-        <Route path="/join-as-doctor" element={<Doctor />} />
+        <Route path="/bergabung-sebagai-dokter" element={<Doctor />} />
         <Route path="/kebijakan-privasi" element={<PrivacyPolicy />} />
       </Route>
       <Route path="/" element={<PrivateRoute />}>
@@ -33,10 +37,13 @@ export default function SetupRoutes() {
         <Route path="/appointment" element={<Appointment />} />
         <Route path="/jadwal-saya" element={<MySchedule />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/asisten-dokter" element={<Chatbot />} />
+        <Route path="/forum/:questionId" element={<DiscussionDetail />} />
+        <Route path="/profil" element={<Profile />} />
       </Route>
       <Route path="/login" element={<Login />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/verify" element={<Verify />} />
+      <Route path="/lupa-password" element={<ForgotPassword />} />
+      <Route path="/verifikasi" element={<Verify />} />
       <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );
