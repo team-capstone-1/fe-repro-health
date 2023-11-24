@@ -45,21 +45,21 @@ export default function AppointmentTable() {
       dataIndex: "session",
       key: "session",
       width: 150,
-      filters: [
-        {
-          text: "Pagi",
-          value: "Pagi",
-        },
-        {
-          text: "Siang",
-          value: "Siang",
-        },
-        {
-          text: "Malam",
-          value: "Malam",
-        },
-      ],
-      onFilter: (value, record) => record.session.indexOf(value) === 0,
+      // filters: [
+      //   {
+      //     text: "Pagi",
+      //     value: "Pagi",
+      //   },
+      //   {
+      //     text: "Siang",
+      //     value: "Siang",
+      //   },
+      //   {
+      //     text: "Malam",
+      //     value: "Malam",
+      //   },
+      // ],
+      // onFilter: (value, record) => record.session.indexOf(value) === 0,
     },
     {
       title: "Pembayaran",

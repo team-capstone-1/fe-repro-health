@@ -13,7 +13,7 @@ const ListAppointment = () => {
       <li>
         <Flex align="start" gap={5}>
           <Badge color="#17c6a3" />
-          <span className="flex flex-col text-base font-semibold">
+          <span className="ms-1 flex flex-col text-base font-semibold">
             Anastasia Amalia
             <span className="font-normal text-grey-200">009</span>
           </span>
@@ -22,7 +22,7 @@ const ListAppointment = () => {
       <li>
         <Flex align="start" gap={5}>
           <Badge color="#17c6a3" />
-          <span className="flex flex-col text-base font-semibold">
+          <span className="ms-1 flex flex-col text-base font-semibold">
             Supriyadi
             <span className="font-normal text-grey-200">010</span>
           </span>
@@ -31,7 +31,7 @@ const ListAppointment = () => {
       <li>
         <Flex align="start" gap={5}>
           <Badge color="#17c6a3" />
-          <span className="flex flex-col text-base font-semibold">
+          <span className="ms-1 flex flex-col text-base font-semibold">
             Naufal Helmi
             <span className="font-normal text-grey-200">012</span>
           </span>

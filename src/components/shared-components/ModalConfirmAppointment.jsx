@@ -72,7 +72,7 @@ const openNotification = () => {
   notification.open({
     message: (
       <p className="font-medium text-[#FBFBFB]">
-        Pasien berhasil diverifikasi !
+        Pasien berhasil diverifikasi!
       </p>
     ),
   });
@@ -80,9 +80,9 @@ const openNotification = () => {
   notification.config({
     top: 60,
     placement: "topRight",
-    closeIcon: <p className="text-[#93E5D5]">Abaikan</p>,
+    closeIcon: <p className="me-5 text-sm text-[#93E5D5]">Abaikan</p>,
     duration: 5,
-    className: "bg-green-500 h-[64px]",
+    className: "bg-green-500 h-[64px] w-screen",
     stack: true,
   });
 };
