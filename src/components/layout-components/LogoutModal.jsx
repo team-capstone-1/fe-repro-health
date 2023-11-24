@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Modal, Button } from "antd";
 import logoutModalIcon from "@/assets/logout-modal-icon.svg";
-import { APIAuth } from "@/apis/ApiAuth";
+import { APIAuth } from "@/apis/APIAuth";
 import { useNavigate } from "react-router-dom";
 
 export default function Logout({ closeModal }) {
