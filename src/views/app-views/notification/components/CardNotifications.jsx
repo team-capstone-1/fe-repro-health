@@ -4,7 +4,8 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 import { TbExclamationCircle } from "react-icons/tb";
 import { FaTrashCan } from "react-icons/fa6";
-import { generateTimestampOutput } from "../../../../utils/GenerateTimestampsOutput";
+
+import { generateTimestampOutput } from "@/utils/GenerateTimestampsOutput";
 
 export default function CardNotifications({
   iconType,
