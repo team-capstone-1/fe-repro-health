@@ -140,3 +140,7 @@ p {
 .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
   background-color: #15b494;
 }
+
+.ant-input {
+  font-family: "Poppins", sans-serif;
+}
