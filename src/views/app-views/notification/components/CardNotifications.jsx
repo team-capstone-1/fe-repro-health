@@ -19,7 +19,7 @@ export default function CardNotifications({
     <Flex
       align="center"
       justify="space-between"
-      className={`block cursor-pointer rounded-lg border px-2 py-3 shadow-md sm:flex sm:px-6 ${
+      className={`block cursor-pointer rounded-lg border px-2 py-3 sm:px-6 md:flex ${
         read ? "bg-grey-10" : "bg-green-50"
       }`}
     >
@@ -40,10 +40,10 @@ export default function CardNotifications({
       <Flex
         align="center"
         justify="space-between"
-        className="px-2 pt-2 sm:px-0 sm:pt-0"
+        className="px-2 pt-2 md:px-0 md:pt-0"
       >
-        <p className="me-12 text-xs text-grey-200">{createdAt}</p>
-        <FaTrashCan className="cursor-pointer text-negative hover:text-red-600" />
+        <p className="me-2 text-xs text-grey-200 lg:me-12">{createdAt}</p>
+        <FaTrashCan className="cursor-pointer text-base text-negative hover:text-red-600 lg:text-lg" />
       </Flex>
     </Flex>
   );

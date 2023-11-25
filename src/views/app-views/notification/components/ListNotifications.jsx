@@ -1,3 +1,5 @@
+import { Flex, Tooltip } from "antd";
+import { FiInfo } from "react-icons/fi";
 import CardNotifications from "./CardNotifications";
 import { DataNotifications } from "@/views/app-views/notification/constants/notifications";
 
@@ -13,10 +15,20 @@ function countUnreadNotifications(data) {
 
 export default function ListNotifications() {
   const totalUnRead = countUnreadNotifications(DataNotifications);
+  const text = (
+    <span className="text-black">
+      Terdapat {totalUnRead} notifikasi yang belum terbaca
+    </span>
+  );
 
   return (
     <>
-      <h3>Notifikasi ({totalUnRead})</h3>
+      <Flex>
+        <h3>Notifikasi ({totalUnRead})</h3>
+        <Tooltip placement="right" title={text} color="white" arrow={true}>
+          <FiInfo className="text-lg" />
+        </Tooltip>
+      </Flex>
       {DataNotifications.map(
         ({ type, title, description, read, dateTime }, index) => (
           <div key={index}>
