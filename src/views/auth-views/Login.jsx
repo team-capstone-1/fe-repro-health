@@ -48,7 +48,7 @@ const Login = () => {
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
-            returnTo += redirectTo;
+            returnTo = `/${redirectTo}`;
             return navigate(returnTo);
           } else {
             navigate(returnTo);
@@ -62,7 +62,7 @@ const Login = () => {
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
-            returnTo += redirectTo;
+            returnTo = `/${redirectTo}`;
             return navigate(returnTo);
           } else {
             navigate(returnTo);
