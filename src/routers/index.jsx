@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
 import PrivateRoute from "@/routers/PrivateRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
@@ -40,10 +41,12 @@ export default function SetupRoutes() {
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/lupa-password" element={<ForgotPassword />} />
-      <Route path="/verifikasi" element={<Verify />} />
-      <Route path="/atur-ulang-password" element={<ResetPassword />} />
+      <Route path="/" element={<ProtectedRoute />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify" element={<Verify />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+      </Route>
     </Routes>
   );
 }
