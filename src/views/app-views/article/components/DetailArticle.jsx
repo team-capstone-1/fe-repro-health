@@ -32,7 +32,7 @@ export default function DetailArticle() {
                 icon={<UserOutlined />}
                 src={article.profile_doctor}
               />
-              <div className="inline-flex h-[58px] w-[591px] flex-col items-start justify-center gap-1">
+              <div className="inline-flex h-[58px] w-[80vw] flex-col items-start justify-center gap-1">
                 <h4 className=" text-xl font-medium text-[#1E1E1E]">
                   Oleh {article.doctor_name}
                 </h4>

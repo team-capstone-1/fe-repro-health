@@ -1,5 +1,6 @@
 import { Row, Col, Card, Tag, Avatar, Flex } from "antd";
 import { BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const article = [
   {
@@ -50,21 +51,23 @@ export default function ListArticle() {
         <Row gutter={[16, 24]}>
           {article.map((item, i) => (
             <Col span={8} key={i}>
-              <Card hoverable cover={<img alt="thumbnail" src={item.img} />}>
-                <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
-                  {item.tag}
-                </Tag>
-                <p className="my-3 pb-2 font-semibold">{item.title}</p>
-                <Flex gap="middle">
-                  <div className="self-center">
-                    <Avatar src={item.ava} />
-                  </div>
-                  <div>
-                    <h6 className="font-semibold">{item.author}</h6>
-                    <h6 className="text-grey-200">{item.date}</h6>
-                  </div>
-                </Flex>
-              </Card>
+              <Link to="/detail-artikel">
+                <Card hoverable cover={<img alt="thumbnail" src={item.img} />}>
+                  <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
+                    {item.tag}
+                  </Tag>
+                  <p className="my-3 pb-2 font-semibold">{item.title}</p>
+                  <Flex gap="middle">
+                    <div className="self-center">
+                      <Avatar src={item.ava} />
+                    </div>
+                    <div>
+                      <h6 className="font-semibold">{item.author}</h6>
+                      <h6 className="text-grey-200">{item.date}</h6>
+                    </div>
+                  </Flex>
+                </Card>
+              </Link>
             </Col>
           ))}
         </Row>

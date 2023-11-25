@@ -2,6 +2,7 @@ import { Row, Col, Button } from "antd";
 import { MdOutlineFileUpload } from "react-icons/md";
 
 import ListArticle from "./components/ListArticle";
+import { Link } from "react-router-dom";
 
 export default function index() {
   return (
@@ -12,16 +13,18 @@ export default function index() {
             <h3 className="font-bold">Artikel Saya</h3>
           </Col>
           <Col>
-            <Button
-              id="write-article"
-              type="primary"
-              className="flex bg-green-500"
-            >
-              Tulis Artikel
-              <span className="ms-1 text-lg">
-                <MdOutlineFileUpload />
-              </span>
-            </Button>
+            <Link to="/unggah-artikel">
+              <Button
+                id="write-article"
+                type="primary"
+                className="flex bg-green-500"
+              >
+                Tulis Artikel
+                <span className="ms-1 text-lg">
+                  <MdOutlineFileUpload />
+                </span>
+              </Button>
+            </Link>
           </Col>
         </Row>
         <ListArticle />
