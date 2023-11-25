@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
 import PrivateRoute from "@/routers/PrivateRoute";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "@/routers/ProtectedRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
@@ -21,6 +21,7 @@ import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
 import Appointment from "@/views/app-views/appointment";
 import MySchedule from "@/views/app-views/my-schedule";
+import Notifications from "@/views/app-views/notification";
 
 export default function SetupRoutes() {
   return (
@@ -40,6 +41,7 @@ export default function SetupRoutes() {
         <Route path="/asisten-dokter" element={<Chatbot />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
+        <Route path="/notifikasi" element={<Notifications />} />
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/login" element={<Login />} />
