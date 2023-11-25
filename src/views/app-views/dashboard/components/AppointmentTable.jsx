@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Card, Table, Button } from "antd";
 
 export default function AppointmentTable() {
@@ -118,13 +117,13 @@ export default function AppointmentTable() {
           >
             Janji Temu
           </p>
-          <Link
+          <a
             id="link-to-all-appointment-table"
-            to="#"
+            to="/janji-temu"
             className="text-green-500 hover:text-green-700"
           >
             Lihat semua
-          </Link>
+          </a>
         </div>
         <Table
           id="table-appointment"

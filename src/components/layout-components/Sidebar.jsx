@@ -30,12 +30,13 @@ export default function Sidebar() {
   const toggleCollapsed = () => {
     setCollapsed((prev) => !prev);
   };
-  const iconStyle = `w-5 h-5 text-slate-5 ${
+  const iconStyle = `w-5 h-5 ${
     collapsed ? "mt-0.5 -ml-[0.6em]" : "mr-1 -ml-2"
   }`;
   const items = [
     {
       label: "",
+      key: "1",
       icon: (
         <div
           id="toggle-collapse"
@@ -62,6 +63,7 @@ export default function Sidebar() {
       className: "cursor-default hover:bg-gray-200 transition-all duration-700"
     },
     {
+      key: "2",
       type: "divider",
       style: {
         margin: "20px 0",
@@ -79,14 +81,14 @@ export default function Sidebar() {
     getItem(
       "Janji Temu",
       "janji-temu",
-      <Link to="/janji-temu" className="p-2">
+      <Link to="/janji" className="p-2">
         <MdOutlinePeopleAlt className={iconStyle} id="dashboard-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Jadwal Saya",
       "jadwal-saya",
-      <Link to="/jadwal-saya" className="p-2">
+      <Link to="/jadwal" className="p-2">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
     ),
@@ -112,6 +114,7 @@ export default function Sidebar() {
       </Link>,
     ),
     {
+      key: "3",
       type: "divider",
       className: `absolute bottom-20 w-16 border-t-2 border-gray-200 transition-all duration-500 ease-out ${
         collapsed ? "w-16" : "w-48"
@@ -119,7 +122,7 @@ export default function Sidebar() {
     },
     {
       label: "",
-      key: "8",
+      key: "4",
       icon: (
         <div
           id="logout-button"
