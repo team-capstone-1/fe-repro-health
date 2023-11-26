@@ -72,7 +72,6 @@ function HeroSection() {
             sm:block md:-bottom-0 md:right-24 lg:absolute lg:right-14"
           ></div>
           <img
-            id="doctor-img"
             src={doctorImg}
             alt="doctor"
             className="absolute -bottom-0 right-2 sm:hidden"
@@ -91,7 +90,7 @@ function AboutSection() {
       className="h-auto bg-green-50 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
     >
       <div className="absolute hidden h-[21.9rem] w-[24rem] lg:bottom-0 lg:left-16 lg:block">
-        <img id="handphone" src={handPhone} alt="handphone" />
+        <img src={handPhone} alt="handphone" />
       </div>
       <div className="lg:ms-[20rem] lg:mt-10 lg:text-justify">
         <h2 id="about-title" className="text-2xl text-green-900 sm:text-4xl">
@@ -159,7 +158,7 @@ function BenefitList() {
     >
       <div className="grid grid-cols-1">
         <div className="flex justify-center p-2 lg:absolute lg:bottom-8 lg:right-16 lg:h-[21.9rem] lg:w-[30rem]">
-          <img id="doctor-vector" src={doctorVector} alt="doctor" />
+          <img src={doctorVector} alt="doctor" />
         </div>
         <div className="mt-10 w-auto lg:me-[30rem] lg:mt-10 lg:ps-10">
           <h2
@@ -193,10 +192,7 @@ function BenefitList() {
 
 function DownloadSection() {
   return (
-    <section
-      id="banner-download"
-      className="my-5 h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]"
-    >
+    <section className="my-5 h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]">
       <BannerDownload />
     </section>
   );

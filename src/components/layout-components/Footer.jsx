@@ -27,7 +27,7 @@ export default function Footer() {
                 <img src={Logo} alt="" />
               </Link>
               <p id="social-media" className="my-3 pt-5 font-semibold">
-                Social Media
+                Sosial Media
               </p>
               <div id="social-media-wrapper" className="flex gap-3">
                 <div id="facebook-icon" className="icon-footer">
@@ -58,21 +58,23 @@ export default function Footer() {
                 Menu
               </p>
               <Link to="/" id="link-to-home">
-                <p className="mb-1 cursor-pointer hover:text-green-100">Home</p>
+                <p className="mb-1 cursor-pointer hover:text-green-100">
+                  Beranda
+                </p>
               </Link>
               <a href="/#about" id="link-to-about">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
-                  About Us
+                  Tentang Kami
                 </p>
               </a>
               <a href="/#services" id="link-to-service">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
-                  Service
+                  Layanan
                 </p>
               </a>
               <a href="/#benefit" id="link-to-benefit">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
-                  Benefit
+                  Manfaat
                 </p>
               </a>
             </div>
@@ -100,7 +102,7 @@ export default function Footer() {
                 </p>
               </Link>
               <Link to="/faq" id="link-to-faq">
-                <p className="cursor-pointer hover:text-green-100">FAQ</p>
+                <p className="cursor-pointer hover:text-green-100">SSD</p>
               </Link>
             </div>
           </Col>
@@ -121,7 +123,7 @@ export default function Footer() {
                 Jawa Timur 65146.
               </p>
               <p id="contact-section" className="mt-5 font-semibold">
-                Contact
+                Kontak
               </p>
               <p id="email-contact-footer">Email : 0823 2883 2011</p>
               <p id="phone-contact-footer">Phone Number: 0821 3358 1616</p>

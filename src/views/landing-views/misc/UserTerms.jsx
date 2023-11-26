@@ -46,7 +46,7 @@ export default function UserTerms() {
           ))}
         </section>
 
-        <section id="banner-download" className="mb-[2rem] mt-[4rem]">
+        <section className="mb-[2rem] mt-[4rem]">
           <BannerDownload />
         </section>
       </div>
