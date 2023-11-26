@@ -13,7 +13,7 @@ export default function UserTerms() {
   useScrollToTop();
   return (
     <>
-      <div id="breadcrumb-section" className="base-container">
+      <div id="breadcrumb-user-terms" className="base-container">
         <Breadcrumb currentPage={DataUserTerms.title} />
         <section id="user-terms-section">
           <h1 id="user-terms-title" className="mb-4 mt-5">

@@ -8,6 +8,7 @@ import doctorVector from "@/assets/doctor-vector.png";
 import { AiOutlineCheck } from "react-icons/ai";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 import {
   DataHeroSection,
@@ -43,7 +44,7 @@ function HeroSection() {
       className="relative h-[59rem] bg-green-50 pt-8 md:h-[68rem] lg:h-[45rem]"
     >
       <div className="absolute h-[38rem] w-full bg-vector-header bg-repeat-x"></div>
-      <div className="static grid h-[34.6rem] grid-cols-1 px-2 sm:px-12 lg:grid-cols-2 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
+      <div className="static grid h-[34.6rem] grid-cols-1 px-2 sm:px-16 lg:grid-cols-2 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]">
         <div className="z-10 pt-5 md:w-[40rem] md:pt-20">
           <h3 id="hero-title" className="text-green-500">
             {heroSection.title}
@@ -123,10 +124,10 @@ function ServicesList() {
         </h2>
         <div
           id="services-content-list"
-          className="grid grid-cols-1 md:grid-cols-3 md:ps-9"
+          className="grid grid-cols-1 md:grid-cols-3"
         >
           {serviceLists.content.map((service) => (
-            <div className="p-8" key={service.id}>
+            <div className="p-5 md:p-2 lg:p-8" key={service.id}>
               <div className="grid h-16 w-16 place-content-center rounded-full bg-green-50">
                 <img
                   id="service-icon"
@@ -194,7 +195,7 @@ function DownloadSection() {
   return (
     <section
       id="banner-download"
-      className="h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]"
+      className="my-5 h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]"
     >
       <BannerDownload />
     </section>
@@ -209,14 +210,17 @@ function DoctorSection() {
       className="base-container h-auto w-auto bg-green-100"
     >
       <div className="py-[3.25rem] md:text-center">
-        <h2 id="cta-doctor-title" className="text-[2rem] text-green-900">
+        <h2 id="cta-doctor-title" className="text-green-900">
           {doctorSection.title}
         </h2>
-        <p id="cta-doctor-description" className="mt-1 text-lg">
+        <p
+          id="cta-doctor-description"
+          className="mt-1 text-sm md:text-base lg:text-lg xl:text-xl"
+        >
           {doctorSection.subs}
         </p>
         <div className="mt-6 flex text-white md:justify-center">
-          <Link id="link-cta-doctor" to="/join-as-doctor">
+          <Link id="link-cta-doctor" to="/bergabung-sebagai-dokter">
             <ButtonCtaDoctor />
           </Link>
         </div>
@@ -227,14 +231,15 @@ function DoctorSection() {
 
 function ButtonCtaDoctor() {
   return (
-    <button
+    <Button
       id="button-cta-doctor"
-      className="flex items-center rounded-lg bg-green-500 px-8 py-3 text-base font-semibold"
+      type="primary"
+      className="flex items-center px-8 py-6 text-base font-semibold"
     >
       Pelajari Lebih Lanjut
-      <span id="button-cta-doctor-icon" className="ms-1 text-base text-white">
+      <span className="ms-2 text-base text-white">
         <FaArrowRight />
       </span>
-    </button>
+    </Button>
   );
 }

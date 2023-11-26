@@ -1,4 +1,4 @@
-// import React from "react";
+/* eslint-disable react/no-unescaped-entities */
 import { Collapse, Card, Row, Col } from "antd";
 import { MdOutlineEmail } from "react-icons/md";
 
@@ -104,7 +104,7 @@ export default function Faq() {
   useScrollToTop();
   return (
     <>
-      <div id="breadcrumb-section" className="base-container">
+      <div id="breadcrumb-faq" className="base-container">
         <Breadcrumb currentPage={DataFaq.title} />
 
         <section id="faq-section">
