@@ -96,7 +96,7 @@ export default function NotAnsweredYet() {
               >
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
                 <div className="flex justify-between">
-                  <Link to={list.id}>
+                  <Link to={list.id} className="hover:text-green-500">
                     <h5 className="text-xl font-bold">{list.title}</h5>
                   </Link>
                   <h6 className="pt-1.5 text-slate-400">{list.time}</h6>

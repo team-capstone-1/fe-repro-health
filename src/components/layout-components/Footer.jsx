@@ -102,7 +102,7 @@ export default function Footer() {
                 </p>
               </Link>
               <Link to="/faq" id="link-to-faq">
-                <p className="cursor-pointer hover:text-green-100">SSD</p>
+                <p className="cursor-pointer hover:text-green-100">FAQ</p>
               </Link>
             </div>
           </Col>
@@ -125,8 +125,8 @@ export default function Footer() {
               <p id="contact-section" className="mt-5 font-semibold">
                 Kontak
               </p>
-              <p id="email-contact-footer">Email : 0823 2883 2011</p>
-              <p id="phone-contact-footer">Phone Number: 0821 3358 1616</p>
+              <p id="email-contact-footer">Email : reprohealth.id</p>
+              <p id="phone-contact-footer">No. Telp: 0821 3358 1616</p>
             </div>
           </Col>
         </Row>

@@ -93,7 +93,7 @@ export default function AllDiscussion() {
               className="rounded-md px-6 py-4 ring-1 ring-slate-300 max-[350px]:px-2"
             >
               {list.status === true ? (
-                <h6 className="text-right text-green-500">Sudah Terjawab</h6>
+                <h6 className="text-right text-green-500">Terjawab</h6>
               ) : (
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
               )}
