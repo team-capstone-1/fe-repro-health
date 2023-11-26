@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ConfigProvider, Drawer, Menu, Space } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsList } from "react-icons/bs";
 import { TfiDashboard } from "react-icons/tfi";
 import { AiOutlineSchedule } from "react-icons/ai";
@@ -8,6 +8,7 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { PiWechatLogoBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
+import { MdOutlinePeopleAlt } from "react-icons/md";
 
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 import LogoutModal from "@/components/layout-components/LogoutModal";
@@ -15,6 +16,9 @@ import LogoutModal from "@/components/layout-components/LogoutModal";
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
+  const location = useLocation();
+  const regex = /([a-zA-Z]+)/;
+  const selectedKeys = location.pathname.match(regex)[0];
 
   const handleOpenModal = () => {
     setIsShow((prev) => !prev);
@@ -38,7 +42,7 @@ const App = () => {
               id="logout-icon"
             />
           </span>
-          Logout
+          Keluar
         </button>
       </div>
     );
@@ -48,36 +52,43 @@ const App = () => {
   const items = [
     getItem(
       "Dashboard",
-      "2",
-      <Link to="/dashboard">
+      "dashboard",
+      <Link to="/dashboard" className="p-2">
         <TfiDashboard className={iconStyle} id="dashboard-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Janji Temu",
-      "3",
-      <Link to="#">
+      "janji",
+      <Link to="/janji-temu" className="p-2">
+        <MdOutlinePeopleAlt className={iconStyle} id="dashboard-icon-sidebar" />
+      </Link>,
+    ),
+    getItem(
+      "Jadwal Saya",
+      "jadwal",
+      <Link to="/jadwal-saya" className="p-2">
         <AiOutlineSchedule className={iconStyle} id="janji-temu-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Artikel",
-      "4",
-      <Link to="#">
+      "artikel",
+      <Link to="/artikel" className="p-2">
         <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />
       </Link>,
     ),
     getItem(
       "Forum",
-      "5",
-      <Link to="#">
+      "forum",
+      <Link to="/forum" className="p-2">
         <PiWechatLogoBold className={iconStyle} id="forum-icon-sidebar" />
       </Link>,
     ),
     getItem(
-      "Profile",
-      "6",
-      <Link to="#">
+      "Profil",
+      "profil",
+      <Link to="/profil" className="p-2">
         <CgProfile className={iconStyle} id="profile-icon-sidebar" />
       </Link>,
     ),
@@ -112,7 +123,7 @@ const App = () => {
         >
           <Menu
             className="flex flex-col gap-1 border-0"
-            defaultSelectedKeys={["1"]}
+            defaultSelectedKeys={[selectedKeys]}
             mode="inline"
             theme="light"
             items={items}

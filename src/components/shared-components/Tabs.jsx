@@ -4,7 +4,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
   const [activeTab, setActiveTab] = useState("1");
   return (
     <>
-      <div className="mt-[2.4em] flex w-full text-lg">
+      <div className="mt-[1em] flex w-full text-lg">
         <div
           className={`w-1/2 ${
             activeTab === "1"
@@ -13,6 +13,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           }`}
         >
           <button
+            id="tab-1"
             className="h-full w-full py-3 text-sm font-medium sm:text-lg"
             onClick={() => setActiveTab("1")}
           >
@@ -27,6 +28,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           }`}
         >
           <button
+            id="tab-2"
             className="h-full w-full py-3 text-sm font-medium sm:text-lg"
             onClick={() => setActiveTab("2")}
           >
@@ -34,12 +36,7 @@ export function Tabs({ children, title = ["Tab 1", "Tab 2"] }) {
           </button>
         </div>
       </div>
-      <div className={`${activeTab === "1" ? "block" : "hidden"}`}>
-        {children[0]}
-      </div>
-      <div className={`${activeTab === "2" ? "block" : "hidden"}`}>
-        {children[1]}
-      </div>
+      {activeTab === "1" ? children[0] : children[1]}
     </>
   );
 }
@@ -52,7 +49,7 @@ export function TabsDoctorProfile({
 
   return (
     <>
-      <section className=" flex w-full text-lg">
+      <section className="flex w-full text-lg">
         <div
           className={`w-1/3 ${
             activeTab === "1"
@@ -61,6 +58,7 @@ export function TabsDoctorProfile({
           }`}
         >
           <button
+            id="doctor-tab-1"
             className="h-full w-full py-3 text-[10px] text-sm font-medium md:text-base xl:text-lg"
             onClick={() => setActiveTab("1")}
           >
@@ -76,6 +74,7 @@ export function TabsDoctorProfile({
           }`}
         >
           <button
+            id="doctor-tab-2"
             className="h-full w-full py-3 text-[10px] text-sm font-medium md:text-base xl:text-lg"
             onClick={() => setActiveTab("2")}
           >
@@ -99,17 +98,11 @@ export function TabsDoctorProfile({
         </div>
       </section>
 
-      <div className={`${activeTab === "1" ? "block" : "hidden"}`}>
-        {children[0]}
-      </div>
-
-      <div className={`${activeTab === "2" ? "block" : "hidden"}`}>
-        {children[1]}
-      </div>
-
-      <div className={`${activeTab === "3" ? "block" : "hidden"}`}>
-        {children[2]}
-      </div>
+      {activeTab === "1"
+        ? children[0]
+        : activeTab === "2"
+        ? children[1]
+        : children[2]}
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-import { authService } from "@/configs/Auth";
+import { authService } from "@/configs/Auth"
 import { AppLayout } from "@/components/layout-components/AppLayout";
 
 export default function PrivateRoute() {

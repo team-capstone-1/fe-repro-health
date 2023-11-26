@@ -48,7 +48,7 @@ const Login = () => {
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
-            returnTo += redirectTo;
+            returnTo = `/${redirectTo}`;
             return navigate(returnTo);
           } else {
             navigate(returnTo);
@@ -62,7 +62,7 @@ const Login = () => {
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
-            returnTo += redirectTo;
+            returnTo = `/${redirectTo}`;
             return navigate(returnTo);
           } else {
             navigate(returnTo);
@@ -94,7 +94,10 @@ const Login = () => {
             >
               {/* Email */}
               <div>
-                <label className="text-base font-medium text-grey-300">
+                <label
+                  htmlFor="email"
+                  className="text-base font-medium text-grey-300"
+                >
                   Email
                 </label>
                 <div className="relative mt-2">
@@ -118,6 +121,7 @@ const Login = () => {
                     onBlur={() => setIsFocusEmail(false)}
                     id="email"
                     type="email"
+                    autoComplete="email-doctor"
                     className={`block w-full rounded-lg border p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.email
                         ? "border-[#fc4547] text-[#fc4547]"
@@ -133,7 +137,10 @@ const Login = () => {
 
               {/* Passoword */}
               <div className="mt-2">
-                <label className="text-base font-medium text-grey-300">
+                <label
+                  htmlFor="password"
+                  className="text-base font-medium text-grey-300"
+                >
                   Kata Sandi
                 </label>
                 <div className="relative mt-2">
@@ -156,6 +163,7 @@ const Login = () => {
                     }}
                     onBlur={() => setIsFocusPass(false)}
                     id="password"
+                    autoComplete="current-password"
                     type={`${visible ? "text" : "password"}`}
                     className={`block w-full rounded-lg border p-4 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.password

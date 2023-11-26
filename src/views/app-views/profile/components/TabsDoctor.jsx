@@ -10,7 +10,7 @@ export default function TabsDoctor() {
     <section id="tabs-profile">
       <Card>
         <TabsDoctorProfile
-          title={["Pengalaman Kerja", "Pendidikan", "Sertifikat"]}
+          title={["Pengalaman", "Pendidikan", "Sertifikat"]}
         >
           <WorkExperience />
           <Education />
