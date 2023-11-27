@@ -137,3 +137,23 @@ p {
     font-size: 16px;
   }
 }
+
+.big-calendar table thead tr > th {
+  display: none;
+}
+
+.ant-picker-body {
+  padding-top: 0px !important;
+}
+
+.ant-btn-primary {
+  background-color: #17c6a3;
+}
+
+.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: #15b494;
+}
+
+.ant-input {
+  font-family: "Poppins", sans-serif;
+}

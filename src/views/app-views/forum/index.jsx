@@ -1,13 +1,13 @@
 import { Tabs } from "@/components/shared-components/Tabs";
-import BelumDijawab from "./components/BelumDiJawab";
-import SemuaDiskusi from "./components/SemuaDiskusi";
+import NotAnsweredYet from "./components/NotAnsweredYet";
+import AllDiscussion from "./components/AllDiscussion";
 
 export default function Forum() {
   return (
     <>
       <Tabs title={["Semua Diskusi", "Belum Dijawab"]}>
-        <SemuaDiskusi />
-        <BelumDijawab />
+        <AllDiscussion />
+        <NotAnsweredYet />
       </Tabs>
     </>
   );
