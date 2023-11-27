@@ -19,11 +19,11 @@ export default function CardNotifications({
     <Flex
       align="center"
       justify="space-between"
-      className={`block cursor-pointer rounded-lg border px-2 py-3 sm:px-6 md:flex ${
+      className={`block rounded-lg border px-2 py-3 sm:px-6 md:flex ${
         read ? "bg-grey-10" : "bg-green-50"
       }`}
     >
-      <Flex className="gap-1 sm:gap-4">
+      <Flex className="gap-3">
         <Col
           id="icon-wrapper"
           className={`grid h-10 w-10 place-content-center items-center rounded-lg bg-green-500 sm:h-12  sm:w-12`}
@@ -31,10 +31,8 @@ export default function CardNotifications({
           <IconNotification iconType={iconType} />
         </Col>
         <Col>
-          <h6 className="font-semibold sm:text-base">{title}</h6>
-          <h6 className="font-medium text-grey-200 sm:text-sm">
-            {description}
-          </h6>
+          <h6 className="text-sm font-semibold md:text-base">{title}</h6>
+          <h6 className="text-xs text-grey-200 md:text-sm">{description}</h6>
         </Col>
       </Flex>
       <Flex
