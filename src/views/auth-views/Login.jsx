@@ -14,6 +14,7 @@ const Login = () => {
   const [isFocusPass, setIsFocusPass] = useState(false);
   const [isRemembered, setIsRemembered] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -38,19 +39,23 @@ const Login = () => {
   });
 
   const onSubmitHandler = (data) => {
+    setIsLoading(true);
     let returnTo = "/dashboard";
     const params = new URLSearchParams(search);
     const redirectTo = params.get("return_to");
     if (isRemembered) {
       APIAuth.loginWithRememberMe(data, isRemembered).then(async (response) => {
         if (response.message === "fail login") {
-          alert("invalid email or password!");
+          setIsLoading(false);
+          alert("invalid email or password!"); // ubah alert di sini jadi toast
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
             returnTo = `/${redirectTo}`;
+            setIsLoading(false);
             return navigate(returnTo);
           } else {
+            setIsLoading(false);
             navigate(returnTo);
           }
         }
@@ -58,13 +63,16 @@ const Login = () => {
     } else {
       APIAuth.login(data).then(async (response) => {
         if (response.message === "fail login") {
-          alert("invalid email or password!");
+          setIsLoading(false);
+          alert("invalid email or password!");  // ubah alert di sini jadi toast
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
             returnTo = `/${redirectTo}`;
+            setIsLoading(false);
             return navigate(returnTo);
           } else {
+            setIsLoading(false);
             navigate(returnTo);
           }
         }
@@ -238,9 +246,10 @@ const Login = () => {
               <div className="mt-16">
                 <button
                   id="submit-button"
-                  className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600"
+                  className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600 disabled:bg-opacity-60"
+                  disabled={isLoading}
                 >
-                  Masuk
+                  {isLoading ? "Loading..." : "Masuk"}
                 </button>
               </div>
             </form>
