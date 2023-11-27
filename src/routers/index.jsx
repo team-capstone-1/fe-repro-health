@@ -16,6 +16,9 @@ import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
 import Forum from "@/views/app-views/forum";
+import Article from "@/views/app-views/article";
+import DetailArticle from "@/views/app-views/article/components/DetailArticle";
+import UploadArticle from "../views/app-views/article/components/UploadArticle";
 import Notfound from "@/views/error-views/Notfound";
 import Chatbot from "@/views/app-views/chatbot";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
@@ -39,6 +42,9 @@ export default function SetupRoutes() {
         <Route path="/janji-temu" element={<Appointment />} />
         <Route path="/jadwal-saya" element={<MySchedule />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/artikel" element={<Article />} />
+        <Route path="/detail-artikel" element={<DetailArticle />} />
+        <Route path="/unggah-artikel" element={<UploadArticle />} />
         <Route path="/asisten-dokter" element={<Chatbot />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
