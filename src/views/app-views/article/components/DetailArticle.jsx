@@ -92,8 +92,8 @@ export default function DetailArticle() {
               <h4 className="my-4 text-[#4B4B4B]">Tags</h4>
               {article.tags.map((tag) => (
                 <Tag
-                  className="me-5 text-justify text-base font-semibold text-[#4B4B4B]"
-                  rootClassName="h-11 px-5 py-2.5 rounded-lg border-[#4B4B4B] justify-center items-center inline-flex"
+                  className="me-2 text-justify text-xs font-semibold text-[#4B4B4B] sm:text-sm md:text-base lg:text-base xl:text-base"
+                  rootClassName="h-10 px-5 py-2.5 rounded-lg border-[#4B4B4B] justify-center items-center inline-flex"
                 >
                   {tag}
                 </Tag>
