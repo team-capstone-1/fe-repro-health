@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 export class AuthService {
   isAuthorized() {
@@ -9,8 +10,28 @@ export class AuthService {
   }
 
   getToken() {
-    const token = Cookies.get("token");
-    return token;
+    try {
+      const isTokenValid = () => {
+        const token = Cookies.get("token");
+        if (token) {
+          const decoded = jwtDecode(token);
+          const currentTime = Date.now() / 1000;
+          console.log(decoded.exp, currentTime)
+          return decoded.exp > currentTime;
+        }
+        return false;
+      };
+  
+      if (!isTokenValid()) {
+        Cookies.remove("token");
+        return null;
+      }
+  
+      return Cookies.get("token");
+    } catch (error) {
+      console.error(error);
+    }
+    
   }
 
   storeCredentialsToCookie({ token, isRemembered }) {
@@ -29,3 +50,4 @@ export class AuthService {
     Cookies.remove("token");
   }
 }
+
