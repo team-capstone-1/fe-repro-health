@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDebounce } from "@/hooks/useDebounce";
 
-export default function SemuaDiskusi() {
+export default function AllDiscussion() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ export default function SemuaDiskusi() {
   }, [showBy, searchQuery]);
 
   return (
-    <div className="mt-4 pb-10 sm:px-5">
+    <div className="mt-4 pb-10 sm:px-2 md:px-5">
       <div className="relative focus:bg-black">
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
           <BsSearch className="text-gray-400" />
@@ -58,7 +58,7 @@ export default function SemuaDiskusi() {
         <div
           className={`cursor-pointer rounded-3xl px-5 py-1 ring-1 ${
             showBy === "populer"
-              ? "bg-green-500 text-white ring-green-700"
+              ? "bg-green-500 text-white ring-green-500"
               : "text-green-500 ring-green-500"
           }`}
           onClick={() => setShowBy("populer")}
@@ -68,7 +68,7 @@ export default function SemuaDiskusi() {
         <div
           className={`cursor-pointer rounded-3xl px-5 py-1 ring-1 ${
             showBy === "terbaru"
-              ? "bg-green-500 text-white ring-green-700"
+              ? "bg-green-500 text-white ring-green-500"
               : "text-green-500 ring-green-500"
           }`}
           onClick={() => setShowBy("terbaru")}
@@ -93,12 +93,14 @@ export default function SemuaDiskusi() {
               className="rounded-md px-6 py-4 ring-1 ring-slate-300 max-[350px]:px-2"
             >
               {list.status === true ? (
-                <h6 className="text-right text-green-500">Sudah Terjawab</h6>
+                <h6 className="text-right text-green-500">Terjawab</h6>
               ) : (
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
               )}
               <div className="flex justify-between">
-                <h5 className="text-xl font-bold">{list.title}</h5>
+                <Link to={list.id} className="hover:text-green-500">
+                  <h5 className="text-xl font-bold">{list.title}</h5>
+                </Link>
                 <h6 className="pt-1.5 text-slate-400">{list.time}</h6>
               </div>
               <div className="flex gap-3 py-3">
@@ -126,8 +128,8 @@ export default function SemuaDiskusi() {
               <div>{list.question}</div>
               <div className="flex justify-end">
                 <Link
-                  to={list.link}
-                  className=" text-green-900 underline hover:text-green-500 max-[350px]:text-xs"
+                  to={list.id}
+                  className="text-green-900 underline hover:text-green-500 max-[350px]:text-xs"
                 >
                   Lihat lebih lanjut
                 </Link>

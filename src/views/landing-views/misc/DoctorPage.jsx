@@ -23,7 +23,7 @@ export default function DoctorPage() {
   useScrollToTop();
   return (
     <>
-      <section id="breadcrumb-section" className="base-container">
+      <section id="breadcrumb-doctor-page" className="base-container">
         <Breadcrumb currentPage={doctorPage.title} />
       </section>
 
@@ -52,7 +52,7 @@ export default function DoctorPage() {
                 </Button>
                 <Button
                   id="login-as-doctor-button"
-                  type="primary"
+                  ghost
                   className="border-green-500 px-6 pb-8 pt-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white 2xl:mt-6"
                 >
                   <Link to="/login">Masuk Sebagai Dokter</Link>
@@ -94,7 +94,7 @@ export default function DoctorPage() {
         id="call-to-action-section"
         className="px-0 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
       >
-        <div className="w-full bg-green-50 px-2 py-4 sm:my-5 sm:px-6 sm:py-8 md:my-10 lg:my-16 lg:px-8 lg:py-8 xl:my-24 2xl:px-10 2xl:py-10">
+        <div className="mt-8 w-full bg-green-50 px-2 py-7 text-center md:my-10 md:px-5 md:text-start lg:my-12 lg:px-8 lg:py-8 xl:my-16 2xl:px-10 2xl:py-10">
           <h4
             id="call-to-action-title"
             className="font-bold text-green-900 sm:text-[1.5rem] md:text-[1.65] lg:text-[1.8rem] xl:text-[1.9rem]"
@@ -109,9 +109,10 @@ export default function DoctorPage() {
           </p>
           <Button
             id="call-to-action-button"
-            className="mt-5 h-10 bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:border-white 2xl:mt-6"
+            type="primary"
+            className="mt-5 h-10 px-6 pb-8 pt-2 font-semibold 2xl:mt-6"
           >
-            <AiOutlineMail className="mr-1 inline-block h-5 w-5 pb-[0.15em]" />
+            <AiOutlineMail className="me-2 inline-block h-5 w-5 pb-[0.15em]" />
             <Link to="mailto:ReproHealthCS@gmail.com">Hubungi Email Kami</Link>
           </Button>
         </div>
@@ -125,11 +126,11 @@ function BenefitList() {
   return (
     <ul
       id="benefit-lists-doctor"
-      className="space-y-2 text-[0.95rem] font-medium sm:text-base md:text-lg 2xl:text-left"
+      className="space-y-2 text-base font-medium lg:text-lg 2xl:text-left"
     >
       {benefitLists.map((list) => (
-        <li id="benefit-list-items-doctor" key={list.id} className="flex">
-          <div className="my-auto pr-2">
+        <li id="benefit-list-items-doctor" key={list.id} className="mb-3 flex">
+          <div className="my-auto pr-3">
             <span
               id="check-icon"
               className="inline-block rounded-full bg-green-50 px-[0.4em] py-[0.2em]"

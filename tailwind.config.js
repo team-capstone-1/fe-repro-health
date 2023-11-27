@@ -38,7 +38,7 @@ export default {
         link: "#3EAFFF",
         "link-25": "#CEEBFF",
         positive: "#37C976",
-        "positive-25": "#37C976",
+        "positive-25": "#CDF1DC",
       },
     },
     fontFamily: {

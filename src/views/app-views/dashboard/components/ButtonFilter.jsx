@@ -16,10 +16,14 @@ export default function ButtonFilter() {
           </h4>
         </Col>
         <Col xs={24} md={12} className="mb-5 text-start md:text-end">
-          <Flex className="flex justify-start sm:pr-5 md:justify-end" wrap="wrap" gap="small">
+          <Flex
+            className="flex justify-start sm:pr-5 md:justify-end"
+            wrap="wrap"
+            gap="small"
+          >
             <Button
+              ghost
               id="button-filter-monthly"
-              type="primary"
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Bulanan"
                   ? "bg-green-500"
@@ -30,8 +34,8 @@ export default function ButtonFilter() {
               Bulanan
             </Button>
             <Button
+              ghost
               id="button-filter-weekly"
-              type="primary"
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Mingguan"
                   ? "bg-green-500"
@@ -42,8 +46,8 @@ export default function ButtonFilter() {
               Mingguan
             </Button>
             <Button
+              ghost
               id="button-filter-daily"
-              type="primary"
               className={`px-4 hover:bg-green-500 hover:text-white ${
                 selectedButton === "Harian"
                   ? "bg-green-500"
