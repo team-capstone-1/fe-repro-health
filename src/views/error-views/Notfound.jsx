@@ -1,26 +1,38 @@
-import { Button } from "antd";
+import { Button, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 
 import imageNotfound from "@/assets/notfound.svg";
 
 export default function Notfound() {
   return (
-    <section className="m-auto mt-[50%] flex h-[100vw] w-[90vw] flex-col items-center justify-center text-center sm:mt-0 sm:w-[80vw] md:mt-0 md:h-[80vw] lg:mt-0 lg:h-[60vw] lg:w-[100vw] xl:h-[45vw]">
-      <img
-        src={imageNotfound}
-        className="h-[40%] items-center justify-center"
-      />
-      <div className="mt-[3rem]">
-        <h4 className="text-base lg:text-2xl">Halaman Tidak Ditemukan!</h4>
-        <p className="my-[1rem] text-xs text-[#686868] lg:text-sm">
-          Link halaman yang anda tuju tidak ditemukan di server ini.
-        </p>
-        <Link to="/" id="btn-error-notfound">
-          <Button className="mt-[1rem] h-[50px] w-[100%] bg-green-500 text-base text-white hover:border-transparent">
-            Kembali ke halaman utama
-          </Button>
-        </Link>
-      </div>
-    </section>
+    <>
+      <section className="flex h-screen items-center justify-center text-center">
+        <Row justify="center">
+          <Col sm={24} md={12}>
+            <img
+              src={imageNotfound}
+              className="m-auto h-48 md:h-56 lg:h-60 xl:h-72"
+            />
+          </Col>
+          <Col span={24}>
+            <div className="mt-7">
+              <h4 className="text-lg lg:text-2xl">Halaman Tidak Ditemukan!</h4>
+              <p className="mb-6 mt-2 text-grey-300 lg:text-sm">
+                Link halaman yang anda tuju tidak ditemukan di server ini.
+              </p>
+              <Link to="/">
+                <Button
+                  id="btn-error-notfound"
+                  type="primary"
+                  className="h-[50px] px-10 font-medium"
+                >
+                  Kembali ke halaman utama
+                </Button>
+              </Link>
+            </div>
+          </Col>
+        </Row>
+      </section>
+    </>
   );
 }
