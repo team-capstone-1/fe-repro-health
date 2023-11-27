@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, Space, Image, Tag } from "antd";
+import { Avatar, Button, Card, Space, Image, Tag, List } from "antd";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ export default function DetailArticle() {
         <Link to="/artikel">
           <Button
             icon={<IoArrowBackOutline className="text-[24px]" />}
-            className="flex w-[100px] justify-center border-transparent bg-transparent text-center text-base font-semibold text-[#4B4B4B] shadow-none"
+            className="flex w-[100px] justify-center border-transparent bg-transparent text-center text-base font-semibold text-[#4B4B4B] shadow-none hover:text-green-500"
           >
             Kembali
           </Button>
@@ -26,24 +26,29 @@ export default function DetailArticle() {
               <h3 className="text-[#0D0D0D]">{article.title}</h3>
             </div>
 
-            <Space wrap size={24}>
-              <Avatar
-                size={64}
-                icon={<UserOutlined />}
-                src={article.profile_doctor}
-              />
-              <div className="inline-flex h-[58px] w-[80vw] flex-col items-start justify-center gap-1">
-                <h4 className=" text-xl font-medium text-[#1E1E1E]">
-                  Oleh {article.doctor_name}
-                </h4>
-
-                <div className="flex flex-col items-start justify-start">
-                  <p className="h-6 w-[591px] text-justify  text-base font-normal text-[#686868]">
-                    Diunggah pada {article.upload_date}
-                  </p>
-                </div>
-              </div>
-            </Space>
+            <List itemLayout="horizontal">
+              <List.Item>
+                <List.Item.Meta
+                  avatar={
+                    <Avatar
+                      size={60}
+                      icon={<UserOutlined />}
+                      src={article.profile_doctor}
+                    />
+                  }
+                  title={
+                    <h5 className="font-semibold text-grey-500">
+                      Oleh {article.doctor_name}
+                    </h5>
+                  }
+                  description={
+                    <p className="text-sm text-grey-400">
+                      Diunggah pada {article.upload_date}
+                    </p>
+                  }
+                />
+              </List.Item>
+            </List>
 
             <div className="mt-2">
               <div className="inline-flex h-10 w-[73px] flex-col items-start justify-start gap-2.5 rounded-[10px] p-2">

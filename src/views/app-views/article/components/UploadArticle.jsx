@@ -1,5 +1,6 @@
-import { Flex, Col, Row } from "antd";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Flex, Col, Row, Button, Space } from "antd";
 import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useForm } from "react-hook-form";
@@ -11,8 +12,8 @@ import "react-quill/dist/quill.snow.css";
 const UploadArticle = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [value, setValue] = useState("");
-  const MAX_IMAGE_SIZE = 25000000
-  const ALLOWED_IMAGE_TYPE = ["image/jpg", "image/png"]
+  const MAX_IMAGE_SIZE = 25000000;
+  const ALLOWED_IMAGE_TYPE = ["image/jpg", "image/png"];
 
   //   Module from React Quill
   const module = {
@@ -33,9 +34,29 @@ const UploadArticle = () => {
     title: yup.string().required("Judul harus diisi"),
     tags: yup.string().required("Tags harus diisi"),
     reference: yup.string().required("Referensi harus diisi"),
-    image: yup.mixed().test("required", "Gambar harus diisi", (value) => {return value && value.length}).test("fileSize", "Ukuran file terlalu besar, maksimal 20 MB", (value) => {if (!value || !value[0]) return true; return value[0].size <= MAX_IMAGE_SIZE;}).test("fileType", "Format file tidak valid, hanya file gambar yang diperbolehkan", (value) => {if (!value || !value[0]) return true; return ALLOWED_IMAGE_TYPE.includes(value[0].type);}),
+    image: yup
+      .mixed()
+      .test("required", "Gambar harus diisi", (value) => {
+        return value && value.length;
+      })
+      .test(
+        "fileSize",
+        "Ukuran file terlalu besar, maksimal 20 MB",
+        (value) => {
+          if (!value || !value[0]) return true;
+          return value[0].size <= MAX_IMAGE_SIZE;
+        },
+      )
+      .test(
+        "fileType",
+        "Format file tidak valid, hanya file gambar yang diperbolehkan",
+        (value) => {
+          if (!value || !value[0]) return true;
+          return ALLOWED_IMAGE_TYPE.includes(value[0].type);
+        },
+      ),
     desc: yup.string().required("Deskripsi gambar harus diisi"),
-    content: yup.string().required("Isi artikel harus diisi")
+    content: yup.string().required("Isi artikel harus diisi"),
   });
 
   const {
@@ -46,15 +67,15 @@ const UploadArticle = () => {
     resolver: yupResolver(schema),
   });
 
-  const convertImage = file => {
+  const convertImage = (file) => {
     const reader = new FileReader();
     reader.onloaded = () => {
-      setImagePreview(reader.result)
-    }
+      setImagePreview(reader.result);
+    };
     reader.readAsDataURL(file);
-  }
+  };
 
-  const onSubmitArticle = data => {
+  const onSubmitArticle = (data) => {
     if (Array.isArray(data.files) && data.files.length > 0) {
       convertImage(data.files[0]);
     }
@@ -70,10 +91,22 @@ const UploadArticle = () => {
         >
           {/* Title */}
           <Flex justify="space-between" align="center">
-            <h3 className="font-semibold">Unggah Artikel</h3>
-            <button id="submit-button" className="rounded-[10px] bg-green-500 px-4 py-2 font-semibold text-white hover:bg-green-600 lg:px-8 lg:py-3">
-              Unggah
-            </button>
+            <h3 className="font-bold">Unggah Artikel</h3>
+            <div>
+              <Space size="middle">
+                <Link to="/artikel">
+                  <Button
+                    id="cancel-submit"
+                    className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
+                  >
+                    Batal
+                  </Button>
+                </Link>
+                <Button id="submit-button" type="primary">
+                  Unggah
+                </Button>
+              </Space>
+            </div>
           </Flex>
 
           <Col>
@@ -197,7 +230,11 @@ const UploadArticle = () => {
                     <p className="text-sm text-grey-200">
                       Maksimum ukuran file: 20MB
                     </p>
-                    {errors.image && <span className="text-xs text-negative pt-1">{errors.image.message}</span>}
+                    {errors.image && (
+                      <span className="pt-1 text-xs text-negative">
+                        {errors.image.message}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -247,7 +284,9 @@ const UploadArticle = () => {
                   modules={module}
                   placeholder="Tuliskan deskripsi terkait artikel"
                 />
-                <span className="text-xs text-negative pt-1">{errors.content?.message}</span>
+                <span className="pt-1 text-xs text-negative">
+                  {errors.content?.message}
+                </span>
               </div>
             </Flex>
           </Col>
