@@ -125,6 +125,34 @@ export default function DetailArticle() {
               </div>
 
               {commentUser.map((comment) => (
+                <List itemLayout="horizontal" className="p-4">
+                  <List.Item key={comment.user_id}>
+                    <List.Item.Meta
+                      avatar={
+                        <Avatar
+                          size={50}
+                          icon={<UserOutlined />}
+                          src={comment.user_image}
+                        />
+                      }
+                      title={
+                        <h5 className="font-semibold text-[#1E1E1E]">
+                          Oleh {comment.user_name}
+                        </h5>
+                      }
+                      description={
+                        <p className="mb-5 text-sm text-[#686868]">
+                          Diunggah pada {comment.upload_date} yang lalu
+                        </p>
+                      }
+                    />
+                    {comment.user_comment}
+                    <hr className="my-3" />
+                  </List.Item>
+                </List>
+              ))}
+
+              {/* {commentUser.map((comment) => (
                 <div id="comment-user" className="p-4" key={comment.user_id}>
                   <Space wrap size={24}>
                     <>
@@ -155,7 +183,7 @@ export default function DetailArticle() {
                   </Space>
                   <hr />
                 </div>
-              ))}
+              ))} */}
             </section>
           </>
         ))}
