@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
 import PrivateRoute from "@/routers/PrivateRoute";
 import ProtectedRoute from "@/routers/ProtectedRoute";
@@ -19,6 +19,7 @@ import Forum from "@/views/app-views/forum";
 import Article from "@/views/app-views/article";
 import DetailArticle from "@/views/app-views/article/components/DetailArticle";
 import UploadArticle from "../views/app-views/article/components/UploadArticle";
+import Notfound from "@/views/error-views/Notfound";
 import Chatbot from "@/views/app-views/chatbot";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
@@ -54,6 +55,15 @@ export default function SetupRoutes() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/verify" element={<Verify />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+
+      <Route>
+        <Route path="/404" element={<Notfound />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Route>
     </Routes>
   );
