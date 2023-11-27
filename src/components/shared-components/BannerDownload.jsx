@@ -14,19 +14,16 @@ export default function BannerDownload() {
       >
         <Row align="middle">
           <Col span={6} xs={0} md={6} align="center">
-            <img id="handphone-image" src={HandPhone} alt="handphone" />
+            <img src={HandPhone} alt="handphone" />
           </Col>
           <Col span={18} xs={24} sm={18}>
             <Row align="middle">
               <Col span={24} lg={16} xl={18}>
-                <h4 id="banner-text" className="font-bold text-green-900">
+                <h4 className="font-bold text-green-900">
                   Jadikan Kesehatan Reproduksi Anda Prioritas! Unduh ReproHealth
                   Sekarang
                 </h4>
-                <h5
-                  id="banner-sub-text"
-                  className="font-semibold text-grey-400"
-                >
+                <h5 className="font-semibold text-grey-400">
                   Tanggapan Cepat, Solusi Akurat!
                 </h5>
               </Col>
@@ -43,7 +40,7 @@ export default function BannerDownload() {
             </Row>
           </Col>
           <Col xs={24} md={0} align="center">
-            <img id="handphone-image" src={HandPhone} alt="handphone" />
+            <img src={HandPhone} alt="handphone" />
           </Col>
         </Row>
       </div>

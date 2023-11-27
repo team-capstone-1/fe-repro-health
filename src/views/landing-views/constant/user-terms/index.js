@@ -1,5 +1,5 @@
 export const DataUserTerms = {
-  title: "Ketentuan Pengguna",
+  title: "Ketentuan Pengguna - ReproHealth",
   description:
     "Berikut adalah Syarat dan Ketentuan Penggunaan Platform Reproheath yang berisi semua peraturan dan ketentuan yang secara otomatis mengikat ketika Anda melakukan kunjungan, mengunduh, memasang, menggunakan Platform dan/atau menikmati semua fitur dan fasilitas yang disediakan pada Platform ReproHealth.",
 };
