@@ -2,7 +2,10 @@ import { Avatar, Button, Card, Space, Image, Tag, List } from "antd";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { DetailArticle as detailArticle } from "../constant/detail-article";
+import {
+  DetailArticle as detailArticle,
+  CommentUser as commentUser,
+} from "../constant/detail-article";
 
 import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
@@ -73,7 +76,7 @@ export default function DetailArticle() {
                 <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
                 <div className="flex items-end justify-start gap-[21px]">
                   <p className=" text-base font-medium text-[#989898]">
-                    {article.comment_amount}
+                    {commentUser.length}
                   </p>
                 </div>
               </div>
@@ -117,12 +120,12 @@ export default function DetailArticle() {
             <section id="comment-section">
               <div className="h-14 w-full bg-[#E9E9E9] p-4">
                 <h3 className=" text-xl font-semibold text-[#4B4B4B]">
-                  Komentar ({article.comment_amount})
+                  Komentar ({commentUser.length})
                 </h3>
               </div>
 
-              {article.comments.map((comment) => (
-                <div id="comment-user" className="p-4">
+              {commentUser.map((comment) => (
+                <div id="comment-user" className="p-4" key={comment.user_id}>
                   <Space wrap size={24}>
                     <>
                       <Avatar
@@ -131,7 +134,7 @@ export default function DetailArticle() {
                         src={comment.user_image}
                       />
 
-                      <div className="flex h-[58px] w-[80vw] flex-col items-start justify-center gap-0">
+                      <div className="flex h-[58px] w-[30vw] flex-col items-start justify-center gap-0 sm:w-[50vw] md:w-[60vw] lg:w-[70vw] xl:w-[80vw]">
                         <h4 className="text-lg font-semibold text-[#1E1E1E]">
                           {comment.user_name}
                         </h4>

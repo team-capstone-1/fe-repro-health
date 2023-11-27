@@ -44,55 +44,58 @@ export const DetailArticle = [
       "NHS. Diakses pada 2019. Borderline Personality Disorder.",
     ],
 
-    comments: [
-      {
-        user_id: 1,
-        user_image: "https://picsum.photos/200",
-        user_name: "Ridha Nayla",
-        upload_date: "15 Menit",
-        user_comment:
-          "Wah, bener banget nih! Aku dulu juga suka nangis gara-gara hal sepele pas hamil. Ternyata emang efek hormon ya, hehe.",
-      },
-      {
-        user_id: 2,
-        user_image: "https://picsum.photos/200",
-        user_name: "Ridha Nayla",
-        upload_date: "16 Menit",
-        user_comment:
-          "Setuju banget! Waktu hamil, emosi rasanya labil banget. Aku pernah nangis gegara lupa beli ice cream favorit. Hormon emang kocak kadang.",
-      },
-      {
-        user_id: 3,
-        user_image: "https://picsum.photos/200",
-        user_name: "Agung Ridho",
-        upload_date: "1 jam",
-        user_comment:
-          "Sebagai calon ayah, awalnya bingung juga sama perubahan emosi pasangan. Tapi setelah baca-baca dan curhat sama temen-temen, ternyata wajar banget ya kalo dia sering nangis. Intinya, dukung aja sebisa mungkin",
-      },
-    ],
+    // comments: [
+    //   {
+    //     user_id: 1,
+    //     user_image: "https://picsum.photos/200",
+    //     user_name: "Ridha Nayla",
+    //     upload_date: "15 Menit",
+    //     user_comment:
+    //       "Wah, bener banget nih! Aku dulu juga suka nangis gara-gara hal sepele pas hamil. Ternyata emang efek hormon ya, hehe.",
+    //   },
+    //   {
+    //     user_id: 2,
+    //     user_image: "https://picsum.photos/200",
+    //     user_name: "Ridha Nayla",
+    //     upload_date: "16 Menit",
+    //     user_comment:
+    //       "Setuju banget! Waktu hamil, emosi rasanya labil banget. Aku pernah nangis gegara lupa beli ice cream favorit. Hormon emang kocak kadang.",
+    //   },
+    //   {
+    //     user_id: 3,
+    //     user_image: "https://picsum.photos/200",
+    //     user_name: "Agung Ridho",
+    //     upload_date: "1 jam",
+    //     user_comment:
+    //       "Sebagai calon ayah, awalnya bingung juga sama perubahan emosi pasangan. Tapi setelah baca-baca dan curhat sama temen-temen, ternyata wajar banget ya kalo dia sering nangis. Intinya, dukung aja sebisa mungkin",
+    //   },
+    // ],
   },
 ];
 
-// export const CommentUser = [
-//   {
-//     user_id: 1,
-//     user_name: "Ridha Nayla",
-//     upload_date: "15 Menit",
-//     user_comment:
-//       "Wah, bener banget nih! Aku dulu juga suka nangis gara-gara hal sepele pas hamil. Ternyata emang efek hormon ya, hehe.",
-//   },
-//   {
-//     user_id: 2,
-//     user_name: "Ridha Nayla",
-//     upload_date: "16 Menit",
-//     user_comment:
-//       "Setuju banget! Waktu hamil, emosi rasanya labil banget. Aku pernah nangis gegara lupa beli ice cream favorit. Hormon emang kocak kadang.",
-//   },
-//   {
-//     user_id: 3,
-//     user_name: "Agung Ridho",
-//     upload_date: "1 jam",
-//     user_comment:
-//       "Sebagai calon ayah, awalnya bingung juga sama perubahan emosi pasangan. Tapi setelah baca-baca dan curhat sama temen-temen, ternyata wajar banget ya kalo dia sering nangis. Intinya, dukung aja sebisa mungkin",
-//   },
-// ];
+export const CommentUser = [
+  {
+    user_id: 1,
+    user_image: "https://picsum.photos/200",
+    user_name: "Ridha Nayla",
+    upload_date: "15 Menit",
+    user_comment:
+      "Wah, bener banget nih! Aku dulu juga suka nangis gara-gara hal sepele pas hamil. Ternyata emang efek hormon ya, hehe.",
+  },
+  {
+    user_id: 2,
+    user_image: "https://picsum.photos/200",
+    user_name: "Ridha Nayla",
+    upload_date: "16 Menit",
+    user_comment:
+      "Setuju banget! Waktu hamil, emosi rasanya labil banget. Aku pernah nangis gegara lupa beli ice cream favorit. Hormon emang kocak kadang.",
+  },
+  {
+    user_id: 3,
+    user_image: "https://picsum.photos/200",
+    user_name: "Agung Ridho",
+    upload_date: "1 jam",
+    user_comment:
+      "Sebagai calon ayah, awalnya bingung juga sama perubahan emosi pasangan. Tapi setelah baca-baca dan curhat sama temen-temen, ternyata wajar banget ya kalo dia sering nangis. Intinya, dukung aja sebisa mungkin",
+  },
+];
