@@ -2,7 +2,7 @@ import { Flex, Col, Row } from "antd";
 import { useState } from "react";
 import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ReactQuill from "react-quill";
@@ -40,6 +40,7 @@ const UploadArticle = () => {
 
   const {
     register,
+    control,
     formState: { errors },
     handleSubmit,
   } = useForm({
@@ -161,7 +162,7 @@ const UploadArticle = () => {
                     className={`flex cursor-pointer flex-col items-center justify-center rounded-lg lg:h-[260px] lg:w-[390px] ${
                       imagePreview
                         ? ""
-                        : "border-2 border-dashed border-green-500"
+                        : errors.image ? "border-2 border-dashed border-negative" : "border-2 border-dashed border-green-500"
                     }`}
                   >
                     {imagePreview ? (
@@ -240,12 +241,13 @@ const UploadArticle = () => {
                 >
                   Isi Artikel
                 </label>
-                <ReactQuill
-                  {...register("content")}
-                  className="mt-2"
-                  theme="snow"
-                  modules={module}
-                  placeholder="Tuliskan deskripsi terkait artikel"
+                <Controller
+                  name="content"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <ReactQuill modules={module} className="mt-2" {...field} theme="snow" />
+                  )}
                 />
                 <span className="text-xs text-negative pt-1">{errors.content?.message}</span>
               </div>
