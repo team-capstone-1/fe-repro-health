@@ -1,5 +1,14 @@
 import { useEffect, useState } from "react";
-import { Col, ConfigProvider, Form, Image, Input, Row, Table } from "antd";
+import {
+  Col,
+  ConfigProvider,
+  Form,
+  Image,
+  Input,
+  Row,
+  Space,
+  Table,
+} from "antd";
 import { IoMdSearch } from "react-icons/io";
 
 // import ImageCertif from "@/assets/certificate-dental.png";
@@ -24,9 +33,14 @@ import { APIProfile } from "@/apis/APIProfile";
 const columns = [
   {
     title: "No Sertifikat",
-    dataIndex: "doctor_profile_id",
-    key: "doctor_profile_id",
+    dataIndex: "id",
+    key: "id",
     width: 150,
+    render: (id) => (
+      <span className="text-sm font-medium text-[#4B4B4B]">
+        {id.slice(0, 8)}
+      </span>
+    ),
   },
   {
     title: "Jenis Sertifikat",
@@ -42,9 +56,16 @@ const columns = [
   },
   {
     title: "Masa Berlaku",
-    dataIndex: "time_period",
-    key: "time_period",
+    dataIndex: ["start_date", "end_date"],
+    key: "id",
     width: 350,
+    render: (_, id) => (
+      <Space size="small">
+        <span>{id.start_date.slice(0, 10)}</span>
+        <span>-</span>
+        <span>{id.end_date.slice(0, 10)}</span>
+      </Space>
+    ),
   },
   {
     title: "Ukuran File",
@@ -57,20 +78,29 @@ const columns = [
 export default function Certificate() {
   const [visible, setVisible] = useState(false);
   const [dataDoctor, setDataDoctor] = useState([]);
+  const [selectedCertificateUrl, setSelectedCertificateUrl] = useState("");
 
   useEffect(() => {
     const fetchDoctorCertifications = async () => {
       const result = await APIProfile.getDoctorCertifications();
       if (result?.message === "success get doctor certifications") {
         setDataDoctor(result.response);
+        // console.log(result.response);
       }
     };
     fetchDoctorCertifications();
   }, []);
 
-  const handleOpen = () => {
+  const handleOpen = (selectedRow) => {
+    setSelectedCertificateUrl(selectedRow.details);
     setVisible(true);
   };
+
+  // console.log(`data doctor: `, dataDoctor);
+
+  // const imagesUrl = () => {
+  //   return dataDoctor?.map((val) => val.details);
+  // };
 
   return (
     <section id="profile-certificate-section" className="my-10">
@@ -121,10 +151,11 @@ export default function Certificate() {
                   display: "none",
                 }}
                 // src={DataSource.map((val) => val.details)}
+                // src: imagesUrl(),
                 preview={{
                   movable: true,
                   visible,
-                  src: dataDoctor?.map((val) => val.details),
+                  src: selectedCertificateUrl,
                   onVisibleChange: (value) => {
                     setVisible(value);
                   },
