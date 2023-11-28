@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Flex, Col, Row, Button, Space } from "antd";
 import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
@@ -8,10 +7,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import ModalCancelArticle from "../../../../components/shared-components/ModalCancelArticle";
+import ModalSuccessArticle from "../../../../components/shared-components/ModalSuccessArticle";
 
 const UploadArticle = () => {
   const [imagePreview, setImagePreview] = useState(null);
-  const [value, setValue] = useState("");
+  const [isShowCancel, setIsShowCancel] = useState(false);
+  const [isShowSuccess, setIsShowSuccess] = useState(false);
   const MAX_IMAGE_SIZE = 25000000;
   const ALLOWED_IMAGE_TYPE = ["image/jpg", "image/png"];
 
@@ -83,6 +85,13 @@ const UploadArticle = () => {
     console.log(data);
   };
 
+  const handleOpenModalCancel = () => {
+    setIsShowCancel((prev) => !prev);
+  };
+  const handleOpenModalSuccess = () => {
+    setIsShowSuccess((prev) => !prev);
+  };
+
   return (
     <>
       <section id="unggah-artikel" className="mb-5 py-5">
@@ -95,15 +104,19 @@ const UploadArticle = () => {
             <h3 className="font-bold">Unggah Artikel</h3>
             <div>
               <Space size="middle">
-                <Link to="/artikel">
-                  <Button
-                    id="cancel-submit"
-                    className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
-                  >
-                    Batal
-                  </Button>
-                </Link>
-                <Button id="submit-button" type="primary">
+                <Button
+                  onClick={handleOpenModalCancel}
+                  id="cancel-submit"
+                  className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
+                >
+                  Batal
+                </Button>
+                <Button
+                  onClick={handleOpenModalSuccess}
+                  id="submit-button"
+                  type="primary"
+                  htmlType="submit"
+                >
                   Unggah
                 </Button>
               </Space>
@@ -195,7 +208,9 @@ const UploadArticle = () => {
                     className={`flex cursor-pointer flex-col items-center justify-center rounded-lg lg:h-[260px] lg:w-[390px] ${
                       imagePreview
                         ? ""
-                        : errors.image ? "border-2 border-dashed border-negative" : "border-2 border-dashed border-green-500"
+                        : errors.image
+                        ? "border-2 border-dashed border-negative"
+                        : "border-2 border-dashed border-green-500"
                     }`}
                   >
                     {imagePreview ? (
@@ -283,7 +298,13 @@ const UploadArticle = () => {
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
-                    <ReactQuill modules={module} className="mt-2" {...field} theme="snow" />
+                    <ReactQuill
+                      modules={module}
+                      className="mt-2"
+                      {...field}
+                      theme="snow"
+                      placeholder="Tuliskan deskripsi terkait artikel"
+                    />
                   )}
                 />
                 <span className="pt-1 text-xs text-negative">
@@ -293,6 +314,12 @@ const UploadArticle = () => {
             </Flex>
           </Col>
         </form>
+        {isShowCancel && (
+          <ModalCancelArticle closeModal={handleOpenModalCancel} />
+        )}
+        {isShowSuccess && (
+          <ModalSuccessArticle closeModal={handleOpenModalSuccess} />
+        )}
       </section>
     </>
   );
