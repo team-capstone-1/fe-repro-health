@@ -27,9 +27,13 @@ export default function ListNotifications() {
     <>
       <Flex>
         <h3 className="mb-3 font-bold">Notifikasi ({totalUnRead})</h3>
-        <Tooltip placement="right" title={text} color="white" arrow={true}>
-          <FiInfo className="text-lg" />
-        </Tooltip>
+        <span>
+          <Tooltip placement="right" title={text} color="white" arrow={true}>
+            <>
+              <FiInfo className="text-lg" />
+            </>
+          </Tooltip>
+        </span>
       </Flex>
       {DataNotifications.map(
         ({ type, title, description, read, dateTime }, index) => (

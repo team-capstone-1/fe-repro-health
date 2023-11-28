@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 export function AppLayout() {
   return (
     <Layout id="app-layout" className="bg-white">
+      <div className="bg-error-timeout"></div>
       <Topbar />
       <main className="flex">
         <Sidebar />
