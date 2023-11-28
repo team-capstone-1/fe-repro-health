@@ -29,7 +29,7 @@ export default function Chatbot() {
   const handleAddBtn = () => {
     const newList = {
       id: lists.length + 1,
-      titleChat: "Pertanyaan Baru",
+      titleChat: "Obrolan baru",
       tgl: formattedDate,
       pesan: [],
     };
@@ -55,8 +55,8 @@ export default function Chatbot() {
 
   return (
     <>
-      <div className="sm:max-md:h-[calc(100vh-82.6px) flex min-h-[500px] flex-col-reverse gap-8 px-2 py-5 sm:h-[calc(100vh-81.8px)] sm:flex-row 2xl:px-4">
-        <div className="h-full overflow-y-scroll rounded-md p-4 ring-1 ring-slate-200 sm:w-5/12 sm:max-w-[400px] [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
+      <div className="md:h-[calc(100vh-82.6px) flex min-h-[500px] flex-col-reverse gap-8 px-2 py-5 md:h-[calc(100vh-81.8px)] md:flex-row 2xl:px-4 pb-8 md:pb-5">
+        <div className="h-full max-h-[80vh] overflow-y-scroll rounded-md p-4 ring-1 ring-slate-200 md:max-h-screen md:w-5/12 md:max-w-[400px] [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
           <h1 className="text-2xl">Asisten Dokter</h1>
           <div className="py-5">
             <Button
@@ -75,7 +75,7 @@ export default function Chatbot() {
               <div
                 id="chat-history"
                 key={list.id}
-                className={`flex cursor-pointer items-center justify-between rounded-md px-3.5 py-2.5 ring-2 ${
+                className={`flex cursor-pointer items-center justify-between rounded-md px-3 py-2.5 ring-2 ${
                   selectedList[0]?.id === list.id
                     ? "text-green-500 ring-green-500"
                     : "ring-slate-300"
@@ -87,10 +87,12 @@ export default function Chatbot() {
                   setSelectedList(selected);
                 }}
               >
-                <p className="overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-sm font-medium">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap pr-3 text-sm font-medium">
                   {list.titleChat}
                 </p>
-                <p className="text-xs text-slate-500">{list.tgl}</p>
+                <p className="w-4/12 max-w-[60px] text-right text-[0.7rem] text-slate-500">
+                  {list.tgl}
+                </p>
               </div>
             ))}
           </div>
@@ -98,14 +100,19 @@ export default function Chatbot() {
         <div className="max-h-full w-full max-w-[1200px] rounded-md ring-1 ring-slate-200">
           <div className="flex items-center gap-6 border-b-2 px-6 py-4">
             <img src={ChatbotIcon} alt="" />
-            <h5 className="font-semibold">Asisten Dokter</h5>
+            <div className="flex flex-col gap-1">
+              <h5 className="font-semibold leading-none">Asisten Dokter</h5>
+              <p className="hidden font-medium leading-none md:block">
+                Tanyakan pertanyaan Anda melaui chatbot pintar kami
+              </p>
+            </div>
           </div>
           <div className="flex h-[calc(100%-165px)] items-center justify-center">
-            <div className="flex h-full max-h-[80vh] w-full flex-col overflow-y-scroll px-2 min-[500px]:px-6 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
+            <div className="flex h-[60vh] max-h-[60vh] w-full flex-col overflow-y-scroll px-2 min-[500px]:px-6 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
               {selectedList[0]?.pesan.length === 0 ? (
                 <div className="my-auto">
                   <img className="mx-auto" src={ChatbotMascot} alt="" />
-                  <p className="px-2 text-center font-medium sm:px-8">
+                  <p className="px-2 text-center font-medium md:px-8">
                     Selamat datang di Asisten Dokter! Saya adalah AI Bot yang
                     siap membantu Anda menjelajahi topik Kesehatan Reproduksi.
                     Ada yang ingin Anda diskusikan hari ini?
@@ -169,14 +176,14 @@ export default function Chatbot() {
               <div ref={ref}></div>
             </div>
           </div>
-          <div className="px-6 pb-6 pt-4 sm:pb-0">
+          <div className="px-6 pb-6 pt-4 md:pb-0">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="relative flex focus:bg-black">
                 <textarea
                   id="input-chatbot"
                   {...register("input-chatbot")}
                   type="text"
-                  className="block h-12 w-full resize-none overflow-y-scroll rounded-md border-2 border-gray-300 px-6 pr-10 pt-[0.8em] focus:outline-green-500 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]"
+                  className="block h-12 w-full resize-none overflow-y-scroll rounded-md border-2 border-gray-300 px-3 pr-10 pt-[0.8em] focus:outline-green-500 md:px-6 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]"
                   placeholder="Kirim pesan di sini..."
                   required
                   maxLength={1024}
@@ -200,7 +207,7 @@ export default function Chatbot() {
 const initialLists = [
   {
     id: 1,
-    titleChat: "Pertanyaan 1",
+    titleChat: "Kebijakan Privasi Data Pasien Kesehatan",
     tgl: "11/11/23",
     pesan: [
       {
@@ -279,7 +286,7 @@ const initialLists = [
   },
   {
     id: 2,
-    titleChat: "Pertanyaan 2",
+    titleChat: "Kebijakan Privasi Data Pasien Kesehatan",
     tgl: "02/09/23",
     pesan: [
       {
@@ -358,7 +365,7 @@ const initialLists = [
   },
   {
     id: 3,
-    titleChat: "Pertanyaan 3",
+    titleChat: "Kebijakan Privasi Data Pasien Kesehatan",
     tgl: "07/10/23",
     pesan: [
       {
@@ -437,7 +444,7 @@ const initialLists = [
   },
   {
     id: 4,
-    titleChat: "Pertanyaan 4",
+    titleChat: "Kebijakan Privasi Data Pasien Kesehatan",
     tgl: "11/11/23",
     pesan: [
       {
@@ -516,7 +523,7 @@ const initialLists = [
   },
   {
     id: 5,
-    titleChat: "Pertanyaan 5",
+    titleChat: "Kebijakan Privasi Data Pasien Kesehatan",
     tgl: "15/11/23",
     pesan: [
       {
@@ -595,7 +602,7 @@ const initialLists = [
   },
   {
     id: 6,
-    titleChat: "Pertanyaan 6",
+    titleChat: "Kebijakan Privasi Data Pasien Kesehatan",
     tgl: "20/11/23",
     pesan: [
       {

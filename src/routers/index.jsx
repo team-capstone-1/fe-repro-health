@@ -1,4 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import PublicRoute from "@/routers/PublicRoute";
+import PrivateRoute from "@/routers/PrivateRoute";
+import ProtectedRoute from "@/routers/ProtectedRoute";
 
 import LandingPage from "@/views/landing-views";
 import Doctor from "@/views/landing-views/misc/DoctorPage";
@@ -13,14 +16,16 @@ import ResetPassword from "@/views/auth-views/ResetPassword";
 
 import Dashboard from "@/views/app-views/dashboard";
 import Forum from "@/views/app-views/forum";
+import Article from "@/views/app-views/article";
+import DetailArticle from "@/views/app-views/article/components/DetailArticle";
+import UploadArticle from "../views/app-views/article/components/UploadArticle";
+import Notfound from "@/views/error-views/Notfound";
 import Chatbot from "@/views/app-views/chatbot";
 import DiscussionDetail from "@/views/app-views/forum/misc/DiscussionDetail";
 import Profile from "@/views/app-views/profile";
-import PrivateRoute from "@/routers/PrivateRoute";
-import PublicRoute from "@/routers/PublicRoute";
-import ProtectedRoute from "./ProtectedRoute";
 import Appointment from "@/views/app-views/appointment";
-import MySchedule from "@/views/app-views/my-schedule/components/MySchedule";
+import MySchedule from "@/views/app-views/my-schedule";
+import Notifications from "@/views/app-views/notification";
 
 export default function SetupRoutes() {
   return (
@@ -34,18 +39,31 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/janji-temu" element={<Appointment />} />
         <Route path="/jadwal-saya" element={<MySchedule />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/artikel" element={<Article />} />
+        <Route path="/detail-artikel" element={<DetailArticle />} />
+        <Route path="/unggah-artikel" element={<UploadArticle />} />
         <Route path="/asisten-dokter" element={<Chatbot />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
+        <Route path="/notifikasi" element={<Notifications />} />
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/verify" element={<Verify />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+
+      <Route>
+        <Route path="/404" element={<Notfound />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Route>
     </Routes>
   );

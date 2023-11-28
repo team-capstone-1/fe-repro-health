@@ -3,6 +3,7 @@ import { Card, ConfigProvider } from "antd";
 import { Calendar } from "antd";
 import { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+
 import { months } from "@/utils/GenerateDate";
 import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
 import { mapListData } from "@/utils/MapListData";
@@ -10,7 +11,7 @@ import { mapListData } from "@/utils/MapListData";
 import DetailSchedule from "./DetailSchedule";
 import { Indicator } from "./Indicator";
 
-export default function MySchedule() {
+export default function ScheduleCalendar() {
   const response = Response;
   const currentDate = dayjs();
   const [displayedDate, setDisplayedDate] = useState(currentDate);

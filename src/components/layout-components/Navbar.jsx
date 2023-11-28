@@ -2,9 +2,9 @@ import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 import logoReproHealth from "@/assets/logo-reprohealth.png";
-import Button from "@/components/shared-components/Button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,59 +52,46 @@ export default function Navbar() {
         isOpen ? "top-16" : "top-[-300px] hidden"
       }`}
         >
-          <li
-            id="item-menu-navbar"
-            className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent"
-          >
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-home-navbar"
               href="/"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
-              Home
+              Beranda
             </a>
           </li>
-          <li
-            id="item-menu-navbar"
-            className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent"
-          >
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-about-navbar"
               href="/#about"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
-              About Us
+              Tentang Kami
             </a>
           </li>
-          <li
-            id="item-menu-navbar"
-            className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent"
-          >
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-service-navbar"
               href="/#services"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
-              Service
+              Layanan
             </a>
           </li>
-          <li
-            id="item-menu-navbar"
-            className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent"
-          >
+          <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-benefit-navbar"
               href="/#benefit"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
-              Benefit
+              Manfaat
             </a>
           </li>
-          <li
-            id="item-menu-navbar"
-            className="md:text-md ms-16 mt-6 text-sm text-grey-10 hover:bg-green-50 md:my-0 md:ms-0 md:hover:bg-transparent"
-          >
-            <Button text="Download" />
+          <li className="md:text-md ms-16 mt-6 text-sm text-grey-10 hover:bg-green-50 md:my-0 md:ms-0 md:hover:bg-transparent">
+            <Button type="primary" className="font-semibold">
+              Download
+            </Button>
           </li>
         </ul>
       </div>

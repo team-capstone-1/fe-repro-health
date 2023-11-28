@@ -20,6 +20,19 @@
   @apply flex h-8 w-8 cursor-pointer place-content-center items-center rounded-full border-2 border-white hover:border-green-100 hover:text-green-100 hover:duration-300;
 }
 
+.ql-container {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.ql-toolbar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.ql-editor {
+  height: 150px;
+}
+
 h1,
 h2,
 h3,
@@ -139,4 +152,8 @@ p {
 
 .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
   background-color: #15b494;
+}
+
+.ant-input {
+  font-family: "Poppins", sans-serif;
 }
