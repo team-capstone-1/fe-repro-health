@@ -5,8 +5,8 @@ import { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 import { months } from "@/utils/GenerateDate";
-import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
 import { mapListData } from "@/utils/MapListData";
+import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
 
 import DetailSchedule from "./DetailSchedule";
 import { Indicator } from "./Indicator";
@@ -144,7 +144,7 @@ export default function ScheduleCalendar() {
                   : "bg-negative"
               }`}
                 >
-                  {item.appointment}
+                  {item.appointment?.length}
                 </div>
               </div>
             ))}

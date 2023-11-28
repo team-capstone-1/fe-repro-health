@@ -1,65 +1,19 @@
 import { useEffect, useState } from "react";
-import { Badge, Button, Collapse, Drawer, Flex, Switch, Tooltip } from "antd";
+import { Button, Drawer, Flex, Switch, Tooltip } from "antd";
 import { months } from "@/utils/GenerateDate";
 import { FiInfo } from "react-icons/fi";
 import { formatStrDayJs } from "@/utils/MapListData";
 import { getListDataByDate } from "@/utils/GetListData";
 
 import ModalConfirmSchedule from "@/components/shared-components/ModalConfirmSchedule";
+import ListAppointment from "./ListAppointment";
+import ButtonSubmit from "./ButtonSubmit";
 
-const ListAppointment = () => {
-  return (
-    <ul className="text-black">
-      <li>
-        <Flex align="start" gap={5}>
-          <Badge color="#17c6a3" />
-          <span className="ms-1 flex flex-col text-base font-semibold">
-            Anastasia Amalia
-            <span className="font-normal text-grey-200">009</span>
-          </span>
-        </Flex>
-      </li>
-      <li>
-        <Flex align="start" gap={5}>
-          <Badge color="#17c6a3" />
-          <span className="ms-1 flex flex-col text-base font-semibold">
-            Supriyadi
-            <span className="font-normal text-grey-200">010</span>
-          </span>
-        </Flex>
-      </li>
-      <li>
-        <Flex align="start" gap={5}>
-          <Badge color="#17c6a3" />
-          <span className="ms-1 flex flex-col text-base font-semibold">
-            Naufal Helmi
-            <span className="font-normal text-grey-200">012</span>
-          </span>
-        </Flex>
-      </li>
-    </ul>
-  );
-};
-const items = (panelStyle) => [
-  {
-    key: "1",
-    label: <p className="text-base font-semibold">Pagi</p>,
-    children: <ListAppointment />,
-    style: panelStyle,
-  },
-  {
-    key: "2",
-    label: <p className="text-base font-semibold">Siang</p>,
-    children: <ListAppointment />,
-    style: panelStyle,
-  },
-  {
-    key: "3",
-    label: <p className="text-base font-semibold">Malam</p>,
-    children: <ListAppointment />,
-    style: panelStyle,
-  },
-];
+const text = (
+  <span className="text-black">
+    Anda hanya dapat mengubah jadwal dari hari yang akan datang
+  </span>
+);
 
 export default function DrawerDetailSchedule({
   handleOpenDrawer,
@@ -101,19 +55,6 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
     handleOpenDrawer();
   };
 
-  const text = (
-    <span className="text-black">
-      Anda hanya dapat mengubah jadwal dari hari yang akan datang
-    </span>
-  );
-
-  const panelStyle = {
-    marginBottom: 8,
-    background: "#e9e9e9",
-    borderRadius: 5,
-    border: "none",
-  };
-
   const textDate = (
     <span>
       {selectedDate.date()} {months[selectedDate.month()]} {selectedDate.year()}
@@ -127,22 +68,22 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
       setIsChecked((prev) => !prev);
     };
 
-    const CheckType = () => {
-      if (listData === null) {
-        setIsChecked(false);
-      } else if (
-        listData[0]?.type === "Masuk" &&
-        listData[0]?.content === "Pagi"
-      ) {
-        setIsChecked(true);
-      } else if (listData[0]?.type === "Libur") {
-        setIsChecked(false);
-      } else {
-        setIsChecked(false);
-      }
-    };
-
     useEffect(() => {
+      const CheckType = () => {
+        if (listData === null) {
+          setIsChecked(false);
+        } else if (
+          listData[0]?.type === "Masuk" &&
+          listData[0]?.content === "Pagi"
+        ) {
+          setIsChecked(true);
+        } else if (listData[0]?.type === "Libur") {
+          setIsChecked(false);
+        } else {
+          setIsChecked(false);
+        }
+      };
+
       CheckType();
     }, []);
 
@@ -172,22 +113,21 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   const Noon = () => {
     const [isChecked, setIsChecked] = useState(true);
 
-    const CheckType = () => {
-      if (listData === null) {
-        setIsChecked(false);
-      } else if (
-        (listData[1]?.type === "Masuk" && listData[1]?.content === "Siang") ||
-        (listData[0]?.type === "Masuk" && listData[0]?.content === "Siang")
-      ) {
-        setIsChecked(true);
-      } else if (listData[0]?.type === "Libur") {
-        setIsChecked(false);
-      } else {
-        setIsChecked(false);
-      }
-    };
-
     useEffect(() => {
+      const CheckType = () => {
+        if (listData === null) {
+          setIsChecked(false);
+        } else if (
+          (listData[1]?.type === "Masuk" && listData[1]?.content === "Siang") ||
+          (listData[0]?.type === "Masuk" && listData[0]?.content === "Siang")
+        ) {
+          setIsChecked(true);
+        } else if (listData[0]?.type === "Libur") {
+          setIsChecked(false);
+        } else {
+          setIsChecked(false);
+        }
+      };
       CheckType();
     }, []);
 
@@ -215,22 +155,22 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   const Night = () => {
     const [isChecked, setIsChecked] = useState(true);
 
-    const CheckType = () => {
-      if (listData === null) {
-        setIsChecked(false);
-      } else if (
-        (listData[1]?.type === "Masuk" && listData[1]?.content === "Malam") ||
-        (listData[2]?.type === "Masuk" && listData[2]?.content === "Malam")
-      ) {
-        setIsChecked(true);
-      } else if (listData[0]?.type === "Libur") {
-        setIsChecked(false);
-      } else {
-        setIsChecked(false);
-      }
-    };
-
     useEffect(() => {
+      const CheckType = () => {
+        if (listData === null) {
+          setIsChecked(false);
+        } else if (
+          (listData[1]?.type === "Masuk" && listData[1]?.content === "Malam") ||
+          (listData[2]?.type === "Masuk" && listData[2]?.content === "Malam")
+        ) {
+          setIsChecked(true);
+        } else if (listData[0]?.type === "Libur") {
+          setIsChecked(false);
+        } else {
+          setIsChecked(false);
+        }
+      };
+
       CheckType();
     }, []);
 
@@ -275,27 +215,11 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
         </h5>
       </Flex>
       <div id="list-janji-temu" className="w-full">
-        <Collapse
-          accordion
-          bordered={false}
-          expandIconPosition="end"
-          items={items(panelStyle)}
-          style={{
-            background: "#fff",
-          }}
-        />
+        <ListAppointment data={listData} />
       </div>
 
       <Flex justify="center" className="mt-5">
-        <Button
-          id="button-submit"
-          type="primary"
-          className="bg-green-500 px-10 pb-8 pt-2 hover:bg-green-600 disabled:bg-grey-100 disabled:text-grey-200"
-          // disabled
-          onClick={handleOpenModal}
-        >
-          Simpan Perubahan
-        </Button>
+        <ButtonSubmit date={selectedDate} openHandler={handleOpenModal} />
       </Flex>
       {isShow && (
         <ModalConfirmSchedule
