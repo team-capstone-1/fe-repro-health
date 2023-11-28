@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
   useScrollToTop();
   return (
     <>
-      <div id="breadcrumb-section" className="base-container">
+      <div id="breadcrumb-privacy" className="base-container">
         <Breadcrumb currentPage={DataPrivacyPolicy.title} />
 
         <section id="privacy-policy-section">

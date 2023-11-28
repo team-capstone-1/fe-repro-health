@@ -1,4 +1,5 @@
-import React, { useSyncExternalStore } from "react";
+import  { useSyncExternalStore } from "react";
+
 import { LandingPageLayout } from "@/components/layout-components/LandingPageLayout";
 import { Outlet } from "react-router-dom";
 import Timeout from "@/views/error-views/Timeout";

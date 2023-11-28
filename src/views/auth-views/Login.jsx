@@ -1,73 +1,209 @@
+import * as yup from "yup";
 import { useState } from "react";
-import loginIllus from "@/assets/login-illustration.svg";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import loginIllus from "@/assets/login-illustration.svg";
+import { APIAuth } from "@/apis/APIAuth";
 
 const Login = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPass, setIsFocusPass] = useState(false);
+  const [isRemembered, setIsRemembered] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const navigate = useNavigate();
+  const { search } = useLocation();
+
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .required("Email harus diisi")
+      .email("Email tidak valid"),
+    password: yup
+      .string()
+      .required("Kata sandi harus diisi")
+      .min(8, "Kata sandi minimal 8 karakter"),
+  });
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmitHandler = (data) => {
+    let returnTo = "/dashboard";
+    const params = new URLSearchParams(search);
+    const redirectTo = params.get("return_to");
+    if (isRemembered) {
+      APIAuth.loginWithRememberMe(data, isRemembered).then(async (response) => {
+        if (response.message === "fail login") {
+          alert("invalid email or password!");
+        }
+        if (response.message === "success login doctor account") {
+          if (redirectTo) {
+            returnTo = `/${redirectTo}`;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        }
+      });
+    } else {
+      APIAuth.login(data).then(async (response) => {
+        if (response.message === "fail login") {
+          alert("invalid email or password!");
+        }
+        if (response.message === "success login doctor account") {
+          if (redirectTo) {
+            returnTo = `/${redirectTo}`;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        }
+      });
+    }
+  };
 
   return (
-    <section className="flex h-screen items-center justify-center">
+    <section className="flex h-screen items-center justify-center xl:scale-90">
       <div className="base-container">
-        <div className="items-center justify-center md:flex">
-          <div className="z-10 translate-x-0 rounded-lg bg-white px-6 py-12 shadow-none md:max-w-[655px] md:px-20 md:py-[90px] md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[45%]">
+        <div className="flex items-center justify-center">
+          <div className="z-10 translate-x-0 rounded-lg bg-white px-8 py-8 shadow-none md:max-w-[38rem] md:px-14 md:py-14 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[38%]">
             {/* Title */}
             <div className="space-y-1">
               <h2 className="font-semibold text-grey-900">
-                Masuk ke Akun Anda
+                Masuk ke Akun Anda!
               </h2>
               <p className="text-base font-medium text-grey-300">
                 Selamat datang, silakan masukkan email dan kata sandi Anda.
               </p>
             </div>
 
-            <form action="" className="mt-8">
+            <form
+              id="login-form"
+              onSubmit={handleSubmit(onSubmitHandler)}
+              className="mt-8"
+            >
               {/* Email */}
               <div>
-                <label className="text-base font-medium text-grey-300">
+                <label
+                  htmlFor="email"
+                  className="text-base font-medium text-grey-300"
+                >
                   Email
                 </label>
                 <div className="relative mt-2">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-4">
                     <AiOutlineMail
                       color={`${
-                        isFocusEmail === false ? "#b9b9b9" : "#0d0d0d"
+                        isFocusEmail
+                          ? "#0d0d0d"
+                          : errors.email
+                          ? "#fc4547"
+                          : "#b9b9b9"
                       }`}
                       size={24}
                     />
                   </div>
                   <input
-                    onFocus={() => setIsFocusEmail(true)}
+                    {...register("email")}
+                    onFocus={() => {
+                      setIsFocusEmail(true);
+                    }}
                     onBlur={() => setIsFocusEmail(false)}
                     id="email"
                     type="email"
-                    className="block w-full rounded-lg border border-grey-100 p-4 ps-14 text-base text-grey-100 focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900"
-                    placeholder="Enter your email address"
+                    autoComplete="email-doctor"
+                    className={`block w-full rounded-lg border p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
+                      errors.email
+                        ? "border-[#fc4547] text-[#fc4547]"
+                        : "border-grey-100 text-grey-100"
+                    }`}
+                    placeholder="Masukkan email anda"
                   />
                 </div>
+                <span className=" text-xs text-red-500">
+                  {errors.email?.message}
+                </span>
               </div>
 
               {/* Passoword */}
               <div className="mt-2">
-                <label className="text-base font-medium text-grey-300">
-                  Password
+                <label
+                  htmlFor="password"
+                  className="text-base font-medium text-grey-300"
+                >
+                  Kata Sandi
                 </label>
                 <div className="relative mt-2">
                   <div className="absolute inset-y-0 start-0 flex items-center ps-4">
                     <AiOutlineLock
-                      color={`${isFocusPass === false ? "#b9b9b9" : "#0d0d0d"}`}
+                      color={`${
+                        isFocusPass
+                          ? "0d0d0d"
+                          : errors.password
+                          ? "#fc4547"
+                          : "#b9b9b9"
+                      }`}
                       size={24}
                     />
                   </div>
                   <input
-                    onFocus={() => setIsFocusPass(true)}
+                    {...register("password")}
+                    onFocus={() => {
+                      setIsFocusPass(true);
+                    }}
                     onBlur={() => setIsFocusPass(false)}
                     id="password"
-                    type="password"
-                    className="block w-full rounded-lg border border-grey-100 p-4 ps-14 text-base text-grey-100 focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900"
-                    placeholder="Enter your password"
+                    autoComplete="current-password"
+                    type={`${visible ? "text" : "password"}`}
+                    className={`block w-full rounded-lg border p-4 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
+                      errors.password
+                        ? "border-[#fc4547] text-[#fc4547]"
+                        : "border-grey-100 text-grey-100"
+                    }`}
+                    placeholder="Masukkan kata sandi anda"
                   />
+                  <div
+                    onClick={() => setVisible(!visible)}
+                    className="absolute inset-y-0 end-0 flex cursor-pointer items-center pe-4"
+                  >
+                    {visible ? (
+                      <FaRegEyeSlash
+                        color={`${
+                          isFocusPass
+                            ? "0d0d0d"
+                            : errors.password
+                            ? "#fc4547"
+                            : "#b9b9b9"
+                        }`}
+                        size={24}
+                      />
+                    ) : (
+                      <FaRegEye
+                        color={`${
+                          isFocusPass
+                            ? "0d0d0d"
+                            : errors.password
+                            ? "#fc4547"
+                            : "#b9b9b9"
+                        }`}
+                        size={24}
+                      />
+                    )}
+                  </div>
                 </div>
+                <span className=" text-xs text-red-500">
+                  {errors.password?.message}
+                </span>
               </div>
 
               {/* Remember me & Forgot Password */}
@@ -76,13 +212,17 @@ const Login = () => {
                   <div className="flex h-5 items-center gap-2">
                     <input
                       type="checkbox"
+                      id="rememberCheck"
+                      onChange={(e) => {
+                        setIsRemembered(e.target.checked);
+                      }}
                       className="h-4 w-4 rounded border border-grey-200 accent-white focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
                     />
                     <label
-                      htmlFor=""
+                      htmlFor="rememberCheck"
                       className="text-base font-medium text-grey-200"
                     >
-                      Remember me
+                      Ingatkan saya
                     </label>
                   </div>
                 </div>
@@ -90,13 +230,16 @@ const Login = () => {
                   href="/forgot-password"
                   className="text-base font-medium text-green-500 hover:text-green-600"
                 >
-                  Forgot Password?
+                  Lupa Password?
                 </a>
               </div>
 
               {/* Button */}
               <div className="mt-16">
-                <button className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600">
+                <button
+                  id="submit-button"
+                  className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600"
+                >
                   Masuk
                 </button>
               </div>
@@ -104,8 +247,15 @@ const Login = () => {
           </div>
 
           {/* Illustration */}
-          <div className="absolute hidden translate-x-[35%] xl:block">
-            <img className="-z-10" src={loginIllus} alt="login-illustration" />
+          <div
+            id="login-illustration"
+            className="absolute hidden translate-x-[40%] py-5 xl:block"
+          >
+            <img
+              className="-z-10 w-[85%]"
+              src={loginIllus}
+              alt="login-illustration"
+            />
           </div>
         </div>
       </div>

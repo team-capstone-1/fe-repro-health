@@ -38,7 +38,7 @@ export default {
         link: "#3EAFFF",
         "link-25": "#CEEBFF",
         positive: "#37C976",
-        "positive-25": "#37C976",
+        "positive-25": "#CDF1DC",
       },
     },
     fontFamily: {
@@ -50,6 +50,7 @@ export default {
       "ellipse-header": 'url("./assets/ellipse.svg")',
       "doctor-header": 'url("./assets/doctor.svg")',
       "error-timeout": 'url("./assets/error-timeout.png")',
+      "error-notfound": 'url("./assets/notfound.svg")',
     },
   },
   plugins: [],

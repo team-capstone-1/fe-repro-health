@@ -1,5 +1,5 @@
 export const DataPrivacyPolicy = {
-  title: "Kebijakan Privasi",
+  title: "Kebijakan Privasi - ReproHealth",
   description:
     "Selamat datang di Website Reprohealth. Kami berkomitmen untuk menjaga kerahasiaan informasi pribadi Anda dan memberikan perlindungan terhadap data yang Anda bagikan kepada kami. Kebijakan privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkap, dan melindungi informasi pribadi Anda. Dengan menggunakan layanan kami, Anda setuju untuk mematuhi dan terikat oleh kebijakan privasi ini.",
 };
