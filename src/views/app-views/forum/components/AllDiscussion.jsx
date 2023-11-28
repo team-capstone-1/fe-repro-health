@@ -1,34 +1,56 @@
 import { BsSearch } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useDebounce } from "@/hooks/useDebounce";
+// import moment from "moment";
+// import "moment/locale/id";
+import { format, formatDistance, formatRelative, subDays } from "date-fns";
+import id from "date-fns/locale/id";
+import distanceInWordsStrict from "date-fns/formatDistanceStrict";
+import anonymousPict from "@/assets/anonymous-pp.jpg";
+import { APIForum } from "@/apis/APIForum";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 export default function AllDiscussion() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [forumList, setForumList] = useState([]);
   const searchQuery = useDebounce(searchValue, 800);
 
   useEffect(() => {
     setLoading(true);
-    let sortByQuery = "";
-    if (showBy === "terbaru") sortByQuery = "time";
-    else if (showBy === "populer") sortByQuery = "title";
     try {
       const fetchData = async () => {
-        const { data } = await axios.get(
-          "https://6557e782bd4bcef8b6133d49.mockapi.io/forum",
-          {
-            params: {
-              search: searchQuery,
-              sortBy: sortByQuery,
-              order: "desc",
-            },
-          },
-        );
-        setData(data);
+        const data = await APIForum.getForumList();
+        if (showBy === "populer") {
+          data.sort((a, b) => {
+            return b.view - a.view;
+          });
+        } else if (showBy === "terbaru") {
+          data.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+          });
+        }
+        data.forEach((data) => {
+          data.date = distanceInWordsStrict(new Date(data.date), new Date(), {
+            locale: id,
+            addSuffix: true,
+          })
+          // .replace(/(\d+)\s+(\w+)/g, (match, number, unit) => {
+          //   const shortUnit = unit.charAt(0).toLowerCase();
+          //   return `${number}${shortUnit}`;
+          // })
+          // .replace(/yang lalu/g, 'yg lalu');
+        });
+        if (searchQuery) {
+          const newData = data.filter((listData) =>
+            listData.title.toLowerCase().includes(searchQuery.toLowerCase()),
+          );
+          setForumList(newData);
+        } else {
+          setForumList(data);
+        }
         setLoading(false);
       };
       fetchData();
@@ -84,19 +106,19 @@ export default function AllDiscussion() {
         {loading && (
           <div className="mx-auto my-20 h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         )}
-        {data.length === 0 && !loading && (
+        {forumList.length === 0 && !loading && (
           <div className="my-24 text-center sm:text-xl">
             Pencarian tidak ditemukan
           </div>
         )}
         {!loading &&
-          data.length > 0 &&
-          data.map((list) => (
+          forumList.length > 0 &&
+          forumList.map((data) => (
             <div
-              key={list.question}
+              key={data.id}
               className="rounded-md px-6 py-4 ring-1 ring-slate-300 max-[350px]:px-2"
             >
-              {list.status === true ? (
+              {data.status === true ? (
                 <h6 className="text-right text-green-500">Terjawab</h6>
               ) : (
                 <h6 className="text-right text-red-500">Belum Terjawab</h6>
@@ -104,40 +126,44 @@ export default function AllDiscussion() {
               <div className="flex justify-between">
                 <Link
                   id="forum-title-1"
-                  to={list.id}
+                  to={data.id}
                   className="hover:text-green-500"
                 >
-                  <h5 className="text-xl font-bold">{list.title}</h5>
+                  <h5 className="text-xl font-bold">{data.title}</h5>
                 </Link>
-                <h6 className="pt-1.5 text-slate-400">{list.time}</h6>
+                <h6 className="pt-1.5 text-slate-400">{data.date}</h6>
               </div>
               <div className="flex gap-3 py-3">
                 <div className="flex">
                   <img
                     className="h-12 w-12 rounded-full hover:opacity-80"
-                    src={list.authorProfile}
+                    src={data.anonymous ? anonymousPict : data.authorProfile}
                     alt="patient profile"
                   />
                   <img
                     className="-ml-4 h-12 w-12 rounded-full hover:opacity-80"
-                    src={list.doctorProfile}
+                    src={data.doctorProfile}
                     alt="doctor profile"
                   />
                 </div>
                 <div className="flex flex-col justify-center">
                   <h5 className="text-sm max-[350px]:text-xs">
-                    Oleh : {list.author}
+                    Oleh : {data.anonymous ? "Anonim" : data.author}
                   </h5>
                   <h5 className="text-sm max-[350px]:text-xs">
-                    Dijawab oleh {list.answeredBy}
+                    Dijawab oleh {data.answeredBy}
                   </h5>
                 </div>
               </div>
-              <div>{list.question}</div>
-              <div className="flex justify-end">
+              <div className="truncate">{data.content}</div>
+              <div className="mt-2 flex justify-between">
+                <div className="flex items-center gap-1">
+                  <MdOutlineRemoveRedEye className="h-4 w-4" />
+                  {data.view}
+                </div>
                 <Link
                   id="see-more-1"
-                  to={list.id}
+                  to={data.id}
                   className="text-green-900 underline hover:text-green-500 max-[350px]:text-xs"
                 >
                   Lihat lebih lanjut
