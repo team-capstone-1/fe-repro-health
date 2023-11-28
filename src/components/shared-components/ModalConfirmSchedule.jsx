@@ -1,6 +1,8 @@
-import { Button, Modal, notification } from "antd";
+import { Button, Modal } from "antd";
 import { useState } from "react";
 import { IoIosWarning } from "react-icons/io";
+
+import { showNotify } from "./Toast";
 
 export default function ModalConfirmSchedule({
   handleOpenDrawer,
@@ -11,10 +13,12 @@ export default function ModalConfirmSchedule({
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleOk = () => {
-    openNotification();
+    // openNotification();
+
     setIsModalOpen(false);
     closeModal();
     handleOpenDrawer();
+    showNotify("Jadwal berhasil diubah !", "top-center");
   };
 
   const handleCancel = () => {
@@ -67,19 +71,19 @@ export default function ModalConfirmSchedule({
   );
 }
 
-const openNotification = () => {
-  notification.open({
-    message: (
-      <p className="font-medium text-[#FBFBFB]">Jadwal berhasil diubah!</p>
-    ),
-  });
+// const openNotification = () => {
+//   notification.open({
+//     message: (
+//       <p className="font-medium text-[#FBFBFB]">Jadwal berhasil diubah!</p>
+//     ),
+//   });
 
-  notification.config({
-    top: 75,
-    placement: "topRight",
-    closeIcon: <p className="text-sm text-[#93E5D5]">Abaikan</p>,
-    duration: 5,
-    className: "bg-green-500 h-[64px] w-screen",
-    stack: true,
-  });
-};
+//   notification.config({
+//     top: 75,
+//     placement: "topRight",
+//     closeIcon: <p className="text-sm text-[#93E5D5]">Abaikan</p>,
+//     duration: 5,
+//     className: "bg-green-500 h-[64px] w-screen",
+//     stack: true,
+//   });
+// };
