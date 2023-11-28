@@ -52,11 +52,11 @@ function IconNotification({ iconType }) {
     switch (iconType) {
       case "forum":
         return PiChatsCircle;
-      case "schedule":
+      case "jadwal-saya":
         return PiCalendarCheckBold;
-      case "article":
+      case "artikel":
         return HiOutlineNewspaper;
-      case "confirm":
+      case "janji-temu":
         return CgProfile;
       default:
         return TbExclamationCircle;
