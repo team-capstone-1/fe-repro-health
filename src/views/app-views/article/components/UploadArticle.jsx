@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Col, Row, Button, Space } from "antd";
+import { Flex, Col, Row, Button, Space, Select } from "antd";
 import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useForm, Controller } from "react-hook-form";
@@ -7,8 +7,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import ModalCancelArticle from "../../../../components/shared-components/ModalCancelArticle";
-import ModalSuccessArticle from "../../../../components/shared-components/ModalSuccessArticle";
+import ModalCancelArticle from "@/components/shared-components/ModalCancelArticle";
+import ModalSuccessArticle from "@/components/shared-components/ModalSuccessArticle";
 
 const UploadArticle = () => {
   const [imagePreview, setImagePreview] = useState(null);
@@ -34,7 +34,7 @@ const UploadArticle = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required("Judul harus diisi"),
-    tags: yup.string().required("Tags harus diisi"),
+    tags: yup.array().required('Setiap tag harus diisi'),
     reference: yup.string().required("Referensi harus diisi"),
     image: yup
       .mixed()
@@ -70,18 +70,7 @@ const UploadArticle = () => {
     resolver: yupResolver(schema),
   });
 
-  const convertImage = (file) => {
-    const reader = new FileReader();
-    reader.onloaded = () => {
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(file);
-  };
-
   const onSubmitArticle = (data) => {
-    if (Array.isArray(data.files) && data.files.length > 0) {
-      convertImage(data.files[0]);
-    }
     console.log(data);
   };
 
@@ -160,15 +149,22 @@ const UploadArticle = () => {
                   >
                     Tags
                   </label>
-                  <input
-                    {...register("tags")}
-                    className={`mt-2 block w-full rounded-lg border p-4 text-base focus:border-green-500 focus:outline-none ${
-                      errors.tags
-                        ? "border-negative text-negative"
-                        : "border-grey-100 text-grey-900"
-                    }`}
-                    type="text"
-                    placeholder="Masukkan tags yang berkaitan dengan artikel"
+                  <Controller 
+                    name="tags"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        mode="tags"
+                        bordered={false}
+                        {...field}
+                        className={`mt-2 block w-full rounded-lg border py-4 px-2 text-base focus:border-green-500 focus:outline-none ${
+                          errors.tags
+                            ? "border-negative text-negative"
+                            : "border-grey-100 text-grey-900"
+                        }`}
+                        placeholder="Masukkan tags yang berkaitan dengan artikel"
+                      />
+                    )}
                   />
                   <span className="pt-1 text-xs text-negative">
                     {errors.tags?.message}
@@ -235,10 +231,8 @@ const UploadArticle = () => {
                     )}
                     <input
                       {...register("image")}
-                      id="dropzone-file"
                       type="file"
                       className="hidden"
-                      // onChange={(e) => handleImagePreview(e)}
                       accept=".jpg, .png"
                     />
                   </label>
@@ -246,11 +240,9 @@ const UploadArticle = () => {
                     <p className="text-sm text-grey-200">
                       Maksimum ukuran file: 20MB
                     </p>
-                    {errors.image && (
-                      <span className="pt-1 text-xs text-negative">
-                        {errors.image.message}
-                      </span>
-                    )}
+                    <span className="pt-1 text-xs text-negative">
+                      {errors.image?.message}
+                    </span>
                   </div>
                 </div>
 
