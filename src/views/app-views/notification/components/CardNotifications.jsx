@@ -19,29 +19,35 @@ export default function CardNotifications({
     <Flex
       align="center"
       justify="space-between"
-      className={`block rounded-lg border px-2 py-3 sm:px-6 md:flex ${
+      className={`block rounded-lg border px-2 py-3 sm:px-6 lg:flex ${
         read ? "bg-grey-10" : "bg-green-50"
       }`}
     >
       <Flex className="gap-3">
         <Col
           id="icon-wrapper"
-          className={`grid h-10 w-10 place-content-center items-center rounded-lg bg-green-500 sm:h-12  sm:w-12`}
+          className={`grid h-10 w-10 place-content-center items-center rounded-lg bg-green-500 px-5 sm:h-12  sm:w-12`}
         >
           <IconNotification iconType={iconType} />
         </Col>
-        <Col>
-          <h6 className="text-sm font-semibold md:text-base">{title}</h6>
-          <h6 className="text-xs text-grey-200 md:text-sm">{description}</h6>
+        <Col className="flex flex-col">
+          <h6 className="overflow-hidden text-ellipsis whitespace-nowrap pr-14 text-sm font-semibold md:text-base">
+            {title}
+          </h6>
+          <h6 className="overflow-x-hidden text-ellipsis whitespace-nowrap pr-14 text-xs text-grey-200 md:text-sm">
+            {description}
+          </h6>
         </Col>
       </Flex>
       <Flex
         align="center"
         justify="space-between"
-        className="px-2 pt-2 md:px-0 md:pt-0"
+        className="overflow-hidden px-2 pt-2 lg:px-0 lg:pt-0"
       >
-        <p className="me-2 text-xs text-grey-200 lg:me-12">{createdAt}</p>
-        <FaTrashCan className="cursor-pointer text-base text-negative hover:text-red-600 lg:text-lg" />
+        <p className="me-2 text-xs  text-grey-200 lg:me-12">{createdAt}</p>
+        <span>
+          <FaTrashCan className="cursor-pointer text-base text-negative hover:text-red-600 lg:text-lg" />
+        </span>
       </Flex>
     </Flex>
   );
