@@ -37,7 +37,7 @@ export default function DoctorProfile() {
                 {dataDoctor?.name}
               </p>
               <p className="text-sm font-medium text-grey-300 md:text-base">
-                Spesialis Kandungan
+                Spesialis {dataDoctor?.specialist.name}
               </p>
               <p className="mt-2">10 tahun pengalaman</p>
             </div>
