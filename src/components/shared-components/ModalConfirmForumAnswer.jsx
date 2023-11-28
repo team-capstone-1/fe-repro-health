@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Button, Modal } from "antd";
 import { PiSealCheck } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
-const ModalConfirmForumAnswer = ({ closeModal, authorName }) => {
+import { APIForum } from "@/apis/APIForum";
+const ModalConfirmForumAnswer = ({ closeModal, authorName, payload }) => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
 
   const handleOk = () => {
     setIsOpen(false);
-    navigate(0);
-    // closeModal();
+    APIForum.addForumReply(payload).then(() => navigate(0));
   };
 
   const handleCancel = () => {
