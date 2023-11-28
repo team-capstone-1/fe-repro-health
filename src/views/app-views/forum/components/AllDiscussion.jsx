@@ -2,14 +2,12 @@ import { BsSearch } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDebounce } from "@/hooks/useDebounce";
-// import moment from "moment";
-// import "moment/locale/id";
-import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import id from "date-fns/locale/id";
 import distanceInWordsStrict from "date-fns/formatDistanceStrict";
 import anonymousPict from "@/assets/anonymous-pp.jpg";
 import { APIForum } from "@/apis/APIForum";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+// import { format, formatDistance, formatRelative, subDays } from "date-fns";
 
 export default function AllDiscussion() {
   const [showBy, setShowBy] = useState("populer");

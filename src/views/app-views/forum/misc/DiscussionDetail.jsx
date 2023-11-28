@@ -23,10 +23,8 @@ export default function DiscussionDetail() {
     try {
       const fetchData = async () => {
         const data = await APIForum.getForumDetail();
-        console.log(data);
         const newData = data.filter((listData) => listData.id == questionId);
         setData(newData);
-        console.log(newData);
         setLoading(false);
       };
       fetchData();
