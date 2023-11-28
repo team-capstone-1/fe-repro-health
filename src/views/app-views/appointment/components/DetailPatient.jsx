@@ -17,7 +17,7 @@ export default function DetailPatient({ handleOpen, isOpen }) {
         open={isOpen}
       >
         <ContentDrawer />
-        <ToastContainer className="mt-16 w-[430px] sm:mt-10 sm:w-[480px]" />
+        <ToastContainer className=" mt-16 w-full sm:mt-10 sm:w-[480px]" />
       </Drawer>
     </>
   );

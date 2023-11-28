@@ -30,6 +30,6 @@ export const showNotify = (pesan, position) => {
     pauseOnHover: true,
     progress: undefined,
     className:
-      "bg-green-500 text-white ps-10 font-medium 2xl:font-semibold text-base 2xl:text-xl",
+      "bg-green-500 text-white xl:ps-10 font-medium 2xl:font-semibold text-base 2xl:text-xl",
   });
 };
