@@ -260,7 +260,9 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
       <Flex align="center" gap={5} className="text-green-500">
         <h5 className="text-base font-semibold">Jadwal Saya</h5>
         <Tooltip placement="right" title={text} color="white" arrow={true}>
-          <FiInfo className="text-xl" />
+          <span>
+            <FiInfo className="text-xl" />
+          </span>
         </Tooltip>
       </Flex>
       <Morning />
