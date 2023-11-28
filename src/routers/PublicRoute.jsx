@@ -1,11 +1,11 @@
-import  { useSyncExternalStore } from "react";
-
-import { LandingPageLayout } from "@/components/layout-components/LandingPageLayout";
 import { Outlet } from "react-router-dom";
+
 import Timeout from "@/views/error-views/Timeout";
+import { LandingPageLayout } from "@/components/layout-components/LandingPageLayout";
+import { useNavigatorOnline } from "@/hooks/useNavigatorOnline";
 
 export default function PublicRoute() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+  const isOnline = useNavigatorOnline();
 
   if (isOnline) {
     return (
@@ -16,15 +16,4 @@ export default function PublicRoute() {
   } else {
     return <Timeout />;
   }
-}
-function getSnapshot() {
-  return navigator.onLine;
-}
-function subscribe(callback) {
-  window.addEventListener("online", callback);
-  window.addEventListener("offline", callback);
-  return () => {
-    window.removeEventListener("online", callback);
-    window.removeEventListener("offline", callback);
-  };
 }
