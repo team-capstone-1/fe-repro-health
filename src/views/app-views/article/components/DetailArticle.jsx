@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 import { Avatar, Button, Card, Image, Tag, List } from "antd";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
+import { FaRegBookmark } from "react-icons/fa";
+
 import {
   DetailArticle as detailArticle,
   CommentUser as commentUser,
 } from "../constant/detail-article";
-
-import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
 
 export default function DetailArticle() {
   return (
@@ -62,6 +63,15 @@ export default function DetailArticle() {
                 </div>
               </div>
 
+              <div className="inline-flex h-10 w-[73px] flex-col items-start justify-start gap-2.5 rounded-[10px] p-2">
+                <div className="inline-flex items-center justify-start gap-2">
+                  <FaRegBookmark className="relative h-5 w-5 text-[#989898]" />
+                  <p className=" text-base font-medium text-[#989898]">
+                    {article.bookmarks_amount}
+                  </p>
+                </div>
+              </div>
+
               <div className="inline-flex h-10 w-[73px] items-start justify-start gap-2 rounded-[10px] p-2">
                 <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
                 <div className="flex items-end justify-start gap-[21px]">
@@ -108,14 +118,14 @@ export default function DetailArticle() {
             </div>
 
             <section id="comment-section">
-              <div className="h-14 w-full bg-[#E9E9E9] p-4">
+              <div className="mt-14 h-14 w-full bg-[#E9E9E9] p-4">
                 <h3 className=" text-xl font-semibold text-[#4B4B4B]">
                   Komentar ({commentUser.length})
                 </h3>
               </div>
 
-              {commentUser.map((comment) => (
-                <List itemLayout="horizontal" className="p-4">
+              <List itemLayout="horizontal" className="p-4">
+                {commentUser.map((comment) => (
                   <List.Item key={comment.user_id}>
                     <List.Item.Meta
                       avatar={
@@ -126,12 +136,12 @@ export default function DetailArticle() {
                         />
                       }
                       title={
-                        <h5 className="font-semibold text-[#1E1E1E]">
+                        <h5 className="font-semibold text-grey-500">
                           Oleh {comment.user_name}
                         </h5>
                       }
                       description={
-                        <p className="mb-5 text-sm text-[#686868]">
+                        <p className="mb-5 text-sm text-grey-300">
                           {comment.upload_date} yang lalu
                         </p>
                       }
@@ -139,8 +149,8 @@ export default function DetailArticle() {
                     {comment.user_comment}
                     <hr className="my-3" />
                   </List.Item>
-                </List>
-              ))}
+                ))}
+              </List>
             </section>
           </>
         ))}
