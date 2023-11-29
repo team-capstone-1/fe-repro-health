@@ -17,11 +17,9 @@ import {
   DataBenefitLists,
   DataCtaDoctor,
 } from "@/views/landing-views/constant/home-page";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function LandingPage() {
-  useDocumentTitle(DataHeroSection.title);
   useScrollToTop();
   return (
     <>

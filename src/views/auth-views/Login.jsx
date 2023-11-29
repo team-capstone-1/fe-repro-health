@@ -6,10 +6,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import loginIllus from "@/assets/login-illustration.svg";
 import { APIAuth } from "@/apis/APIAuth";
 
 const Login = () => {
+  useDocumentTitle("Login");
+
   const [isFocusEmail, setIsFocusEmail] = useState(false);
   const [isFocusPass, setIsFocusPass] = useState(false);
   const [isRemembered, setIsRemembered] = useState(false);
@@ -228,7 +231,7 @@ const Login = () => {
                   </div>
                 </div>
                 <a
-                  href="/forgot-password"
+                  href="/lupa-password"
                   className="text-base font-medium text-green-500 hover:text-green-600"
                 >
                   Lupa Password?

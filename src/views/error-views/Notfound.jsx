@@ -2,8 +2,10 @@ import { Button, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 
 import imageNotfound from "@/assets/notfound.svg";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 export default function Notfound() {
+  useDocumentTitle("Error");
   return (
     <>
       <section className="flex h-screen items-center justify-center text-center">

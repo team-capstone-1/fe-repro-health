@@ -52,15 +52,10 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/login" element={<Login />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/verify" element={<Verify />} />
+        <Route path="/lupa-password" element={<ForgotPassword />} />
+        <Route path="/verifikasi" element={<Verify />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/verify" element={<Verify />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-
       <Route>
         <Route path="/404" element={<Notfound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />

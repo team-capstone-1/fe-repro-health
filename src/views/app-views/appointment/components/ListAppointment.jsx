@@ -6,8 +6,12 @@ import DetailPatient from "./DetailPatient";
 import { ColumnAppointment } from "../constant/appointment";
 import { DataAppointment } from "../constant/appointment";
 import { CardAppointment } from "../constant/appointment";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function AppointmentTable() {
+  useDocumentTitle("Janji Temu | ReproHealth");
+  useScrollToTop();
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => {
     setIsOpen((prev) => !prev);

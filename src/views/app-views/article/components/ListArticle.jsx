@@ -2,6 +2,9 @@ import { Row, Col, Card, Tag, Avatar, Flex } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+
 const article = [
   {
     img: "https://i.ibb.co/YjmcJ0D/Rectangle-53.png",
@@ -30,6 +33,8 @@ const article = [
 ];
 
 export default function ListArticle() {
+  useDocumentTitle("Artikel Saya | ReproHealth");
+  useScrollToTop();
   return (
     <>
       <section id="search-article">
