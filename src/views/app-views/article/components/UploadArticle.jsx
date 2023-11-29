@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Flex, Col, Row, Button, Space } from "antd";
+import { Flex, Col, Row, Button, Space, Select } from "antd";
 import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useForm, Controller } from "react-hook-form";
@@ -8,10 +7,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import ModalCancelArticle from "@/components/shared-components/ModalCancelArticle";
+import ModalSuccessArticle from "@/components/shared-components/ModalSuccessArticle";
 
 const UploadArticle = () => {
   const [imagePreview, setImagePreview] = useState(null);
-  const [value, setValue] = useState("");
+  const [isShowCancel, setIsShowCancel] = useState(false);
+  const [isShowSuccess, setIsShowSuccess] = useState(false);
   const MAX_IMAGE_SIZE = 25000000;
   const ALLOWED_IMAGE_TYPE = ["image/jpg", "image/png"];
 
@@ -32,7 +34,7 @@ const UploadArticle = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required("Judul harus diisi"),
-    tags: yup.string().required("Tags harus diisi"),
+    tags: yup.array().required("Setiap tag harus diisi"),
     reference: yup.string().required("Referensi harus diisi"),
     image: yup
       .mixed()
@@ -68,19 +70,15 @@ const UploadArticle = () => {
     resolver: yupResolver(schema),
   });
 
-  const convertImage = (file) => {
-    const reader = new FileReader();
-    reader.onloaded = () => {
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(file);
+  const onSubmitArticle = (data) => {
+    console.log(data);
   };
 
-  const onSubmitArticle = (data) => {
-    if (Array.isArray(data.files) && data.files.length > 0) {
-      convertImage(data.files[0]);
-    }
-    console.log(data);
+  const handleOpenModalCancel = () => {
+    setIsShowCancel((prev) => !prev);
+  };
+  const handleOpenModalSuccess = () => {
+    setIsShowSuccess((prev) => !prev);
   };
 
   return (
@@ -95,15 +93,19 @@ const UploadArticle = () => {
             <h3 className="font-bold">Unggah Artikel</h3>
             <div>
               <Space size="middle">
-                <Link to="/artikel">
-                  <Button
-                    id="cancel-submit"
-                    className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
-                  >
-                    Batal
-                  </Button>
-                </Link>
-                <Button id="submit-button" type="primary">
+                <Button
+                  onClick={handleOpenModalCancel}
+                  id="cancel-submit"
+                  className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
+                >
+                  Batal
+                </Button>
+                <Button
+                  onClick={handleOpenModalSuccess}
+                  id="submit-button"
+                  type="primary"
+                  htmlType="submit"
+                >
                   Unggah
                 </Button>
               </Space>
@@ -147,15 +149,26 @@ const UploadArticle = () => {
                   >
                     Tags
                   </label>
-                  <input
-                    {...register("tags")}
-                    className={`mt-2 block w-full rounded-lg border p-4 text-base focus:border-green-500 focus:outline-none ${
-                      errors.tags
-                        ? "border-negative text-negative"
-                        : "border-grey-100 text-grey-900"
-                    }`}
-                    type="text"
-                    placeholder="Masukkan tags yang berkaitan dengan artikel"
+                  <Controller
+                    name="tags"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        mode="tags"
+                        bordered={false}
+                        {...field}
+                        className={`mt-2 block w-full rounded-lg border px-2 py-4 text-base focus:border-green-500 focus:outline-none ${
+                          errors.tags
+                            ? "border-negative text-negative"
+                            : "border-grey-100 text-grey-900"
+                        }`}
+                        placeholder={
+                          <span className="font-normal text-grey-200">
+                            Masukkan tags yang berkaitan dengan artikel
+                          </span>
+                        }
+                      />
+                    )}
                   />
                   <span className="pt-1 text-xs text-negative">
                     {errors.tags?.message}
@@ -195,7 +208,9 @@ const UploadArticle = () => {
                     className={`flex cursor-pointer flex-col items-center justify-center rounded-lg lg:h-[260px] lg:w-[390px] ${
                       imagePreview
                         ? ""
-                        : errors.image ? "border-2 border-dashed border-negative" : "border-2 border-dashed border-green-500"
+                        : errors.image
+                        ? "border-2 border-dashed border-negative"
+                        : "border-2 border-dashed border-green-500"
                     }`}
                   >
                     {imagePreview ? (
@@ -220,10 +235,8 @@ const UploadArticle = () => {
                     )}
                     <input
                       {...register("image")}
-                      id="dropzone-file"
                       type="file"
                       className="hidden"
-                      // onChange={(e) => handleImagePreview(e)}
                       accept=".jpg, .png"
                     />
                   </label>
@@ -231,11 +244,9 @@ const UploadArticle = () => {
                     <p className="text-sm text-grey-200">
                       Maksimum ukuran file: 20MB
                     </p>
-                    {errors.image && (
-                      <span className="pt-1 text-xs text-negative">
-                        {errors.image.message}
-                      </span>
-                    )}
+                    <span className="pt-1 text-xs text-negative">
+                      {errors.image?.message}
+                    </span>
                   </div>
                 </div>
 
@@ -283,7 +294,13 @@ const UploadArticle = () => {
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
-                    <ReactQuill modules={module} className="mt-2" {...field} theme="snow" />
+                    <ReactQuill
+                      modules={module}
+                      className="mt-2"
+                      {...field}
+                      theme="snow"
+                      placeholder="Tuliskan deskripsi terkait artikel"
+                    />
                   )}
                 />
                 <span className="pt-1 text-xs text-negative">
@@ -293,6 +310,12 @@ const UploadArticle = () => {
             </Flex>
           </Col>
         </form>
+        {isShowCancel && (
+          <ModalCancelArticle closeModal={handleOpenModalCancel} />
+        )}
+        {isShowSuccess && (
+          <ModalSuccessArticle closeModal={handleOpenModalSuccess} />
+        )}
       </section>
     </>
   );
