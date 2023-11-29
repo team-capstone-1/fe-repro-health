@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { generateDate, months } from "@/utils/GenerateDate";
@@ -28,9 +29,14 @@ export default function Calendar() {
         id="header-calender"
         className="mb-4 mt-1 flex items-center justify-between"
       >
-        <p id="title" className="text-xl font-semibold">
-          Kalender
-        </p>
+        <Link to="/jadwal-saya">
+          <p
+            id="title"
+            className="text-xl font-semibold transition-opacity hover:text-green-500"
+          >
+            Jadwal Saya
+          </p>
+        </Link>
         <div className="flex items-center gap-1">
           <h6 id="month-year-calender" className="select-none font-semibold">
             {months[today.month()]} {today.year()}

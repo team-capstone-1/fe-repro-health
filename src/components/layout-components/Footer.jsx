@@ -62,17 +62,17 @@ export default function Footer() {
                   Beranda
                 </p>
               </Link>
-              <a href="/#about" id="link-to-about">
+              <a href="/#tentang-kami" id="link-to-about">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
                   Tentang Kami
                 </p>
               </a>
-              <a href="/#services" id="link-to-service">
+              <a href="/#layanan" id="link-to-service">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
                   Layanan
                 </p>
               </a>
-              <a href="/#benefit" id="link-to-benefit">
+              <a href="/#manfaat" id="link-to-benefit">
                 <p className="mb-1 cursor-pointer hover:text-green-100">
                   Manfaat
                 </p>
@@ -125,7 +125,7 @@ export default function Footer() {
               <p id="contact-section" className="mt-5 font-semibold">
                 Kontak
               </p>
-              <p id="email-contact-footer">Email : reprohealth.id</p>
+              <p id="email-contact-footer">Email : reprohealth@gmail.com</p>
               <p id="phone-contact-footer">No. Telp: 0821 3358 1616</p>
             </div>
           </Col>

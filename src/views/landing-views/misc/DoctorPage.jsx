@@ -41,7 +41,7 @@ export default function DoctorPage() {
                 {doctorPage.subHeader}
               </p>
               <div className="mt-4 flex flex-wrap gap-4">
-                <Link to="mailto:ReproHealthCS@gmail.com">
+                <Link to="mailto:reprohealth@gmail.com">
                   <Button
                     id="join-with-us-button"
                     type="primary"
@@ -109,7 +109,7 @@ export default function DoctorPage() {
           >
             {doctorPage.subCTA}
           </p>
-          <Link to="mailto:ReproHealthCS@gmail.com">
+          <Link to="mailto:reprohealth@gmail.com">
             <Button
               id="call-to-action-button"
               type="primary"

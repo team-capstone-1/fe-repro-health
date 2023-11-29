@@ -25,7 +25,7 @@ const ModalSuccessArticle = ({ closeModal }) => {
               border: "transparent",
             }}
           >
-            <Link to="/artikel">Kembali ke Halaman Utama</Link>
+            <Link to="/artikel-saya">Kembali ke Halaman Utama</Link>
           </Button>
         </div>
       }

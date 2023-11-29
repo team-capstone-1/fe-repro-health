@@ -5,8 +5,13 @@ import TotalCards from "./components/TotalCards";
 import ChartIncome from "./components/ChartIncome";
 import AppointmentTable from "./components/AppointmentTable";
 import Calendar from "./components/Calendar";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function Dashboard() {
+  useDocumentTitle("Dashboard");
+  useScrollToTop();
+
   return (
     <>
       <div className="mb-5 py-5">

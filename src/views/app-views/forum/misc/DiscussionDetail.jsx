@@ -6,8 +6,11 @@ import { useForm } from "react-hook-form";
 import { Button } from "antd";
 
 import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 export default function DiscussionDetail() {
+  useDocumentTitle("Detail Pertanyaan");
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);

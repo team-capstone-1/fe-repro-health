@@ -1,12 +1,16 @@
 import { Button } from "antd";
 import { useState, useRef, useEffect } from "react";
-import ChatbotIcon from "@/assets/chatbot-icon.svg";
-import ChatbotMascot from "@/assets/chatbot-mascot.svg";
 import { LuSendHorizonal } from "react-icons/lu";
 import { useForm } from "react-hook-form";
+
+import ChatbotIcon from "@/assets/chatbot-icon.svg";
+import ChatbotMascot from "@/assets/chatbot-mascot.svg";
 import profileDoctor from "@/assets/profile-doctor.svg";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 export default function Chatbot() {
+  useDocumentTitle("Asisten Dokter");
+
   const { register, handleSubmit } = useForm();
   const [lists, setLists] = useState(initialLists);
   const ref = useRef(null);
@@ -55,7 +59,7 @@ export default function Chatbot() {
 
   return (
     <>
-      <div className="md:h-[calc(100vh-82.6px) flex min-h-[500px] flex-col-reverse gap-8 px-2 py-5 md:h-[calc(100vh-81.8px)] md:flex-row 2xl:px-4 pb-8 md:pb-5">
+      <div className="md:h-[calc(100vh-82.6px) flex min-h-[500px] flex-col-reverse gap-8 px-2 py-5 pb-8 md:h-[calc(100vh-81.8px)] md:flex-row md:pb-5 2xl:px-4">
         <div className="h-full max-h-[80vh] overflow-y-scroll rounded-md p-4 ring-1 ring-slate-200 md:max-h-screen md:w-5/12 md:max-w-[400px] [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
           <h1 className="text-2xl">Asisten Dokter</h1>
           <div className="py-5">

@@ -64,7 +64,7 @@ export default function Navbar() {
           <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-about-navbar"
-              href="/#about"
+              href="/#tentang-kami"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Tentang Kami
@@ -73,7 +73,7 @@ export default function Navbar() {
           <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-service-navbar"
-              href="/#services"
+              href="/#layanan"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Layanan
@@ -82,7 +82,7 @@ export default function Navbar() {
           <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-benefit-navbar"
-              href="/#benefit"
+              href="/#manfaat"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Manfaat

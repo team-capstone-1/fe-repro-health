@@ -10,7 +10,7 @@ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function AppointmentTable() {
-  useDocumentTitle("Janji Temu | ReproHealth");
+  useDocumentTitle("Janji Temu");
   useScrollToTop();
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => {
