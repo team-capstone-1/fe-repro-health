@@ -157,3 +157,8 @@ p {
 .ant-input {
   font-family: "Poppins", sans-serif;
 }
+
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+}

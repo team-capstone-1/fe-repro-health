@@ -34,7 +34,7 @@ const UploadArticle = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required("Judul harus diisi"),
-    tags: yup.array().required('Setiap tag harus diisi'),
+    tags: yup.array().required("Setiap tag harus diisi"),
     reference: yup.string().required("Referensi harus diisi"),
     image: yup
       .mixed()
@@ -149,7 +149,7 @@ const UploadArticle = () => {
                   >
                     Tags
                   </label>
-                  <Controller 
+                  <Controller
                     name="tags"
                     control={control}
                     render={({ field }) => (
@@ -157,12 +157,16 @@ const UploadArticle = () => {
                         mode="tags"
                         bordered={false}
                         {...field}
-                        className={`mt-2 block w-full rounded-lg border py-4 px-2 text-base focus:border-green-500 focus:outline-none ${
+                        className={`mt-2 block w-full rounded-lg border px-2 py-4 text-base focus:border-green-500 focus:outline-none ${
                           errors.tags
                             ? "border-negative text-negative"
                             : "border-grey-100 text-grey-900"
                         }`}
-                        placeholder="Masukkan tags yang berkaitan dengan artikel"
+                        placeholder={
+                          <span className="font-normal text-grey-200">
+                            Masukkan tags yang berkaitan dengan artikel
+                          </span>
+                        }
                       />
                     )}
                   />

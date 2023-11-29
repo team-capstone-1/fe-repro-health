@@ -12,6 +12,7 @@ const ModalSuccessArticle = ({ closeModal }) => {
 
   return (
     <Modal
+      centered
       open={isOpen}
       onCancel={handleCancel}
       footer={

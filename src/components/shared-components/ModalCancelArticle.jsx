@@ -12,11 +12,11 @@ const ModalCancelArticle = ({ closeModal }) => {
 
   return (
     <Modal
+      centered
       open={isOpen}
       onCancel={handleCancel}
       footer={
         <div id="modal-article-footer" className="flex justify-center">
-        
           <Button
             id="button-article-confirm"
             key="ok"
