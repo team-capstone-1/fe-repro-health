@@ -10,7 +10,7 @@ import loginIllus from "@/assets/login-illustration.svg";
 import { APIAuth } from "@/apis/APIAuth";
 
 import { ToastContainer } from "react-toastify";
-import { showNotify } from "../../components/shared-components/Toast";
+import { showNotify } from "@/components/shared-components/Toast";
 
 const Login = () => {
   const [isFocusEmail, setIsFocusEmail] = useState(false);

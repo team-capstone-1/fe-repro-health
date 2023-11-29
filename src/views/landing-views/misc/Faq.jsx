@@ -34,7 +34,12 @@ export default function Faq() {
               >
                 <h5 id="faq-card-text">{DataFaq.textContent}</h5>
               </Col>
-              <Col span={24} md={12} lg={8} className="text-center md:text-end">
+              <Col
+                span={24}
+                md={12}
+                lg={8}
+                className="text-center md:text-end md:font-semibold"
+              >
                 <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
               </Col>
             </Row>
