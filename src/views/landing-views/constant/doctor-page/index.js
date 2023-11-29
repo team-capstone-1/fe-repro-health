@@ -1,5 +1,5 @@
 export const DataDoctorPage = {
-  title: "Halaman Dokter - ReproHealth",
+  title: "Halaman Dokter",
   header: "Jadilah Bagian dari ReproHealth",
   subHeader: "Ingin bergabung dengan tim dokter ReproHealth?",
   headerBenefit: "Manfaat Bergabung Sebagai Dokter di ReproHealth",

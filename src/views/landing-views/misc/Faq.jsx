@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Link } from "react-router-dom";
 import { Collapse, Card, Row, Col } from "antd";
 import { MdOutlineEmail } from "react-icons/md";
 
@@ -40,7 +41,9 @@ export default function Faq() {
                 lg={8}
                 className="text-center md:text-end md:font-semibold"
               >
-                <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
+                <Link to="mailto:reprohealth@gmail.com">
+                  <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
+                </Link>
               </Col>
             </Row>
           </Card>

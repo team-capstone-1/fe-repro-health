@@ -4,6 +4,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
 import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 import {
   DetailArticle as detailArticle,
@@ -11,10 +12,12 @@ import {
 } from "../constant/detail-article";
 
 export default function DetailArticle() {
+  useDocumentTitle("Artikel");
+
   return (
     <section id="detail-article" className="mb-5 py-5">
       <Card>
-        <Link to="/artikel">
+        <Link to="/artikel-saya">
           <Button
             icon={<IoArrowBackOutline className="text-[24px]" />}
             className="flex w-[100px] justify-center border-transparent bg-transparent text-center text-base font-semibold text-[#4B4B4B] shadow-none hover:text-green-500"

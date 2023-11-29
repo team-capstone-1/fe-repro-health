@@ -64,7 +64,7 @@ export default function Navbar() {
           <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-about-navbar"
-              href="/#about"
+              href="/#tentang-kami"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Tentang Kami
@@ -73,7 +73,7 @@ export default function Navbar() {
           <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-service-navbar"
-              href="/#services"
+              href="/#layanan"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Layanan
@@ -82,16 +82,21 @@ export default function Navbar() {
           <li className="md:text-md mt-6 text-sm hover:bg-green-50 md:my-0 md:hover:bg-transparent">
             <a
               id="link-benefit-navbar"
-              href="/#benefit"
+              href="/#manfaat"
               className="ms-16 duration-200 hover:text-green-500 md:ms-0"
             >
               Manfaat
             </a>
           </li>
           <li className="md:text-md ms-16 mt-6 text-sm text-grey-10 hover:bg-green-50 md:my-0 md:ms-0 md:hover:bg-transparent">
-            <Button type="primary" className="font-semibold">
-              Download
-            </Button>
+            <a href="/#download-section">
+              <Button
+                type="primary"
+                className="flex items-center px-7 py-4 font-semibold"
+              >
+                Unduh Sekarang
+              </Button>
+            </a>
           </li>
         </ul>
       </div>

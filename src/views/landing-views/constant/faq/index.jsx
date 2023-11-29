@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 export const DataFaq = {
-  title: "FAQ- ReproHealth",
+  title: "FAQ",
   textContent: "Punya pertanyaan lanjutan?",
 };
 
