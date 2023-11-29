@@ -9,13 +9,12 @@ export const DetailArticle = [
     doctor_name: "Dr. Andi Cahaya",
     upload_date: "07 November 2023 pukul 18.00 WIB",
     views_amount: 123,
-    saved_amount: 123,
-    comment_amount: 123,
+    bookmarks_amount: 123,
     tags: ["Kesehatan", "Organ", "Reproduksi"],
     content: `
-    \nMudah menangis saat hamil dapat dialami oleh sebagian ibu. Bumil bisa saja tiba-tiba menangis karena masalah kecil, misalnya ketika suami belum pulang kerja saat hari sudah larut. Perasaan ini tentu membuat ibu hamil cemas dan bertanya-tanya, kondisi ini normal nggak, sih?
+    Mudah menangis saat hamil dapat dialami oleh sebagian ibu. Bumil bisa saja tiba-tiba menangis karena masalah kecil, misalnya ketika suami belum pulang kerja saat hari sudah larut. Perasaan ini tentu membuat ibu hamil cemas dan bertanya-tanya, kondisi ini normal nggak, sih?
 
-    \nBeberapa ibu hamil mengeluh jadi lebih sensitif dan mudah menangis saat hamil. Perasaan ini biasanya muncul secara tiba-tiba dan umumnya bukan disebabkan oleh alasan yang besar. Nah, bisa dikatakan bahwa saat hamil, Bumil cenderung lebih cengeng dari biasanya.
+    Beberapa ibu hamil mengeluh jadi lebih sensitif dan mudah menangis saat hamil. Perasaan ini biasanya muncul secara tiba-tiba dan umumnya bukan disebabkan oleh alasan yang besar. Nah, bisa dikatakan bahwa saat hamil, Bumil cenderung lebih cengeng dari biasanya.
     
     Mudah Menangis Saat Hamil Adalah Hal yang Normal
     Mudah menangis saat hamil disebabkan oleh perubahan kadar hormon estrogen dan hormon progesteron dalam tubuh. Jumlah kedua hormon ini bisa melonjak hampir 100 kali lipat, khususnya saat trimester pertama.

@@ -2,35 +2,9 @@ import { Row, Col, Card, Tag, Avatar, Flex } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
+import { ListArticles } from "../constant/list-article";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
-
-const article = [
-  {
-    img: "https://i.ibb.co/YjmcJ0D/Rectangle-53.png",
-    tag: "Reproduksi",
-    title: "Pentingnya Menjaga Kesehatan Organ Reproduksi",
-    ava: "https://i.ibb.co/Lvfgn2R/Profil.png",
-    author: "Dr. Andi Cahaya",
-    date: "18 Okt 2022",
-  },
-  {
-    img: "https://i.ibb.co/YjmcJ0D/Rectangle-53.png",
-    tag: "Reproduksi",
-    title: "Pentingnya Menjaga Kesehatan Organ Reproduksi",
-    ava: "https://i.ibb.co/Lvfgn2R/Profil.png",
-    author: "Dr. Andi Cahaya",
-    date: "18 Okt 2022",
-  },
-  {
-    img: "https://i.ibb.co/YjmcJ0D/Rectangle-53.png",
-    tag: "Reproduksi",
-    title: "Pentingnya Menjaga Kesehatan Organ Reproduksi",
-    ava: "https://i.ibb.co/Lvfgn2R/Profil.png",
-    author: "Dr. Andi Cahaya",
-    date: "18 Okt 2022",
-  },
-];
 
 export default function ListArticle() {
   useDocumentTitle("Artikel Saya | ReproHealth");
@@ -54,14 +28,16 @@ export default function ListArticle() {
 
       <section id="list-article">
         <Row gutter={[16, 24]}>
-          {article.map((item, i) => (
-            <Col span={8} key={i}>
+          {ListArticles.map((item, i) => (
+            <Col key={i} span={8} xs={24} md={12} lg={8}>
               <Link to="/detail-artikel">
                 <Card hoverable cover={<img alt="thumbnail" src={item.img} />}>
                   <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
                     {item.tag}
                   </Tag>
-                  <p className="my-3 pb-2 font-semibold">{item.title}</p>
+                  <p className="mb-5 mt-3 line-clamp-2 font-semibold">
+                    {item.title}
+                  </p>
                   <Flex gap="middle">
                     <div className="self-center">
                       <Avatar src={item.ava} />
