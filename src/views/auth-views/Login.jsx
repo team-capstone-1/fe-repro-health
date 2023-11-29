@@ -51,7 +51,7 @@ const Login = () => {
       APIAuth.loginWithRememberMe(data, isRemembered).then(async (response) => {
         if (response.message === "fail login") {
           // alert("invalid email or password!");
-          showErrorToast("Invalid email or password !", "top-right");
+          showErrorToast("Invalid email or password!", "top-right");
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
