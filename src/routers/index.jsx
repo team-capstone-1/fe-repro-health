@@ -42,8 +42,8 @@ export default function SetupRoutes() {
         <Route path="/janji-temu" element={<Appointment />} />
         <Route path="/jadwal-saya" element={<MySchedule />} />
         <Route path="/forum" element={<Forum />} />
-        <Route path="/artikel" element={<Article />} />
-        <Route path="/detail-artikel" element={<DetailArticle />} />
+        <Route path="/artikel-saya" element={<Article />} />
+        <Route path="/artikel" element={<DetailArticle />} />
         <Route path="/unggah-artikel" element={<UploadArticle />} />
         <Route path="/asisten-dokter" element={<Chatbot />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
@@ -52,15 +52,10 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/login" element={<Login />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/verify" element={<Verify />} />
+        <Route path="/lupa-password" element={<ForgotPassword />} />
+        <Route path="/verifikasi" element={<Verify />} />
         <Route path="/reset-password" element={<ResetPassword />} />
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/verify" element={<Verify />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-
       <Route>
         <Route path="/404" element={<Notfound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />

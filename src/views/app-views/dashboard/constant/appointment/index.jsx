@@ -14,14 +14,12 @@ export const ColumnAppointment = [
     dataIndex: "name",
     key: "name",
     width: 250,
-    sorter: (a, b) => a.name.localeCompare(b.name),
   },
   {
     title: "No Urut",
     dataIndex: "no",
     key: "no",
     width: 150,
-    sorter: (a, b) => a.no - b.no,
   },
   {
     title: "Tanggal",
@@ -34,21 +32,6 @@ export const ColumnAppointment = [
     dataIndex: "session",
     key: "session",
     width: 150,
-    filters: [
-      {
-        text: "Pagi",
-        value: "Pagi",
-      },
-      {
-        text: "Siang",
-        value: "Siang",
-      },
-      {
-        text: "Malam",
-        value: "Malam",
-      },
-    ],
-    onFilter: (value, record) => record.session.indexOf(value) === 0,
   },
   {
     title: "Pembayaran",

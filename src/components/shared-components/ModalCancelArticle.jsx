@@ -25,7 +25,7 @@ const ModalCancelArticle = ({ closeModal }) => {
               border: "transparent",
             }}
           >
-            <Link to="/artikel">Ya, Saya Yakin</Link>
+            <Link to="/artikel-saya">Ya, Saya Yakin</Link>
           </Button>
           <Button
             id="button-article-cancel"

@@ -17,11 +17,9 @@ import {
   DataBenefitLists,
   DataCtaDoctor,
 } from "@/views/landing-views/constant/home-page";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function LandingPage() {
-  useDocumentTitle(DataHeroSection.title);
   useScrollToTop();
   return (
     <>
@@ -86,7 +84,7 @@ function AboutSection() {
   const aboutSection = DataAboutSection;
   return (
     <section
-      id="about"
+      id="tentang-kami"
       className="h-auto bg-green-50 p-2 py-14 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
     >
       <div className="absolute hidden h-[21.9rem] w-[24rem] lg:bottom-0 lg:left-16 lg:block">
@@ -112,7 +110,7 @@ function ServicesList() {
   return (
     <>
       <section
-        id="services"
+        id="layanan"
         className="h-auto bg-grey-10 p-2 py-8 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
       >
         <h2
@@ -153,7 +151,7 @@ function BenefitList() {
   const benefitLists = DataBenefitLists;
   return (
     <section
-      id="benefit"
+      id="manfaat"
       className="h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem]"
     >
       <div className="grid grid-cols-1">
@@ -192,7 +190,10 @@ function BenefitList() {
 
 function DownloadSection() {
   return (
-    <section className="my-5 h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]">
+    <section
+      id="download-section"
+      className="my-5 h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]"
+    >
       <BannerDownload />
     </section>
   );

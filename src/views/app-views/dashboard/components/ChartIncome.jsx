@@ -1,5 +1,4 @@
-import { Card, Col, DatePicker, Row, Space } from "antd";
-import dayjs from "dayjs";
+import { Card, Col, Row } from "antd";
 import {
   BarChart,
   Bar,
@@ -11,12 +10,7 @@ import {
   Legend,
 } from "recharts";
 
-import {
-  DataIncome as data,
-  RangePresets as rangePresets,
-} from "@/views/app-views/dashboard/constant/graph-income";
-
-import { useState } from "react";
+import { DataIncome as data } from "@/views/app-views/dashboard/constant/graph-income";
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -39,7 +33,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-export default function ChartIncome() {
+export default function ChartIncome({ selectedFilter }) {
   // const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
   const customTickYAxis = (values) => {
     if (values > 99000000) {
@@ -52,36 +46,6 @@ export default function ChartIncome() {
 
   const mobileSize = window.innerWidth >= 450;
 
-  const { RangePicker } = DatePicker;
-
-  const [selectedRange, setSelectedRange] = useState("");
-  const [startDate, setStartDate] = useState(selectedRange[0]);
-  const [endDate, setEndDate] = useState(selectedRange[1]);
-  const dateFormat = "DD/MM/YYYY";
-
-  const onRangeChange = (dates) => {
-    if (dates) {
-      setStartDate(dates[0]);
-      setEndDate(dates[1]);
-      setSelectedRange(dates);
-      console.log(dates);
-    } else {
-      setStartDate("");
-      setEndDate("");
-      setSelectedRange("");
-    }
-  };
-
-  const getLabel = () => {
-    if (startDate && endDate) {
-      const formattedStartDate = dayjs(startDate).format("DD MMMM YYYY");
-      const formattedEndDate = dayjs(endDate).format("DD MMMM YYYY");
-      return `Pendapatan dari ${formattedStartDate} hingga ${formattedEndDate}`;
-    } else {
-      return `Pilih Rentang Pendapatan...`;
-    }
-  };
-
   return (
     <Row id="chart-income" justify="start">
       <Col span={24} xs={24} md={24} lg={24}>
@@ -90,27 +54,14 @@ export default function ChartIncome() {
             <h3 id="title-graph" className="text-2xl font-semibold text-black">
               Grafik Pendapatan
             </h3>
-            <h6 id="label-graph" className="my-2">
-              {getLabel()}
+            <h6 id="label-graph" className="mb-5 mt-1">
+              {`Menampilkan data pendapatan 7 ${selectedFilter.toLowerCase()} terakhir`}
             </h6>
-
-            <Col span={24}>
-              <Space direction="vertical" size={12}>
-                <RangePicker
-                  id="range-picker-chart-income"
-                  presets={rangePresets}
-                  onChange={onRangeChange}
-                  format={dateFormat}
-                />
-              </Space>
-            </Col>
           </section>
 
-          <Wrapper id="chart-income-wrapper" width="100%" height={340}>
+          <Wrapper id="chart-income-wrapper" width="100%" height={360}>
             <BarChart
               id="bar-chart"
-              // width={770}
-              // height={408}
               data={data}
               barGap={0}
               margin={{

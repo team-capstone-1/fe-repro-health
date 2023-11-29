@@ -3,8 +3,12 @@ import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 import { ListArticles } from "../constant/list-article";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 export default function ListArticle() {
+  useDocumentTitle("Artikel Saya");
+  useScrollToTop();
   return (
     <>
       <section id="search-article">
@@ -26,7 +30,7 @@ export default function ListArticle() {
         <Row gutter={[16, 24]}>
           {ListArticles.map((item, i) => (
             <Col key={i} span={8} xs={24} md={12} lg={8}>
-              <Link to="/detail-artikel">
+              <Link to="/artikel">
                 <Card hoverable cover={<img alt="thumbnail" src={item.img} />}>
                   <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
                     {item.tag}

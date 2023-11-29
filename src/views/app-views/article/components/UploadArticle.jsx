@@ -7,10 +7,14 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import ModalCancelArticle from "@/components/shared-components/ModalCancelArticle";
 import ModalSuccessArticle from "@/components/shared-components/ModalSuccessArticle";
 
 const UploadArticle = () => {
+  useDocumentTitle("Unggah Artikel");
+
   const [imagePreview, setImagePreview] = useState(null);
   const [isShowCancel, setIsShowCancel] = useState(false);
   const [isShowSuccess, setIsShowSuccess] = useState(false);
