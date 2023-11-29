@@ -20,20 +20,11 @@ export default function Calendar() {
   const schedule = newDate.toDateString();
 
   return (
-    <div
-      id="calender-dashboard-wrapper"
-      className="w-full rounded-lg border p-5"
-    >
+    <div className="w-full rounded-lg border p-5">
       {/* Header */}
-      <div
-        id="header-calender"
-        className="mb-4 mt-1 flex items-center justify-between"
-      >
-        <Link to="/jadwal-saya">
-          <p
-            id="title"
-            className="text-xl font-semibold transition-opacity hover:text-green-500"
-          >
+      <div className="mb-4 mt-1 flex items-center justify-between">
+        <Link to="/jadwal-saya" id="link-to-jadwal">
+          <p className="text-xl font-semibold transition-colors duration-200 ease-out hover:text-green-500">
             Jadwal Saya
           </p>
         </Link>
