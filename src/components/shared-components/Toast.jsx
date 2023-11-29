@@ -26,7 +26,9 @@ export const showNotify = (pesan, position) => {
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
-    closeButton: <span className="my-auto">Abaikan</span>,
+    closeButton: (
+      <span className="my-auto text-green-200 2xl:me-4">Abaikan</span>
+    ),
     pauseOnHover: true,
     progress: undefined,
     className:
