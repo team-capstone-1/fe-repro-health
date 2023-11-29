@@ -89,9 +89,14 @@ export default function Navbar() {
             </a>
           </li>
           <li className="md:text-md ms-16 mt-6 text-sm text-grey-10 hover:bg-green-50 md:my-0 md:ms-0 md:hover:bg-transparent">
-            <Button type="primary" className="font-semibold">
-              Download
-            </Button>
+            <a href="/#download-section">
+              <Button
+                type="primary"
+                className="flex items-center px-7 py-4 font-semibold"
+              >
+                Unduh Sekarang
+              </Button>
+            </a>
           </li>
         </ul>
       </div>

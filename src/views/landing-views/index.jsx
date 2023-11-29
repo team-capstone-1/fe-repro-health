@@ -190,7 +190,10 @@ function BenefitList() {
 
 function DownloadSection() {
   return (
-    <section className="my-5 h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]">
+    <section
+      id="download-section"
+      className="my-5 h-auto p-2 py-8 sm:px-12 md:relative lg:px-[5.5rem] xl:px-36 2xl:px-[10.5rem]"
+    >
       <BannerDownload />
     </section>
   );
