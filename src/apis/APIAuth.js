@@ -6,7 +6,7 @@ export const APIAuth = {
     try {
       const result = await axiosInstance.post("/doctors/login", data);
       const { token } = result.data.response;
-      authService.storeCredentialsToCookie({ token });
+      authService.storeCredentials({ token });
       return result.data;
     } catch (error) {
       console.error(error.response?.data);
@@ -17,7 +17,7 @@ export const APIAuth = {
     try {
       const result = await axiosInstance.post("/doctors/login", data);
       const { token } = result.data.response;
-      authService.storeCredentialsToCookie({ token, isRemembered });
+      authService.storeCredentials({ token, isRemembered, data });
       return result.data;
     } catch (error) {
       console.error(error.response?.data);

@@ -20,6 +20,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const { search } = useLocation();
+  const userData = JSON.parse(localStorage.getItem("data"));
 
   const schema = yup.object().shape({
     email: yup
@@ -38,6 +39,10 @@ const Login = () => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      email: userData?.email,
+      password: userData?.password,
+    },
   });
 
   const onSubmitHandler = (data) => {
@@ -129,12 +134,12 @@ const Login = () => {
                     className={`block w-full rounded-lg border p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.email
                         ? "border-[#fc4547] text-[#fc4547]"
-                        : "border-grey-100 text-grey-100"
+                        : "border-grey-100"
                     }`}
                     placeholder="Masukkan email anda"
                   />
                 </div>
-                <span className=" text-xs text-red-500">
+                <span className="text-xs text-red-500">
                   {errors.email?.message}
                 </span>
               </div>
@@ -172,7 +177,7 @@ const Login = () => {
                     className={`block w-full rounded-lg border p-4 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
                       errors.password
                         ? "border-[#fc4547] text-[#fc4547]"
-                        : "border-grey-100 text-grey-100"
+                        : "border-grey-100"
                     }`}
                     placeholder="Masukkan kata sandi anda"
                   />
