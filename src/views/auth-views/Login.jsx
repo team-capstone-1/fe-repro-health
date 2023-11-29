@@ -83,7 +83,7 @@ const Login = () => {
       <div className="base-container">
         <div className="flex items-center justify-center">
           <div className="z-10 translate-x-0 rounded-lg bg-white px-8 py-8 shadow-none md:max-w-[38rem] md:px-14 md:py-14 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)] xl:-translate-x-[38%]">
-            <ToastContainer className="-mt-14 w-full md:-mt-5 md:w-[38rem]" />
+            <ToastContainer className="-mt-8 w-full sm:-mt-12 md:-mt-5 md:w-[38rem]" />
             {/* Title */}
             <div className="space-y-1">
               <h2 className="font-semibold text-grey-900">
