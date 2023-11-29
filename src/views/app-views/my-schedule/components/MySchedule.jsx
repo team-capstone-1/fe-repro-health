@@ -11,6 +11,8 @@ import { mapListData } from "@/utils/MapListData";
 import DetailSchedule from "./DetailSchedule";
 import { Indicator } from "./Indicator";
 
+import { ToastContainer } from "react-toastify";
+
 export default function ScheduleCalendar() {
   const response = Response;
   const currentDate = dayjs();
@@ -88,6 +90,7 @@ export default function ScheduleCalendar() {
             </li>
           ))}
         </ul>
+        <ToastContainer className="mt-14 w-full" />
       </>
     );
   };

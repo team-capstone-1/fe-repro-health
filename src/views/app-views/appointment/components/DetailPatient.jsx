@@ -4,17 +4,22 @@ import { DataPasien } from "@/views/app-views/appointment/constant/detail-pasien
 import ModalConfirmAppointment from "@/components/shared-components/ModalConfirmAppointment";
 import ModalPaymentAppointment from "@/components/shared-components/ModalPaymentAppointment";
 
+import { ToastContainer } from "react-toastify";
+
 export default function DetailPatient({ handleOpen, isOpen }) {
   return (
-    <Drawer
-      width={500}
-      title={<HeaderDrawer />}
-      placement="right"
-      onClose={handleOpen}
-      open={isOpen}
-    >
-      <ContentDrawer />
-    </Drawer>
+    <>
+      <Drawer
+        width={500}
+        title={<HeaderDrawer />}
+        placement="right"
+        onClose={handleOpen}
+        open={isOpen}
+      >
+        <ContentDrawer />
+        <ToastContainer className=" mt-16 w-full sm:mt-10 sm:w-[480px]" />
+      </Drawer>
+    </>
   );
 }
 
@@ -81,12 +86,17 @@ const CardDetailAppointment = () => {
                 </p>
                 <p className="flex flex-col items-end text-xs font-medium sm:text-sm">
                   {Object.values(item)}
-                  <span onClick={handleOpenModalPayment} className="text-xs text-positive cursor-pointer">
+                  <span
+                    onClick={handleOpenModalPayment}
+                    className="cursor-pointer text-xs text-positive"
+                  >
                     Lihat Bukti Transfer
                   </span>
                 </p>
                 {isShowPayment && (
-                  <ModalPaymentAppointment closeModal={handleOpenModalPayment} />
+                  <ModalPaymentAppointment
+                    closeModal={handleOpenModalPayment}
+                  />
                 )}
               </>
             ) : (
