@@ -4,7 +4,7 @@ import ButtonFilter from "./components/ButtonFilter";
 import TotalCards from "./components/TotalCards";
 import ChartIncome from "./components/ChartIncome";
 import AppointmentTable from "./components/AppointmentTable";
-import Calendar from "./components/Calendar";
+import MySchedule from "./components/MySchedule";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
@@ -29,7 +29,7 @@ export default function Dashboard() {
             <ChartIncome selectedFilter={selectedFilter} />
           </Col>
           <Col xs={24} md={24} lg={10} xl={8}>
-            <Calendar />
+            <MySchedule />
           </Col>
           <Col span={24}>
             <AppointmentTable />
