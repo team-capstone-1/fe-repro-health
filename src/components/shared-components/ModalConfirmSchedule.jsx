@@ -2,7 +2,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { IoIosWarning } from "react-icons/io";
 
-import { showNotify } from "./Toast";
+import { showSuccessToast } from "./Toast";
 
 export default function ModalConfirmSchedule({
   handleOpenDrawer,
@@ -18,7 +18,7 @@ export default function ModalConfirmSchedule({
     setIsModalOpen(false);
     closeModal();
     handleOpenDrawer();
-    showNotify("Jadwal berhasil diubah !", "top-center");
+    showSuccessToast("Jadwal berhasil diubah !", "top-center");
   };
 
   const handleCancel = () => {

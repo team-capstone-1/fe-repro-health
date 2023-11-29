@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Modal } from "antd";
 import { PiSealCheck } from "react-icons/pi";
 
-import { showNotify } from "./Toast";
+import { showSuccessToast } from "./Toast";
 
 const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -12,7 +12,7 @@ const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
 
     setIsOpen(false);
     closeModal();
-    showNotify("Pasien berhasil diverifikasi !", "top-right");
+    showSuccessToast("Pasien berhasil diverifikasi !", "top-right");
   };
   const handleCancel = () => {
     setIsOpen(false);

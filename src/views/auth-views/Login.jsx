@@ -11,7 +11,7 @@ import loginIllus from "@/assets/login-illustration.svg";
 import { APIAuth } from "@/apis/APIAuth";
 
 import { ToastContainer } from "react-toastify";
-import { showNotify } from "@/components/shared-components/Toast";
+import { showErrorToast } from "@/components/shared-components/Toast";
 
 const Login = () => {
   useDocumentTitle("Login");
@@ -51,7 +51,7 @@ const Login = () => {
       APIAuth.loginWithRememberMe(data, isRemembered).then(async (response) => {
         if (response.message === "fail login") {
           // alert("invalid email or password!");
-          showNotify("Invalid email or password !", "top-right");
+          showErrorToast("Invalid email or password !", "top-right");
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
@@ -66,7 +66,7 @@ const Login = () => {
       APIAuth.login(data).then(async (response) => {
         if (response.message === "fail login") {
           // alert("invalid email or password!");
-          showNotify("Invalid email or password !", "top-right");
+          showErrorToast("Invalid email or password !", "top-right");
         }
         if (response.message === "success login doctor account") {
           if (redirectTo) {
