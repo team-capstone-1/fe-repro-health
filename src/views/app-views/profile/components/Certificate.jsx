@@ -1,116 +1,106 @@
-import { Col, ConfigProvider, Form, Image, Input, Row, Table } from "antd";
+import { useEffect, useState } from "react";
+import {
+  Col,
+  ConfigProvider,
+  Form,
+  Image,
+  Input,
+  Row,
+  Space,
+  Table,
+} from "antd";
 import { IoMdSearch } from "react-icons/io";
 
-// import IconShowCertif from "@/assets/certif-show.svg";
-import ImageCertif from "@/assets/certificate-dental.png";
-import { useState } from "react";
+// import ImageCertif from "@/assets/certificate-dental.png";
+import { APIProfile } from "@/apis/APIProfile";
+
+// const DataSource = [
+//   {
+//     id: 1,
+//     doctor_profile_id: "74300897765",
+//     time_period: "22 Juni 2022 - 22 Juni 2027",
+//     // time_period: {
+//     //   start_date: "22 Juni 2022",
+//     //   end_date: "22 Juni 2027",
+//     // },
+//     description: "Praktik Medis",
+//     certificate_type: "Sertifikasi Lisensi",
+//     file_size: "5 MB",
+//     details: ImageCertif,
+//   },
+// ];
+
+const columns = [
+  {
+    title: "No Sertifikat",
+    dataIndex: "id",
+    key: "id",
+    width: 150,
+    render: (id) => (
+      <span className="text-sm font-medium text-[#4B4B4B]">
+        {id.slice(0, 8)}
+      </span>
+    ),
+  },
+  {
+    title: "Jenis Sertifikat",
+    dataIndex: "certificate_type",
+    key: "certificate_type",
+    width: 200,
+  },
+  {
+    title: "Keterangan",
+    dataIndex: "description",
+    key: "description",
+    width: 250,
+  },
+  {
+    title: "Masa Berlaku",
+    dataIndex: ["start_date", "end_date"],
+    key: "id",
+    width: 350,
+    render: (_, id) => (
+      <Space size="small">
+        <span>{id.start_date.slice(0, 10)}</span>
+        <span>-</span>
+        <span>{id.end_date.slice(0, 10)}</span>
+      </Space>
+    ),
+  },
+  {
+    title: "Ukuran File",
+    dataIndex: "file_size",
+    key: "file_size",
+    width: 150,
+  },
+];
 
 export default function Certificate() {
   const [visible, setVisible] = useState(false);
+  const [dataDoctor, setDataDoctor] = useState([]);
+  const [selectedCertificateUrl, setSelectedCertificateUrl] = useState("");
 
-  const handleOpen = () => {
+  useEffect(() => {
+    const fetchDoctorCertifications = async () => {
+      const result = await APIProfile.getDoctorCertifications();
+      if (result?.message === "success get doctor certifications") {
+        setDataDoctor(result.response);
+        // console.log(result.response);
+      }
+    };
+    fetchDoctorCertifications();
+  }, []);
+
+  const handleOpen = (selectedRow) => {
+    setSelectedCertificateUrl(selectedRow.details);
     setVisible(true);
   };
 
-  const DataSource = [
-    {
-      id: 1,
-      doctor_profile_id: "74300897765",
-      time_period: "22 Juni 2022 - 22 Juni 2027",
-      // time_period: {
-      //   start_date: "22 Juni 2022",
-      //   end_date: "22 Juni 2027",
-      // },
-      description: "Praktik Medis",
-      certificate_type: "Sertifikasi Lisensi",
-      file_size: "5 MB",
-      details: ImageCertif,
-    },
+  // console.log(`data doctor: `, dataDoctor);
 
-    // {
-    //   id: 2,
-    //   doctor_profile_id: "74300897765",
-    //   time_period: "22 Juni 2022 - 22 Juni 2027",
-    //   description: "Praktik Medis",
-    //   certificate_type: "Sertifikasi Lisensi",
-    //   file_size: "5 MB",
-    //   details:
-    //     "https://yt3.googleusercontent.com/Yltbh2eH6nCCEwh4au4IeBK-FNkYSETVxLngkPbcj1igZ__PJa4XVEt-0Jx-sGAx717p1kERzqA=s900-c-k-c0x00ffffff-no-rj",
-    // },
-
-    // {
-    //   id: 3,
-    //   doctor_profile_id: "74300897765",
-    //   time_period: "22 Juni 2022 - 22 Juni 2027",
-    //   description: "Praktik Medis",
-    //   certificate_type: "Sertifikasi Lisensi",
-    //   file_size: "5 MB",
-    //   details:
-    //     "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    // },
-
-    // {
-    //   id: 4,
-    //   doctor_profile_id: "74300897765",
-    //   time_period: "22 Juni 2022 - 22 Juni 2027",
-    //   description: "Praktik Medis",
-    //   certificate_type: "Sertifikasi Lisensi",
-    //   file_size: "5 MB",
-    //   details:
-    //     "https://assets-a1.kompasiana.com/items/album/2022/05/30/eren-yeager-1-6294723353e2c32b47142933.jpg",
-    // },
-
-    // {
-    //   id: "f03f5d62-5cf3-4f03-9c3f-8c34620e94c6",
-    //   doctor_profile_id: "74300897765",
-    //   time_period: "22 Juni 2022 - 22 Juni 2027",
-    //   description: "Praktik Medis",
-    //   certificate_type: "Sertifikasi Lisensi",
-    //   file_size: "5 MB",
-    //   details: (
-    //     <Image
-    //       width={20}
-    //       src={IconShowCertif}
-    //       preview={{
-    //         src: "https://i.ytimg.com/vi/f93sHJkdsiw/maxresdefault.jpg",
-    //       }}
-    //     />
-    //   ),
-    // },
-  ];
-
-  const columns = [
-    {
-      title: "No Sertifikat",
-      dataIndex: "doctor_profile_id",
-      key: "doctor_profile_id",
-      width: 150,
-    },
-    {
-      title: "Jenis Sertifikat",
-      dataIndex: "certificate_type",
-      key: "certificate_type",
-      width: 200,
-    },
-    {
-      title: "Keterangan",
-      dataIndex: "description",
-      key: "description",
-      width: 250,
-    },
-    {
-      title: "Masa Berlaku",
-      dataIndex: "time_period",
-      key: "time_period",
-      width: 350,
-    },
-    {
-      title: "Ukuran File",
-      dataIndex: "file_size",
-      key: "file_size",
-      width: 150,
-    },
-  ];
+  // const imagesUrl = () => {
+  //   return dataDoctor?.map((val) => val.details);
+  // };
 
   return (
     <section id="profile-certificate-section" className="my-10">
@@ -143,7 +133,7 @@ export default function Certificate() {
             >
               <Table
                 id="table-certificate"
-                dataSource={DataSource}
+                dataSource={dataDoctor}
                 columns={columns}
                 pagination={false}
                 scroll={{ x: 1000 }}
@@ -161,10 +151,11 @@ export default function Certificate() {
                   display: "none",
                 }}
                 // src={DataSource.map((val) => val.details)}
+                // src: imagesUrl(),
                 preview={{
                   movable: true,
                   visible,
-                  src: DataSource.map((val) => val.details),
+                  src: selectedCertificateUrl,
                   onVisibleChange: (value) => {
                     setVisible(value);
                   },
