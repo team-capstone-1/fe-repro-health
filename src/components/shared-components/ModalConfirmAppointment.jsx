@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { Button, Modal, notification } from "antd";
+import { Button, Modal } from "antd";
 import { PiSealCheck } from "react-icons/pi";
+
+import { showSuccessToast } from "./Toast";
 
 const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleOk = () => {
-    openNotification();
+    // openNotification();
 
     setIsOpen(false);
     closeModal();
+    showSuccessToast("Pasien berhasil diverifikasi !", "top-right");
   };
   const handleCancel = () => {
     setIsOpen(false);
@@ -68,21 +71,21 @@ const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
 };
 export default ModalConfirmAppointment;
 
-const openNotification = () => {
-  notification.open({
-    message: (
-      <p className="font-medium text-[#FBFBFB]">
-        Pasien berhasil diverifikasi!
-      </p>
-    ),
-  });
+// const openNotification = () => {
+//   notification.open({
+//     message: (
+//       <p className="font-medium text-[#FBFBFB]">
+//         Pasien berhasil diverifikasi!
+//       </p>
+//     ),
+//   });
 
-  notification.config({
-    top: 60,
-    placement: "topRight",
-    closeIcon: <p className="me-5 text-sm text-[#93E5D5]">Abaikan</p>,
-    duration: 5,
-    className: "bg-green-500 h-[64px] w-screen",
-    stack: true,
-  });
-};
+//   notification.config({
+//     top: 60,
+//     placement: "topRight",
+//     closeIcon: <p className="me-5 text-sm text-[#93E5D5]">Abaikan</p>,
+//     duration: 5,
+//     className: "bg-green-500 h-[64px] w-screen",
+//     stack: true,
+//   });
+// };
