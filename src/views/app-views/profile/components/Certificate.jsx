@@ -33,7 +33,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 
 const columns = [
   {
-    title: "No Sertifikat",
+    title: "Id Sertifikat",
     dataIndex: "id",
     key: "id",
     width: 150,
@@ -132,7 +132,7 @@ export default function Certificate() {
           <Col span={24} md={12} lg={10} xl={8} className="text-start">
             <Form.Item name="search" id="search-certificate">
               <Input
-                placeholder="Cari Sertifikat berdasarkan nomor"
+                placeholder="Cari Sertifikat berdasarkan id"
                 size="large"
                 allowClear
                 prefix={<IoMdSearch />}
