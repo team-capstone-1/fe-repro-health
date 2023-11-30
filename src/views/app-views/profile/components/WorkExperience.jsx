@@ -1,9 +1,10 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { Timeline, ConfigProvider } from "antd";
+import { Timeline, ConfigProvider, Skeleton } from "antd";
 import { APIProfile } from "@/apis/APIProfile";
 
 export default function WorkExperience() {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDot, setSelectedDot] = useState(0);
   const [dataDoctor, setDataDoctor] = useState([]);
 
@@ -14,6 +15,7 @@ export default function WorkExperience() {
         setDataDoctor(result.response);
         const lastIndex = result?.response?.length - 1;
         setSelectedDot(lastIndex);
+        setIsLoading(false);
       }
     };
     fetchDoctorWorkExperience();
@@ -69,6 +71,7 @@ export default function WorkExperience() {
           },
         }}
       >
+        <Skeleton loading={isLoading} />
         <Timeline
           mode="left"
           items={timelineItems}

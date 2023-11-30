@@ -6,6 +6,7 @@ import {
   Image,
   Input,
   Row,
+  Skeleton,
   Space,
   Table,
 } from "antd";
@@ -76,6 +77,7 @@ const columns = [
 ];
 
 export default function Certificate() {
+  const [isLoading, setIsLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [dataDoctor, setDataDoctor] = useState([]);
   const [selectedCertificateUrl, setSelectedCertificateUrl] = useState("");
@@ -85,7 +87,7 @@ export default function Certificate() {
       const result = await APIProfile.getDoctorCertifications();
       if (result?.message === "success get doctor certifications") {
         setDataDoctor(result.response);
-        // console.log(result.response);
+        setIsLoading(false);
       }
     };
     fetchDoctorCertifications();
@@ -117,6 +119,7 @@ export default function Certificate() {
               />
             </Form.Item>
           </Col>
+          <Skeleton loading={isLoading} />
 
           <Col span={24}>
             <ConfigProvider

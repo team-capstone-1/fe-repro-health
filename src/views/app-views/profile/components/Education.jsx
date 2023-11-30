@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { ConfigProvider, Timeline } from "antd";
+import { ConfigProvider, Skeleton, Timeline } from "antd";
 import { APIProfile } from "@/apis/APIProfile";
 
 export default function Education() {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDot, setSelectedDot] = useState(0);
   const [dataDoctor, setDataDoctor] = useState([]);
 
@@ -11,6 +12,7 @@ export default function Education() {
       const result = await APIProfile.getDoctorEducationHistories();
       if (result?.message === "success get doctor educations") {
         setDataDoctor(result.response);
+        setIsLoading(false);
       }
     };
     fetchDoctorEducations();
@@ -68,6 +70,8 @@ export default function Education() {
           },
         }}
       >
+        <Skeleton loading={isLoading} />
+
         <Timeline
           items={educationItems}
           mode="left"
