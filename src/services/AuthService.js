@@ -20,7 +20,7 @@ export class AuthService {
         return false;
       };
 
-      if (!isTokenValid()) {
+      if (!isTokenValid) {
         this.clearCredentialsFromCookie();
         return null;
       }
