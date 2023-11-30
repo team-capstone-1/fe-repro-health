@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { axiosInstance } from "@/configs/AxiosInstance";
 
 export const APIProfile = {
@@ -6,7 +7,11 @@ export const APIProfile = {
       const result = await axiosInstance.get("/doctors/profile");
       return result.data;
     } catch (err) {
-      console.error(err);
+      if (err instanceof AxiosError) {
+        const { message } = err;
+        throw new AxiosError(message);
+      }
+      throw new Error(err);
     }
   },
 
@@ -15,7 +20,11 @@ export const APIProfile = {
       const result = await axiosInstance.get("/doctors/profile/work-histories");
       return result.data;
     } catch (err) {
-      console.error(err);
+      if (err instanceof AxiosError) {
+        const { message } = err;
+        throw new AxiosError(message);
+      }
+      throw new Error(err);
     }
   },
 
@@ -24,7 +33,11 @@ export const APIProfile = {
       const result = await axiosInstance.get("/doctors/profile/educations");
       return result.data;
     } catch (err) {
-      console.error(err);
+      if (err instanceof AxiosError) {
+        const { message } = err;
+        throw new AxiosError(message);
+      }
+      throw new Error(err);
     }
   },
 
@@ -33,7 +46,11 @@ export const APIProfile = {
       const result = await axiosInstance.get("/doctors/profile/certifications");
       return result.data;
     } catch (err) {
-      console.error(err);
+      if (err instanceof AxiosError) {
+        const { message } = err;
+        throw new AxiosError(message);
+      }
+      throw new Error(err);
     }
   },
 };

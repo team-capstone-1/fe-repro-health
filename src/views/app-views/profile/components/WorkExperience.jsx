@@ -1,19 +1,26 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { Timeline, ConfigProvider } from "antd";
+import { Timeline, ConfigProvider, Skeleton, Flex } from "antd";
 import { APIProfile } from "@/apis/APIProfile";
 
 export default function WorkExperience() {
+  const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDot, setSelectedDot] = useState(0);
   const [dataDoctor, setDataDoctor] = useState([]);
 
   useEffect(() => {
     const fetchDoctorWorkExperience = async () => {
-      const result = await APIProfile.getDoctorWorkHistories();
-      if (result.message === "success get doctor work histories") {
-        setDataDoctor(result.response);
+      try {
+        const result = await APIProfile.getDoctorWorkHistories();
+        setDataDoctor(result?.response);
         const lastIndex = result?.response?.length - 1;
         setSelectedDot(lastIndex);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsError(error);
+        setIsLoading(false);
       }
     };
     fetchDoctorWorkExperience();
@@ -69,6 +76,7 @@ export default function WorkExperience() {
           },
         }}
       >
+        <Skeleton loading={isLoading} />
         <Timeline
           mode="left"
           items={timelineItems}
@@ -76,6 +84,11 @@ export default function WorkExperience() {
           style={{ display: "inline-block" }}
         />
       </ConfigProvider>
+      {isError && (
+        <Flex className="mb-5 flex-col items-center justify-center">
+          <p>{isError.message}</p>
+        </Flex>
+      )}
     </section>
   );
 }

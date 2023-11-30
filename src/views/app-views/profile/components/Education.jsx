@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
-import { ConfigProvider, Timeline } from "antd";
+import { ConfigProvider, Flex, Skeleton, Timeline } from "antd";
 import { APIProfile } from "@/apis/APIProfile";
 
 export default function Education() {
+  const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDot, setSelectedDot] = useState(0);
   const [dataDoctor, setDataDoctor] = useState([]);
 
   useEffect(() => {
     const fetchDoctorEducations = async () => {
-      const result = await APIProfile.getDoctorEducationHistories();
-      if (result?.message === "success get doctor educations") {
-        setDataDoctor(result.response);
+      try {
+        const result = await APIProfile.getDoctorEducationHistories();
+        setDataDoctor(result?.response);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsError(error);
+        setIsLoading(false);
       }
     };
     fetchDoctorEducations();
@@ -68,12 +75,19 @@ export default function Education() {
           },
         }}
       >
+        <Skeleton loading={isLoading} />
+
         <Timeline
           items={educationItems}
           mode="left"
           style={{ display: "inline-block" }}
         />
       </ConfigProvider>
+      {isError && (
+        <Flex className="mb-5 flex-col items-center justify-center">
+          <p>{isError.message}</p>
+        </Flex>
+      )}
     </section>
   );
 }

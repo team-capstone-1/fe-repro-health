@@ -13,6 +13,7 @@ import { IoMdSearch } from "react-icons/io";
 
 // import ImageCertif from "@/assets/certificate-dental.png";
 import { APIProfile } from "@/apis/APIProfile";
+import { useDebounce } from "@/hooks/useDebounce";
 
 // const DataSource = [
 //   {
@@ -32,7 +33,7 @@ import { APIProfile } from "@/apis/APIProfile";
 
 const columns = [
   {
-    title: "No Sertifikat",
+    title: "Id Sertifikat",
     dataIndex: "id",
     key: "id",
     width: 150,
@@ -79,17 +80,39 @@ export default function Certificate() {
   const [visible, setVisible] = useState(false);
   const [dataDoctor, setDataDoctor] = useState([]);
   const [selectedCertificateUrl, setSelectedCertificateUrl] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const searchQuery = useDebounce(searchValue, 800);
 
   useEffect(() => {
     const fetchDoctorCertifications = async () => {
-      const result = await APIProfile.getDoctorCertifications();
-      if (result?.message === "success get doctor certifications") {
-        setDataDoctor(result.response);
-        // console.log(result.response);
+      try {
+        const result = await APIProfile.getDoctorCertifications();
+        setDataDoctor(result?.response);
+      } catch (error) {
+        console.error(error);
       }
     };
     fetchDoctorCertifications();
   }, []);
+
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredData = dataDoctor.filter((data) => {
+        return data.id.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+      setDataDoctor(filteredData);
+    } else {
+      const fetchDoctorCertifications = async () => {
+        try {
+          const result = await APIProfile.getDoctorCertifications();
+          setDataDoctor(result?.response);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchDoctorCertifications();
+    }
+  }, [searchQuery]);
 
   const handleOpen = (selectedRow) => {
     setSelectedCertificateUrl(selectedRow.details);
@@ -109,11 +132,15 @@ export default function Certificate() {
           <Col span={24} md={12} lg={10} xl={8} className="text-start">
             <Form.Item name="search" id="search-certificate">
               <Input
-                placeholder="Cari Sertifikat"
+                placeholder="Cari Sertifikat berdasarkan id"
                 size="large"
                 allowClear
                 prefix={<IoMdSearch />}
-                className="h-[3.14rem] hover:border-green-500 "
+                className="h-[3.14rem] hover:border-green-500 focus:border focus:border-green-500 focus:ring focus:ring-green-500"
+                value={searchValue}
+                onChange={(e) => {
+                  setSearchValue(e.target.value);
+                }}
               />
             </Form.Item>
           </Col>
