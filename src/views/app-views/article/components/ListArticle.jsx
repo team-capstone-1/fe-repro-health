@@ -1,14 +1,35 @@
+import dayjs from "dayjs";
+
 import { Row, Col, Card, Tag, Avatar, Flex } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import { ListArticles } from "../constant/list-article";
+// import { ListArticles } from "../constant/list-article";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
+import { useEffect, useState } from "react";
+import { APIArticle } from "@/apis/APIArticle";
+
 export default function ListArticle() {
+  const [isError, setIsError] = useState(null);
+  const [dataArticles, setDataArticles] = useState([]);
   useDocumentTitle("Artikel Saya");
   useScrollToTop();
+
+  useEffect(() => {
+    const fetchListArticles = async () => {
+      try {
+        const result = await APIArticle.getListArticle();
+        setDataArticles(result?.response);
+      } catch (error) {
+        console.log(error);
+        setIsError(error);
+      }
+    };
+    fetchListArticles();
+  }, []);
+
   return (
     <>
       <section id="search-article">
@@ -28,12 +49,15 @@ export default function ListArticle() {
 
       <section id="list-article">
         <Row gutter={[16, 24]}>
-          {ListArticles.map((item, i) => (
+          {dataArticles?.map((item, i) => (
             <Col key={i} span={8} xs={24} md={12} lg={8}>
               <Link to="/artikel">
-                <Card hoverable cover={<img alt="thumbnail" src={item.img} />}>
+                <Card
+                  hoverable
+                  cover={<img alt={item.image_desc} src={item.image} />}
+                >
                   <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
-                    {item.tag}
+                    {item.tags}
                   </Tag>
                   <p className="mb-5 mt-3 line-clamp-2 font-semibold">
                     {item.title}
@@ -43,8 +67,12 @@ export default function ListArticle() {
                       <Avatar src={item.ava} />
                     </div>
                     <div>
-                      <h6 className="font-semibold">{item.author}</h6>
-                      <h6 className="text-grey-200">{item.date}</h6>
+                      <h6 className="font-semibold">
+                        {(item.author = "Belum ada data")}
+                      </h6>
+                      <h6 className="text-grey-200">
+                        {dayjs(item?.date, "YYYY-MM-DD").format("DD MMM YYYY")}
+                      </h6>
                     </div>
                   </Flex>
                 </Card>
@@ -52,6 +80,11 @@ export default function ListArticle() {
             </Col>
           ))}
         </Row>
+        {isError && (
+          <Flex className="mb-5 flex-col items-center justify-center text-red-500">
+            <p>{isError.message}</p>
+          </Flex>
+        )}
       </section>
     </>
   );

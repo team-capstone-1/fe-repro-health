@@ -11,8 +11,26 @@ import {
   CommentUser as commentUser,
 } from "../constant/detail-article";
 
+import { APIArticle } from "@/apis/APIArticle";
+import { useEffect, useState } from "react";
+
 export default function DetailArticle() {
+  const [isError, setIsError] = useState(null);
+  const [detailArticles, setDetailArticles] = useState([]);
   useDocumentTitle("Artikel");
+
+  useEffect(() => {
+    const fetchDetailArticles = async () => {
+      try {
+        const result = await APIArticle.getAllArticle();
+        setDetailArticles(result?.response);
+      } catch (error) {
+        console.log(error);
+        setIsError(error);
+      }
+    };
+    fetchDetailArticles();
+  }, []);
 
   return (
     <section id="detail-article" className="mb-5 py-5">
@@ -158,6 +176,11 @@ export default function DetailArticle() {
           </>
         ))}
       </Card>
+      {isError && (
+        <Flex className="mb-5 flex-col items-center justify-center text-red-500">
+          <p>{isError.message}</p>
+        </Flex>
+      )}
     </section>
   );
 }
