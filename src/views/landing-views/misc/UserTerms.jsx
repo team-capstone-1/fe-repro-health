@@ -15,7 +15,7 @@ export default function UserTerms() {
     <>
       <div id="breadcrumb-user-terms" className="base-container">
         <Breadcrumb currentPage={DataUserTerms.title} />
-        <section id="user-terms-section">
+        <section id="user-terms-section" className="mx-3 sm:mx-0">
           <h1 id="user-terms-title" className="mb-4 mt-5">
             {DataUserTerms.title}
           </h1>
