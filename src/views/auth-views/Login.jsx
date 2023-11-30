@@ -23,6 +23,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const { search } = useLocation();
+  const userData = JSON.parse(localStorage.getItem("data"));
 
   const schema = yup.object().shape({
     email: yup
@@ -41,6 +42,10 @@ const Login = () => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      email: userData?.email,
+      password: userData?.password,
+    },
   });
 
   const onSubmitHandler = (data) => {

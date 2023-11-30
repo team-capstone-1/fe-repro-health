@@ -1,12 +1,9 @@
-import Cookies from "js-cookie";
 import { axiosInstance } from "@/configs/AxiosInstance";
 
 export const APIProfile = {
   getDoctorProfile: async () => {
     try {
-      const token = Cookies.get("token");
-      const headers = { Authorization: `Bearer ${token}` };
-      const result = await axiosInstance.get("/doctors/profile", { headers });
+      const result = await axiosInstance.get("/doctors/profile");
       return result.data;
     } catch (err) {
       console.error(err);
@@ -15,14 +12,7 @@ export const APIProfile = {
 
   getDoctorWorkHistories: async () => {
     try {
-      const token = Cookies.get("token");
-      const headers = { Authorization: `Bearer ${token}` };
-      const result = await axiosInstance.get(
-        "/doctors/profile/work-histories",
-        {
-          headers,
-        },
-      );
+      const result = await axiosInstance.get("/doctors/profile/work-histories");
       return result.data;
     } catch (err) {
       console.error(err);
@@ -31,11 +21,7 @@ export const APIProfile = {
 
   getDoctorEducationHistories: async () => {
     try {
-      const token = Cookies.get("token");
-      const headers = { Authorization: `Bearer ${token}` };
-      const result = await axiosInstance.get("/doctors/profile/educations", {
-        headers,
-      });
+      const result = await axiosInstance.get("/doctors/profile/educations");
       return result.data;
     } catch (err) {
       console.error(err);
@@ -44,14 +30,7 @@ export const APIProfile = {
 
   getDoctorCertifications: async () => {
     try {
-      const token = Cookies.get("token");
-      const headers = { Authorization: `Bearer ${token}` };
-      const result = await axiosInstance.get(
-        "/doctors/profile/certifications",
-        {
-          headers,
-        },
-      );
+      const result = await axiosInstance.get("/doctors/profile/certifications");
       return result.data;
     } catch (err) {
       console.error(err);
