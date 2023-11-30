@@ -2,21 +2,20 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { PiRobot } from "react-icons/pi";
+import { useDispatch, useSelector } from "react-redux";
+import { Flex, Skeleton } from "antd";
 
 import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
-import { useDispatch, useSelector } from "react-redux";
 import {
   fetchGetDoctorProfile,
   selectDoctorProfile,
 } from "@/store/get-doctor-profile-slice";
-import { Flex, Skeleton } from "antd";
 
 export default function Topbar() {
   const dispatch = useDispatch();
-  const dataDoctor = useSelector(selectDoctorProfile);
-  const profileImage = dataDoctor.data?.response.profile_image;
-  const specialistName = dataDoctor.data?.response.specialist.name;
+  const stateDataDoctor = useSelector(selectDoctorProfile);
+  const dataDoctor = stateDataDoctor?.data?.response;
 
   useEffect(() => {
     dispatch(fetchGetDoctorProfile());
@@ -57,42 +56,63 @@ export default function Topbar() {
           <div id="profile-doctor-topbar" className="flex items-center">
             <div>
               <a href="/profil">
-                {dataDoctor.status === "loading" ? (
+                {stateDataDoctor.status === "loading" && (
                   <Skeleton.Avatar active size={40} />
-                ) : (
+                )}
+                {stateDataDoctor.status === "success" && (
                   <img
                     id="profile-doctor-topbar"
-                    src={profileImage}
+                    src={dataDoctor?.profile_image}
                     alt="profile-doctor"
                     className="h-8 w-8 rounded-full md:h-11 md:w-11"
                   />
+                )}
+                {stateDataDoctor.status === "failed" && (
+                  <Skeleton.Avatar size={40} />
                 )}
               </a>
             </div>
             <a href="/profil" className="hover:text-green-500">
               <div className="ml-2">
-                {dataDoctor.status === "loading" ? (
+                {stateDataDoctor.status === "loading" && (
                   <Flex className="flex-col" gap={2}>
                     <div>
                       <Skeleton.Input active className="h-5 w-48" />
                     </div>
                     <div>
-                      <Skeleton.Input active className="h-4 w-48" />
+                      <Skeleton.Input active className="h-4 w-40" />
                     </div>
                   </Flex>
-                ) : (
+                )}
+                {stateDataDoctor.status === "success" && (
                   <>
                     <h6
                       id="doctor-name-topbar"
                       className="text-xs leading-none sm:text-sm md:text-base"
                     >
-                      Dr. Andi Cahaya, Sp.OG
+                      {dataDoctor?.name}
                     </h6>
                     <span
                       id="doctor-specialist-topbar"
                       className="text-xs font-medium leading-none md:text-sm"
                     >
-                      Spesialis {specialistName}
+                      Spesialis {dataDoctor?.specialist.name}
+                    </span>
+                  </>
+                )}
+                {stateDataDoctor.status === "failed" && (
+                  <>
+                    <h6
+                      id="doctor-name-topbar"
+                      className="text-xs leading-none sm:text-sm md:text-base"
+                    >
+                      Error Fetching Data!
+                    </h6>
+                    <span
+                      id="doctor-specialist-topbar"
+                      className="text-xs font-medium leading-none md:text-sm"
+                    >
+                      Something Went Wrong!
                     </span>
                   </>
                 )}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   Col,
   ConfigProvider,
+  Flex,
   Form,
   Image,
   Input,
@@ -77,17 +78,17 @@ const columns = [
 ];
 
 export default function Certificate() {
-  const [isLoading, setIsLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [dataDoctor, setDataDoctor] = useState([]);
   const [selectedCertificateUrl, setSelectedCertificateUrl] = useState("");
 
   useEffect(() => {
     const fetchDoctorCertifications = async () => {
-      const result = await APIProfile.getDoctorCertifications();
-      if (result?.message === "success get doctor certifications") {
-        setDataDoctor(result.response);
-        setIsLoading(false);
+      try {
+        const result = await APIProfile.getDoctorCertifications();
+        setDataDoctor(result?.response);
+      } catch (error) {
+        console.error(error);
       }
     };
     fetchDoctorCertifications();
@@ -119,7 +120,6 @@ export default function Certificate() {
               />
             </Form.Item>
           </Col>
-          <Skeleton loading={isLoading} />
 
           <Col span={24}>
             <ConfigProvider
