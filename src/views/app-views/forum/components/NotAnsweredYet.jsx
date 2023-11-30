@@ -101,7 +101,7 @@ export default function NotAnsweredYet() {
           forumList.map((data) => (
             <div
               key={data.question}
-              className="rounded-md px-6 py-4 ring-1 ring-slate-300 max-[350px]:px-2"
+              className="rounded-md px-6 py-4 ring-1 ring-slate-300 max-[450px]:px-3"
             >
               <h6 className="text-right text-red-500 max-[450px]:text-[0.65rem]">
                 Belum Terjawab
@@ -116,7 +116,7 @@ export default function NotAnsweredYet() {
                     {data.title}
                   </h5>
                 </Link>
-                <h6 className="pt-1.5 text-slate-400 max-[450px]:text-[0.7rem]">
+                <h6 className="truncate pt-1.5 text-slate-400 max-[450px]:max-w-[60px] max-[450px]:text-[0.7rem]">
                   {data.date}
                 </h6>
               </div>
