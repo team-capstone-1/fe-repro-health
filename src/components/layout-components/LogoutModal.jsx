@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Modal, Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import logoutModalIcon from "@/assets/logout-modal-icon.svg";
 import { APIAuth } from "@/apis/APIAuth";
-import { useNavigate } from "react-router-dom";
 
 export default function Logout({ closeModal }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -10,8 +10,7 @@ export default function Logout({ closeModal }) {
 
   const handleOk = () => {
     setIsModalOpen(false);
-    APIAuth.logout();
-    navigate("/");
+    APIAuth.logout(navigate);
     closeModal();
   };
 
