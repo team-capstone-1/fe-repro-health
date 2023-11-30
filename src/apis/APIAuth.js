@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { axiosInstance } from "@/configs/AxiosInstance";
 import { authService } from "@/configs/Auth";
 
@@ -8,9 +9,12 @@ export const APIAuth = {
       const { token } = result.data.response;
       authService.storeCredentials({ token });
       return result.data;
-    } catch (error) {
-      console.error(error.response?.data);
-      return error.response?.data;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
     }
   },
   loginWithRememberMe: async (data, isRemembered) => {
@@ -19,12 +23,16 @@ export const APIAuth = {
       const { token } = result.data.response;
       authService.storeCredentials({ token, isRemembered, data });
       return result.data;
-    } catch (error) {
-      console.error(error.response?.data);
-      return error.response?.data;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
     }
   },
-  logout: () => {
-    authService.clearCredentialsFromCookie();
+  logout: (navigate) => {
+    authService.clearCredentialsFromCookie(navigate);
+    navigate("/");
   },
 };

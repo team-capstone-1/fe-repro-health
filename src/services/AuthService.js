@@ -1,6 +1,5 @@
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-
 export class AuthService {
   isAuthorized() {
     if (this.getToken()) {
@@ -20,17 +19,16 @@ export class AuthService {
         }
         return false;
       };
-  
+
       if (!isTokenValid()) {
-        Cookies.remove("token");
+        this.clearCredentialsFromCookie();
         return null;
       }
-  
+
       return Cookies.get("token");
     } catch (error) {
       console.error(error);
     }
-    
   }
 
   storeCredentials({ token, isRemembered, data }) {
@@ -41,7 +39,6 @@ export class AuthService {
     } else {
       const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
       Cookies.set("token", token, { expires });
-      console.log(data);
       localStorage.setItem("data", JSON.stringify(data));
     }
   }
@@ -50,4 +47,3 @@ export class AuthService {
     Cookies.remove("token");
   }
 }
-
