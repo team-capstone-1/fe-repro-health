@@ -1,4 +1,7 @@
 import dayjs from "dayjs";
+import "dayjs/locale/id";
+
+dayjs.locale("id");
 
 const formatDateToStringMonth = (date) => {
   const value = dayjs(date, "DD-MM-YYYY");

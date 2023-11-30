@@ -1,4 +1,7 @@
 import dayjs from "dayjs";
+import "dayjs/locale/id";
+
+dayjs.locale("id");
 
 import { Row, Col, Card, Tag, Avatar, Flex } from "antd";
 import { BsSearch } from "react-icons/bs";
