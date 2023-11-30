@@ -33,15 +33,16 @@ export class AuthService {
     
   }
 
-  storeCredentialsToCookie({ token, isRemembered }) {
+  storeCredentials({ token, isRemembered, data }) {
     if (!isRemembered) {
-      // set expired 1 days
-      const expires = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
       Cookies.set("token", token, { expires });
+      localStorage.removeItem("data");
     } else {
-      // set expired after 14 days
-      const expires = new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000);
+      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
       Cookies.set("token", token, { expires });
+      console.log(data);
+      localStorage.setItem("data", JSON.stringify(data));
     }
   }
 

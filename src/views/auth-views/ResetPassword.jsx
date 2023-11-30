@@ -2,7 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import resetPasswordIllus from "@/assets/reset-password-illustration.svg";
 
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+
 const ResetPassword = () => {
+  useDocumentTitle("Reset Password");
+
   const navigate = useNavigate();
 
   return (

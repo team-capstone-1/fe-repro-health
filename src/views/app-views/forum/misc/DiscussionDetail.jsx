@@ -8,8 +8,11 @@ import Markdown from "react-markdown";
 import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
 import { APIForum } from "@/apis/APIForum";
 import { format } from "date-fns";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 export default function DiscussionDetail() {
+  useDocumentTitle("Detail Pertanyaan");
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);

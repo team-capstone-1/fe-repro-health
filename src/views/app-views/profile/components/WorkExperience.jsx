@@ -1,31 +1,34 @@
-import { useState } from "react";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
 import { Timeline, ConfigProvider } from "antd";
-import { DataExperience as data } from "../constant/data-experience";
+import { APIProfile } from "@/apis/APIProfile";
 
 export default function WorkExperience() {
-  const CustomDot = ({ onClick, selected }) => (
-    <button
-      onClick={onClick}
-      style={{
-        width: 16,
-        height: 16,
-        border: "2px solid #14C6A4",
-        borderRadius: "50%",
-        backgroundColor: selected ? "#14C6A4" : "#FFFFFF",
-      }}
-    />
-  );
-
   const [selectedDot, setSelectedDot] = useState(0);
+  const [dataDoctor, setDataDoctor] = useState([]);
 
+  useEffect(() => {
+    const fetchDoctorWorkExperience = async () => {
+      const result = await APIProfile.getDoctorWorkHistories();
+      if (result.message === "success get doctor work histories") {
+        setDataDoctor(result.response);
+        const lastIndex = result?.response?.length - 1;
+        setSelectedDot(lastIndex);
+      }
+    };
+    fetchDoctorWorkExperience();
+  }, []);
   const handleDotClick = (index) => {
     setSelectedDot(index);
   };
 
-  const timelineItems = data.map((items, index) => ({
+  const timelineItems = dataDoctor?.map((items, index) => ({
     label: (
       <p className="text-xs font-semibold sm:me-[40px] sm:text-sm lg:me-[90px] lg:text-base">
-        {items.year}
+        {items.start_date?.slice(0, 4)} -{" "}
+        {items.end_date?.slice(0, 4) >= dayjs().year()
+          ? "Sekarang"
+          : items.end_date?.slice(0, 4)}
       </p>
     ),
     dot: (
@@ -41,13 +44,11 @@ export default function WorkExperience() {
             {items.job}
           </p>
         </div>
-        {items.position.map((desc, descIndex) => (
-          <ul key={descIndex} className="w-[200px] sm:w-[250px] lg:w-[500px]">
-            <li className="mb-1 ms-3 text-xs font-light text-[#686868] sm:w-[300px] md:w-[420px] md:text-sm lg:w-[550px] lg:text-sm xl:w-[800px]">
-              &bull; {desc}
-            </li>
-          </ul>
-        ))}
+        <ul className="w-[180px] list-disc sm:w-[250px] lg:w-[500px]">
+          <li className="mb-1 ms-3 text-xs font-light text-[#686868] sm:w-[300px] md:w-[420px] md:text-sm lg:w-[550px] lg:text-sm xl:w-[800px]">
+            {items.position}
+          </li>
+        </ul>
       </div>
     ),
   }));
@@ -71,9 +72,22 @@ export default function WorkExperience() {
         <Timeline
           mode="left"
           items={timelineItems}
+          reverse={true}
           style={{ display: "inline-block" }}
         />
       </ConfigProvider>
     </section>
   );
 }
+const CustomDot = ({ onClick, selected }) => (
+  <button
+    onClick={onClick}
+    style={{
+      width: 16,
+      height: 16,
+      border: "2px solid #14C6A4",
+      borderRadius: "50%",
+      backgroundColor: selected ? "#14C6A4" : "#FFFFFF",
+    }}
+  />
+);

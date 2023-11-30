@@ -41,22 +41,24 @@ export default function DoctorPage() {
                 {doctorPage.subHeader}
               </p>
               <div className="mt-4 flex flex-wrap gap-4">
-                <Button
-                  id="join-with-us-button"
-                  type="primary"
-                  className="bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:bg-green-600 2xl:mt-6"
-                >
-                  <Link to="mailto:ReproHealthCS@gmail.com">
+                <Link to="mailto:reprohealth@gmail.com">
+                  <Button
+                    id="join-with-us-button"
+                    type="primary"
+                    className="bg-green-500 px-6 pb-8 pt-2 font-semibold text-white hover:bg-green-600 2xl:mt-6"
+                  >
                     Gabung Bersama Kami
-                  </Link>
-                </Button>
-                <Button
-                  id="login-as-doctor-button"
-                  ghost
-                  className="border-green-500 px-6 pb-8 pt-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white 2xl:mt-6"
-                >
-                  <Link to="/login">Masuk Sebagai Dokter</Link>
-                </Button>
+                  </Button>
+                </Link>
+                <Link to="/login">
+                  <Button
+                    id="login-as-doctor-button"
+                    ghost
+                    className="border-green-500 px-6 pb-8 pt-2 font-semibold text-green-500 hover:bg-green-500 hover:text-white 2xl:mt-6"
+                  >
+                    Masuk Sebagai Dokter
+                  </Button>
+                </Link>
               </div>
             </div>
             <h4
@@ -107,14 +109,16 @@ export default function DoctorPage() {
           >
             {doctorPage.subCTA}
           </p>
-          <Button
-            id="call-to-action-button"
-            type="primary"
-            className="mt-5 h-10 px-6 pb-8 pt-2 font-semibold 2xl:mt-6"
-          >
-            <AiOutlineMail className="me-2 inline-block h-5 w-5 pb-[0.15em]" />
-            <Link to="mailto:ReproHealthCS@gmail.com">Hubungi Email Kami</Link>
-          </Button>
+          <Link to="mailto:reprohealth@gmail.com">
+            <Button
+              id="call-to-action-button"
+              type="primary"
+              className="mt-5 h-10 px-6 pb-8 pt-2 font-semibold 2xl:mt-6"
+            >
+              <AiOutlineMail className="me-2 inline-block h-5 w-5 pb-[0.15em]" />
+              Hubungi Email Kami
+            </Button>
+          </Link>
         </div>
       </section>
     </>

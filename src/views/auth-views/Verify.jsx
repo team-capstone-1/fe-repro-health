@@ -6,8 +6,11 @@ import codeVerifyIllus from "@/assets/code-verify-illustration.svg";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 const Verify = () => {
+  useDocumentTitle("Verifikasi");
+
   const navigate = useNavigate();
   const [isFocusCode, setIsFocusCode] = useState(false);
 

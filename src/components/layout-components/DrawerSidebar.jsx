@@ -74,7 +74,7 @@ const App = () => {
     getItem(
       "Artikel",
       "artikel",
-      <Link to="/artikel" className="p-2">
+      <Link to="/artikel-saya" className="p-2">
         <HiOutlineNewspaper className={iconStyle} id="artikel-icon-sidebar" />
       </Link>,
     ),

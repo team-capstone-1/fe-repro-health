@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Row, Button, Col, Flex } from "antd";
 
-export default function ButtonFilter() {
-  const [selectedButton, setSelectedButton] = useState("Bulanan");
+export default function ButtonFilter({ onFilterClick }) {
+  const [selectedFilter, setSelectedfilter] = useState("bulan");
 
   const handleButtonClick = (buttonType) => {
-    setSelectedButton(buttonType);
+    setSelectedfilter(buttonType);
+    onFilterClick(buttonType);
   };
   return (
     <>
@@ -25,11 +26,11 @@ export default function ButtonFilter() {
               ghost
               id="button-filter-monthly"
               className={`px-4 hover:bg-green-500 hover:text-white ${
-                selectedButton === "Bulanan"
-                  ? "bg-green-500"
-                  : "border-green-500 text-green-600"
+                selectedFilter === "bulan"
+                  ? "bg-green-500 hover:border-green-200"
+                  : "border-green-500 bg-transparent text-green-600"
               }`}
-              onClick={() => handleButtonClick("Bulanan")}
+              onClick={() => handleButtonClick("bulan")}
             >
               Bulanan
             </Button>
@@ -37,11 +38,11 @@ export default function ButtonFilter() {
               ghost
               id="button-filter-weekly"
               className={`px-4 hover:bg-green-500 hover:text-white ${
-                selectedButton === "Mingguan"
-                  ? "bg-green-500"
+                selectedFilter === "minggu"
+                  ? "bg-green-500 hover:border-green-200"
                   : "border-green-500 text-green-600"
               }`}
-              onClick={() => handleButtonClick("Mingguan")}
+              onClick={() => handleButtonClick("minggu")}
             >
               Mingguan
             </Button>
@@ -49,11 +50,11 @@ export default function ButtonFilter() {
               ghost
               id="button-filter-daily"
               className={`px-4 hover:bg-green-500 hover:text-white ${
-                selectedButton === "Harian"
-                  ? "bg-green-500"
+                selectedFilter === "hari"
+                  ? "bg-green-500 hover:border-green-200"
                   : "border-green-500 text-green-600"
               }`}
-              onClick={() => handleButtonClick("Harian")}
+              onClick={() => handleButtonClick("hari")}
             >
               Harian
             </Button>

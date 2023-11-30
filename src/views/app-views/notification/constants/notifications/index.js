@@ -14,7 +14,7 @@ export const DataNotifications = [
     read: false,
   },
   {
-    type: "artikel",
+    type: "artikel-saya",
     title: "Artikel anda disimpan sebanyak 10 kali!",
     description: "Artikel anda telah disimpan sebanyak 10 kali oleh pengguna.",
     dateTime: 1700744400000,
@@ -65,7 +65,7 @@ export const DataNotifications = [
     read: true,
   },
   {
-    type: "artikel",
+    type: "artikel-saya",
     title: "Artikel anda dikomentari oleh 5 orang!",
     description:
       "Artikel anda telah dikomentari sebanyak 5 kali oleh pengguna.",
