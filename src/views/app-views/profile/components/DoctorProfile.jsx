@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react";
 import { Card, Skeleton } from "antd";
+import { useSelector } from "react-redux";
 
-import { APIProfile } from "@/apis/APIProfile";
+import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
 export default function DoctorProfile() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [dataDoctor, setDataDoctor] = useState(null);
-
-  useEffect(() => {
-    const fetchDoctorProfile = () => {
-      APIProfile.getDoctorProfile().then(async (result) => {
-        if (result?.message === "success get doctor profile") {
-          setDataDoctor(result.response);
-          setIsLoading(false);
-        }
-      });
-    };
-    fetchDoctorProfile();
-  }, []);
+  const dataDoctor = useSelector(selectDoctorProfile);
+  const doctorName = dataDoctor.data?.response.name;
+  const profileImage = dataDoctor.data?.response.profile_image;
+  const specialistName = dataDoctor.data?.response.specialist.name;
+  const address = dataDoctor.data?.response.address;
+  const phone = dataDoctor.data?.response.phone;
+  const email = dataDoctor.data?.response.email;
 
   return (
     <>
       <Card>
         <h3>Profil</h3>
-        {!isLoading ? (
+        {dataDoctor.status === "success" && (
           <div className="items-center space-y-4 md:grid md:grid-cols-2 lg:grid-cols-12">
             <div className="flex justify-center md:col-span-1 lg:col-span-3 xl:col-span-2">
               <div id="doctor-image">
                 <img
-                  src={dataDoctor?.profile_image}
+                  src={profileImage}
                   alt="profile-doctor"
                   className="my-5 h-32 w-32 rounded-full md:my-0 md:h-36 md:w-36"
                 />
@@ -37,10 +31,10 @@ export default function DoctorProfile() {
             <div className="flex justify-start md:col-span-1 lg:col-span-4 lg:justify-center xl:col-span-3">
               <div id="doctor-information" className="flex flex-col">
                 <p className="text-sm font-semibold text-grey-900 md:text-base">
-                  {dataDoctor?.name}
+                  {doctorName}
                 </p>
                 <p className="text-sm font-medium text-grey-300 md:text-base">
-                  Spesialis {dataDoctor?.specialist.name}
+                  Spesialis {specialistName}
                 </p>
                 <p className="mt-2">10 tahun pengalaman</p>
               </div>
@@ -53,7 +47,7 @@ export default function DoctorProfile() {
                 <p className="text-sm font-semibold text-grey-900 md:text-base">
                   Alamat
                 </p>
-                <p className="text-sm md:text-base">{dataDoctor?.address}</p>
+                <p className="text-sm md:text-base">{address}</p>
               </div>
             </div>
             <div className="flex md:col-span-1 lg:col-span-5 xl:col-span-3">
@@ -67,13 +61,14 @@ export default function DoctorProfile() {
                   </p>
                 </div>
                 <div className="flex-col">
-                  <p className="text-sm md:text-base">{dataDoctor?.email}</p>
-                  <p className="text-sm md:text-base">{dataDoctor?.phone}</p>
+                  <p className="text-sm md:text-base">{email}</p>
+                  <p className="text-sm md:text-base">{phone}</p>
                 </div>
               </div>
             </div>
           </div>
-        ) : (
+        )}
+        {dataDoctor.status === "loading" && (
           <div>
             <div className="items-center space-y-4 md:grid md:grid-cols-2 lg:grid-cols-12">
               <div className="flex justify-center md:col-span-1 lg:col-span-3 xl:col-span-2">
