@@ -1,11 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { Button } from "antd";
-
+import anonymousPict from "@/assets/anonymous-pp.jpg";
+import Markdown from "react-markdown";
 import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
+import { APIForum } from "@/apis/APIForum";
+import { format } from "date-fns";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 export default function DiscussionDetail() {
@@ -16,21 +18,14 @@ export default function DiscussionDetail() {
   const [isShow, setIsShow] = useState(false);
   const { questionId } = useParams();
   const { register, handleSubmit } = useForm();
+  const [payload, setPayload] = useState();
 
   useEffect(() => {
     setLoading(true);
     try {
       const fetchData = async () => {
-        const { data } = await axios.get(
-          "https://6557e782bd4bcef8b6133d49.mockapi.io/forum",
-          {
-            params: {
-              id: String(questionId),
-            },
-          },
-        );
-        const newData = data.filter((listData) => listData.id == questionId);
-        setData(newData);
+        const data = await APIForum.getForumDetail(questionId);
+        setData(data);
         setLoading(false);
       };
       fetchData();
@@ -43,15 +38,16 @@ export default function DiscussionDetail() {
   const handleShowModal = () => {
     setIsShow((prev) => !prev);
   };
-  const onSubmit = (data) => {
+  const onSubmit = (content) => {
     handleShowModal();
-    console.log({ data });
+    setPayload({ questionId, data: content["reply-forum"] });
   };
 
   return (
     <>
-      <div className="px-6 pt-4">
+      <div className="px-0 sm:px-5 md:px-8 pt-4">
         <Link
+          id="back-to-forum"
           className="text-lg font-medium text-slate-500 hover:text-green-500"
           to="/forum"
         >
@@ -67,17 +63,27 @@ export default function DiscussionDetail() {
             <div className="flex gap-3 py-3">
               <img
                 className="h-12 w-12 rounded-full hover:opacity-80"
-                src={data[0]?.authorProfile}
+                src={
+                  data[0]?.anonymous
+                    ? anonymousPict
+                    : data[0]?.patient?.profile_image
+                }
                 alt="patient profile"
               />
               <div className="flex flex-col justify-center">
                 <h5 className="text-sm font-semibold max-[350px]:text-xs">
-                  Oleh : {data[0]?.author}
+                  Oleh :{" "}
+                  {data[0]?.anonymous ? "Anonim" : data[0]?.patient?.name}
                 </h5>
-                <h5 className="text-sm max-[350px]:text-xs">{data[0]?.time}</h5>
+                <h5 className="text-sm max-[350px]:text-xs">
+                  {`${format(
+                    new Date(data[0]?.date),
+                    "dd MMMM yyyy",
+                  )} pukul ${format(new Date(data[0]?.date), "hh:mm")} WIB`}
+                </h5>
               </div>
             </div>
-            {data[0]?.question}
+            {data[0]?.content}
             <div>
               {data[0]?.status ? (
                 <div className="mt-6 rounded-lg ring-1 ring-slate-200">
@@ -86,20 +92,28 @@ export default function DiscussionDetail() {
                     <div className="flex gap-3 pt-2">
                       <img
                         className="h-12 w-12 rounded-full hover:opacity-80"
-                        src={data[0]?.authorProfile}
+                        src={data[0]?.forum_replies[0]?.doctor?.profile_image}
                         alt="patient profile"
                       />
                       <div className="flex flex-col justify-center">
                         <h5 className="text-sm font-semibold max-[350px]:text-xs">
-                          Oleh : {data[0]?.author}
+                          {data[0]?.forum_replies[0]?.doctor?.name}
                         </h5>
                         <h5 className="text-sm text-slate-500 max-[350px]:text-xs">
-                          {data[0]?.time}
+                          {`${format(
+                            new Date(data[0]?.forum_replies[0]?.date),
+                            "dd MMMM yyyy",
+                          )} pukul ${format(
+                            new Date(data[0]?.forum_replies[0]?.date),
+                            "hh:mm",
+                          )} WIB`}
                         </h5>
                       </div>
                     </div>
                   </div>
-                  <p className="px-3 py-2">{data[0]?.answer}</p>
+                  <Markdown className="px-3 py-2">
+                    {data[0]?.forum_replies[0]?.content}
+                  </Markdown>
                 </div>
               ) : (
                 <div className="py-5">
@@ -117,6 +131,7 @@ export default function DiscussionDetail() {
                     />
                     <div className="flex justify-end">
                       <Button
+                        id="send-reply"
                         className="me-0 mt-12 w-36 bg-green-500 text-white"
                         htmlType="submit"
                       >
@@ -134,6 +149,7 @@ export default function DiscussionDetail() {
         <ModalConfirmForumAnswer
           closeModal={handleShowModal}
           authorName={data[0]?.author}
+          payload={payload}
         />
       )}
     </>
