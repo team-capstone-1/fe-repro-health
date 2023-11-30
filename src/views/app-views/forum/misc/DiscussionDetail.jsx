@@ -3,12 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { Button } from "antd";
-import moment from "moment";
-import "moment/locale/id";
 import anonymousPict from "@/assets/anonymous-pp.jpg";
 import Markdown from "react-markdown";
 import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
 import { APIForum } from "@/apis/APIForum";
+import { format } from "date-fns";
 
 export default function DiscussionDetail() {
   const [data, setData] = useState([]);
@@ -22,11 +21,8 @@ export default function DiscussionDetail() {
     setLoading(true);
     try {
       const fetchData = async () => {
-        const data = await APIForum.getForumDetail();
-        console.log(data);
-        const newData = data.filter((listData) => listData.id == questionId);
-        setData(newData);
-        console.log(newData);
+        const data = await APIForum.getForumDetail(questionId);
+        setData(data);
         setLoading(false);
       };
       fetchData();
@@ -41,12 +37,12 @@ export default function DiscussionDetail() {
   };
   const onSubmit = (content) => {
     handleShowModal();
-    setPayload({ questionId, data: content["reply-forum"]});
+    setPayload({ questionId, data: content["reply-forum"] });
   };
 
   return (
     <>
-      <div className="px-6 pt-4">
+      <div className="px-0 sm:px-5 md:px-8 pt-4">
         <Link
           id="back-to-forum"
           className="text-lg font-medium text-slate-500 hover:text-green-500"
@@ -65,16 +61,22 @@ export default function DiscussionDetail() {
               <img
                 className="h-12 w-12 rounded-full hover:opacity-80"
                 src={
-                  data[0]?.anonymous ? anonymousPict : data[0]?.authorProfile
+                  data[0]?.anonymous
+                    ? anonymousPict
+                    : data[0]?.patient?.profile_image
                 }
                 alt="patient profile"
               />
               <div className="flex flex-col justify-center">
                 <h5 className="text-sm font-semibold max-[350px]:text-xs">
-                  Oleh : {data[0]?.author}
+                  Oleh :{" "}
+                  {data[0]?.anonymous ? "Anonim" : data[0]?.patient?.name}
                 </h5>
                 <h5 className="text-sm max-[350px]:text-xs">
-                  {moment(data[0]?.date).format("MMMM Do YYYY, h:mm:ss a")}
+                  {`${format(
+                    new Date(data[0]?.date),
+                    "dd MMMM yyyy",
+                  )} pukul ${format(new Date(data[0]?.date), "hh:mm")} WIB`}
                 </h5>
               </div>
             </div>
@@ -87,15 +89,21 @@ export default function DiscussionDetail() {
                     <div className="flex gap-3 pt-2">
                       <img
                         className="h-12 w-12 rounded-full hover:opacity-80"
-                        src={data[0]?.authorProfile}
+                        src={data[0]?.forum_replies[0]?.doctor?.profile_image}
                         alt="patient profile"
                       />
                       <div className="flex flex-col justify-center">
                         <h5 className="text-sm font-semibold max-[350px]:text-xs">
-                          {data[0]?.author}
+                          {data[0]?.forum_replies[0]?.doctor?.name}
                         </h5>
                         <h5 className="text-sm text-slate-500 max-[350px]:text-xs">
-                          {data[0]?.date}
+                          {`${format(
+                            new Date(data[0]?.forum_replies[0]?.date),
+                            "dd MMMM yyyy",
+                          )} pukul ${format(
+                            new Date(data[0]?.forum_replies[0]?.date),
+                            "hh:mm",
+                          )} WIB`}
                         </h5>
                       </div>
                     </div>

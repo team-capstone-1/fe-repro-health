@@ -1,12 +1,11 @@
 import { axiosInstance } from "@/configs/AxiosInstance";
-import Cookies from "js-cookie";
 
 export const APIForum = {
-  getForumList: async () => {
+  getForumList: async (title) => {
     try {
-      const result = await axiosInstance.get("/forums", {
-        headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
+      const result = await axiosInstance.get("/doctors/forums", {
+        params: {
+          title,
         },
       });
       return result.data.response;
@@ -15,13 +14,9 @@ export const APIForum = {
       return error.response.data.message;
     }
   },
-  getForumDetail: async () => {
+  getForumDetail: async (id) => {
     try {
-      const result = await axiosInstance.get("/doctors/forums", {
-        headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
-        },
-      });
+      const result = await axiosInstance.get(`/doctors/forums/details/${id}`);
       return result.data.response;
     } catch (error) {
       console.error(error.response.data.message);
@@ -35,11 +30,6 @@ export const APIForum = {
         {
           forum_id: questionId,
           content: data,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${Cookies.get("token")}`,
-          },
         },
       );
       return result.data.response;
