@@ -32,11 +32,11 @@ export class AuthService {
 
   storeCredentials({ token, isRemembered, data }) {
     if (!isRemembered) {
-      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
+      const expires = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
       Cookies.set("token", token, { expires });
       localStorage.removeItem("data");
     } else {
-      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
+      const expires = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
       Cookies.set("token", token, { expires });
       localStorage.setItem("data", JSON.stringify(data));
     }
