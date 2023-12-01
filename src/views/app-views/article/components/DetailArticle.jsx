@@ -18,6 +18,7 @@ import {
 
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
+import Markdown from "react-markdown";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);
@@ -135,6 +136,23 @@ export default function DetailArticle() {
           </div>
 
           <div id="content-article" className="my-5 w-full text-justify">
+            <Markdown className="text-base font-[400] text-[#151515]">
+              {detailArticles?.content}
+            </Markdown>
+
+            <div className="mb-4 mt-5">
+              <h5 className="mb-2 text-sm font-semibold text-[#151515] sm:text-base">
+                Referensi
+              </h5>
+              {detailArticle[0].reference.map((ref) => (
+                <p className="text-start text-[10px] font-[300] italic text-[#151515] sm:text-sm">
+                  {ref}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* <div id="content-article" className="my-5 w-full text-justify">
             <p className="text-base font-[400] text-[#151515]">
               {detailArticles?.content}
             </p>
@@ -149,7 +167,7 @@ export default function DetailArticle() {
                 </p>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <section id="comment-section">
             <div className="mt-14 h-14 w-full bg-[#E9E9E9] p-4">
