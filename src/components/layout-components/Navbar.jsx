@@ -89,14 +89,18 @@ export default function Navbar() {
             </a>
           </li>
           <li className="md:text-md ms-16 mt-6 text-sm text-grey-10 hover:bg-green-50 md:my-0 md:ms-0 md:hover:bg-transparent">
-            <a href="/#download-section">
+            <Link
+              to="https://drive.google.com/drive/folders/1zPcloKV1jKKxmaKEVK9TiTCCvtEhG7QZ"
+              target="_blank"
+            >
               <Button
+                id="download-app"
                 type="primary"
-                className="flex items-center px-7 py-4 font-semibold"
+                className="flex items-center px-6 py-4 font-semibold"
               >
                 Unduh Sekarang
               </Button>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

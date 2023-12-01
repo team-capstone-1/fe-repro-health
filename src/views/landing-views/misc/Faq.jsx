@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import { Collapse, Card, Row, Col } from "antd";
-import { MdOutlineEmail } from "react-icons/md";
+import { HiOutlineMail } from "react-icons/hi";
 
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import Button from "@/components/shared-components/Button";
@@ -41,8 +41,8 @@ export default function Faq() {
                 lg={8}
                 className="text-center md:text-end md:font-semibold"
               >
-                <Link to="mailto:reprohealth@gmail.com">
-                  <Button text="Hubungi email kami" icon={<MdOutlineEmail />} />
+                <Link to="mailto:reprohealth@gmail.com" id="email-us-faq">
+                  <Button text="Hubungi email kami" icon={<HiOutlineMail />} />
                 </Link>
               </Col>
             </Row>
