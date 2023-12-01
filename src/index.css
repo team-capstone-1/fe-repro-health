@@ -17,7 +17,7 @@
 }
 
 .icon-footer {
-  @apply flex h-8 w-8 cursor-pointer place-content-center items-center rounded-full border-2 border-white hover:border-green-100 hover:text-green-100 hover:duration-300;
+  @apply flex h-8 w-8 cursor-pointer place-content-center items-center rounded-full border-2 border-white hover:border-green-100 hover:text-green-200 hover:duration-300;
 }
 
 .ql-container {
