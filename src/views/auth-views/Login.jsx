@@ -51,26 +51,28 @@ const Login = () => {
     const redirectTo = params.get("return_to");
     if (isRemembered) {
       try {
-        await APIAuth.loginWithRememberMe(data, isRemembered);
-        if (redirectTo) {
-          returnTo = `/${redirectTo}`;
-          return navigate(returnTo);
-        } else {
-          navigate(returnTo);
-        }
+        await APIAuth.loginWithRememberMe(data, isRemembered).then(() => {
+          if (redirectTo) {
+            returnTo = `/${redirectTo}`;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        });
       } catch (error) {
         console.error(error);
         showErrorToast(error.message, "top-right");
       }
     } else {
       try {
-        await APIAuth.login(data);
-        if (redirectTo) {
-          returnTo = `/${redirectTo}`;
-          return navigate(returnTo);
-        } else {
-          navigate(returnTo);
-        }
+        await APIAuth.login(data).then(() => {
+          if (redirectTo) {
+            returnTo = `/${redirectTo}`;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        });
       } catch (error) {
         console.error(error);
         showErrorToast(error.message, "top-right");

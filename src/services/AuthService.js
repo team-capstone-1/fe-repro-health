@@ -14,15 +14,14 @@ export class AuthService {
         const token = Cookies.get("token");
         if (token) {
           const decoded = jwtDecode(token);
-          const currentTime = Date.now() / 1000;
-          return decoded.exp > currentTime;
+          // const currentTime = Date.now() / 1000;
+          // return decoded.exp < currentTime
+          return decoded.authorized;
         }
         return false;
       };
-
-      if (!isTokenValid) {
+      if (!isTokenValid()) {
         this.clearCredentialsFromCookie();
-        return null;
       }
 
       return Cookies.get("token");
