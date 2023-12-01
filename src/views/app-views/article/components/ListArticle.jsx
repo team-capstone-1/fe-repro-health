@@ -3,11 +3,11 @@ import "dayjs/locale/id";
 
 dayjs.locale("id");
 
-import { Row, Col, Card, Tag, Avatar, Flex } from "antd";
+import { Row, Col, Card, Tag, Avatar, Flex, Image } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-// import { ListArticles } from "../constant/list-article";
+import { ListArticles } from "../constant/list-article";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
@@ -54,20 +54,28 @@ export default function ListArticle() {
         <Row gutter={[16, 24]}>
           {dataArticles?.map((item, i) => (
             <Col key={i} span={8} xs={24} md={12} lg={8}>
-              <Link to="/artikel">
+              <Link to={`/artikel/${item.id}`}>
                 <Card
                   hoverable
-                  cover={<img alt={item.image_desc} src={item.image} />}
+                  cover={
+                    <Image
+                      alt={item?.image_desc}
+                      src={item?.image}
+                      height={`100%`}
+                      preview={false}
+                      fallback={ListArticles[0].img}
+                    />
+                  }
                 >
                   <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
-                    {item.tags}
+                    {item?.tags.charAt(0).toUpperCase() + item?.tags.slice(1)}
                   </Tag>
                   <p className="mb-5 mt-3 line-clamp-2 font-semibold">
-                    {item.title}
+                    {item?.title}
                   </p>
                   <Flex gap="middle">
                     <div className="self-center">
-                      <Avatar src={item.ava} />
+                      <Avatar src={ListArticles[0].ava} />
                     </div>
                     <div>
                       <h6 className="font-semibold">

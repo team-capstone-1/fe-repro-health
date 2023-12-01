@@ -16,9 +16,9 @@ export const APIArticle = {
     }
   },
 
-  getAllArticle: async () => {
+  getDetailArticle: async (id) => {
     try {
-      const result = await axiosInstance.get("/doctors/articles");
+      const result = await axiosInstance.get(`/doctors/articles/${id}`);
       console.log("result detail artikel", result.data);
       return result.data;
     } catch (err) {
