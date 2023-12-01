@@ -51,26 +51,28 @@ const Login = () => {
     const redirectTo = params.get("return_to");
     if (isRemembered) {
       try {
-        await APIAuth.loginWithRememberMe(data, isRemembered);
-        if (redirectTo) {
-          returnTo = `/${redirectTo}`;
-          return navigate(returnTo);
-        } else {
-          navigate(returnTo);
-        }
+        await APIAuth.loginWithRememberMe(data, isRemembered).then(() => {
+          if (redirectTo) {
+            returnTo = `/${redirectTo}`;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        });
       } catch (error) {
         console.error(error);
         showErrorToast(error.message, "top-right");
       }
     } else {
       try {
-        await APIAuth.login(data);
-        if (redirectTo) {
-          returnTo = `/${redirectTo}`;
-          return navigate(returnTo);
-        } else {
-          navigate(returnTo);
-        }
+        await APIAuth.login(data).then(() => {
+          if (redirectTo) {
+            returnTo = `/${redirectTo}`;
+            return navigate(returnTo);
+          } else {
+            navigate(returnTo);
+          }
+        });
       } catch (error) {
         console.error(error);
         showErrorToast(error.message, "top-right");
@@ -213,22 +215,13 @@ const Login = () => {
 
                 {/* Button */}
                 <div className="mt-16">
-                  {isSubmitting ? (
-                    <button
-                      id="submit-button"
-                      className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600 disabled:bg-green-700"
-                      disabled
-                    >
-                      Masuk
-                    </button>
-                  ) : (
-                    <button
-                      id="submit-button"
-                      className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600"
-                    >
-                      Masuk
-                    </button>
-                  )}
+                  <button
+                    id="submit-button"
+                    className="w-full rounded-lg bg-green-500 px-4 py-4 text-xl font-bold text-grey-10 hover:bg-green-600 disabled:bg-green-700"
+                    disabled={isSubmitting}
+                  >
+                    Masuk
+                  </button>
                 </div>
               </form>
             </div>
