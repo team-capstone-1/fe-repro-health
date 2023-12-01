@@ -13,10 +13,13 @@ import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 import { useEffect, useState } from "react";
 import { APIArticle } from "@/apis/APIArticle";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ListArticle() {
   const [isError, setIsError] = useState(null);
   const [dataArticles, setDataArticles] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const searchQuery = useDebounce(searchValue, 500);
   useDocumentTitle("Artikel Saya");
   useScrollToTop();
 
@@ -33,6 +36,26 @@ export default function ListArticle() {
     fetchListArticles();
   }, []);
 
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredData = dataArticles.filter((data) => {
+        return data.title.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+      setDataArticles(filteredData);
+    } else {
+      const fetchListArticles = async () => {
+        try {
+          const result = await APIArticle.getListArticle();
+          setDataArticles(result?.response);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchListArticles();
+    }
+  }, [searchQuery]);
+  console.log(searchValue);
+
   return (
     <>
       <section id="search-article">
@@ -45,7 +68,11 @@ export default function ListArticle() {
             type="text"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 ps-10 text-sm focus:outline-green-500 sm:p-5 sm:ps-14"
             placeholder="Cari kata kunci"
-            name="search"
+            // name="search"
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
           />
         </div>
       </section>

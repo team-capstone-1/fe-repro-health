@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import "dayjs/locale/id";
+import relativeTime from "dayjs/plugin/relativeTime";
 
+dayjs.extend(relativeTime);
 dayjs.locale("id");
 
 import { Link, useParams } from "react-router-dom";
@@ -76,8 +78,8 @@ export default function DetailArticle() {
                 description={
                   <p className="text-sm text-grey-400">
                     Diunggah pada{" "}
-                    {dayjs(detailArticles?.date, "YYYY-MM-DD").format(
-                      "DD MMMM YYYY",
+                    {dayjs(detailArticles?.date, "YYYY-MM-DDTHH:mm:ssZ").format(
+                      `DD MMMM YYYY [pukul] HH:mm [WIB]`,
                     )}
                   </p>
                 }
@@ -86,27 +88,23 @@ export default function DetailArticle() {
           </List>
 
           <div className="mt-2">
-            <div className="inline-flex h-10 w-[73px] flex-col items-start justify-start gap-2.5 rounded-[10px] p-2">
+            <div className="inline-flex h-10 w-[73px]  items-start justify-start gap-2.5 rounded-[10px] p-2">
               <div className="inline-flex items-center justify-start gap-2">
                 <MdOutlineRemoveRedEye className="relative h-5 w-5 text-[#989898]" />
                 <p className=" text-base font-medium text-[#989898]">
-                  {detailArticle[0].views_amount}
+                  {detailArticles?.views}
                 </p>
               </div>
-            </div>
 
-            <div className="inline-flex h-10 w-[73px] flex-col items-start justify-start gap-2.5 rounded-[10px] p-2">
-              <div className="inline-flex items-center justify-start gap-2">
+              <div className="inline-flex items-center justify-start gap-2.5">
                 <FaRegBookmark className="relative h-5 w-5 text-[#989898]" />
                 <p className=" text-base font-medium text-[#989898]">
                   {detailArticle[0].bookmarks_amount}
                 </p>
               </div>
-            </div>
 
-            <div className="inline-flex h-10 w-[73px] items-start justify-start gap-2 rounded-[10px] p-2">
-              <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
-              <div className="flex items-end justify-start gap-[21px]">
+              <div className="inline-flex items-center justify-start gap-2.5">
+                <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
                 <p className=" text-base font-medium text-[#989898]">
                   {commentUser?.length}
                 </p>
@@ -119,7 +117,7 @@ export default function DetailArticle() {
             className="h-[250px] sm:h-[300px] md:h-[380px] lg:h-[403px] xl:h-[433px]"
             src={detailArticles?.image}
             alt={detailArticles?.image_desc}
-            preview={false}
+            preview={true}
             fallback={detailArticle[0].image_article}
           />
 
@@ -194,12 +192,11 @@ export default function DetailArticle() {
                     }
                     description={
                       <p className="mb-5 text-sm text-grey-300">
-                        {comment.upload_date} yang lalu
+                        {dayjs(comment.upload_date).fromNow()}
                       </p>
                     }
                   />
                   {comment.user_comment}
-                  <hr className="my-3" />
                 </List.Item>
               ))}
             </List>
