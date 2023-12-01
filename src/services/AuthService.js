@@ -14,15 +14,14 @@ export class AuthService {
         const token = Cookies.get("token");
         if (token) {
           const decoded = jwtDecode(token);
-          const currentTime = Date.now() / 1000;
-          return decoded.exp > currentTime;
+          // const currentTime = Date.now() / 1000;
+          // return decoded.exp < currentTime
+          return decoded.authorized;
         }
         return false;
       };
-
       if (!isTokenValid()) {
         this.clearCredentialsFromCookie();
-        return null;
       }
 
       return Cookies.get("token");
@@ -33,11 +32,11 @@ export class AuthService {
 
   storeCredentials({ token, isRemembered, data }) {
     if (!isRemembered) {
-      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
+      const expires = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
       Cookies.set("token", token, { expires });
       localStorage.removeItem("data");
     } else {
-      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
+      const expires = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
       Cookies.set("token", token, { expires });
       localStorage.setItem("data", JSON.stringify(data));
     }
