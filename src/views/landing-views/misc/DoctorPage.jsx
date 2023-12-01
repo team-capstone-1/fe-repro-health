@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 import { Button } from "antd";
 import { VscSend } from "react-icons/vsc";
 import { BsClock } from "react-icons/bs";
-import { HiOutlineDocumentText } from "react-icons/hi";
-import {
-  AiOutlineCheck,
-  AiOutlineMail,
-  AiOutlineMessage,
-} from "react-icons/ai";
+import { HiOutlineMail, HiOutlineDocumentText } from "react-icons/hi";
+import { AiOutlineCheck, AiOutlineMessage } from "react-icons/ai";
+
 import doctor from "@/assets/doctor.svg";
 import Breadcrumb from "@/components/layout-components/Breadcrumb";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
-
 import {
   DataBenefitLists,
   DataDoctorPage as doctorPage,
@@ -23,11 +19,11 @@ export default function DoctorPage() {
   useScrollToTop();
   return (
     <>
-      <section id="breadcrumb-doctor-page" className="base-container">
+      <section className="base-container">
         <Breadcrumb currentPage={doctorPage.title} />
       </section>
 
-      <section id="doctor-section" className="base-container py-6 md:flex">
+      <section className="base-container py-6 md:flex">
         <div className="md:w-3/5 lg:w-2/3">
           <div className="max-w-[726px]">
             <h2 id="doctor-title" className="text-green-900">
@@ -115,7 +111,7 @@ export default function DoctorPage() {
               type="primary"
               className="mt-5 h-10 px-6 pb-8 pt-2 font-semibold 2xl:mt-6"
             >
-              <AiOutlineMail className="me-2 inline-block h-5 w-5 pb-[0.15em]" />
+              <HiOutlineMail className="me-2 inline-block h-5 w-5 pb-[0.15em]" />
               Hubungi Email Kami
             </Button>
           </Link>
