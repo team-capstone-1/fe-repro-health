@@ -20,7 +20,6 @@ export default function Sidebar() {
   const selectedKeys = location.pathname.match(regex)[0];
 
   const openLogoutModal = () => {
-    console.log("Opening Logout Modal");
     setShowLogoutModal(true);
   };
 
