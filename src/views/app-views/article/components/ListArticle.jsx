@@ -14,12 +14,18 @@ import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useEffect, useState } from "react";
 import { APIArticle } from "@/apis/APIArticle";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useSelector } from "react-redux";
+import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
 export default function ListArticle() {
   const [isError, setIsError] = useState(null);
   const [dataArticles, setDataArticles] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const searchQuery = useDebounce(searchValue, 500);
+
+  const doctor = useSelector(selectDoctorProfile);
+  const dataDoctor = doctor?.data?.response;
+
   useDocumentTitle("Artikel Saya");
   useScrollToTop();
 
@@ -54,6 +60,7 @@ export default function ListArticle() {
       fetchListArticles();
     }
   }, [searchQuery]);
+
   console.log(searchValue);
 
   return (
@@ -100,14 +107,13 @@ export default function ListArticle() {
                   <p className="mb-5 mt-3 line-clamp-2 font-semibold">
                     {item?.title}
                   </p>
+
                   <Flex gap="middle">
                     <div className="self-center">
-                      <Avatar src={ListArticles[0].ava} />
+                      <Avatar src={dataDoctor?.profile_image} />
                     </div>
                     <div>
-                      <h6 className="font-semibold">
-                        {(item.author = "Belum ada data")}
-                      </h6>
+                      <h6 className="font-semibold">{dataDoctor?.name}</h6>
                       <h6 className="text-grey-200">
                         {dayjs(item?.date, "YYYY-MM-DD").format("DD MMM YYYY")}
                       </h6>

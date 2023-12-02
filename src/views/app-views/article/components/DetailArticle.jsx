@@ -21,12 +21,17 @@ import {
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
+import { useSelector } from "react-redux";
+import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);
   const [detailArticles, setDetailArticles] = useState([]);
   const { articleId } = useParams();
   useDocumentTitle("Artikel");
+
+  const doctor = useSelector(selectDoctorProfile);
+  const dataDoctor = doctor?.data?.response;
 
   useEffect(() => {
     const fetchDetailArticles = async () => {
@@ -67,12 +72,12 @@ export default function DetailArticle() {
                   <Avatar
                     size={60}
                     icon={<UserOutlined />}
-                    src={detailArticle[0].profile_doctor}
+                    src={dataDoctor?.profile_image}
                   />
                 }
                 title={
                   <h5 className="font-semibold text-grey-500">
-                    Oleh {detailArticle[0].doctor_name}
+                    Oleh {dataDoctor?.name}
                   </h5>
                 }
                 description={
