@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/configs/AxiosInstance";
+import { AxiosError } from "axios";
 
 export const APIForum = {
   getForumList: async (title) => {
@@ -9,33 +10,39 @@ export const APIForum = {
         },
       });
       return result.data.response;
-    } catch (error) {
-      console.error(error.response.data.message);
-      return error.response.data.message;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
     }
   },
   getForumDetail: async (id) => {
     try {
       const result = await axiosInstance.get(`/doctors/forums/details/${id}`);
       return result.data.response;
-    } catch (error) {
-      console.error(error.response.data.message);
-      return error.response.data.message;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
     }
   },
   addForumReply: async ({ questionId, data }) => {
     try {
-      const result = await axiosInstance.post(
-        "/doctors/forum-replies",
-        {
-          forum_id: questionId,
-          content: data,
-        },
-      );
+      const result = await axiosInstance.post("/doctors/forum-replies", {
+        forum_id: questionId,
+        content: data,
+      });
       return result.data.response;
-    } catch (error) {
-      console.error(error.response.data.message);
-      return error.response.data.message;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
     }
   },
 };
