@@ -114,8 +114,8 @@ export default function DoctorProfile() {
         {stateDataDoctor?.status === "failed" && (
           <Flex className="flex-col text-center" gap={2}>
             <BiSolidErrorCircle className="mx-auto text-5xl" />
-            <h5>Error Fetching Data !</h5>
-            <p>Something went wrong !</p>
+            <h5>Gagal mengambil data!</h5>
+            <p>Terjadi kesalahan!</p>
             <p>{stateDataDoctor.message}</p>
           </Flex>
         )}
