@@ -11,39 +11,46 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 export default function NotAnsweredYet() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [forumList, setForumList] = useState([]);
   const searchQuery = useDebounce(searchValue, 800);
 
   useEffect(() => {
-    setLoading(true);
-    try {
-      const fetchData = async () => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
         const data = await APIForum.getForumList(searchQuery);
-        if (showBy === "populer") {
+        if (showBy === "populer" && data !== null) {
           data.sort((a, b) => {
             return b.view - a.view;
           });
-        } else if (showBy === "terbaru") {
+        } else if (showBy === "terbaru" && data !== null) {
           data.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
           });
         }
-        data.forEach((data) => {
-          data.date = distanceInWordsStrict(new Date(data.date), new Date(), {
-            locale: id,
-            addSuffix: true,
+        data !== null &&
+          data.forEach((data) => {
+            data.date = distanceInWordsStrict(new Date(data.date), new Date(), {
+              locale: id,
+              addSuffix: true,
+            });
           });
-        });
-        const newData = data.filter((listData) => listData.status === false);
-        setForumList(newData);
-        setLoading(false);
-      };
-      fetchData();
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
+        if (data !== null) {
+          const newData = data.filter((listData) => listData.status === false);
+          setForumList(newData);
+        } else {
+          setForumList(data);
+        }
+        setIsLoading(false);
+      } catch (error) {
+        setIsError(true);
+        setIsLoading(false);
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [showBy, searchQuery]);
 
   return (
@@ -88,16 +95,21 @@ export default function NotAnsweredYet() {
         </div>
       </div>
       <ul className="flex flex-col gap-6">
-        {loading && (
+        {isError && !isLoading && (
+          <div className="my-24 text-center sm:text-xl">
+            Terjadi kesalahan, silahkan coba lagi
+          </div>
+        )}
+        {isLoading && (
           <div className="mx-auto my-20 h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         )}
-        {forumList.length === 0 && !loading && (
+        {forumList === null && !isLoading && !isError && (
           <div className="my-24 text-center sm:text-xl">
             Pencarian tidak ditemukan
           </div>
         )}
-        {!loading &&
-          forumList.length > 0 &&
+        {!isLoading &&
+          forumList !== null &&
           forumList.map((data) => (
             <div
               key={data.question}
