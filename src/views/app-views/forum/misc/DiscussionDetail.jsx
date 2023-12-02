@@ -9,6 +9,7 @@ import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirm
 import { APIForum } from "@/apis/APIForum";
 import { format } from "date-fns";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { ToastContainer } from "react-toastify";
 
 export default function DiscussionDetail() {
   useDocumentTitle("Detail Pertanyaan");
@@ -19,6 +20,7 @@ export default function DiscussionDetail() {
   const { questionId } = useParams();
   const { register, handleSubmit } = useForm();
   const [payload, setPayload] = useState();
+  const [isAnswered, setIsAnswered] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -33,7 +35,7 @@ export default function DiscussionDetail() {
       setLoading(false);
       console.log(error);
     }
-  }, []);
+  }, [isAnswered]);
 
   const handleShowModal = () => {
     setIsShow((prev) => !prev);
@@ -45,7 +47,8 @@ export default function DiscussionDetail() {
 
   return (
     <>
-      <div className="px-0 sm:px-5 md:px-8 pt-4">
+      <ToastContainer className=" mt-16 w-full sm:mt-10 sm:w-[480px]" />
+      <div className="px-0 pt-4 sm:px-5 md:px-8">
         <Link
           id="back-to-forum"
           className="text-lg font-medium text-slate-500 hover:text-green-500"
@@ -150,6 +153,7 @@ export default function DiscussionDetail() {
           closeModal={handleShowModal}
           authorName={data[0]?.author}
           payload={payload}
+          setIsAnswered={setIsAnswered}
         />
       )}
     </>
