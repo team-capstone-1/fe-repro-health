@@ -86,6 +86,7 @@ export default function WorkExperience() {
       </ConfigProvider>
       {isError && (
         <Flex className="mb-5 flex-col items-center justify-center">
+          <p>Terjadi kesalahan! silahkan kembali beberapa saat lagi.</p>
           <p>{isError.message}</p>
         </Flex>
       )}
