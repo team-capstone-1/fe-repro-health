@@ -61,7 +61,10 @@ const Login = () => {
         });
       } catch (error) {
         console.error(error);
-        showErrorToast(error.message, "top-right");
+        showErrorToast(
+          "email atau password yang anda masukan, salah!",
+          "top-right",
+        );
       }
     } else {
       try {
@@ -75,7 +78,10 @@ const Login = () => {
         });
       } catch (error) {
         console.error(error);
-        showErrorToast(error.message, "top-right");
+        showErrorToast(
+          "email atau password yang anda masukan, salah!",
+          "top-right",
+        );
       }
     }
   };
