@@ -64,6 +64,7 @@ export default function NotAnsweredYet() {
           id="search-bar-forum-2"
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 ps-10 text-sm focus:outline-green-500 sm:p-5 sm:ps-14"
           placeholder="Cari kata kunci"
+          maxLength={99}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
