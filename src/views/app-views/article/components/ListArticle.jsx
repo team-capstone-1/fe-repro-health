@@ -95,7 +95,8 @@ export default function ListArticle() {
                     <Image
                       alt={item?.image_desc}
                       src={item?.image}
-                      height={`100%`}
+                      // // height={`100%`}
+                      className="h-[200px] md:h-[220px] lg:h-[240px] xl:h-[300px]"
                       preview={false}
                       fallback={ListArticles[0].img}
                     />
