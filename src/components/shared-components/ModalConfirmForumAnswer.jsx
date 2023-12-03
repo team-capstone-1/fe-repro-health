@@ -1,15 +1,27 @@
 import { useState } from "react";
 import { Button, Modal } from "antd";
 import { PiSealCheck } from "react-icons/pi";
-import { useNavigate } from "react-router-dom";
 import { APIForum } from "@/apis/APIForum";
-const ModalConfirmForumAnswer = ({ closeModal, authorName, payload }) => {
+import { showSuccessToast, showErrorToast } from "./Toast";
+
+const ModalConfirmForumAnswer = ({ closeModal, authorName, payload, setIsAnswered }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const navigate = useNavigate();
 
   const handleOk = () => {
     setIsOpen(false);
-    APIForum.addForumReply(payload).then(() => navigate(0));
+    const postData = async () => {
+      try {
+        await APIForum.addForumReply(payload);
+        showSuccessToast("Jawaban anda telah dikirim !", "top-right");
+      } catch (error) {
+        showErrorToast("Gagal mengirim jawaban !", "top-right");
+        console.error(error);
+      } finally {
+        closeModal();
+        setIsAnswered(true);
+      }
+    };
+    postData();
   };
 
   const handleCancel = () => {

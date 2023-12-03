@@ -32,7 +32,7 @@ export const APIAuth = {
     }
   },
   logout: (navigate) => {
-    authService.clearCredentialsFromCookie(navigate);
+    authService.clearCredentialsFromCookie();
     navigate("/");
   },
 };

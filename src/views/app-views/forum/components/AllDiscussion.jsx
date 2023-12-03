@@ -7,55 +7,44 @@ import distanceInWordsStrict from "date-fns/formatDistanceStrict";
 import anonymousPict from "@/assets/anonymous-pp.jpg";
 import { APIForum } from "@/apis/APIForum";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-// import { format, formatDistance, formatRelative, subDays } from "date-fns";
 
 export default function AllDiscussion() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [forumList, setForumList] = useState([]);
   const searchQuery = useDebounce(searchValue, 800);
 
   useEffect(() => {
-    setLoading(true);
-    try {
-      const fetchData = async () => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
         const data = await APIForum.getForumList(searchQuery);
-        if (showBy === "populer") {
+        if (showBy === "populer" && data !== null) {
           data.sort((a, b) => {
             return b.view - a.view;
           });
-        } else if (showBy === "terbaru") {
+        } else if (showBy === "terbaru" && data !== null) {
           data.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
           });
         }
-        data.forEach((data) => {
+        data !== null && data.forEach((data) => {
           data.date = distanceInWordsStrict(new Date(data.date), new Date(), {
             locale: id,
             addSuffix: true,
           });
-          // .replace(/(\d+)\s+(\w+)/g, (match, number, unit) => {
-          //   const shortUnit = unit.charAt(0).toLowerCase();
-          //   return `${number}${shortUnit}`;
-          // })
-          // .replace(/yang lalu/g, 'yg lalu');
         });
-        // if (searchQuery) {
-        //   const newData = data.filter((listData) =>
-        //     listData.title.toLowerCase().includes(searchQuery.toLowerCase()),
-        //   );
-        //   setForumList(newData);
-        // } else {
         setForumList(data);
-        // }
-        setLoading(false);
-      };
-      fetchData();
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
+        setIsLoading(false);
+      } catch (error) {
+        setIsError(true);
+        setIsLoading(false);
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [showBy, searchQuery]);
 
   return (
@@ -70,6 +59,7 @@ export default function AllDiscussion() {
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 ps-10 text-sm focus:outline-green-500 sm:p-5 sm:ps-14"
           placeholder="Cari kata kunci"
           name="search"
+          maxLength={99}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
@@ -101,16 +91,21 @@ export default function AllDiscussion() {
         </div>
       </div>
       <ul className="flex flex-col gap-6">
-        {loading && (
+        {isError && !isLoading && (
+          <div className="my-24 text-center sm:text-xl">
+            Terjadi kesalahan, silahkan coba lagi
+          </div>
+        )}
+        {isLoading && (
           <div className="mx-auto my-20 h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         )}
-        {forumList.length === 0 && !loading && (
+        {forumList === null && !isLoading && !isError && (
           <div className="my-24 text-center sm:text-xl">
             Pencarian tidak ditemukan
           </div>
         )}
-        {!loading &&
-          forumList.length > 0 &&
+        {!isLoading &&
+          forumList !== null &&
           forumList.map((data) => (
             <div
               key={data.id}

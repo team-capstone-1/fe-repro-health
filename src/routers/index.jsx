@@ -43,7 +43,7 @@ export default function SetupRoutes() {
         <Route path="/jadwal-saya" element={<MySchedule />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/artikel-saya" element={<Article />} />
-        <Route path="/artikel" element={<DetailArticle />} />
+        <Route path="/artikel/:articleId" element={<DetailArticle />} />
         <Route path="/unggah-artikel" element={<UploadArticle />} />
         <Route path="/asisten-dokter" element={<Chatbot />} />
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
