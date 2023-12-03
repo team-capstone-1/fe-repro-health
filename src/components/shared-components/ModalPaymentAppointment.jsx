@@ -1,9 +1,9 @@
 import { Modal, Divider, Flex, Image } from "antd";
 import { useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import { DataPasien } from "@/views/app-views/appointment/constant/detail-pasien";
-import siluetTF from "@/assets/silluet-bukti-tf.png"
-import buktiTF from "@/assets/bukti-tf.png"
+import { PaymentDetail } from "@/views/app-views/appointment/constant/detail-pasien";
+import siluetTF from "@/assets/silluet-bukti-tf.png";
+import buktiTF from "@/assets/bukti-tf.png";
 
 const ModalPaymentAppointment = ({ closeModal }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -42,7 +42,7 @@ const ModalPaymentAppointment = ({ closeModal }) => {
               Detail Transaksi
             </h5>
             <div className="mt-2 flex flex-col gap-2">
-              {DataPasien.paymentDetail.map((items, i) => (
+              {PaymentDetail.map((items, i) => (
                 <Flex justify="space-between" align="center" key={i}>
                   {items["Total"] ? (
                     <>
@@ -53,7 +53,9 @@ const ModalPaymentAppointment = ({ closeModal }) => {
                     </>
                   ) : (
                     <>
-                      <p className="text-left text-base">{Object.keys(items)}</p>
+                      <p className="text-left text-base">
+                        {Object.keys(items)}
+                      </p>
                       <p className="text-base font-semibold">
                         {Object.values(items)}
                       </p>
@@ -62,8 +64,12 @@ const ModalPaymentAppointment = ({ closeModal }) => {
                 </Flex>
               ))}
             </div>
-            <div className="flex justify-start gap-2 mt-2">
-              <Image onClick={() => setImagePreview(true)} className="rounded-lg w-[100px]" src={siluetTF} />
+            <div className="mt-2 flex justify-start gap-2">
+              <Image
+                onClick={() => setImagePreview(true)}
+                className="w-[100px] rounded-lg"
+                src={siluetTF}
+              />
             </div>
             {imagePreview && (
               <Modal
@@ -71,11 +77,7 @@ const ModalPaymentAppointment = ({ closeModal }) => {
                 onCancel={() => setImagePreview(false)}
                 footer={null}
               >
-                <Image
-                  className="rounded-lg"
-                  src={buktiTF}
-                  preview={false}
-                />
+                <Image className="rounded-lg" src={buktiTF} preview={false} />
               </Modal>
             )}
           </div>
