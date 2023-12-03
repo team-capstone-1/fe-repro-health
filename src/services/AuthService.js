@@ -1,9 +1,14 @@
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+
 export class AuthService {
   isAuthorized() {
     if (this.getToken()) {
-      return true;
+      const token = this.getToken();
+      if (token) {
+        const decoded = jwtDecode(token);
+        return decoded.authorized;
+      }
     }
     return false;
   }
@@ -19,7 +24,6 @@ export class AuthService {
         }
         return false;
       };
-
       if (!isTokenValid()) {
         this.clearCredentialsFromCookie();
         return null;
@@ -33,12 +37,10 @@ export class AuthService {
 
   storeCredentials({ token, isRemembered, data }) {
     if (!isRemembered) {
-      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
-      Cookies.set("token", token, { expires });
+      Cookies.set("token", token);
       localStorage.removeItem("data");
     } else {
-      const expires = new Date(new Date().getTime() + 60 * 60 * 1000);
-      Cookies.set("token", token, { expires });
+      Cookies.set("token", token);
       localStorage.setItem("data", JSON.stringify(data));
     }
   }

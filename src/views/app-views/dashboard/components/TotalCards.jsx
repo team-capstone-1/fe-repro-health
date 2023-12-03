@@ -1,38 +1,61 @@
 import { Row, Col, Card, Flex } from "antd";
+import { useEffect, useState } from "react";
 
 import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
 import Icon03 from "@/assets/db-icon-03.png";
 import Icon04 from "@/assets/db-icon-04.png";
 
-const data = [
-  {
-    title: "Total Janji Temu",
-    total: "100",
-    icon: `${Icon01}`,
-    percent: "+5.2%",
-  },
-  {
-    title: "Total Pasien",
-    total: "250",
-    icon: `${Icon02}`,
-    percent: "-2%",
-  },
-  {
-    title: "Total Pendapatan",
-    total: "500K",
-    icon: `${Icon03}`,
-    percent: "+3.2%",
-  },
-  {
-    title: "Total Artikel",
-    total: "100",
-    icon: `${Icon04}`,
-    percent: "-35%",
-  },
-];
+// import { APIDashboard } from "@/apis/APIDashboard";
 
 export default function TotalCards() {
+  // const [dataTotalArticles, setTotalArticles] = useState([]);
+  // const [isError, setIsError] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
+  // useEffect(() => {
+  //   const fetchListAllArticles = async () => {
+  //     try {
+  //       const result = await APIDashboard.getListAllArticles();
+  //       setTotalArticles(result?.response);
+  //       // console.log(result?.response);
+  //       setIsLoading(false);
+  //     } catch (error) {
+  //       console.error(error);
+  //       // setIsError(error);
+  //       // setIsLoading(false);
+  //     }
+  //   };
+  //   fetchListAllArticles();
+  // }, []);
+
+  const data = [
+    {
+      title: "Total Janji Temu",
+      total: "100",
+      icon: `${Icon01}`,
+      percent: "+5.2%",
+    },
+    {
+      title: "Total Pasien",
+      total: "250",
+      icon: `${Icon02}`,
+      percent: "-2%",
+    },
+    {
+      title: "Total Pendapatan",
+      total: "500K",
+      icon: `${Icon03}`,
+      percent: "+3.2%",
+    },
+    {
+      title: "Total Artikel",
+      total: "100",
+      // total: dataTotalArticles?.length,
+      icon: `${Icon04}`,
+      percent: "-35%",
+    },
+  ];
+
   return (
     <>
       <Row gutter={[16, 16]}>
