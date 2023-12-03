@@ -64,6 +64,13 @@ const columns = [
     dataIndex: "file_size",
     key: "file_size",
     width: 150,
+    render: (file_size) => {
+      const convertMB = parseInt(file_size) / 1024 / 1024;
+      const formattedMB = convertMB.toFixed(2);
+      console.log(`hasil convert before: ${convertMB} after: ${formattedMB}`);
+
+      return <span>{formattedMB} MB</span>;
+    },
   },
 ];
 
