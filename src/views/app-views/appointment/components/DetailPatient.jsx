@@ -5,7 +5,6 @@ import { Button, Card, Drawer, Flex } from "antd";
 import { ToastContainer } from "react-toastify";
 
 import Utils from "@/utils";
-import { DataPasien } from "@/views/app-views/appointment/constant/detail-pasien";
 import ModalConfirmAppointment from "@/components/shared-components/ModalConfirmAppointment";
 import ModalPaymentAppointment from "@/components/shared-components/ModalPaymentAppointment";
 import { APIAppointment } from "@/apis/APIAppointment";
