@@ -42,13 +42,13 @@ const columns = [
     title: "Keterangan",
     dataIndex: "description",
     key: "description",
-    width: 250,
+    width: 350,
   },
   {
     title: "Masa Berlaku",
     dataIndex: ["start_date", "end_date"],
     key: "id",
-    width: 350,
+    width: 250,
     render: (_, id) => (
       <Space size="small">
         <span>
@@ -63,7 +63,7 @@ const columns = [
     title: "Ukuran File",
     dataIndex: "file_size",
     key: "file_size",
-    width: 150,
+    width: 100,
     render: (file_size) => {
       const convertMB = parseInt(file_size) / 1024 / 1024;
       const formattedMB = convertMB.toFixed(2);
