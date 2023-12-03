@@ -7,29 +7,13 @@ import {
   Input,
   Row,
   Space,
+  Spin,
   Table,
 } from "antd";
 import { IoMdSearch } from "react-icons/io";
 
-// import ImageCertif from "@/assets/certificate-dental.png";
 import { APIProfile } from "@/apis/APIProfile";
 import { useDebounce } from "@/hooks/useDebounce";
-
-// const DataSource = [
-//   {
-//     id: 1,
-//     doctor_profile_id: "74300897765",
-//     time_period: "22 Juni 2022 - 22 Juni 2027",
-//     // time_period: {
-//     //   start_date: "22 Juni 2022",
-//     //   end_date: "22 Juni 2027",
-//     // },
-//     description: "Praktik Medis",
-//     certificate_type: "Sertifikasi Lisensi",
-//     file_size: "5 MB",
-//     details: ImageCertif,
-//   },
-// ];
 
 const columns = [
   {
@@ -77,6 +61,7 @@ const columns = [
 ];
 
 export default function Certificate() {
+  const [isLoading, setIsLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [dataDoctor, setDataDoctor] = useState([]);
   const [selectedCertificateUrl, setSelectedCertificateUrl] = useState("");
@@ -85,45 +70,29 @@ export default function Certificate() {
 
   useEffect(() => {
     const fetchDoctorCertifications = async () => {
+      setIsLoading(true);
       try {
         const result = await APIProfile.getDoctorCertifications();
-        setDataDoctor(result?.response);
+        if (searchQuery) {
+          const filteredData = result.response?.filter((data) => {
+            return data.id.toLowerCase().includes(searchQuery.toLowerCase());
+          });
+          setDataDoctor(filteredData);
+        } else {
+          setDataDoctor(result?.response);
+        }
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
     fetchDoctorCertifications();
-  }, []);
-
-  useEffect(() => {
-    if (searchQuery) {
-      const filteredData = dataDoctor.filter((data) => {
-        return data.id.toLowerCase().includes(searchQuery.toLowerCase());
-      });
-      setDataDoctor(filteredData);
-    } else {
-      const fetchDoctorCertifications = async () => {
-        try {
-          const result = await APIProfile.getDoctorCertifications();
-          setDataDoctor(result?.response);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchDoctorCertifications();
-    }
   }, [searchQuery]);
 
   const handleOpen = (selectedRow) => {
     setSelectedCertificateUrl(selectedRow.details);
     setVisible(true);
   };
-
-  // console.log(`data doctor: `, dataDoctor);
-
-  // const imagesUrl = () => {
-  //   return dataDoctor?.map((val) => val.details);
-  // };
 
   return (
     <section id="profile-certificate-section" className="my-10">
@@ -135,8 +104,22 @@ export default function Certificate() {
                 placeholder="Cari Sertifikat berdasarkan id"
                 size="large"
                 allowClear
-                prefix={<IoMdSearch />}
-                className="h-[3.14rem] hover:border-green-500 focus:border focus:border-green-500 focus:ring focus:ring-green-500"
+                prefix={
+                  !isLoading ? (
+                    <IoMdSearch className="text-2xl" />
+                  ) : (
+                    <ConfigProvider
+                      theme={{
+                        token: {
+                          colorPrimary: "#17c6a3",
+                        },
+                      }}
+                    >
+                      <Spin />
+                    </ConfigProvider>
+                  )
+                }
+                className="h-[3.14rem] hover:border-green-500 focus:border focus:border-green-500 focus:outline-none focus:ring focus:ring-green-500"
                 value={searchValue}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
@@ -159,6 +142,7 @@ export default function Certificate() {
               }}
             >
               <Table
+                rowClassName="cursor-pointer"
                 id="table-certificate"
                 dataSource={dataDoctor}
                 columns={columns}
@@ -177,8 +161,6 @@ export default function Certificate() {
                 style={{
                   display: "none",
                 }}
-                // src={DataSource.map((val) => val.details)}
-                // src: imagesUrl(),
                 preview={{
                   movable: true,
                   visible,
