@@ -10,7 +10,12 @@ import {
   Legend,
 } from "recharts";
 
-import { DataIncome as data } from "@/views/app-views/dashboard/constant/graph-income";
+import {
+  // DataIncome as data,
+  DataIncomeDay as data,
+  // DataIncomeWeek as data,
+  // RangePresets as data,
+} from "@/views/app-views/dashboard/constant/graph-income";
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -96,7 +101,7 @@ export default function ChartIncome({ selectedFilter }) {
                 dataKey="date"
                 tickLine={false}
                 axisLine={false}
-                tickMargin={20}
+                tickMargin={10}
                 className="text-base font-medium"
               />
 
@@ -126,7 +131,7 @@ export default function ChartIncome({ selectedFilter }) {
                 barSize={mobileSize || data.length < 20 ? 30 : 5}
                 // barSize={data.length < 8 ? 30 : 20}
                 radius={data.length < 10 ? 10 : 2}
-                dataKey="after"
+                dataKey="income"
                 name="Jumlah Pendapatan"
                 fill="rgba(20, 198, 164, 1)"
               >

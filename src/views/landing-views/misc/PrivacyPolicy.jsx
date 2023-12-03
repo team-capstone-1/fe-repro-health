@@ -15,11 +15,14 @@ export default function PrivacyPolicy() {
       <div id="breadcrumb-privacy" className="base-container">
         <Breadcrumb currentPage={DataPrivacyPolicy.title} />
 
-        <section id="privacy-policy-section">
+        <section
+          id="privacy-policy-section"
+          className="mx-3 text-justify sm:mx-0 "
+        >
           <h1 id="privacy-policy-title" className="mb-4 mt-5">
             {DataPrivacyPolicy.title}
           </h1>
-          <p id="privacy-policy-description" className="text-base font-medium">
+          <p id="privacy-policy-description" className=" text-base font-medium">
             {DataPrivacyPolicy.description}
           </p>
           {DataPrivacy.map((items, indexs) => (
