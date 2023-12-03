@@ -1,3 +1,8 @@
+import dayjs from "dayjs";
+import "dayjs/locale/id";
+
+dayjs.locale("id");
+
 import { useEffect, useState } from "react";
 import {
   Col,
@@ -62,9 +67,11 @@ const columns = [
     width: 350,
     render: (_, id) => (
       <Space size="small">
-        <span>{id.start_date.slice(0, 10)}</span>
+        <span>
+          {dayjs(id?.start_date, "YYYY-MM-DD").format("DD MMMM YYYY")}
+        </span>
         <span>-</span>
-        <span>{id.end_date.slice(0, 10)}</span>
+        <span>{dayjs(id?.end_date, "YYYY-MM-DD").format("DD MMMM YYYY")}</span>
       </Space>
     ),
   },
