@@ -3,7 +3,7 @@ import "dayjs/locale/id";
 
 dayjs.locale("id");
 
-import { Row, Col, Card, Tag, Avatar, Flex, Image } from "antd";
+import { Row, Col, Card, Tag, Avatar, Flex, Image, Pagination } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
@@ -105,7 +105,7 @@ export default function ListArticle() {
                   <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
                     {item?.tags.charAt(0).toUpperCase() + item?.tags.slice(1)}
                   </Tag>
-                  <p className="mb-5 mt-3 line-clamp-2 font-semibold">
+                  <p className="mb-5 mt-3 line-clamp-1 font-semibold">
                     {item?.title}
                   </p>
 
@@ -125,6 +125,14 @@ export default function ListArticle() {
             </Col>
           ))}
         </Row>
+        <Col>
+          <Pagination
+            defaultCurrent={1}
+            total={50}
+            className="mx-auto my-10 flex justify-center md:gap-5"
+            // onChange={onChange}
+          />
+        </Col>
         {isError && (
           <Flex className="mb-5 flex-col items-center justify-center text-red-500">
             <p>{isError.message}</p>

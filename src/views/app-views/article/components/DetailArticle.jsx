@@ -32,6 +32,7 @@ export default function DetailArticle() {
 
   const doctor = useSelector(selectDoctorProfile);
   const dataDoctor = doctor?.data?.response;
+  const tag = detailArticles?.tags;
 
   useEffect(() => {
     const fetchDetailArticles = async () => {
@@ -52,8 +53,8 @@ export default function DetailArticle() {
       <Card>
         <Link to="/artikel-saya">
           <Button
-            icon={<IoArrowBackOutline className="text-[24px]" />}
-            className="flex w-[100px] justify-center border-transparent bg-transparent text-center text-base font-semibold text-[#4B4B4B] shadow-none hover:text-green-500"
+            icon={<IoArrowBackOutline className="text-[20px] md:text-[24px]" />}
+            className="flex w-[100px] justify-center border-transparent bg-transparent text-center text-sm font-semibold text-[#4B4B4B] shadow-none hover:text-green-500 md:text-base"
           >
             Kembali
           </Button>
@@ -62,7 +63,9 @@ export default function DetailArticle() {
         {/* {detailArticles?.map((article) => ( */}
         <>
           <div className="mb-3 mt-5">
-            <h3 className="text-[#0D0D0D]">{detailArticles?.title}</h3>
+            <h3 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-2xl">
+              {detailArticles?.title}
+            </h3>
           </div>
 
           <List itemLayout="horizontal">
@@ -76,12 +79,12 @@ export default function DetailArticle() {
                   />
                 }
                 title={
-                  <h5 className="font-semibold text-grey-500">
+                  <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
                     Oleh {dataDoctor?.name}
                   </h5>
                 }
                 description={
-                  <p className="text-sm text-grey-400">
+                  <p className="text-xs text-grey-400 sm:text-sm">
                     Diunggah pada{" "}
                     {dayjs(detailArticles?.date, "YYYY-MM-DDTHH:mm:ssZ").format(
                       `DD MMMM YYYY [pukul] HH:mm [WIB]`,
@@ -96,21 +99,21 @@ export default function DetailArticle() {
             <div className="inline-flex h-10 w-[73px]  items-start justify-start gap-2.5 rounded-[10px] p-2">
               <div className="inline-flex items-center justify-start gap-2">
                 <MdOutlineRemoveRedEye className="relative h-5 w-5 text-[#989898]" />
-                <p className=" text-base font-medium text-[#989898]">
+                <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
                   {detailArticles?.views}
                 </p>
               </div>
 
               <div className="inline-flex items-center justify-start gap-2.5">
                 <FaRegBookmark className="relative h-5 w-5 text-[#989898]" />
-                <p className=" text-base font-medium text-[#989898]">
+                <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
                   {detailArticle[0].bookmarks_amount}
                 </p>
               </div>
 
               <div className="inline-flex items-center justify-start gap-2.5">
                 <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
-                <p className=" text-base font-medium text-[#989898]">
+                <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
                   {commentUser?.length}
                 </p>
               </div>
@@ -127,15 +130,21 @@ export default function DetailArticle() {
           />
 
           <div id="tags">
-            <h4 className="my-4 text-[#4B4B4B]">Tags</h4>
-            {detailArticle[0].tags.map((tag) => (
+            <h4 className="my-4 text-base text-[#4B4B4B] sm:text-xl">Tags</h4>
+            <Tag
+              className="mb-2 me-2 text-justify text-xs font-semibold text-[#4B4B4B] hover:bg-green-100 sm:text-sm md:text-base"
+              rootClassName="h-7 sm:h-10 px-5 py-2.5 rounded-lg border-[#4B4B4B] justify-center items-center inline-flex"
+            >
+              {tag && tag.slice(0, 1).toUpperCase() + tag.slice(1)}
+            </Tag>
+            {/* {detailArticle[0].tags.map((tag) => (
               <Tag
                 className="mb-2 me-2 text-justify text-xs font-semibold text-[#4B4B4B] hover:bg-green-100 sm:text-sm md:text-base"
                 rootClassName="h-7 sm:h-10 px-5 py-2.5 rounded-lg border-[#4B4B4B] justify-center items-center inline-flex"
               >
                 {tag}
               </Tag>
-            ))}
+            ))} */}
           </div>
 
           <div id="content-article" className="my-5 w-full text-justify">
@@ -143,8 +152,8 @@ export default function DetailArticle() {
               {detailArticles?.content}
             </Markdown>
 
-            <div className="mb-4 mt-5">
-              <h5 className="mb-2 text-sm font-semibold text-[#151515] sm:text-base">
+            <div className="mt-5">
+              <h5 className="mb-2 text-xs font-semibold text-[#151515] sm:text-base">
                 Referensi
               </h5>
               {detailArticle[0].reference.map((ref) => (
@@ -173,8 +182,8 @@ export default function DetailArticle() {
           </div> */}
 
           <section id="comment-section">
-            <div className="mt-14 h-14 w-full bg-[#E9E9E9] p-4">
-              <h3 className=" text-xl font-semibold text-[#4B4B4B]">
+            <div className="mt-8 h-14 w-full bg-[#E9E9E9] p-4 sm:mt-14">
+              <h3 className="text-base font-semibold text-[#4B4B4B] sm:text-xl">
                 Komentar ({commentUser?.length})
               </h3>
             </div>
@@ -191,12 +200,12 @@ export default function DetailArticle() {
                       />
                     }
                     title={
-                      <h5 className="font-semibold text-grey-500">
+                      <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
                         Oleh {comment.user_name}
                       </h5>
                     }
                     description={
-                      <p className="mb-5 text-sm text-grey-300">
+                      <p className="mb-5 text-xs text-grey-300 sm:text-sm">
                         {dayjs(comment.upload_date).fromNow()}
                       </p>
                     }
