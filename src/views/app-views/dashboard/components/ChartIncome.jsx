@@ -12,8 +12,9 @@ import {
 
 import {
   // DataIncome as data,
-  DataIncomeDay as data,
-  // DataIncomeWeek as data,
+  DataIncome,
+  DataIncomeDay,
+  DataIncomeWeek,
   // RangePresets as data,
 } from "@/views/app-views/dashboard/constant/graph-income";
 
@@ -41,15 +42,51 @@ const CustomTooltip = ({ active, payload, label }) => {
 export default function ChartIncome({ selectedFilter }) {
   // const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
   const customTickYAxis = (values) => {
-    if (values > 99000000) {
-      return `${values.toString().slice(0, 3)} jt`;
-    } else {
-      return `${values.toString().slice(0, 2)} jt`;
+    if (values >= 10000000 && values < 100000000) {
+      // return `${values.toString().slice(0, 2)} jt`;
+      return `${values
+        .toLocaleString("id-ID", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })
+        .slice(0, 2)} jt`;
+    } else if (values > 100000000) {
+      return `${values
+        .toLocaleString("id-ID", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })
+        .slice(0, 3)} jt`;
+    } else if (values >= 1000000 && values < 10000000) {
+      // return `${values.toString().slice(0, 2)} rb`;
+      return `${values
+        .toLocaleString("id-ID", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })
+        .slice(0, 3)} jt`;
+    } else if (values > 1000 && values < 1000000) {
+      return `${values
+        .toLocaleString("id-ID", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })
+        .slice(0, 3)} rb`;
+    } else if (values < 1000) {
+      return `${values
+        .toLocaleString("id-ID", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })
+        .slice(0, 3)} rp`;
     }
   };
+
   const customTickXAxis = (value) => value.slice(0, 3);
 
-  const mobileSize = window.innerWidth >= 450;
+  const mobileSize = window.innerWidth <= 450;
+
+  console.log("hasil selected: " + selectedFilter);
 
   return (
     <Row id="chart-income" justify="start">
@@ -67,7 +104,14 @@ export default function ChartIncome({ selectedFilter }) {
           <Wrapper id="chart-income-wrapper" width="100%" height={360}>
             <BarChart
               id="bar-chart"
-              data={data}
+              // data={data}
+              data={
+                selectedFilter === "hari"
+                  ? DataIncomeDay
+                  : selectedFilter === "minggu"
+                  ? DataIncomeWeek
+                  : DataIncome
+              }
               barGap={0}
               margin={{
                 top: 5,
@@ -102,7 +146,7 @@ export default function ChartIncome({ selectedFilter }) {
                 tickLine={false}
                 axisLine={false}
                 tickMargin={10}
-                className="text-base font-medium"
+                className="text-sm font-medium sm:text-base"
               />
 
               <YAxis
@@ -112,7 +156,7 @@ export default function ChartIncome({ selectedFilter }) {
                 // dataKey="amount"
                 tickLine={false}
                 axisLine={false}
-                tickMargin={10}
+                tickMargin={0}
                 // ticks={[0, 10, 20, 30, 40, 50, 60]}
                 custom
                 show
@@ -128,9 +172,12 @@ export default function ChartIncome({ selectedFilter }) {
 
               <Bar
                 id="bar-chart-income"
-                barSize={mobileSize || data.length < 20 ? 30 : 5}
+                // barSize={mobileSize || data.length < 20 ? 30 : 5}
                 // barSize={data.length < 8 ? 30 : 20}
-                radius={data.length < 10 ? 10 : 2}
+                // barSize={mobileSize || data.length > 20 ? 15 : 30}
+                // radius={data.length >= 7 ? 10 : 2}
+                barSize={mobileSize ? 15 : 30}
+                radius={mobileSize ? 5 : 10}
                 dataKey="income"
                 name="Jumlah Pendapatan"
                 fill="rgba(20, 198, 164, 1)"
