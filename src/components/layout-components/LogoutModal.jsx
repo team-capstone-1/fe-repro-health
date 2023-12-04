@@ -65,7 +65,7 @@ export default function Logout({ closeModal }) {
           className="my-4 h-10 w-10"
         />
         <p id="doctor-name" className="mt-2 text-xl font-semibold">
-          Halo, {name}!
+          Halo, {name.split(",")[0]}!
         </p>
         <p
           id="logout-modal-text"
