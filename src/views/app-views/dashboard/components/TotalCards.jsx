@@ -19,7 +19,7 @@ export default function TotalCards({ selectedFilter }) {
         } else if (selectedFilter === "minggu") {
           result = await APIDashboard.getCountDataForOneWeek();
         } else if (selectedFilter === "hari") {
-          // ongoing
+          result = await APIDashboard.getCountDataForOneMonth();
         }
 
         setData(result);
