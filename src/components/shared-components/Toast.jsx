@@ -37,18 +37,15 @@ import "react-toastify/dist/ReactToastify.css";
 // };
 
 const errorStyle = {
-  className:
-    "bg-red-500 text-white ps-10 font-medium xl:font-semibold text-base xl:text-xl",
+  className: "bg-red-500 text-white ps-5 font-medium text-base xl:text-lg",
 };
 
 const successStyle = {
-  className:
-    "bg-green-500 text-white ps-10 font-medium xl:font-semibold text-base xl:text-xl",
+  className: "bg-green-500 text-white ps-5 font-medium text-base xl:text-lg",
 };
 
 const defaultStyle = {
-  className:
-    "bg-gray-500 text-white ps-10 font-medium xl:font-semibold text-base xl:text-xl",
+  className: "bg-grey-500 text-white ps-5 font-medium text-base xl:text-lg",
 };
 
 export const showErrorToast = (pesan, position) => {
@@ -57,7 +54,9 @@ export const showErrorToast = (pesan, position) => {
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
-    closeButton: <span className="my-auto text-red-200">Abaikan</span>,
+    closeButton: (
+      <span className="my-auto me-3 text-sm text-red-200">Abaikan</span>
+    ),
     pauseOnHover: true,
     progress: undefined,
     ...errorStyle,
@@ -70,7 +69,9 @@ export const showSuccessToast = (pesan, position) => {
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
-    closeButton: <span className="my-auto text-green-200">Abaikan</span>,
+    closeButton: (
+      <span className="my-auto me-3 text-sm text-green-200">Abaikan</span>
+    ),
     pauseOnHover: true,
     progress: undefined,
     ...successStyle,
@@ -83,7 +84,9 @@ export const showDefaultToast = (pesan, position) => {
     autoClose: 3000,
     hideProgressBar: true,
     closeOnClick: true,
-    closeButton: <span className="my-auto text-gray-200">Abaikan</span>,
+    closeButton: (
+      <span className="my-auto me-3 text-sm text-grey-200">Abaikan</span>
+    ),
     pauseOnHover: true,
     progress: undefined,
     ...defaultStyle,
