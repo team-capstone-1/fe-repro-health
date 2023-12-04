@@ -1,5 +1,5 @@
 import { Col, Form, Input, Row, Select, ConfigProvider } from "antd";
-import { IoMdSearch } from "react-icons/io";
+import { BsSearch } from "react-icons/bs";
 
 export default function ListFilter() {
   const Filter = [
@@ -52,7 +52,7 @@ export default function ListFilter() {
                 <Input
                   placeholder="Cari Janji Temu..."
                   allowClear
-                  prefix={<IoMdSearch />}
+                  prefix={<BsSearch className="me-1 text-gray-400" />}
                   className="h-[2.1rem] hover:border-green-500"
                 />
               </Form.Item>
