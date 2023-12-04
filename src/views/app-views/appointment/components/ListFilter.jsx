@@ -33,6 +33,7 @@ export default function ListFilter({ setSearchValue, setFilterStatus }) {
               Select: {
                 colorPrimary: "#17c6a3",
                 colorPrimaryBorderHover: "#17c6a3",
+                colorPrimaryHover: "#17c6a3",
               },
             },
           }}
