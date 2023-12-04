@@ -89,7 +89,15 @@ export default function Certificate() {
         const result = await APIProfile.getDoctorCertifications();
         if (searchQuery) {
           const filteredData = result.response?.filter((data) => {
-            return data.id.toLowerCase().includes(searchQuery.toLowerCase());
+            // return data.id.toLowerCase().includes(searchQuery.toLowerCase());
+            return (
+              data.description
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()) ||
+              data.certificate_type
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
+            );
           });
           setDataDoctor(filteredData);
         } else {
