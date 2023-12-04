@@ -62,7 +62,7 @@ const Login = () => {
       } catch (error) {
         console.error(error);
         showErrorToast(
-          "email atau password yang anda masukan, salah!",
+          "email atau password yang anda masukan salah!",
           "top-right",
         );
       }
@@ -79,7 +79,7 @@ const Login = () => {
       } catch (error) {
         console.error(error);
         showErrorToast(
-          "email atau password yang anda masukan, salah!",
+          "email atau password yang anda masukan salah!",
           "top-right",
         );
       }

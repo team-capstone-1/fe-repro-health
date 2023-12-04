@@ -13,7 +13,7 @@ export default function DoctorProfile() {
       <Card>
         <h3>Profil</h3>
         {stateDataDoctor?.status === "success" && (
-          <div className="items-center space-y-4 md:grid md:grid-cols-2 lg:grid-cols-12">
+          <div className="my-4 items-center space-y-4 md:grid md:grid-cols-2 lg:grid-cols-12">
             <div className="flex justify-center md:col-span-1 lg:col-span-3 xl:col-span-2">
               <div id="doctor-image">
                 <img
