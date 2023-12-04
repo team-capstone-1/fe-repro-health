@@ -23,7 +23,7 @@ export default function Dashboard() {
         <ButtonFilter onFilterClick={handleFilterClick} />
         <Row gutter={[16, 24]}>
           <Col span={24}>
-            <TotalCards />
+            <TotalCards selectedFilter={selectedFilter} />
           </Col>
           <Col xs={24} md={24} lg={14} xl={16}>
             <ChartIncome selectedFilter={selectedFilter} />
