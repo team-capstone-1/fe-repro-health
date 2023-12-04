@@ -3,12 +3,17 @@ import "dayjs/locale/id";
 import { useEffect, useState } from "react";
 import { Button, Card, Drawer, Flex } from "antd";
 import { ToastContainer } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 
 import Utils from "@/utils";
 import ModalConfirmAppointment from "@/components/shared-components/ModalConfirmAppointment";
 import ModalPaymentAppointment from "@/components/shared-components/ModalPaymentAppointment";
 import { APIAppointment } from "@/apis/APIAppointment";
 import SkeletonDetailPatient from "./SkeletonDetailPatient";
+import {
+  selectToggleFetchLatestData,
+  toggleFetchLatestData,
+} from "@/store/toggle-fetch-new-data";
 
 export default function DetailPatient({ idAppointment, handleOpen, isOpen }) {
   return (
@@ -39,7 +44,8 @@ const ContentDrawer = ({ idAppointment }) => {
   const [dataPasien, setDataPasien] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-
+  const { shouldFetchLatestData } = useSelector(selectToggleFetchLatestData);
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async (idAppointment) => {
       try {
@@ -53,7 +59,11 @@ const ContentDrawer = ({ idAppointment }) => {
       }
     };
     fetchData(idAppointment);
-  }, []);
+    if (shouldFetchLatestData) {
+      fetchData(idAppointment);
+      dispatch(toggleFetchLatestData());
+    }
+  }, [shouldFetchLatestData, dispatch]);
 
   return (
     <>
@@ -168,6 +178,7 @@ const CardDetailAppointment = ({ dataPasien, isError }) => {
       return "Transfer Manual";
     }
   };
+
   return (
     <>
       <Card
@@ -212,7 +223,10 @@ const CardDetailAppointment = ({ dataPasien, isError }) => {
               </span>
             </p>
             {isShowPayment && (
-              <ModalPaymentAppointment closeModal={handleOpenModalPayment} />
+              <ModalPaymentAppointment
+                closeModal={handleOpenModalPayment}
+                data={dataPasien}
+              />
             )}
           </Flex>
         ) : (
@@ -251,6 +265,7 @@ const CardDetailAppointment = ({ dataPasien, isError }) => {
                 closeModal={handleOpenModal}
                 textTitle="Terima Janji Temu"
                 textContent="menerima"
+                dataPasien={dataPasien}
               />
             )}
           </>
@@ -277,6 +292,7 @@ const CardDetailAppointment = ({ dataPasien, isError }) => {
                 closeModal={handleOpenModal}
                 textTitle="Selesaikan Janji Temu"
                 textContent="menyelesaikan"
+                dataPasien={dataPasien}
               />
             )}
           </>

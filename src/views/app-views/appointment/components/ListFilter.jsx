@@ -1,19 +1,23 @@
 import { Col, Form, Input, Row, Select, ConfigProvider } from "antd";
 import { BsSearch } from "react-icons/bs";
 
-export default function ListFilter() {
+export default function ListFilter({ setSearchValue, setFilterStatus }) {
   const Filter = [
     {
-      value: "Berjalan",
+      value: "processed",
       label: "Berjalan",
     },
     {
-      value: "Menunggu",
+      value: "waiting",
       label: "Menunggu",
     },
     {
-      value: "Dibatalkan",
+      value: "cancelled",
       label: "Dibatalkan",
+    },
+    {
+      value: "done",
+      label: "Selesai",
     },
   ];
 
@@ -28,6 +32,7 @@ export default function ListFilter() {
               },
               Select: {
                 colorPrimary: "#17c6a3",
+                colorPrimaryBorderHover: "#17c6a3",
               },
             },
           }}
@@ -54,6 +59,7 @@ export default function ListFilter() {
                   allowClear
                   prefix={<BsSearch className="me-1 text-gray-400" />}
                   className="h-[2.1rem] hover:border-green-500"
+                  onChange={(e) => setSearchValue(e.target.value)}
                 />
               </Form.Item>
             </Col>
@@ -65,6 +71,7 @@ export default function ListFilter() {
                   showSearch
                   allowClear
                   className="h-[2.1rem] hover:border-green-500"
+                  onChange={(e) => setFilterStatus(e)}
                 />
               </Form.Item>
             </Col>

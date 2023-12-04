@@ -40,6 +40,27 @@ export const DataPasien = {
   status: "waiting",
 };
 
+// "response": {
+//   "id": "1431f827-a221-4750-965e-830f1010cde2",
+//   "invoice": "INV/2023/12/01/0001",
+//   "date": "2023-12-01T01:57:42Z",
+//   "payment_method": "manual_transfer",
+//   "name": "Albert",
+//   "price": 150000,
+//   "admin_fee": 10000,
+//   "total": 160000
+// }
+export const payment = {
+  id: "1431f827-a221-4750-965e-830f1010cde2",
+  invoice: "INV/2023/12/01/0001",
+  date: "2023-12-01T01:57:42Z",
+  payment_method: "manual_transfer",
+  name: "Albert",
+  price: 150000,
+  admin_fee: 10000,
+  total: 160000,
+};
+
 export const PaymentDetail = [
   {
     "No. Ref": "0000086886456",
