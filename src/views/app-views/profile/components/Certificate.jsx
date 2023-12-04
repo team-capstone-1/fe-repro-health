@@ -15,7 +15,7 @@ import {
   Spin,
   Table,
 } from "antd";
-import { IoMdSearch } from "react-icons/io";
+import { BsSearch } from "react-icons/bs";
 
 import { APIProfile } from "@/apis/APIProfile";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -123,12 +123,12 @@ export default function Certificate() {
           <Col span={24} md={12} lg={10} xl={8} className="text-start">
             <Form.Item name="search" id="search-certificate">
               <Input
-                placeholder="Cari Sertifikat berdasarkan id"
+                placeholder="Cari Sertifikat..."
                 size="large"
                 allowClear
                 prefix={
                   !isLoading ? (
-                    <IoMdSearch className="text-2xl" />
+                    <BsSearch className="me-1 text-gray-400" />
                   ) : (
                     <ConfigProvider
                       theme={{
