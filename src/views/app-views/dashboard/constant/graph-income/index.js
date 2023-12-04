@@ -18,45 +18,6 @@ const formatDateToStringWeek = (date) => {
   return `${value}`;
 };
 
-// dataset
-// export const DataIncome = [
-//   {
-//     date: dayjs().add(-10, "month").format("MMMM YYYY"),
-//     after: 53000000,
-//     amount: 0,
-//   },
-//   {
-//     date: dayjs().add(-9, "month").format("MMMM YYYY"),
-//     after: 43000000,
-//     amount: 10000000,
-//   },
-//   {
-//     date: dayjs().add(-8, "month").format("MMMM YYYY"),
-//     after: 33000000,
-//     amount: 20000000,
-//   },
-//   {
-//     date: dayjs().add(-7, "month").format("MMMM YYYY"),
-//     after: 50000000,
-//     amount: 30000000,
-//   },
-//   {
-//     date: dayjs().add(-6, "month").format("MMMM YYYY"),
-//     after: 47000000,
-//     amount: 40000000,
-//   },
-//   {
-//     date: dayjs().add(-5, "month").format("MMMM YYYY"),
-//     after: 45000000,
-//     amount: 50000000,
-//   },
-//   {
-//     date: dayjs().add(-4, "month").format("MMMM YYYY"),
-//     after: 49000000,
-//     amount: 60000000,
-//   },
-// ];
-
 const PlainDataIncomeWeek = [
   {
     date: "01-11-2023",
@@ -120,7 +81,7 @@ const PlainDataIncomeWeek = [
   },
   {
     date: "16-11-2023",
-    income: 99100000,
+    income: 110100000,
   },
   {
     date: "17-11-2023",
@@ -209,10 +170,10 @@ const PlainDataIncomeDay = [
     date: "30-11-2023",
     income: 464004,
   },
-  {
-    date: "01-12-2023",
-    income: 2286585,
-  },
+  // {
+  //   date: "01-12-2023",
+  //   income: 2286585,
+  // },
 ];
 
 const PlainDataIncomeMonth = [
@@ -222,11 +183,11 @@ const PlainDataIncomeMonth = [
   },
   {
     date: "02-06-2023",
-    income: 8000000,
+    income: 60000000,
   },
   {
     date: "03-07-2023",
-    income: 4640045,
+    income: 46490045,
   },
   {
     date: "04-08-2023",
@@ -261,20 +222,59 @@ export const DataIncomeWeek = PlainDataIncomeWeek.map((value) => {
   return value;
 });
 
-export const RangePresets = [
-  {
-    label: "Last 7 Days",
-    value: [dayjs().add(-7, "d"), dayjs()],
-  },
-  {
-    label: "Last 7 Weeks",
-    value: [dayjs().add(-7, "week"), dayjs()],
-  },
-  {
-    label: "Last 7 Month",
-    value: [dayjs().add(-7, "month"), dayjs()],
-  },
-];
+// dataset
+// export const DataIncome = [
+//   {
+//     date: dayjs().add(-10, "month").format("MMMM YYYY"),
+//     after: 53000000,
+//     amount: 0,
+//   },
+//   {
+//     date: dayjs().add(-9, "month").format("MMMM YYYY"),
+//     after: 43000000,
+//     amount: 10000000,
+//   },
+//   {
+//     date: dayjs().add(-8, "month").format("MMMM YYYY"),
+//     after: 33000000,
+//     amount: 20000000,
+//   },
+//   {
+//     date: dayjs().add(-7, "month").format("MMMM YYYY"),
+//     after: 50000000,
+//     amount: 30000000,
+//   },
+//   {
+//     date: dayjs().add(-6, "month").format("MMMM YYYY"),
+//     after: 47000000,
+//     amount: 40000000,
+//   },
+//   {
+//     date: dayjs().add(-5, "month").format("MMMM YYYY"),
+//     after: 45000000,
+//     amount: 50000000,
+//   },
+//   {
+//     date: dayjs().add(-4, "month").format("MMMM YYYY"),
+//     after: 49000000,
+//     amount: 60000000,
+//   },
+// ];
+
+// export const RangePresets = [
+//   {
+//     label: "Last 7 Days",
+//     value: [dayjs().add(-7, "d"), dayjs()],
+//   },
+//   {
+//     label: "Last 7 Weeks",
+//     value: [dayjs().add(-7, "week"), dayjs()],
+//   },
+//   {
+//     label: "Last 7 Month",
+//     value: [dayjs().add(-7, "month"), dayjs()],
+//   },
+// ];
 
 // const currentDate = new Date();
 // const startDate = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000);
