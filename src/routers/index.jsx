@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
 import PrivateRoute from "@/routers/PrivateRoute";
 import ProtectedRoute from "@/routers/ProtectedRoute";
@@ -27,7 +27,13 @@ import Appointment from "@/views/app-views/appointment";
 import MySchedule from "@/views/app-views/my-schedule";
 import Notifications from "@/views/app-views/notification";
 
+import { globalRoute } from "@/utils/GlobalRoute";
+import PrivateAndProtectedRoute from "./PrivateAndProtectedRoute";
+
 export default function SetupRoutes() {
+  const navigate = useNavigate();
+  globalRoute.navigate = navigate;
+
   return (
     <Routes>
       <Route path="/" element={<PublicRoute />}>
@@ -52,11 +58,12 @@ export default function SetupRoutes() {
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/login" element={<Login />} />
-        <Route path="/lupa-password" element={<ForgotPassword />} />
-        <Route path="/verifikasi" element={<Verify />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/lupa-kata-sandi" element={<ForgotPassword />} />
+        <Route path="/verifikasi/:userEmail" element={<Verify />} />
       </Route>
-
+      <Route path="/" element={<PrivateAndProtectedRoute />}>
+        <Route path="/atur-ulang-kata-sandi" element={<ResetPassword />} />
+      </Route>
       <Route>
         <Route path="/404" element={<Notfound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />

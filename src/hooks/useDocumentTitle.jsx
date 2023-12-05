@@ -4,7 +4,9 @@ export function useDocumentTitle(title, prevailOnUnmount = false) {
   const defaultTitle = useRef(document.title);
 
   useEffect(() => {
-    document.title = `${title} | ReproHealth`;
+    if (title === "ReproHealth") {
+      document.title = "ReproHealth";
+    } else document.title = `${title} | ReproHealth`;
   }, [title]);
 
   useEffect(

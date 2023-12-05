@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
+
+import Timeout from "@/views/error-views/Timeout";
 import { authService } from "@/configs/Auth";
 import { useNavigatorOnline } from "@/hooks/useNavigatorOnline";
-import Timeout from "@/views/error-views/Timeout";
 
 export default function ProtectedRoute() {
   const isOnline = useNavigatorOnline();

@@ -19,7 +19,7 @@ const UploadArticle = () => {
   const [isShowCancel, setIsShowCancel] = useState(false);
   const [isShowSuccess, setIsShowSuccess] = useState(false);
   const MAX_IMAGE_SIZE = 25000000;
-  const ALLOWED_IMAGE_TYPE = ["image/jpg", "image/png"];
+  const ALLOWED_IMAGE_TYPE = ["image/jpeg", "image/png"];
 
   //   Module from React Quill
   const module = {
@@ -33,6 +33,7 @@ const UploadArticle = () => {
         { align: "right" },
         { align: "justify" },
       ],
+      ['clean']
     ],
   };
 
@@ -43,22 +44,20 @@ const UploadArticle = () => {
     image: yup
       .mixed()
       .test("required", "Gambar harus diisi", (value) => {
-        return value && value.length;
+        return !!value;
       })
       .test(
         "fileSize",
         "Ukuran file terlalu besar, maksimal 20 MB",
         (value) => {
-          if (!value || !value[0]) return true;
-          return value[0].size <= MAX_IMAGE_SIZE;
+          return value.size <= MAX_IMAGE_SIZE;
         },
       )
       .test(
         "fileType",
         "Format file tidak valid, hanya file gambar yang diperbolehkan",
         (value) => {
-          if (!value || !value[0]) return true;
-          return ALLOWED_IMAGE_TYPE.includes(value[0].type);
+          return ALLOWED_IMAGE_TYPE.includes(value.type);
         },
       ),
     desc: yup.string().required("Deskripsi gambar harus diisi"),
@@ -70,6 +69,7 @@ const UploadArticle = () => {
     control,
     formState: { errors },
     handleSubmit,
+    setValue
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -105,7 +105,7 @@ const UploadArticle = () => {
                   Batal
                 </Button>
                 <Button
-                  onClick={handleOpenModalSuccess}
+                  onSubmit={handleOpenModalSuccess}
                   id="submit-button"
                   type="primary"
                   htmlType="submit"
@@ -242,6 +242,11 @@ const UploadArticle = () => {
                       type="file"
                       className="hidden"
                       accept=".jpg, .png"
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        setImagePreview(URL.createObjectURL(file));
+                        setValue("image", file); // Set nilai 'image' di dalam formulir
+                      }}
                     />
                   </label>
                   <div className="flex flex-col pt-2">

@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { Modal, Button } from "antd";
-import { useNavigate } from "react-router-dom";
 import logoutModalIcon from "@/assets/logout-modal-icon.svg";
 import { APIAuth } from "@/apis/APIAuth";
+import { useSelector } from "react-redux";
+import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
 export default function Logout({ closeModal }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const navigate = useNavigate();
-
+  const doctorState = useSelector(selectDoctorProfile);
+  const { name } = doctorState.data.response;
   const handleOk = () => {
     setIsModalOpen(false);
-    APIAuth.logout(navigate);
+    APIAuth.logout();
     closeModal();
   };
 
@@ -62,7 +63,7 @@ export default function Logout({ closeModal }) {
           className="my-4 h-10 w-10"
         />
         <p id="doctor-name" className="mt-2 text-xl font-semibold">
-          Halo, Dr Andi!
+          Halo, {name.split(",")[0]}!
         </p>
         <p
           id="logout-modal-text"

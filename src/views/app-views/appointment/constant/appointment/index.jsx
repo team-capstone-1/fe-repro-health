@@ -1,9 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
+import dayjs from "dayjs";
+import "dayjs/locale/id";
 import { Button } from "antd";
 
 import Utils from "@/utils";
-import Icon01 from "@/assets/db-icon-01.png";
-import Icon02 from "@/assets/db-icon-02.png";
 
 export const ColumnAppointment = [
   {
@@ -11,26 +11,30 @@ export const ColumnAppointment = [
     dataIndex: "id",
     key: "id",
     width: 100,
+    render: (val) => <span>{val.slice(0, 5)}</span>,
   },
   {
     title: "Nama Pasien",
-    dataIndex: "name",
-    key: "name",
+    dataIndex: "patient_name",
+    key: "patient_name",
     width: 250,
-    sorter: (a, b) => a.name.localeCompare(b.name),
+    sorter: (a, b) => a.patient_name.localeCompare(b.patient_name),
   },
   {
     title: "No Urut",
-    dataIndex: "no",
-    key: "no",
+    dataIndex: "sequence_number",
+    key: "sequence_number",
     width: 150,
-    sorter: (a, b) => a.no - b.no,
+    sorter: (a, b) => a.sequence_number - b.sequence_number,
   },
   {
     title: "Tanggal",
     dataIndex: "date",
     key: "date",
     width: 150,
+    render: (val) => {
+      return dayjs(val).format("DD/MM/YYYY");
+    },
   },
   {
     title: "Sesi",
@@ -40,23 +44,24 @@ export const ColumnAppointment = [
     filters: [
       {
         text: "Pagi",
-        value: "Pagi",
+        value: "pagi",
       },
       {
         text: "Siang",
-        value: "Siang",
+        value: "siang",
       },
       {
         text: "Malam",
-        value: "Malam",
+        value: "malam",
       },
     ],
+    render: (val) => <span className="capitalize">{val}</span>,
     onFilter: (value, record) => record.session.indexOf(value) === 0,
   },
   {
     title: "Pembayaran",
-    dataIndex: "payment",
-    key: "payment",
+    dataIndex: "total",
+    key: "total",
     width: 150,
     render: (val) => (
       <span className="text-green-500">{Utils.thousandSeparator(val)}</span>
@@ -64,91 +69,44 @@ export const ColumnAppointment = [
   },
   {
     title: "Metode",
-    dataIndex: "method",
-    key: "method",
+    dataIndex: "payment_method",
+    key: "payment_method",
     width: 200,
+    render: (val) => {
+      if (val === "manual_transfer") {
+        return "Transfer Manual";
+      }
+      if (val === "clinic_payment") {
+        return "Pembayaran Klinik";
+      }
+      return "Belum melakukan pembayaran";
+    },
   },
   {
     title: "Status",
     dataIndex: "status",
     key: "status",
     width: 200,
-    render: (_, { status }) => (
-      <>
-        {status.map((tag) => {
-          let color;
-          if (tag === "Berjalan") {
-            color = "text-link bg-link-25 cursor-default w-28";
-          } else if (tag === "Menunggu") {
-            color = "text-warning bg-warning-25 cursor-default w-28";
-          } else if (tag === "Selesai") {
-            color = "text-positive bg-positive-25 cursor-default w-28";
-          } else {
-            color = "text-negative bg-negative-25 cursor-default w-28";
-          }
-          return (
-            <Button className={color} key={tag} type="primary">
-              <span className="font-medium">{tag}</span>
-            </Button>
-          );
-        })}
-      </>
-    ),
-  },
-];
-
-export const DataAppointment = [
-  {
-    id: "#001",
-    name: "Alfhiyana",
-    no: "006",
-    date: "23/10/23",
-    session: "Malam",
-    payment: 12300000,
-    method: "Bayar di Klinik",
-    status: ["Menunggu"],
-  },
-  {
-    id: "#002",
-    name: "Xavier",
-    no: "007",
-    date: "23/10/23",
-    session: "Pagi",
-    payment: 1230000,
-    method: "Bayar di Klinik",
-    status: ["Berjalan"],
-  },
-  {
-    id: "#003",
-    name: "Naufal Helmi",
-    no: "008",
-    date: "23/10/23",
-    session: "Pagi",
-    payment: 123000,
-    method: "Bayar di Klinik",
-    status: ["Dibatalkan"],
-  },
-  {
-    id: "#004",
-    name: "Helmi Naufal",
-    no: "009",
-    date: "23/10/23",
-    session: "Pagi",
-    payment: 12300,
-    method: "Bayar di Klinik",
-    status: ["Selesai"],
-  },
-].map((item, i) => ({ ...item, key: (i + 1).toString() }));
-
-export const CardAppointment = [
-  {
-    title: "Janji Temu Hari Ini",
-    total: "100",
-    icon: `${Icon01}`,
-  },
-  {
-    title: "Menunggu Verifikasi",
-    total: "250",
-    icon: `${Icon02}`,
+    render: (_, { status }) => {
+      let text;
+      let color;
+      if (status === "processed") {
+        (color = "text-link bg-link-25 w-28"), (text = "Berjalan");
+      }
+      if (status === "waiting") {
+        (color = "text-warning bg-warning-25 w-28"), (text = "Menunggu");
+      }
+      if (status === "done") {
+        (color = "text-positive bg-positive-25 w-28"), (text = "Selesai");
+      }
+      if (status === "cancelled") {
+        (color = "text-negative bg-negative-25 w-28"), (text = "Dibatalkan");
+      }
+      return (
+        <Button className={color} key={status} type="primary">
+          <span className="font-medium">{text}</span>
+        </Button>
+      );
+    },
   },
 ];

@@ -6,7 +6,6 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import loginIllus from "@/assets/login-illustration.svg";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { APIAuth } from "@/apis/APIAuth";
@@ -166,7 +165,7 @@ const Login = () => {
                     </div>
                     <input
                       {...register("password")}
-                      id="password"
+                      id="login-password"
                       autoComplete="current-password"
                       type={`${visible ? "text" : "password"}`}
                       className="w-full rounded-lg p-4 pe-8 ps-14 text-base font-medium 
@@ -212,10 +211,10 @@ const Login = () => {
                     </div>
                   </div>
                   <a
-                    href="/lupa-password"
+                    href="/lupa-kata-sandi"
                     className="text-base font-medium text-green-500 hover:text-green-600"
                   >
-                    Lupa Password?
+                    Lupa kata sandi?
                   </a>
                 </div>
 
