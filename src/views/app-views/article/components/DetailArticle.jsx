@@ -156,11 +156,11 @@ export default function DetailArticle() {
               <h5 className="mb-2 text-xs font-semibold text-[#151515] sm:text-base">
                 Referensi
               </h5>
-              {detailArticle[0].reference.map((ref) => (
-                <p className="text-start text-[10px] font-[300] italic text-[#151515] sm:text-sm">
-                  {ref}
-                </p>
-              ))}
+              {/* {detailArticle[0].reference.map((ref) => ( */}
+              <p className="text-start text-[10px] font-[300] italic text-[#151515] sm:text-sm">
+                {detailArticles?.reference}
+              </p>
+              {/* ))} */}
             </div>
           </div>
 

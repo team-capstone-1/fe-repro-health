@@ -33,32 +33,25 @@ export default function ListArticle() {
     const fetchListArticles = async () => {
       try {
         const result = await APIArticle.getListArticle();
-        setDataArticles(result?.response);
+        if (searchQuery) {
+          const filteredData = result.response?.filter((data) => {
+            const filterBy =
+              data.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              data.tags.toLowerCase().includes(searchQuery.toLowerCase());
+
+            return filterBy;
+          });
+
+          setDataArticles(filteredData);
+        } else {
+          setDataArticles(result?.response);
+        }
       } catch (error) {
         console.log(error);
         setIsError(error);
       }
     };
     fetchListArticles();
-  }, []);
-
-  useEffect(() => {
-    if (searchQuery) {
-      const filteredData = dataArticles.filter((data) => {
-        return data.title.toLowerCase().includes(searchQuery.toLowerCase());
-      });
-      setDataArticles(filteredData);
-    } else {
-      const fetchListArticles = async () => {
-        try {
-          const result = await APIArticle.getListArticle();
-          setDataArticles(result?.response);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchListArticles();
-    }
   }, [searchQuery]);
 
   console.log(searchValue);
