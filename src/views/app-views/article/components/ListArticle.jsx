@@ -29,28 +29,29 @@ export default function ListArticle() {
   useDocumentTitle("Artikel Saya");
   useScrollToTop();
 
-  useEffect(() => {
-    const fetchListArticles = async () => {
-      try {
-        const result = await APIArticle.getListArticle();
-        if (searchQuery) {
-          const filteredData = result.response?.filter((data) => {
-            const filterBy =
-              data.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              data.tags.toLowerCase().includes(searchQuery.toLowerCase());
+  const fetchListArticles = async () => {
+    try {
+      const result = await APIArticle.getListArticle();
+      if (searchQuery) {
+        const filteredData = result.response?.filter((data) => {
+          const filterBy =
+            data.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            data.tags.toLowerCase().includes(searchQuery.toLowerCase());
 
-            return filterBy;
-          });
+          return filterBy;
+        });
 
-          setDataArticles(filteredData);
-        } else {
-          setDataArticles(result?.response);
-        }
-      } catch (error) {
-        console.log(error);
-        setIsError(error);
+        setDataArticles(filteredData);
+      } else {
+        setDataArticles(result?.response);
       }
-    };
+    } catch (error) {
+      console.log(error);
+      setIsError(error);
+    }
+  };
+
+  useEffect(() => {
     fetchListArticles();
   }, [searchQuery]);
 

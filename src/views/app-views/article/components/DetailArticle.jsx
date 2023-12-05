@@ -18,9 +18,10 @@ import {
   CommentUser as commentUser,
 } from "../constant/detail-article";
 
+import Markdown from "react-markdown";
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
-import Markdown from "react-markdown";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
@@ -29,22 +30,24 @@ export default function DetailArticle() {
   const [detailArticles, setDetailArticles] = useState([]);
   const { articleId } = useParams();
   useDocumentTitle("Artikel");
+  useScrollToTop();
 
   const doctor = useSelector(selectDoctorProfile);
   const dataDoctor = doctor?.data?.response;
   const tag = detailArticles?.tags;
 
-  useEffect(() => {
-    const fetchDetailArticles = async () => {
-      try {
-        const result = await APIArticle.getDetailArticle(articleId);
+  const fetchDetailArticles = async () => {
+    try {
+      const result = await APIArticle.getDetailArticle(articleId);
 
-        setDetailArticles(result?.response);
-      } catch (error) {
-        console.log(error);
-        setIsError(error);
-      }
-    };
+      setDetailArticles(result?.response);
+    } catch (error) {
+      console.log(error);
+      setIsError(error);
+    }
+  };
+
+  useEffect(() => {
     fetchDetailArticles();
   }, []);
 
