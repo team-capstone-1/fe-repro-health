@@ -16,14 +16,17 @@ import {
 } from "@/components/shared-components/Toast";
 import { CONST } from "@/utils/Constant";
 import { ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { toggleResetPassword } from "@/store/is-password-reset-slice";
 
 const Verify = () => {
   useDocumentTitle("Verifikasi");
 
   const secretKey = CONST.SECRET_KEY;
   const { userEmail } = useParams();
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const decryptData = (encryptedData) => {
     const decryptedData = CryptoJS.AES.decrypt(
@@ -47,13 +50,14 @@ const Verify = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmitHandler = (data) => {
+  const onSubmitHandler = async (data) => {
     try {
-      APIAuth.validateOTP({
+      await APIAuth.validateOTP({
         email,
         otp: data.code,
       }).then((data) => {
         Cookies.set("token", data.response.token);
+        dispatch(toggleResetPassword());
         navigate("/atur-ulang-kata-sandi");
       });
     } catch (error) {

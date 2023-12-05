@@ -5,31 +5,40 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import resetPasswordIllus from "@/assets/reset-password-illustration.svg";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { APIAuth } from "@/apis/APIAuth";
 import {
   showErrorToast,
   showSuccessToast,
 } from "@/components/shared-components/Toast";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import {
   selectDoctorProfile,
   fetchGetDoctorProfile,
 } from "@/store/get-doctor-profile-slice";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import {
+  selectIsPasswordReset,
+  toggleResetPassword,
+} from "@/store/is-password-reset-slice";
 
 const ResetPassword = () => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const [isVisiblePasswordConfirm, setIsVisiblePasswordConfirm] =
     useState(false);
+
   useDocumentTitle("Reset Password");
   const dispatch = useDispatch();
   const stateData = useSelector(selectDoctorProfile);
   const emailDoctor = stateData.data?.response?.email;
+  const { isPasswordReset } = useSelector(selectIsPasswordReset);
 
   useEffect(() => {
+    if (!isPasswordReset) {
+      navigate("/dashboard");
+    }
     dispatch(fetchGetDoctorProfile());
   }, [dispatch]);
 
@@ -56,12 +65,14 @@ const ResetPassword = () => {
 
   const onSubmitHandler = async (data) => {
     try {
-      await APIAuth.changePassword(data);
-      navigate("/dashboard");
-      showSuccessToast("Kata sandi telah diganti!", "top-right");
+      await APIAuth.changePassword(data).then(() => {
+        showSuccessToast("Kata sandi telah diganti!", "top-right");
+        dispatch(toggleResetPassword());
+        navigate("/dashboard");
+      });
     } catch (error) {
-      showErrorToast("gagal mengganti kata sandi!", "top-right");
       console.error(error);
+      showErrorToast("gagal mengganti kata sandi!", "top-right");
     }
   };
 
