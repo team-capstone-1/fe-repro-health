@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { axiosInstance } from "@/configs/AxiosInstance";
 import { authService } from "@/configs/Auth";
+import { globalRoute } from "@/utils/GlobalRoute";
 
 export const APIAuth = {
   login: async (data) => {
@@ -31,8 +32,44 @@ export const APIAuth = {
       throw new Error(err);
     }
   },
-  logout: (navigate) => {
+  logout: () => {
     authService.clearCredentialsFromCookie();
-    navigate("/");
+    globalRoute.navigate && globalRoute.navigate("/");
+  },
+  sendOTP: async (data) => {
+    try {
+      const result = await axiosInstance.put("/doctors/send-otp", data);
+      return result.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { response } = error.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(error);
+    }
+  },
+  validateOTP: async (data) => {
+    try {
+      const result = await axiosInstance.put("/doctors/validate-otp", data);
+      return result.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { response } = error.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(error);
+    }
+  },
+  changePassword: async (data) => {
+    try {
+      const result = await axiosInstance.put("/doctors/change-password", data);
+      return result.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { response } = error.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(error);
+    }
   },
 };

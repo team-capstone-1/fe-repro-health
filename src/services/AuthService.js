@@ -4,43 +4,46 @@ import { jwtDecode } from "jwt-decode";
 export class AuthService {
   isAuthorized() {
     if (this.getToken()) {
-      const token = this.getToken();
-      if (token) {
-        const decoded = jwtDecode(token);
-        return decoded.authorized;
-      }
+      return true;
     }
     return false;
   }
 
-  getToken() {
+  validateToken() {
+    const token = Cookies.get("token");
+    if (!token) {
+      return false;
+    }
     try {
-      const isTokenValid = () => {
-        const token = Cookies.get("token");
-        if (token) {
-          const decoded = jwtDecode(token);
-          const currentTime = Date.now() / 1000;
-          return decoded.exp > currentTime;
-        }
-        return false;
-      };
-      if (!isTokenValid()) {
+      const decodedToken = jwtDecode(token);
+      const expirationTime = decodedToken.exp * 1000;
+      const currentTime = new Date().getTime();
+      if (currentTime > expirationTime) {
         this.clearCredentialsFromCookie();
-        return null;
+        return false;
+      } else {
+        return decodedToken.authorized;
       }
-
-      return Cookies.get("token");
     } catch (error) {
       console.error(error);
     }
   }
 
+  getToken() {
+    if (this.validateToken()) {
+      return Cookies.get("token");
+    }
+    return false;
+  }
+
   storeCredentials({ token, isRemembered, data }) {
+    const decode = jwtDecode(token);
+    const expires = new Date(decode.exp * 1000);
     if (!isRemembered) {
-      Cookies.set("token", token);
+      Cookies.set("token", token, { expires });
       localStorage.removeItem("data");
     } else {
-      Cookies.set("token", token);
+      Cookies.set("token", token, { expires });
       localStorage.setItem("data", JSON.stringify(data));
     }
   }
