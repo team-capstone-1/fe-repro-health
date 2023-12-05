@@ -42,14 +42,15 @@ const ForgotPassword = () => {
     const encryptedData = CryptoJS.AES.encrypt(data, secretKey)
       .toString()
       .replace(/\//g, "Por21Ld");
-    console.log(encryptedData);
     return encryptedData;
   };
 
   const onSubmitHandler = async (data) => {
+    const encryptedEmail = encryptData(data.email);
     try {
-      await APIAuth.sendOTP(data);
-      navigate(`/verifikasi/${encryptData(data.email)}`);
+      await APIAuth.sendOTP(data).then(() => {
+        navigate(`/verifikasi/${encryptedEmail}`);
+      });
     } catch (error) {
       console.error(error);
       showErrorToast("Terjadi kesalahan, pastikan email sudah terdaftar");
@@ -134,7 +135,11 @@ const ForgotPassword = () => {
                       "Loading..."
                     ) : (
                       <span>
-                        Lanjut <AiOutlineArrowRight size={18} className="inline-block" />
+                        Lanjut{" "}
+                        <AiOutlineArrowRight
+                          size={18}
+                          className="inline-block"
+                        />
                       </span>
                     )}
                   </button>

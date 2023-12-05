@@ -51,7 +51,6 @@ const Verify = () => {
         email,
         otp: data.code,
       }).then((data) => {
-        console.log(data.response.token);
         Cookies.set("token", data.response.token)
         navigate("/reset-password");
       });
