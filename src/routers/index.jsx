@@ -54,12 +54,12 @@ export default function SetupRoutes() {
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/notifikasi" element={<Notifications />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/lupa-password" element={<ForgotPassword />} />
-        <Route path="/verifikasi" element={<Verify />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/verifikasi/:userEmail" element={<Verify />} />
       </Route>
 
       <Route>
