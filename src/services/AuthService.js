@@ -10,7 +10,7 @@ export class AuthService {
   }
 
   validateToken() {
-    const token = Cookies.get("token");
+    const token = Cookies.get("token") || Cookies.get("tokenResetPassword");
     if (!token) {
       return false;
     }
@@ -31,7 +31,7 @@ export class AuthService {
 
   getToken() {
     if (this.validateToken()) {
-      return Cookies.get("token");
+      return Cookies.get("token") || Cookies.get("tokenResetPassword");
     }
     return false;
   }
@@ -49,6 +49,6 @@ export class AuthService {
   }
 
   clearCredentialsFromCookie() {
-    Cookies.remove("token");
+    Cookies.remove("token") || Cookies.remove("tokenResetPassword");
   }
 }

@@ -56,7 +56,7 @@ const Verify = () => {
         email,
         otp: data.code,
       }).then((data) => {
-        Cookies.set("token", data.response.token);
+        Cookies.set("tokenResetPassword", data.response.token);
         dispatch(toggleResetPassword());
         navigate("/atur-ulang-kata-sandi");
       });

@@ -36,9 +36,9 @@ const ResetPassword = () => {
   const { isPasswordReset } = useSelector(selectIsPasswordReset);
 
   useEffect(() => {
-    if (!isPasswordReset) {
-      navigate("/dashboard");
-    }
+    // if (!isPasswordReset) {
+    //   navigate("/dashboard");
+    // }
     dispatch(fetchGetDoctorProfile());
   }, [dispatch]);
 
