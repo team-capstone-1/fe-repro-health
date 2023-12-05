@@ -11,6 +11,9 @@ export class AuthService {
 
   validateToken() {
     const token = Cookies.get("token");
+    if (!token) {
+      return false;
+    }
     try {
       const decodedToken = jwtDecode(token);
       const expirationTime = decodedToken.exp * 1000;

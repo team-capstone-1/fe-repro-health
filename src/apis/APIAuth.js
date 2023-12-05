@@ -35,4 +35,40 @@ export const APIAuth = {
     authService.clearCredentialsFromCookie();
     navigate("/");
   },
+  sendOTP: async (data) => {
+    try {
+      const result = await axiosInstance.put("/doctors/send-otp", data);
+      return result.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { response } = error.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(error);
+    }
+  },
+  validateOTP: async (data) => {
+    try {
+      const result = await axiosInstance.put("/doctors/validate-otp", data);
+      return result.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { response } = error.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(error);
+    }
+  },
+  changePassword: async (data) => {
+    try {
+      const result = await axiosInstance.put("/doctors/change-password", data);
+      return result.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { response } = error.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(error);
+    }
+  },
 };

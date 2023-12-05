@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import codeVerifyIllus from "@/assets/code-verify-illustration.svg";
@@ -7,18 +7,34 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { APIAuth } from "@/apis/APIAuth";
+import { showSuccessToast } from "@/components/shared-components/Toast";
+import CryptoJS from "crypto-js";
+import { CONST } from "@/utils/Constant";
+import { ToastContainer } from "react-toastify";
+import Cookies from "js-cookie";
 
 const Verify = () => {
   useDocumentTitle("Verifikasi");
 
+  const secretKey = CONST.SECRET_KEY;
+  const { userEmail } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [isFocusCode, setIsFocusCode] = useState(false);
 
+  const decryptData = (encryptedData) => {
+    const decryptedData = CryptoJS.AES.decrypt(
+      encryptedData,
+      secretKey,
+    ).toString(CryptoJS.enc.Utf8);
+    return decryptedData;
+  };
+
+  const email = decryptData(userEmail.replace(/Por21Ld/g, "/"));
+
   const schema = yup.object().shape({
-    code: yup
-      .string()
-      .required("Kode Verifikasi harus diisi")
-      .oneOf(["123456"], "Kode Verifikasi salah"),
+    code: yup.string().required("Kode Verifikasi harus diisi"),
   });
 
   const {
@@ -28,96 +44,144 @@ const Verify = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const onSubmitHandler = (data) => {
-    console.log(data);
+    try {
+      APIAuth.validateOTP({
+        email,
+        otp: data.code,
+      }).then((data) => {
+        console.log(data.response.token);
+        Cookies.set("token", data.response.token)
+        navigate("/reset-password");
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const repeatSendCode = async () => {
+    setIsLoading(true);
+    try {
+      await APIAuth.sendOTP({
+        email,
+      });
+      showSuccessToast("Kode verifikasi berhasil dikirim ulang");
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
+
+  const modifyEmail = (email) => {
+    const parts = email.split("@");
+    if (parts.length === 2) {
+      // Mengganti huruf kecuali huruf pertama di bagian sebelum '@'
+      const replaced =
+        parts[0][0] + parts[0].substring(1).replace(/[a-zA-Z]/g, "*");
+
+      // Menggabungkan kembali bagian-bagian string
+      const result = replaced + "@" + parts[1];
+
+      return result;
+    }
+    return email;
   };
 
   return (
-    <section className="flex h-screen items-center justify-center xl:scale-95">
-      <div className="base-container">
-        <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-16 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">
-          <button
-            id="back-button"
-            onClick={() => navigate(-1)}
-            className="flex gap-3"
-          >
-            <AiOutlineArrowLeft color="#989898" size={24} />
-            <p className="text-base font-semibold text-grey-900">Kembali</p>
-          </button>
-          <div className="mt-[26px] grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
-            <form
-              onSubmit={handleSubmit(onSubmitHandler)}
-              id="verify-form"
-              className="flex flex-col gap-12 lg:gap-20"
+    <>
+      <ToastContainer className="w-full sm:w-[35rem] lg:w-[38rem]" />
+      <section className="flex h-screen items-center justify-center xl:scale-95">
+        <div className="base-container">
+          <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-16 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">
+            <button
+              id="back-button"
+              onClick={() => navigate(-1)}
+              className="flex gap-3"
             >
-              {/* Title */}
+              <AiOutlineArrowLeft color="#989898" size={24} />
+              <p className="text-base font-semibold text-grey-900">Kembali</p>
+            </button>
+            <div className="mt-[26px] grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
               <div>
-                <h3 className="text-grey-900">Masukkan Kode Verifikasi</h3>
-                <p className="mt-1 text-base font-medium text-grey-300">
-                  Kode verifikasi telah dikirim melalui e-mail ke
-                  n******@g****.com
-                </p>
-              </div>
+                <form
+                  onSubmit={handleSubmit(onSubmitHandler)}
+                  id="verify-form"
+                  className="flex flex-col gap-12 lg:gap-20"
+                >
+                  {/* Title */}
+                  <div>
+                    <h3 className="text-grey-900">Masukkan Kode Verifikasi</h3>
+                    <p className="mt-1 text-base font-medium text-grey-300">
+                      Kode verifikasi telah dikirim melalui e-mail ke{" "}
+                      {modifyEmail(email)}
+                    </p>
+                  </div>
 
-              {/* Code Verify */}
-              <div>
-                <div className="relative mt-2">
-                  <input
-                    {...register("code")}
-                    onFocus={() => setIsFocusCode(true)}
-                    onBlur={() => setIsFocusCode(false)}
-                    id="code-verify"
-                    type="number"
-                    className={`block w-full rounded-lg border bg-gray-50 p-4 pe-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
-                      errors.code
-                        ? "border-[#fc4547] text-[#fc4547]"
-                        : "border-grey-100 text-grey-100"
-                    }`}
-                    placeholder="Masukkan kode verifikasi"
-                  />
-                  <button
-                    id="submit-button"
-                    type="submit"
-                    className="absolute inset-y-0 end-0 flex items-center pe-4"
-                  >
-                    <IoSend
-                      color={`${
-                        isFocusCode
-                          ? "#0d0d0d"
-                          : errors.code
-                          ? "#fc4547"
-                          : "#b9b9b9"
-                      }`}
-                      size={24}
-                    />
-                  </button>
-                </div>
-                <span className="text-xs text-red-500">
-                  {errors.code?.message}
-                </span>
+                  {/* Code Verify */}
+                  <div>
+                    <div className="relative mt-2">
+                      <input
+                        {...register("code")}
+                        onFocus={() => setIsFocusCode(true)}
+                        onBlur={() => setIsFocusCode(false)}
+                        id="code-verify"
+                        type="number"
+                        className={`block w-full rounded-lg border bg-gray-50 p-4 pe-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
+                          errors.code
+                            ? "border-[#fc4547] text-[#fc4547]"
+                            : "border-grey-100 text-grey-100"
+                        }`}
+                        placeholder="Masukkan kode verifikasi"
+                      />
+                      <button
+                        id="submit-button"
+                        type="submit"
+                        className="absolute inset-y-0 end-0 flex items-center pe-4"
+                      >
+                        <IoSend
+                          color={`${
+                            isFocusCode
+                              ? "#0d0d0d"
+                              : errors.code
+                              ? "#fc4547"
+                              : "#b9b9b9"
+                          }`}
+                          size={24}
+                        />
+                      </button>
+                    </div>
+                    <span className="text-xs text-red-500">
+                      {errors.code?.message}
+                    </span>
+                  </div>
+                </form>
                 <div className="mt-4">
                   <button
                     id="get-code"
-                    className="text-base font-medium text-grey-300"
+                    className="text-base font-medium text-grey-300 disabled:text-grey-100"
+                    onClick={repeatSendCode}
+                    disabled={isLoading}
                   >
-                    Kirim ulang kode
+                    {isLoading ? "Loading..." : "Kirim ulang kode"}
                   </button>
                 </div>
               </div>
-            </form>
 
-            {/* Illustration */}
-            <div id="code-verify-illustration" className="hidden lg:block">
-              <img
-                className="w-full"
-                src={codeVerifyIllus}
-                alt="code-verify-illustration"
-              />
+              {/* Illustration */}
+              <div id="code-verify-illustration" className="hidden lg:block">
+                <img
+                  className="w-full"
+                  src={codeVerifyIllus}
+                  alt="code-verify-illustration"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
