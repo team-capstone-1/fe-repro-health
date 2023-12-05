@@ -67,8 +67,10 @@ const ResetPassword = () => {
     try {
       await APIAuth.changePassword(data).then(() => {
         showSuccessToast("Kata sandi telah diganti!", "top-right");
-        dispatch(toggleResetPassword());
-        navigate("/dashboard");
+        setTimeout(() => {
+          dispatch(toggleResetPassword());
+          navigate("/dashboard");
+        }, 2000);
       });
     } catch (error) {
       console.error(error);

@@ -159,7 +159,7 @@ const Verify = () => {
                 <div className="mt-4">
                   <button
                     id="get-code"
-                    className="text-base font-medium text-grey-300 disabled:text-grey-100"
+                    className="text-base font-medium text-grey-300 hover:text-green-500 hover:duration-300 disabled:text-grey-100"
                     onClick={repeatSendCode}
                     disabled={isLoading}
                   >
