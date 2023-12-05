@@ -1,18 +1,21 @@
+import * as yup from "yup";
+import CryptoJS from "crypto-js";
+import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import codeVerifyIllus from "@/assets/code-verify-illustration.svg";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { APIAuth } from "@/apis/APIAuth";
-import { showSuccessToast } from "@/components/shared-components/Toast";
-import CryptoJS from "crypto-js";
+import {
+  showSuccessToast,
+  showErrorToast,
+} from "@/components/shared-components/Toast";
 import { CONST } from "@/utils/Constant";
 import { ToastContainer } from "react-toastify";
-import Cookies from "js-cookie";
 
 const Verify = () => {
   useDocumentTitle("Verifikasi");
@@ -21,7 +24,6 @@ const Verify = () => {
   const { userEmail } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [isFocusCode, setIsFocusCode] = useState(false);
 
   const decryptData = (encryptedData) => {
     const decryptedData = CryptoJS.AES.decrypt(
@@ -39,7 +41,7 @@ const Verify = () => {
 
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
@@ -51,12 +53,12 @@ const Verify = () => {
         email,
         otp: data.code,
       }).then((data) => {
-        console.log(data.response.token);
-        Cookies.set("token", data.response.token)
-        navigate("/reset-password");
+        Cookies.set("token", data.response.token);
+        navigate("/atur-ulang-kata-sandi");
       });
     } catch (error) {
       console.error(error);
+      showErrorToast("Kode verifikasi tidak sesuai", "top-right");
     }
   };
 
@@ -66,11 +68,12 @@ const Verify = () => {
       await APIAuth.sendOTP({
         email,
       });
-      showSuccessToast("Kode verifikasi berhasil dikirim ulang");
+      showSuccessToast("Kode verifikasi berhasil dikirim ulang", "top-right");
       setIsLoading(false);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
+      showErrorToast("Kode verifikasi gagal dikirim", "top-right");
     }
   };
 
@@ -121,35 +124,27 @@ const Verify = () => {
 
                   {/* Code Verify */}
                   <div>
-                    <div className="relative mt-2">
+                    <div
+                      className={`relative mt-2 rounded-lg border focus-within:ring ${
+                        errors.code
+                          ? "border-negative text-negative focus-within:text-negative focus-within:ring-negative "
+                          : "border-grey-200 text-grey-200 focus-within:text-grey-900 focus-within:ring-grey-900 "
+                      } `}
+                    >
                       <input
                         {...register("code")}
-                        onFocus={() => setIsFocusCode(true)}
-                        onBlur={() => setIsFocusCode(false)}
                         id="code-verify"
                         type="number"
-                        className={`block w-full rounded-lg border bg-gray-50 p-4 pe-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
-                          errors.code
-                            ? "border-[#fc4547] text-[#fc4547]"
-                            : "border-grey-100 text-grey-100"
-                        }`}
+                        className={`block w-full rounded-lg border-0 p-4 pe-14 text-base focus:outline-none focus:ring-0`}
                         placeholder="Masukkan kode verifikasi"
                       />
                       <button
                         id="submit-button"
                         type="submit"
-                        className="absolute inset-y-0 end-0 flex items-center pe-4"
+                        className="absolute inset-y-0 end-0 flex items-center pe-4 disabled:text-grey-100"
+                        disabled={isSubmitting}
                       >
-                        <IoSend
-                          color={`${
-                            isFocusCode
-                              ? "#0d0d0d"
-                              : errors.code
-                              ? "#fc4547"
-                              : "#b9b9b9"
-                          }`}
-                          size={24}
-                        />
+                        <IoSend size={24} />
                       </button>
                     </div>
                     <span className="text-xs text-red-500">

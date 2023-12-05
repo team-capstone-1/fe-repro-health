@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 export function AppLayout() {
   const { pathname } = useLocation();
-  if (pathname === "/reset-password") {
+  if (pathname === "/atur-ulang-kata-sandi") {
     return (
       <Layout id="app-layout" className="bg-white">
         <Outlet />
