@@ -20,7 +20,6 @@ const ForgotPassword = () => {
   useDocumentTitle("Lupa Password");
 
   const navigate = useNavigate();
-  const [isFocusEmail, setIsFocusEmail] = useState(false);
   const secretKey = CONST.SECRET_KEY;
 
   const schema = yup.object().shape({
@@ -42,7 +41,6 @@ const ForgotPassword = () => {
     const encryptedData = CryptoJS.AES.encrypt(data, secretKey)
       .toString()
       .replace(/\//g, "Por21Ld");
-    console.log(encryptedData);
     return encryptedData;
   };
 
@@ -78,7 +76,7 @@ const ForgotPassword = () => {
               >
                 {/* Title */}
                 <div>
-                  <h3 className="text-grey-900">Lupa Kata Sandi Anda</h3>
+                  <h3 className="text-grey-900">Lupa Kata Sandi Anda?</h3>
                   <p className="mt-1 text-justify text-base font-medium text-grey-300">
                     Masukkan alamat email Anda untuk mengatur ulang kata sandi
                     Anda. Kami akan mengirimkan Anda kode verifikasi untuk
@@ -88,32 +86,21 @@ const ForgotPassword = () => {
 
                 {/* Email */}
                 <div>
-                  <div className="relative mt-2">
+                  <div
+                    className={`relative mt-2 rounded-lg border focus-within:ring ${
+                      errors.email
+                        ? "border-negative text-negative focus-within:text-negative focus-within:ring-negative"
+                        : "border-grey-200 text-grey-200 focus-within:text-grey-900 focus-within:ring-grey-900"
+                    }`}
+                  >
                     <div className="absolute inset-y-0 start-0 flex items-center ps-4">
-                      <AiOutlineMail
-                        color={`${
-                          isFocusEmail
-                            ? "#0d0d0d"
-                            : errors.email
-                            ? "#fc4547"
-                            : "#b9b9b9"
-                        }`}
-                        size={24}
-                      />
+                      <AiOutlineMail size={24} />
                     </div>
                     <input
                       {...register("email")}
-                      onFocus={() => {
-                        setIsFocusEmail(true);
-                      }}
-                      onBlur={() => setIsFocusEmail(false)}
                       id="email"
                       type="email"
-                      className={`block w-full rounded-lg border p-4 pe-8 ps-14 text-base focus:border-grey-900 focus:text-grey-900 focus:outline-none focus:ring-1 focus:ring-grey-900 ${
-                        errors.email
-                          ? "border-[#fc4547] text-[#fc4547]"
-                          : "border-grey-100 text-grey-100"
-                      }`}
+                      className={`block w-full rounded-lg border-0 p-4 pe-8 ps-14 text-base focus:outline-none focus:ring-0`}
                       placeholder="Masukkan email anda"
                     />
                   </div>
@@ -134,7 +121,11 @@ const ForgotPassword = () => {
                       "Loading..."
                     ) : (
                       <span>
-                        Lanjut <AiOutlineArrowRight size={18} className="inline-block" />
+                        Lanjut{" "}
+                        <AiOutlineArrowRight
+                          size={18}
+                          className="inline-block"
+                        />
                       </span>
                     )}
                   </button>

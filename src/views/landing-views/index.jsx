@@ -18,8 +18,10 @@ import {
   DataCtaDoctor,
 } from "@/views/landing-views/constant/home-page";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 export default function LandingPage() {
+  useDocumentTitle("ReproHealth");
   useScrollToTop();
   return (
     <>

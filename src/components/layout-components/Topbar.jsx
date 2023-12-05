@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Flex, Skeleton } from "antd";
 
 import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
+import BlankProfile from "@/assets/blank-profile.png";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 import {
   fetchGetDoctorProfile,
@@ -62,7 +63,7 @@ export default function Topbar() {
                 {stateDataDoctor.status === "success" && (
                   <img
                     id="profile-doctor-topbar"
-                    src={dataDoctor?.profile_image}
+                    src={dataDoctor?.profile_image || BlankProfile}
                     alt="profile-doctor"
                     className="h-8 w-8 rounded-full md:h-11 md:w-11"
                   />

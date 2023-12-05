@@ -105,7 +105,7 @@ const UploadArticle = () => {
                   Batal
                 </Button>
                 <Button
-                  onClick={handleOpenModalSuccess}
+                  onSubmit={handleOpenModalSuccess}
                   id="submit-button"
                   type="primary"
                   htmlType="submit"

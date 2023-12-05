@@ -211,10 +211,10 @@ const Login = () => {
                     </div>
                   </div>
                   <a
-                    href="/lupa-password"
+                    href="/lupa-kata-sandi"
                     className="text-base font-medium text-green-500 hover:text-green-600"
                   >
-                    Lupa Password?
+                    Lupa kata sandi?
                   </a>
                 </div>
 
