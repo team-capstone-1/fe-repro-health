@@ -28,6 +28,7 @@ import MySchedule from "@/views/app-views/my-schedule";
 import Notifications from "@/views/app-views/notification";
 
 import { globalRoute } from "@/utils/GlobalRoute";
+import PrivateAndProtectedRoute from "./PrivateAndProtectedRoute";
 
 export default function SetupRoutes() {
   const navigate = useNavigate();
@@ -54,14 +55,15 @@ export default function SetupRoutes() {
         <Route path="/forum/:questionId" element={<DiscussionDetail />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/notifikasi" element={<Notifications />} />
-        <Route path="/atur-ulang-kata-sandi" element={<ResetPassword />} />
       </Route>
       <Route path="/" element={<ProtectedRoute />}>
         <Route path="/login" element={<Login />} />
         <Route path="/lupa-kata-sandi" element={<ForgotPassword />} />
         <Route path="/verifikasi/:userEmail" element={<Verify />} />
       </Route>
-
+      <Route path="/" element={<PrivateAndProtectedRoute />}>
+        <Route path="/atur-ulang-kata-sandi" element={<ResetPassword />} />
+      </Route>
       <Route>
         <Route path="/404" element={<Notfound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />

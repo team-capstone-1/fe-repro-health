@@ -19,10 +19,7 @@ import {
   selectDoctorProfile,
   fetchGetDoctorProfile,
 } from "@/store/get-doctor-profile-slice";
-import {
-  selectIsPasswordReset,
-  toggleResetPassword,
-} from "@/store/is-password-reset-slice";
+import { toggleResetPassword } from "@/store/is-password-reset-slice";
 
 const ResetPassword = () => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
@@ -33,12 +30,8 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const stateData = useSelector(selectDoctorProfile);
   const emailDoctor = stateData.data?.response?.email;
-  const { isPasswordReset } = useSelector(selectIsPasswordReset);
 
   useEffect(() => {
-    if (!isPasswordReset) {
-      navigate("/dashboard");
-    }
     dispatch(fetchGetDoctorProfile());
   }, [dispatch]);
 
