@@ -3,16 +3,43 @@ import { Button, Modal } from "antd";
 import { PiSealCheck } from "react-icons/pi";
 
 import { showSuccessToast } from "./Toast";
+import { APIAppointment } from "@/apis/APIAppointment";
+import { useDispatch } from "react-redux";
+import { toggleFetchLatestData } from "@/store/toggle-fetch-new-data";
 
-const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
+const ModalConfirmAppointment = ({
+  closeModal,
+  textContent,
+  textTitle,
+  dataPasien,
+}) => {
   const [isOpen, setIsOpen] = useState(true);
-
-  const handleOk = () => {
-    // openNotification();
-
-    setIsOpen(false);
-    closeModal();
-    showSuccessToast("Pasien berhasil diverifikasi !", "top-right");
+  const dispatch = useDispatch();
+  const handleOk = async () => {
+    if (textTitle === "Terima Janji Temu") {
+      try {
+        await APIAppointment.confirmConsultation(dataPasien.id).then(() => {
+          setIsOpen(false);
+          closeModal();
+          showSuccessToast("Janji temu telah dikonfirmasi !", "top-right");
+          dispatch(toggleFetchLatestData());
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    if (textTitle === "Selesaikan Janji Temu") {
+      try {
+        await APIAppointment.finishConsultation(dataPasien.id).then(() => {
+          setIsOpen(false);
+          closeModal();
+          showSuccessToast("Janji temu selesai !", "top-right");
+          dispatch(toggleFetchLatestData());
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
   };
   const handleCancel = () => {
     setIsOpen(false);
@@ -61,8 +88,8 @@ const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
             id="logout-modal-text"
             className="mt-2 text-sm font-medium leading-relaxed text-grey-400 sm:text-base md:px-3"
           >
-            Anda akan {textContent} Janji Temu milik Supriyadi. Konfirmasi
-            pengubahan?
+            Anda akan {textContent} Janji Temu milik {dataPasien?.patient_name}.
+            Konfirmasi pengubahan?
           </p>
         </div>
       </Modal>
@@ -70,22 +97,3 @@ const ModalConfirmAppointment = ({ closeModal, textContent, textTitle }) => {
   );
 };
 export default ModalConfirmAppointment;
-
-// const openNotification = () => {
-//   notification.open({
-//     message: (
-//       <p className="font-medium text-[#FBFBFB]">
-//         Pasien berhasil diverifikasi!
-//       </p>
-//     ),
-//   });
-
-//   notification.config({
-//     top: 60,
-//     placement: "topRight",
-//     closeIcon: <p className="me-5 text-sm text-[#93E5D5]">Abaikan</p>,
-//     duration: 5,
-//     className: "bg-green-500 h-[64px] w-screen",
-//     stack: true,
-//   });
-// };

@@ -65,13 +65,13 @@ export default function ListArticle() {
 
   return (
     <>
-      <section id="search-article">
+      <section>
         <div className="relative mb-6 focus:bg-black">
           <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
             <BsSearch className="text-gray-400" />
           </div>
           <input
-            id="search-bar-forum-1"
+            id="search-article"
             type="text"
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 ps-10 text-sm focus:outline-green-500 sm:p-5 sm:ps-14"
             placeholder="Cari kata kunci"
@@ -96,7 +96,7 @@ export default function ListArticle() {
                       alt={item?.image_desc}
                       src={item?.image}
                       // // height={`100%`}
-                      className="h-[200px] md:h-[220px] lg:h-[240px] xl:h-[300px]"
+                      className="h-[200px] md:h-[190px] lg:h-[200px] xl:h-[250px]"
                       preview={false}
                       fallback={ListArticles[0].img}
                     />
