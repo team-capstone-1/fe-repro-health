@@ -15,7 +15,6 @@ import {
   DataIncome,
   DataIncomeDay,
   DataIncomeWeek,
-  // RangePresets as data,
 } from "@/views/app-views/dashboard/constant/graph-income";
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -40,23 +39,23 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function ChartIncome({ selectedFilter }) {
+  const IncomeMonth = DataIncome.slice(DataIncome.length - 7);
+  // const IncomeWeeks = DataIncomeWeek.slice(DataIncomeWeek.length - 7);
+  const IncomeWeeks = DataIncomeWeek;
+  const IncomeDays = DataIncomeDay.slice(DataIncomeDay.length - 7);
+  const mobileSize = window.innerWidth <= 450;
+
+  console.log("week", IncomeWeeks);
+  console.log("month", IncomeMonth);
+  console.log("days", IncomeDays);
+
   // const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
   const customTickYAxis = (values) => {
     if (values >= 10000000 && values < 100000000) {
       // return `${values.toString().slice(0, 2)} jt`;
-      return `${values
-        .toLocaleString("id-ID", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })
-        .slice(0, 2)} jt`;
+      return Math.floor(values / 1000000) + " jt";
     } else if (values > 100000000) {
-      return `${values
-        .toLocaleString("id-ID", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })
-        .slice(0, 3)} jt`;
+      return Math.floor(values / 1000000) + " jt";
     } else if (values >= 1000000 && values < 10000000) {
       // return `${values.toString().slice(0, 2)} rb`;
       return `${values
@@ -66,12 +65,7 @@ export default function ChartIncome({ selectedFilter }) {
         })
         .slice(0, 3)} jt`;
     } else if (values > 1000 && values < 1000000) {
-      return `${values
-        .toLocaleString("id-ID", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })
-        .slice(0, 3)} rb`;
+      return Math.floor(values / 1000) + " rb";
     } else if (values < 1000) {
       return `${values
         .toLocaleString("id-ID", {
@@ -82,11 +76,12 @@ export default function ChartIncome({ selectedFilter }) {
     }
   };
 
-  const customTickXAxis = (value) => value.slice(0, 3);
+  const customTickXAxis = (value) => {
+    if (selectedFilter === "minggu") return value.slice(0, 7);
+    return value.slice(0, 3);
+  };
 
-  const mobileSize = window.innerWidth <= 450;
-
-  console.log("hasil selected: " + selectedFilter);
+  // console.log("hasil selected: " + selectedFilter);
 
   return (
     <Row id="chart-income" justify="start">
@@ -107,10 +102,10 @@ export default function ChartIncome({ selectedFilter }) {
               // data={data}
               data={
                 selectedFilter === "hari"
-                  ? DataIncomeDay
+                  ? IncomeDays
                   : selectedFilter === "minggu"
-                  ? DataIncomeWeek
-                  : DataIncome
+                  ? IncomeWeeks
+                  : IncomeMonth
               }
               barGap={0}
               margin={{
@@ -158,9 +153,6 @@ export default function ChartIncome({ selectedFilter }) {
                 axisLine={false}
                 tickMargin={0}
                 // ticks={[0, 10, 20, 30, 40, 50, 60]}
-                custom
-                show
-                tick
                 className="text-base"
               />
 
@@ -181,6 +173,7 @@ export default function ChartIncome({ selectedFilter }) {
                 dataKey="income"
                 name="Jumlah Pendapatan"
                 fill="rgba(20, 198, 164, 1)"
+                activeBar={{ fill: "rgba(16, 141, 116, 1)" }}
               >
                 {/* <LabelList position="top" fill="black" /> */}
               </Bar>

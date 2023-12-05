@@ -3,21 +3,6 @@ import "dayjs/locale/id";
 
 dayjs.locale("id");
 
-const formatDateToStringMonth = (date) => {
-  const value = dayjs(date, "DD-MM-YYYY");
-  return value.format("MMMM YYYY");
-};
-
-const formatDateToStringDay = (date) => {
-  const value = dayjs(date, "DD-MM-YYYY");
-  return value.format("dddd, DD MMMM YYYY");
-};
-
-const formatDateToStringWeek = (date) => {
-  const value = dayjs(date, "DD-MM-YYYY");
-  return `${value}`;
-};
-
 const PlainDataIncomeWeek = [
   {
     date: "01-11-2023",
@@ -170,10 +155,10 @@ const PlainDataIncomeDay = [
     date: "30-11-2023",
     income: 464004,
   },
-  // {
-  //   date: "01-12-2023",
-  //   income: 2286585,
-  // },
+  {
+    date: "01-12-2023",
+    income: 2286585,
+  },
 ];
 
 const PlainDataIncomeMonth = [
@@ -207,6 +192,26 @@ const PlainDataIncomeMonth = [
   },
 ];
 
+const formatDateToStringMonth = (date) => {
+  const value = dayjs(date, "DD-MM-YYYY");
+  return value.format("MMMM YYYY");
+};
+
+const formatDateToStringDay = (date) => {
+  const value = dayjs(date, "DD-MM-YYYY");
+  return value.format("dddd, DD MMMM YYYY");
+};
+
+const formatDateToStringWeek = (date) => {
+  const value = dayjs(date, "DD-MM-YYYY");
+  return `Week ${value.week()}, ${value.format("MMMM YYYY")}`;
+};
+
+// export const DataIncomeWeek = PlainDataIncomeWeek.map((value) => {
+//   value.date = formatDateToStringWeek(value.date);
+//   return value;
+// });
+
 export const DataIncome = PlainDataIncomeMonth.map((value) => {
   value.date = formatDateToStringMonth(value.date);
   return value;
@@ -217,10 +222,25 @@ export const DataIncomeDay = PlainDataIncomeDay.map((value) => {
   return value;
 });
 
-export const DataIncomeWeek = PlainDataIncomeWeek.map((value) => {
-  value.date = formatDateToStringWeek(value.date);
-  return value;
-});
+const ProcessedDataIncomeWeek = [];
+// loop through each week in PlainDataIncomeWeek
+for (let i = 0; i < PlainDataIncomeWeek.length; i += 7) {
+  // calculate total income for week
+  const totalIncome = PlainDataIncomeWeek.slice(i, i + 7).reduce(
+    (acc, current) => acc + current.income,
+    0,
+  );
+
+  // proses data income week
+  ProcessedDataIncomeWeek.push({
+    date: formatDateToStringWeek(PlainDataIncomeWeek[i].date),
+    income: totalIncome, // calculate income
+  });
+}
+
+export const DataIncomeWeek = ProcessedDataIncomeWeek;
+
+console.log("datas:", DataIncomeWeek);
 
 // dataset
 // export const DataIncome = [
