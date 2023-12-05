@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { axiosInstance } from "@/configs/AxiosInstance";
 import { authService } from "@/configs/Auth";
+import { globalRoute } from "@/utils/GlobalRoute";
 
 export const APIAuth = {
   login: async (data) => {
@@ -31,8 +32,8 @@ export const APIAuth = {
       throw new Error(err);
     }
   },
-  logout: (navigate) => {
+  logout: () => {
     authService.clearCredentialsFromCookie();
-    navigate("/");
+    globalRoute.navigate && globalRoute.navigate("/");
   },
 };
