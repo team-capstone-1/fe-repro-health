@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import PublicRoute from "@/routers/PublicRoute";
 import PrivateRoute from "@/routers/PrivateRoute";
 import ProtectedRoute from "@/routers/ProtectedRoute";
@@ -27,7 +27,12 @@ import Appointment from "@/views/app-views/appointment";
 import MySchedule from "@/views/app-views/my-schedule";
 import Notifications from "@/views/app-views/notification";
 
+import { globalRoute } from "@/utils/GlobalRoute";
+
 export default function SetupRoutes() {
+  const navigate = useNavigate();
+  globalRoute.navigate = navigate;
+
   return (
     <Routes>
       <Route path="/" element={<PublicRoute />}>
