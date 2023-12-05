@@ -5,7 +5,8 @@ export const APIArticle = {
   getListArticle: async () => {
     try {
       const result = await axiosInstance.get("/doctors/articles");
-      console.log("result list artikel", result.data);
+      // console.log("result list artikel", result.data);
+
       return result.data;
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -19,7 +20,8 @@ export const APIArticle = {
   getDetailArticle: async (id) => {
     try {
       const result = await axiosInstance.get(`/doctors/articles/${id}`);
-      console.log("result detail artikel", result.data);
+      // console.log("result detail artikel", result.data);
+
       return result.data;
     } catch (err) {
       if (err instanceof AxiosError) {
