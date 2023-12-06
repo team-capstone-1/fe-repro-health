@@ -5,6 +5,82 @@ dayjs.locale("id");
 
 const PlainDataIncomeWeek = [
   {
+    date: "13-10-2023",
+    income: 22865856,
+  },
+  {
+    date: "14-10-2023",
+    income: 8000000,
+  },
+  {
+    date: "15-10-2023",
+    income: 4640045,
+  },
+  {
+    date: "16-10-2023",
+    income: 9000000,
+  },
+  {
+    date: "17-10-2023",
+    income: 36408664,
+  },
+  {
+    date: "18-10-2023",
+    income: 32475250,
+  },
+  {
+    date: "19-10-2023",
+    income: 34803815,
+  },
+  {
+    date: "20-10-2023",
+    income: 20905891,
+  },
+  {
+    date: "21-10-2023",
+    income: 16181572,
+  },
+  {
+    date: "22-10-2023",
+    income: 6411077,
+  },
+  {
+    date: "23-10-2023",
+    income: 2741965,
+  },
+  {
+    date: "24-10-2023",
+    income: 19175514,
+  },
+  {
+    date: "25-10-2023",
+    income: 40826120,
+  },
+  {
+    date: "26-10-2023",
+    income: 5786028,
+  },
+  {
+    date: "27-10-2023",
+    income: 6048350,
+  },
+  {
+    date: "28-10-2023",
+    income: 110100000,
+  },
+  {
+    date: "29-10-2023",
+    income: 41139644,
+  },
+  {
+    date: "30-10-2023",
+    income: 37948462,
+  },
+  {
+    date: "31-10-2023",
+    income: 24413857,
+  },
+  {
     date: "01-11-2023",
     income: 22865856,
   },
@@ -202,9 +278,12 @@ const formatDateToStringDay = (date) => {
   return value.format("dddd, DD MMMM YYYY");
 };
 
-const formatDateToStringWeek = (date) => {
+const formatDateToStringWeek = (date, separator = "-") => {
   const value = dayjs(date, "DD-MM-YYYY");
-  return `Week ${value.week()}, ${value.format("MMMM YYYY")}`;
+  // return `Week ${value.week()}, ${value.format("MMMM YYYY")}`;
+  return `Week ${value.week()}, ${value.format("DD")} ${separator} ${value
+    .add(7, "days")
+    .format("DD MMMM YYYY")}`;
 };
 
 // export const DataIncomeWeek = PlainDataIncomeWeek.map((value) => {
