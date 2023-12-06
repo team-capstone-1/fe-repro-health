@@ -1,6 +1,7 @@
 import { Row, Col, Card, Flex } from "antd";
 import { useEffect, useState } from "react";
 import { APIDashboard } from "@/apis/APIDashboard";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
@@ -9,8 +10,10 @@ import Icon04 from "@/assets/db-icon-04.png";
 
 export default function TotalCards({ selectedFilter }) {
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         let result;
@@ -21,10 +24,11 @@ export default function TotalCards({ selectedFilter }) {
         } else if (selectedFilter === "hari") {
           result = await APIDashboard.getCountDataForOneMonth();
         }
-
         setData(result);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
       }
     };
 
@@ -75,7 +79,7 @@ export default function TotalCards({ selectedFilter }) {
       <Row gutter={[16, 16]}>
         {cardData.map((item, i) => (
           <Col key={i} span={6} xs={24} md={12} lg={12} xl={6}>
-            <Card>
+            <Card loading={isLoading}>
               <div className="grid h-32 content-between">
                 <Flex justify="space-between" align="flex-start">
                   <div>
