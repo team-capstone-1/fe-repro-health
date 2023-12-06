@@ -20,6 +20,7 @@ import {
   fetchGetDoctorProfile,
 } from "@/store/get-doctor-profile-slice";
 import { toggleResetPassword } from "@/store/is-password-reset-slice";
+import { authService } from "@/configs/Auth";
 
 const ResetPassword = () => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
@@ -79,7 +80,11 @@ const ResetPassword = () => {
           <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-16 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">
             <button
               id="back-button"
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                authService.clearCredentialsFromCookie();
+                dispatch(toggleResetPassword());
+                navigate("/lupa-kata-sandi");
+              }}
               className="flex gap-3"
             >
               <AiOutlineArrowLeft color="#989898" size={24} />
