@@ -1,8 +1,29 @@
 import { Card, Table } from "antd";
 import { ColumnAppointment } from "../constant/appointment";
-import { DataAppointment } from "../constant/appointment";
+import { useEffect, useState } from "react";
+import { APIAppointment } from "@/apis/APIAppointment";
 
 export default function AppointmentTable() {
+  const [data, setData] = useState([]);
+
+  const DataSource = data.slice(0, 5);
+
+  const fetchData = async () => {
+    try {
+      const result = await APIAppointment.getListAppointments();
+      console.log(result);
+      setData(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  console.log("data appointment", data);
+
   return (
     <>
       <Card id="appointment-table-section">
@@ -24,7 +45,7 @@ export default function AppointmentTable() {
         <Table
           id="table-appointment"
           columns={ColumnAppointment}
-          dataSource={DataAppointment}
+          dataSource={DataSource}
           pagination={false}
           scroll={{ x: 1000 }}
           style={{ maxWidth: "100vw" }}
