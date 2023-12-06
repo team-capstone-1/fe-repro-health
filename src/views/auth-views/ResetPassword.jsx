@@ -83,7 +83,7 @@ const ResetPassword = () => {
               onClick={() => {
                 authService.clearCredentialsFromCookie();
                 dispatch(toggleResetPassword());
-                navigate("/lupa-kata-sandi");
+                navigate(-1);
               }}
               className="flex gap-3"
             >
