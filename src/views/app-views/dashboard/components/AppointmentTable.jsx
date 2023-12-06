@@ -5,21 +5,28 @@ import { APIAppointment } from "@/apis/APIAppointment";
 
 export default function AppointmentTable() {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const DataSource = data.slice(0, 5);
 
-  const fetchData = async () => {
+  const fetchDataAppointment = async () => {
     try {
       const result = await APIAppointment.getListAppointments();
       console.log(result);
+
       setData(result);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
+      setIsError(error);
     }
   };
 
   useEffect(() => {
-    fetchData();
+    setIsLoading(true);
+    fetchDataAppointment();
   }, []);
 
   console.log("data appointment", data);
@@ -44,11 +51,26 @@ export default function AppointmentTable() {
         </div>
         <Table
           id="table-appointment"
+          loading={isLoading}
           columns={ColumnAppointment}
           dataSource={DataSource}
           pagination={false}
-          scroll={{ x: 1000 }}
+          scroll={{ x: true }}
           style={{ maxWidth: "100vw" }}
+          summary={() =>
+            isError.message !== null && !isLoading && isError ? (
+              <Table.Summary.Row>
+                <Table.Summary.Cell colSpan={10}>
+                  <p className="text-center">
+                    Terjadi kesalahan! silahkan kembali beberapa saat lagi.
+                  </p>
+                  <p className="text-center text-negative">{isError.message}</p>
+                </Table.Summary.Cell>
+              </Table.Summary.Row>
+            ) : (
+              <></>
+            )
+          }
         />
         <h6 id="more-appointment-footer" className="mt-5 text-grey-200">
           Menampilkan 5 data teratas
