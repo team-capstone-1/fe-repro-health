@@ -10,8 +10,6 @@ import Icon04 from "@/assets/db-icon-04.png";
 export default function TotalCards({ selectedFilter }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [size, setSize] = useState("default");
-  const [active, setActive] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
