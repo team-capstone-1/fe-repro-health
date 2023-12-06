@@ -31,7 +31,7 @@ export default function TotalCards({ selectedFilter }) {
       }
     };
 
-    fetchData();
+    // fetchData();
   }, [selectedFilter]);
 
   const formatPrice = (num) => {
@@ -43,7 +43,7 @@ export default function TotalCards({ selectedFilter }) {
   };
 
   const formatPercentage = (percentage) => {
-    return percentage < 0 ? percentage + "%" : "+" + percentage + "%";
+    return percentage !== undefined ? (percentage < 0 ? percentage + "%" : "+" + percentage + "%") : "0%";
   };
 
   const cardData = [
@@ -116,7 +116,7 @@ export default function TotalCards({ selectedFilter }) {
                           ? "bg-green-50 text-positive"
                           : item.percent[0] === "-"
                           ? "bg-red-50 text-negative"
-                          : ""
+                          : "bg-grey-50 text-grey-500"
                       }`}
                     >
                       {item.percent}
