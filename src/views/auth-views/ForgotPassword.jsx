@@ -1,19 +1,19 @@
-import { useState } from "react";
+import * as yup from "yup";
+import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import {
   AiOutlineMail,
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
 } from "react-icons/ai";
-import forgotPasswordIllus from "@/assets/forgot-password-illustration.svg";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+import forgotPasswordIllus from "@/assets/forgot-password-illustration.svg";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { APIAuth } from "@/apis/APIAuth";
 import { showErrorToast } from "@/components/shared-components/Toast";
-import { ToastContainer } from "react-toastify";
-import CryptoJS from "crypto-js";
 import { CONST } from "@/utils/Constant";
 
 const ForgotPassword = () => {
