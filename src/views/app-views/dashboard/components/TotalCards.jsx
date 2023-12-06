@@ -31,7 +31,7 @@ export default function TotalCards({ selectedFilter }) {
       }
     };
 
-    // fetchData();
+    fetchData();
   }, [selectedFilter]);
 
   const formatPrice = (num) => {
