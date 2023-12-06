@@ -21,7 +21,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
       <div className="w-full rounded-[4px] bg-white px-3 py-3 shadow-lg">
-        <p id="label-year" className="mb-4 text-base text-black">
+        <p id="label-year" className="mb-4 text-base font-medium text-black">
           {`${label} `}
         </p>
 

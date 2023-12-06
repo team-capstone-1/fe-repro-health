@@ -353,11 +353,6 @@ console.log("datas:", DataIncomeWeek);
 //     after: 45000000,
 //     amount: 50000000,
 //   },
-//   {
-//     date: dayjs().add(-4, "month").format("MMMM YYYY"),
-//     after: 49000000,
-//     amount: 60000000,
-//   },
 // ];
 
 // export const RangePresets = [
