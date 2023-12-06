@@ -1,4 +1,4 @@
-import { Row, Col, Card, Flex } from "antd";
+import { Row, Col, Card, Skeleton, Flex } from "antd";
 import { useEffect, useState } from "react";
 import { APIDashboard } from "@/apis/APIDashboard";
 
@@ -9,8 +9,10 @@ import Icon04 from "@/assets/db-icon-04.png";
 
 export default function TotalCards({ selectedFilter }) {
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         let result;
@@ -21,10 +23,11 @@ export default function TotalCards({ selectedFilter }) {
         } else if (selectedFilter === "hari") {
           result = await APIDashboard.getCountDataForOneMonth();
         }
-
         setData(result);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
       }
     };
 
@@ -40,7 +43,7 @@ export default function TotalCards({ selectedFilter }) {
   };
 
   const formatPercentage = (percentage) => {
-    return percentage < 0 ? percentage + "%" : "+" + percentage + "%";
+    return percentage !== undefined ? (percentage < 0 ? percentage + "%" : "+" + percentage + "%") : "0%";
   };
 
   const cardData = [
@@ -85,28 +88,42 @@ export default function TotalCards({ selectedFilter }) {
                     >
                       {item.title}
                     </p>
-                    <h4 id="total-item" className="font-bold">
-                      {item.total}
-                    </h4>
+                    <Skeleton
+                      loading={isLoading}
+                      active
+                      title={false}
+                      paragraph={{ rows: 1 }}
+                    >
+                      <h4 id="total-item" className="font-bold">
+                        {item.total}
+                      </h4>
+                    </Skeleton>
                   </div>
                   <div className="grid h-16 w-16 place-content-center rounded-lg bg-green-50">
                     <img id="item-icon" src={item.icon} alt="item-icon" />
                   </div>
                 </Flex>
-                <h6 id="total-card-percent" className="text-grey-200">
-                  <span
-                    className={`me-2 place-content-center rounded px-2 font-semibold ${
-                      item.percent[0] === "+"
-                        ? "bg-green-50 text-positive"
-                        : item.percent[0] === "-"
-                        ? "bg-red-50 text-negative"
-                        : ""
-                    }`}
-                  >
-                    {item.percent}
-                  </span>
-                  Sejak periode terakhir
-                </h6>
+                <Skeleton
+                  loading={isLoading}
+                  active
+                  title={false}
+                  paragraph={{ rows: 1 }}
+                >
+                  <h6 id="total-card-percent" className="text-grey-200">
+                    <span
+                      className={`me-2 place-content-center rounded px-2 font-semibold ${
+                        item.percent[0] === "+"
+                          ? "bg-green-50 text-positive"
+                          : item.percent[0] === "-"
+                          ? "bg-red-50 text-negative"
+                          : "bg-grey-50 text-grey-500"
+                      }`}
+                    >
+                      {item.percent}
+                    </span>
+                    Sejak periode terakhir
+                  </h6>
+                </Skeleton>
               </div>
             </Card>
           </Col>

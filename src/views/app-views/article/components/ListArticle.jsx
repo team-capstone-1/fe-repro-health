@@ -6,6 +6,7 @@ dayjs.locale("id");
 import { Row, Col, Card, Tag, Avatar, Flex, Image, Pagination } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 
 import { ListArticles } from "../constant/list-article";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
@@ -18,7 +19,8 @@ import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
 export default function ListArticle() {
-  const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [dataArticles, setDataArticles] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const searchQuery = useDebounce(searchValue, 500);
@@ -42,16 +44,20 @@ export default function ListArticle() {
         });
 
         setDataArticles(filteredData);
+        setIsLoading(false);
       } else {
         setDataArticles(result?.response);
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
       setIsError(error);
     }
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchListArticles();
   }, [searchQuery]);
 
@@ -84,16 +90,20 @@ export default function ListArticle() {
             <Col key={i} span={8} xs={24} md={12} lg={8}>
               <Link to={`/artikel/${item.id}`}>
                 <Card
+                  loading={isLoading}
                   hoverable
                   cover={
-                    <Image
-                      alt={item?.image_desc}
-                      src={item?.image}
-                      // // height={`100%`}
-                      className="h-[200px] md:h-[190px] lg:h-[200px] xl:h-[250px]"
-                      preview={false}
-                      fallback={ListArticles[0].img}
-                    />
+                    <>
+                      <Image
+                        alt={item?.image_desc}
+                        src={item?.image}
+                        // // height={`100%`}
+                        className="h-[200px] md:h-[190px] lg:h-[200px] xl:h-[250px]"
+                        preview={false}
+                        fallback={ListArticles[0].img}
+                      />
+                      {/* <FaTrash className="flex justify-between text-red-500" /> */}
+                    </>
                   }
                 >
                   <Tag className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium text-green-600">
@@ -127,10 +137,12 @@ export default function ListArticle() {
             // onChange={onChange}
           />
         </Col>
-        {isError && (
+        {isError.message !== null && !isLoading && isError ? (
           <Flex className="mb-5 flex-col items-center justify-center text-red-500">
             <p>{isError.message}</p>
           </Flex>
+        ) : (
+          <></>
         )}
       </section>
     </>
