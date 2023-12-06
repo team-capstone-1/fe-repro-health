@@ -1,43 +1,80 @@
 import { Row, Col, Card, Flex } from "antd";
+import { useEffect, useState } from "react";
+import { APIDashboard } from "@/apis/APIDashboard";
 
 import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
 import Icon03 from "@/assets/db-icon-03.png";
 import Icon04 from "@/assets/db-icon-04.png";
 
-const data = [
-  {
-    title: "Total Janji Temu",
-    total: "100",
-    icon: `${Icon01}`,
-    percent: "+5.2%",
-  },
-  {
-    title: "Total Pasien",
-    total: "250",
-    icon: `${Icon02}`,
-    percent: "-2%",
-  },
-  {
-    title: "Total Pendapatan",
-    total: "500K",
-    icon: `${Icon03}`,
-    percent: "+3.2%",
-  },
-  {
-    title: "Total Artikel",
-    total: "100",
-    icon: `${Icon04}`,
-    percent: "-35%",
-  },
-];
+export default function TotalCards({ selectedFilter }) {
+  const [data, setData] = useState({});
 
-export default function TotalCards() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let result;
+        if (selectedFilter === "bulan") {
+          result = await APIDashboard.getCountDataForOneMonth();
+        } else if (selectedFilter === "minggu") {
+          result = await APIDashboard.getCountDataForOneWeek();
+        } else if (selectedFilter === "hari") {
+          result = await APIDashboard.getCountDataForOneMonth();
+        }
+
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [selectedFilter]);
+
+  const formatPrice = (num) => {
+    if (num >= 1000000) {
+      return Math.floor(num / 1000000) + "M";
+    } else if (num >= 1000) {
+      return Math.floor(num / 1000) + "K";
+    }
+  };
+
+  const formatPercentage = (percentage) => {
+    return percentage < 0 ? percentage + "%" : "+" + percentage + "%";
+  };
+
+  const cardData = [
+    {
+      title: "Total Janji Temu",
+      total: data.totalConsultations,
+      icon: `${Icon01}`,
+      percent: formatPercentage(data.consultationPercentage),
+    },
+    {
+      title: "Total Pasien",
+      total: data.totalPatients,
+      icon: `${Icon02}`,
+      percent: formatPercentage(data.patientPercentage),
+    },
+    {
+      title: "Total Pendapatan",
+      total: formatPrice(data.totalTransactions),
+      icon: `${Icon03}`,
+      percent: formatPercentage(data.transactionPercentage),
+    },
+    {
+      title: "Total Artikel",
+      total: data.totalArticles,
+      icon: `${Icon04}`,
+      percent: formatPercentage(data.articlePercentage),
+    },
+  ];
+
   return (
     <>
       <Row gutter={[16, 16]}>
-        {data.map((item, i) => (
-          <Col id="total-cards" key={i} span={6} xs={24} md={12} lg={12} xl={6}>
+        {cardData.map((item, i) => (
+          <Col key={i} span={6} xs={24} md={12} lg={12} xl={6}>
             <Card>
               <div className="grid h-32 content-between">
                 <Flex justify="space-between" align="flex-start">
