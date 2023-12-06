@@ -1,7 +1,6 @@
 import { Row, Col, Card, Flex } from "antd";
 import { useEffect, useState } from "react";
 import { APIDashboard } from "@/apis/APIDashboard";
-import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
