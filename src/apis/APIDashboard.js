@@ -32,4 +32,16 @@ export const APIDashboard = {
     }
   },
 
+  getDashboardIncome: async () => {
+    try {
+      const response = await axiosInstance.get("/doctors/dashboard/graph");
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { message } = error;
+        throw new AxiosError(message);
+      }
+      throw new Error(error);
+    }
+  },
 };

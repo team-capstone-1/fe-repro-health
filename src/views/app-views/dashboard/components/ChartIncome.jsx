@@ -17,6 +17,9 @@ import {
   DataIncomeWeek,
 } from "@/views/app-views/dashboard/constant/graph-income";
 
+import { useEffect, useState } from "react";
+import { APIDashboard } from "@/apis/APIDashboard";
+
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -39,11 +42,30 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function ChartIncome({ selectedFilter }) {
+  const [dataIncome, setDataIncome] = useState([]);
+  const [isError, setIsError] = useState(false);
+
   const IncomeMonth = DataIncome.slice(DataIncome.length - 7);
   // const IncomeWeeks = DataIncomeWeek.slice(DataIncomeWeek.length - 7);
   const IncomeWeeks = DataIncomeWeek;
   const IncomeDays = DataIncomeDay.slice(DataIncomeDay.length - 7);
   const mobileSize = window.innerWidth <= 450;
+
+  const fecthDataIncome = async () => {
+    try {
+      const result = await APIDashboard.getDashboardIncome();
+      console.log("data income", result);
+
+      setDataIncome(result?.response);
+    } catch (error) {
+      console.error(error);
+      setIsError(error);
+    }
+  };
+
+  useEffect(() => {
+    fecthDataIncome();
+  }, []);
 
   console.log("week", IncomeWeeks);
   console.log("month", IncomeMonth);

@@ -6,7 +6,6 @@ dayjs.locale("id");
 import { Row, Col, Card, Tag, Avatar, Flex, Image, Pagination } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
 
 import { ListArticles } from "../constant/list-article";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
