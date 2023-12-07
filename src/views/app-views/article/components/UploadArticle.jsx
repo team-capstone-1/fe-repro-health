@@ -12,6 +12,8 @@ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import ModalCancelArticle from "@/components/shared-components/ModalCancelArticle";
 import ModalSuccessArticle from "@/components/shared-components/ModalSuccessArticle";
 
+import { APIArticle } from "@/apis/APIArticle";
+
 const UploadArticle = () => {
   useDocumentTitle("Unggah Artikel");
 
@@ -39,7 +41,8 @@ const UploadArticle = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required("Judul harus diisi"),
-    tags: yup.array().required("Setiap tag harus diisi"),
+    // tags: yup.array().required("Setiap tag harus diisi"),
+    tags: yup.string().required("Tag harus diisi"),
     reference: yup.string().required("Referensi harus diisi"),
     image: yup
       .mixed()
@@ -60,7 +63,7 @@ const UploadArticle = () => {
           return ALLOWED_IMAGE_TYPE.includes(value.type);
         },
       ),
-    desc: yup.string().required("Deskripsi gambar harus diisi"),
+    image_desc: yup.string().required("Deskripsi gambar harus diisi"),
     content: yup.string().required("Isi artikel harus diisi"),
   });
 
@@ -69,13 +72,24 @@ const UploadArticle = () => {
     control,
     formState: { errors },
     handleSubmit,
-    setValue
+    setValue,
+    reset
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmitArticle = (data) => {
-    console.log(data);
+    const addArticle = async () => {
+      try {
+        const result = await APIArticle.addArticle(data);
+        console.log(result);
+        reset();
+        setImagePreview(null);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    addArticle();
   };
 
   const handleOpenModalCancel = () => {
@@ -153,7 +167,7 @@ const UploadArticle = () => {
                   >
                     Tags
                   </label>
-                  <Controller
+                  {/* <Controller
                     name="tags"
                     control={control}
                     render={({ field }) => (
@@ -173,6 +187,16 @@ const UploadArticle = () => {
                         }
                       />
                     )}
+                  /> */}
+                  <input
+                    {...register("tags")}
+                    className={`mt-2 block w-full rounded-lg border p-4 text-base focus:border-green-500 focus:outline-none ${
+                      errors.tags
+                        ? "border-negative text-negative"
+                        : "border-grey-100 text-grey-900"
+                    }`}
+                    type="text"
+                    placeholder="Masukkan tags yang berkaitan dengan artikel"
                   />
                   <span className="pt-1 text-xs text-negative">
                     {errors.tags?.message}
@@ -245,7 +269,7 @@ const UploadArticle = () => {
                       onChange={(e) => {
                         const file = e.target.files[0];
                         setImagePreview(URL.createObjectURL(file));
-                        setValue("image", file); // Set nilai 'image' di dalam formulir
+                        setValue("image", file);
                       }}
                     />
                   </label>
@@ -268,7 +292,7 @@ const UploadArticle = () => {
                     Deskripsi Gambar
                   </label>
                   <input
-                    {...register("desc")}
+                    {...register("image_desc")}
                     className={`mt-2 block w-full rounded-lg border p-4 text-base focus:border-green-500 focus:outline-none ${
                       errors.desc
                         ? "border-negative text-negative"

@@ -31,4 +31,21 @@ export const APIArticle = {
       throw new Error(err);
     }
   },
+
+  addArticle: async (data) => {
+    try {
+      const result = await axiosInstance.post("/doctors/articles", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return result.data;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
+    }
+  },
 };

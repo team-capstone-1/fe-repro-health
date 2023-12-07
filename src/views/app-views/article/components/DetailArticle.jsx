@@ -19,6 +19,7 @@ import {
 } from "../constant/detail-article";
 
 import Markdown from "react-markdown";
+import parse from 'html-react-parser';
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
@@ -151,9 +152,10 @@ export default function DetailArticle() {
           </div>
 
           <div id="content-article" className="my-5 w-full text-justify">
-            <Markdown className="text-base font-[400] text-[#151515]">
+            {/* <Markdown className="text-base font-[400] text-[#151515]">
               {detailArticles?.content}
-            </Markdown>
+            </Markdown> */}
+            {parse(`${detailArticles?.content}`)}
 
             <div className="mt-5">
               <h5 className="mb-2 text-xs font-semibold text-[#151515] sm:text-base">
