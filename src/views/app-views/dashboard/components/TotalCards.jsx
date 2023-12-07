@@ -21,7 +21,7 @@ export default function TotalCards({ selectedFilter }) {
         } else if (selectedFilter === "minggu") {
           result = await APIDashboard.getCountDataForOneWeek();
         } else if (selectedFilter === "hari") {
-          result = await APIDashboard.getCountDataForOneMonth();
+          result = await APIDashboard.getCountDataForOneDay();
         }
         setData(result);
         setIsLoading(false);
@@ -36,9 +36,11 @@ export default function TotalCards({ selectedFilter }) {
 
   const formatPrice = (num) => {
     if (num >= 1000000) {
-      return Math.floor(num / 1000000) + "M";
+      return (num / 1000000) + " M";
     } else if (num >= 1000) {
-      return Math.floor(num / 1000) + "K";
+      return (num / 1000) + " K";
+    } else {
+      return num;
     }
   };
 
