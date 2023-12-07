@@ -32,4 +32,19 @@ export const APIDashboard = {
     }
   },
 
+  getCountDataForOneDay: async () => {
+    try {
+      const result = await axiosInstance.get(
+        "/doctors/dashboard/data-count-one-day",
+      );
+      return result.data;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { message } = err;
+        throw new AxiosError(message);
+      }
+      throw new Error(err);
+    }
+  },
+
 };
