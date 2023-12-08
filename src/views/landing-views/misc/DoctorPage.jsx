@@ -6,7 +6,7 @@ import { HiOutlineMail, HiOutlineDocumentText } from "react-icons/hi";
 import { AiOutlineCheck, AiOutlineMessage } from "react-icons/ai";
 
 import doctor from "@/assets/doctor.svg";
-import Breadcrumb from "@/components/layout-components/Breadcrumb";
+import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import {
@@ -20,7 +20,7 @@ export default function DoctorPage() {
   return (
     <>
       <section className="base-container">
-        <Breadcrumb currentPage={doctorPage.title} />
+        <Breadcrumbs currentPage={doctorPage.title} />
       </section>
 
       <section className="base-container py-6 md:flex">

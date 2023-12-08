@@ -1,5 +1,5 @@
 import BannerDownload from "@/components/shared-components/BannerDownload";
-import Breadcrumb from "@/components/layout-components/Breadcrumb";
+import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
 import {
   DataPrivacyPolicy,
   DataPrivacy,
@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <div id="breadcrumb-privacy" className="base-container">
-        <Breadcrumb currentPage={DataPrivacyPolicy.title} />
+        <Breadcrumbs currentPage={DataPrivacyPolicy.title} />
 
         <section
           id="privacy-policy-section"

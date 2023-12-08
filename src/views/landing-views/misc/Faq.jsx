@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Collapse, Card, Row, Col } from "antd";
 import { HiOutlineMail } from "react-icons/hi";
 
-import Breadcrumb from "@/components/layout-components/Breadcrumb";
+import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
 import Button from "@/components/shared-components/Button";
 import BannerDownload from "@/components/shared-components/BannerDownload";
 
@@ -18,7 +18,7 @@ export default function Faq() {
   return (
     <>
       <div id="breadcrumb-faq" className="base-container">
-        <Breadcrumb currentPage={DataFaq.title} />
+        <Breadcrumbs currentPage={DataFaq.title} />
 
         <section id="faq-section">
           <h2 id="faq-title" className="mt-5 pb-5">

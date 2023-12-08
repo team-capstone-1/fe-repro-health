@@ -1,4 +1,4 @@
-import Breadcrumb from "@/components/layout-components/Breadcrumb";
+import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
 import BannerDownload from "@/components/shared-components/BannerDownload";
 
 import {
@@ -14,7 +14,7 @@ export default function UserTerms() {
   return (
     <>
       <div id="breadcrumb-user-terms" className="base-container">
-        <Breadcrumb currentPage={DataUserTerms.title} />
+        <Breadcrumbs currentPage={DataUserTerms.title} />
         <section id="user-terms-section" className="mx-3 sm:mx-0">
           <h1 id="user-terms-title" className="mb-4 mt-5">
             {DataUserTerms.title}

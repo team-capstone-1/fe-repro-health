@@ -5,7 +5,7 @@ import { PiRobot } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { Flex, Skeleton } from "antd";
 
-import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
+import { DrawerSidebar } from "@/components/layout-components/DrawerSidebar";
 import BlankProfile from "@/assets/blank-profile.png";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 import {

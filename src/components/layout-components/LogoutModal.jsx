@@ -5,7 +5,7 @@ import { APIAuth } from "@/apis/APIAuth";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
-export default function Logout({ closeModal }) {
+export function LogoutModal({ closeModal }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const doctorState = useSelector(selectDoctorProfile);
   const { name } = doctorState.data.response;
