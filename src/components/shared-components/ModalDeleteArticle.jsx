@@ -1,19 +1,20 @@
-import { Link } from "react-router-dom";
 import { Modal, Button } from "antd";
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { APIArticle } from "@/apis/APIArticle";
-import { showErrorToast, showSuccessToast } from "./Toast";
+import { showErrorToast } from "./Toast";
+import { globalRoute } from "@/utils/GlobalRoute";
 
 const ModalDeleteArticle = ({ closeModal, detailArticles }) => {
   const [isOpen, setIsOpen] = useState(true);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleOk = async () => {
     try {
       await APIArticle.deleteArticle(detailArticles.id).then(() => {
         setIsOpen(false);
+        setIsSubmitting(true);
         closeModal();
-        showSuccessToast("Artikel berhasil dihapus", "top-center");
+        globalRoute.navigate("/artikel-saya");
       });
     } catch (error) {
       console.error(error);
@@ -26,8 +27,6 @@ const ModalDeleteArticle = ({ closeModal, detailArticles }) => {
     closeModal();
   };
 
-  console.log("data modal", detailArticles.id);
-
   return (
     <Modal
       centered
@@ -39,13 +38,14 @@ const ModalDeleteArticle = ({ closeModal, detailArticles }) => {
           <Button
             id="button-article-confirm"
             key="ok"
-            className="mb-2 mt-4 h-10 rounded-lg bg-red-500 text-sm text-white sm:px-7 sm:text-base sm:font-medium"
+            className="mb-2 mt-4 h-10 rounded-lg bg-red-500 text-sm text-white disabled:bg-red-700 sm:px-7 sm:text-base sm:font-medium"
             style={{
               border: "transparent",
             }}
             onClick={handleOk}
+            disabled={isSubmitting}
           >
-            <Link to="/artikel-saya">Ya, hapus</Link>
+            Ya, hapus
           </Button>
           <Button
             id="button-article-cancel"

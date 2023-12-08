@@ -11,21 +11,20 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
 import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegBookmark, FaTrashAlt } from "react-icons/fa";
+import { ToastContainer } from "react-toastify";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-
 import {
   DetailArticle as detailArticle,
   CommentUser as commentUser,
 } from "../constant/detail-article";
 
-// import Markdown from "react-markdown";
 import parse from "html-react-parser";
+import ModalDeleteArticle from "@/components/shared-components/ModalDeleteArticle";
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
-import ModalDeleteArticle from "@/components/shared-components/ModalDeleteArticle";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);
@@ -39,11 +38,9 @@ export default function DetailArticle() {
   const doctor = useSelector(selectDoctorProfile);
   const dataDoctor = doctor?.data?.response;
   const tag = detailArticles?.tags;
-
   const fetchDetailArticles = async () => {
     try {
       const result = await APIArticle.getDetailArticle(articleId);
-
       setDetailArticles(result?.response);
     } catch (error) {
       console.log(error);
@@ -61,6 +58,7 @@ export default function DetailArticle() {
 
   return (
     <section id="detail-article" className="py-5">
+      {<ToastContainer className="mt-4 w-full" />}
       <Flex justify="space-between" className="mb-6">
         <Link to="/artikel-saya">
           <Button
@@ -175,10 +173,10 @@ export default function DetailArticle() {
             ))} */}
           </div>
 
-          <div id="content-article" className="my-5 w-full text-justify">
-            {/* <Markdown className="text-base font-[400] text-[#151515]">
-              {detailArticles?.content}
-            </Markdown> */}
+          <div
+            id="content-article"
+            className="my-5 w-full list-disc text-justify"
+          >
             {parse(`${detailArticles?.content}`)}
 
             <div className="mt-5">

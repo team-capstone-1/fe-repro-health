@@ -162,3 +162,22 @@ input,
 textarea {
   font-family: "Poppins", sans-serif;
 }
+
+.ql-editor {
+  height: 280px;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+ul li {
+  list-style-type: disc;
+}
+
+ol li {
+  list-style-type: decimal;
+}

@@ -1,12 +1,11 @@
 import { AxiosError } from "axios";
 import { axiosInstance } from "@/configs/AxiosInstance";
+import { showSuccessToast } from "@/components/shared-components/Toast";
 
 export const APIArticle = {
   getListArticle: async () => {
     try {
       const result = await axiosInstance.get("/doctors/articles");
-      // console.log("result list artikel", result.data);
-
       return result.data;
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -20,8 +19,6 @@ export const APIArticle = {
   getDetailArticle: async (id) => {
     try {
       const result = await axiosInstance.get(`/doctors/articles/${id}`);
-      // console.log("result detail artikel", result.data);
-
       return result.data;
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -39,7 +36,8 @@ export const APIArticle = {
           "Content-Type": "multipart/form-data",
         },
       });
-      return result.data;
+      showSuccessToast("Artikel berhasil ditambahkan", "top-center");
+      return result.data.response;
     } catch (err) {
       if (err instanceof AxiosError) {
         const { response } = err.response.data;
@@ -54,8 +52,8 @@ export const APIArticle = {
       const result = await axiosInstance.delete(
         `/doctors/articles/${articleId}`,
       );
+      showSuccessToast("Artikel berhasil dihapus", "top-center");
 
-      console.log("delete", result.data);
       return result.data;
     } catch (error) {
       if (error instanceof AxiosError) {
