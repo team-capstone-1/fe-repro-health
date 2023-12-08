@@ -73,6 +73,7 @@ export default function DetailArticle() {
       <Flex justify="space-between" className="mb-6">
         <Link to="/artikel-saya">
           <Button
+            id="button-back"
             icon={<IoArrowBackOutline className="text-[20px] md:text-[24px]" />}
             className="flex w-[100px] justify-center border-transparent bg-transparent text-center text-sm font-semibold text-[#4B4B4B] shadow-none hover:text-green-500 md:text-base"
           >
