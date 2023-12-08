@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Card, Table, ConfigProvider } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
-import ListFilter from "./ListFilter";
-import DetailPatient from "./DetailPatient";
-import CardAppointment from "./CardAppointment";
+import { ListFilter } from "./ListFilter";
+import { DetailPatient } from "./DetailPatient";
+import { CardAppointment } from "./CardAppointment";
 import { ColumnAppointment } from "../constant/appointment";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
@@ -15,7 +15,7 @@ import {
   toggleFetchLatestData,
 } from "@/store/toggle-fetch-new-data";
 
-export default function AppointmentTable() {
+export function ListAppointment() {
   useDocumentTitle("Janji Temu");
   useScrollToTop();
   const [isLoading, setIsLoading] = useState(false);

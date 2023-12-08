@@ -1,6 +1,6 @@
 import { Card, Flex, Skeleton } from "antd";
 
-export default function SkeletonDetailPatient() {
+export function SkeletonDetailPatient() {
   return (
     <>
       <Card>

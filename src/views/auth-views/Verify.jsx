@@ -18,7 +18,7 @@ import { CONST } from "@/utils/Constant";
 import { useDispatch } from "react-redux";
 import { toggleResetPassword } from "@/store/is-password-reset-slice";
 
-const Verify = () => {
+export default function Verify() {
   useDocumentTitle("Verifikasi");
 
   const secretKey = CONST.SECRET_KEY;
@@ -184,6 +184,4 @@ const Verify = () => {
       </section>
     </>
   );
-};
-
-export default Verify;
+}

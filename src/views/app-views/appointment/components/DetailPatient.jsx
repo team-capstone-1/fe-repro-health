@@ -8,13 +8,13 @@ import { thousandSeparator } from "@/utils/ThousandSeparator";
 import { ModalConfirmAppointment } from "@/components/shared-components/ModalConfirmAppointment";
 import { ModalPaymentAppointment } from "@/components/shared-components/ModalPaymentAppointment";
 import { APIAppointment } from "@/apis/APIAppointment";
-import SkeletonDetailPatient from "./SkeletonDetailPatient";
+import { SkeletonDetailPatient } from "./SkeletonDetailPatient";
 import {
   selectToggleFetchLatestData,
   toggleFetchLatestData,
 } from "@/store/toggle-fetch-new-data";
 
-export default function DetailPatient({ idAppointment, handleOpen, isOpen }) {
+export function DetailPatient({ idAppointment, handleOpen, isOpen }) {
   return (
     <>
       <Drawer

@@ -20,7 +20,7 @@ import { APIArticle } from "@/apis/APIArticle";
 import { useDebounce } from "@/hooks/useDebounce";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
-export default function ListArticle() {
+export function ListArticle() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [dataArticles, setDataArticles] = useState([]);
