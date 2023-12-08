@@ -60,8 +60,8 @@ export default function DetailArticle() {
   }, []);
 
   return (
-    <section id="detail-article" className="mb-5 py-5">
-      <Card>
+    <section id="detail-article" className="py-5">
+      <Flex justify="space-between" className="mb-6">
         <Link to="/artikel-saya">
           <Button
             icon={<IoArrowBackOutline className="text-[20px] md:text-[24px]" />}
@@ -70,7 +70,24 @@ export default function DetailArticle() {
             Kembali
           </Button>
         </Link>
-
+        <Flex justify="space-around" align="center">
+          <div>
+            <Space size="middle">
+              <Button
+                onClick={handleOpenModalDelete}
+                id="remove-article"
+                className="flex border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+              >
+                <span className="me-2 text-lg">
+                  <FaTrashAlt />
+                </span>
+                Hapus
+              </Button>
+            </Space>
+          </div>
+        </Flex>
+      </Flex>
+      <Card>
         {/* {detailArticles?.map((article) => ( */}
         <>
           <Flex justify="space-between" align="center">
