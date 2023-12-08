@@ -4,14 +4,12 @@ import "react-toastify/dist/ReactToastify.css";
 const errorStyle = {
   className: "bg-red-500 text-white ps-5 font-medium text-base xl:text-lg",
 };
-
 const successStyle = {
   className: "bg-green-500 text-white ps-5 font-medium text-base xl:text-lg",
 };
 
-export const showErrorToast = (pesan, position, size) => {
+export function showErrorToast(pesan, position, size) {
   const containerId = size === "medium" ? "md" : "xl";
-
   toast(pesan, {
     containerId: containerId,
     position,
@@ -25,9 +23,9 @@ export const showErrorToast = (pesan, position, size) => {
     progress: undefined,
     ...errorStyle,
   });
-};
+}
 
-export const showSuccessToast = (pesan, position, size) => {
+export function showSuccessToast(pesan, position, size) {
   const containerId = size === "medium" ? "md" : "xl";
   toast(pesan, {
     containerId: containerId,
@@ -42,4 +40,4 @@ export const showSuccessToast = (pesan, position, size) => {
     progress: undefined,
     ...successStyle,
   });
-};
+}

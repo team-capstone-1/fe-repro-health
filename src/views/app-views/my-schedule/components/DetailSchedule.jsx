@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Badge, Button, Collapse, Drawer, Flex, Switch, Tooltip } from "antd";
-import { months } from "@/utils/GenerateDate";
 import { FiInfo } from "react-icons/fi";
+
+import { months } from "@/utils/GenerateDate";
 import { formatStrDayJs } from "@/utils/MapListData";
 import { getListDataByDate } from "@/utils/GetListData";
-
-import ModalConfirmSchedule from "@/components/shared-components/ModalConfirmSchedule";
+import { ModalConfirmSchedule } from "@/components/shared-components/ModalConfirmSchedule";
 
 const ListAppointment = () => {
   return (

@@ -1,12 +1,11 @@
-import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
-import BannerDownload from "@/components/shared-components/BannerDownload";
-
 import {
   DataUserTerms,
   DataTerms,
 } from "@/views/landing-views/constant/user-terms";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
+import { BannerDownload } from "@/components/shared-components/BannerDownload";
 
 export default function UserTerms() {
   useDocumentTitle(DataUserTerms.title);

@@ -1,11 +1,11 @@
-import BannerDownload from "@/components/shared-components/BannerDownload";
-import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
 import {
   DataPrivacyPolicy,
   DataPrivacy,
 } from "@/views/landing-views/constant/privacy-policy";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
+import { BannerDownload } from "@/components/shared-components/BannerDownload";
 
 export default function PrivacyPolicy() {
   useDocumentTitle(DataPrivacyPolicy.title);

@@ -8,8 +8,8 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import ModalConfirm from "@/components/shared-components/ModalConfirm";
-import ModalCancelArticle from "@/components/shared-components/ModalCancelArticle";
+import { ModalConfirm } from "@/components/shared-components/ModalConfirm";
+import { ModalCancelArticle } from "@/components/shared-components/ModalCancelArticle";
 import { APIArticle } from "@/apis/APIArticle";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { globalRoute } from "@/utils/GlobalRoute";

@@ -3,13 +3,13 @@ import { Modal, Button, Spin } from "antd";
 import { PiSealCheck } from "react-icons/pi";
 import { LoadingOutlined } from "@ant-design/icons";
 
-const ModalConfirm = ({
+export function ModalConfirm({
   closeModal,
   modalTitle,
   inputData,
   action,
   children,
-}) => {
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleCancel = () => {
@@ -77,6 +77,4 @@ const ModalConfirm = ({
       </div>
     </Modal>
   );
-};
-
-export default ModalConfirm;
+}

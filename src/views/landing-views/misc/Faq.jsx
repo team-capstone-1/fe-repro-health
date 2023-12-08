@@ -4,9 +4,8 @@ import { Collapse, Card, Row, Col } from "antd";
 import { HiOutlineMail } from "react-icons/hi";
 
 import { Breadcrumbs } from "@/components/layout-components/Breadcrumb";
-import Button from "@/components/shared-components/Button";
-import BannerDownload from "@/components/shared-components/BannerDownload";
-
+import { Button } from "@/components/shared-components/Button";
+import { BannerDownload } from "@/components/shared-components/BannerDownload";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { DataFaq } from "@/views/landing-views/constant/faq";

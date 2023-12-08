@@ -17,21 +17,21 @@ import {
   Space,
   Skeleton,
 } from "antd";
-import { IoArrowBackOutline } from "react-icons/io5";
-import { UserOutlined } from "@ant-design/icons";
-import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
-import { FaRegBookmark, FaTrashAlt } from "react-icons/fa";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { DetailArticle as detailArticle } from "../constant/detail-article";
-
-import parse from "html-react-parser";
-import ModalDeleteArticle from "@/components/shared-components/ModalDeleteArticle";
-import { splitString } from "@/utils/SplitString";
-import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
-import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { UserOutlined } from "@ant-design/icons";
+import { IoArrowBackOutline } from "react-icons/io5";
+import { FaRegBookmark, FaTrashAlt } from "react-icons/fa";
+import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
+import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+
+import { APIArticle } from "@/apis/APIArticle";
+import { splitString } from "@/utils/SplitString";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
+import { DetailArticle as detailArticle } from "../constant/detail-article";
+import { ModalDeleteArticle } from "@/components/shared-components/ModalDeleteArticle";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);

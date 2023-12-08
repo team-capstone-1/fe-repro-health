@@ -1,16 +1,18 @@
 import dayjs from "dayjs";
 import "dayjs/locale/id";
-
 dayjs.locale("id");
-import { Modal, Divider, Flex, Image, Spin } from "antd";
+
 import { useEffect, useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import siluetTF from "@/assets/silluet-bukti-tf.png";
-import buktiTF from "@/assets/bukti-tf.png";
-import { thousandSeparator } from "@/utils/ThousandSeparator";
-import { APIAppointment } from "@/apis/APIAppointment";
+import { Modal, Divider, Flex, Image, Spin } from "antd";
 
-const ModalPaymentAppointment = ({ closeModal, data }) => {
+import { APIAppointment } from "@/apis/APIAppointment";
+import { thousandSeparator } from "@/utils/ThousandSeparator";
+
+import buktiTF from "@/assets/bukti-tf.png";
+import siluetTF from "@/assets/silluet-bukti-tf.png";
+
+export function ModalPaymentAppointment({ closeModal, data }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
@@ -157,6 +159,4 @@ const ModalPaymentAppointment = ({ closeModal, data }) => {
       )}
     </Modal>
   );
-};
-
-export default ModalPaymentAppointment;
+}

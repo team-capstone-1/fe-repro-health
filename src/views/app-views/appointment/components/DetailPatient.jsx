@@ -5,8 +5,8 @@ import { Button, Card, Drawer, Flex } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
 import { thousandSeparator } from "@/utils/ThousandSeparator";
-import ModalConfirmAppointment from "@/components/shared-components/ModalConfirmAppointment";
-import ModalPaymentAppointment from "@/components/shared-components/ModalPaymentAppointment";
+import { ModalConfirmAppointment } from "@/components/shared-components/ModalConfirmAppointment";
+import { ModalPaymentAppointment } from "@/components/shared-components/ModalPaymentAppointment";
 import { APIAppointment } from "@/apis/APIAppointment";
 import SkeletonDetailPatient from "./SkeletonDetailPatient";
 import {
