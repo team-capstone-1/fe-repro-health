@@ -190,6 +190,11 @@ export default function AllDiscussion() {
               </div>
             </div>
           ))}
+          {forumList !== null && forumList.length === 0 && !isLoading && !isError && (
+            <div className="my-24 text-center sm:text-xl">
+              Semua pertanyaan belum terjawab
+            </div>
+          )}
       </ul>
     </div>
   );
