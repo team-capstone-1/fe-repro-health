@@ -90,27 +90,11 @@ export default function DetailArticle() {
       <Card>
         {/* {detailArticles?.map((article) => ( */}
         <>
-          <Flex justify="space-between" align="center">
-            <div className="mb-3 mt-5">
-              <h3 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-2xl">
-                {detailArticles?.title}
-              </h3>
-            </div>
-            <div>
-              <Space size="middle">
-                <Button
-                  onClick={handleOpenModalDelete}
-                  id="remove-article"
-                  className="flex border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
-                >
-                  <span className="me-2 text-lg">
-                    <FaTrashAlt />
-                  </span>
-                  Hapus
-                </Button>
-              </Space>
-            </div>
-          </Flex>
+          <div className="mb-3 mt-5">
+            <h3 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-2xl">
+              {detailArticles?.title}
+            </h3>
+          </div>
 
           <List itemLayout="horizontal">
             <List.Item>
