@@ -167,17 +167,17 @@ textarea {
   height: 280px;
 }
 
-ul,
+.menu ul,
 ol {
   margin-top: 0;
   margin-bottom: 1rem;
   padding-left: 2rem;
 }
 
-ul li {
+.menu ul li {
   list-style-type: disc;
 }
 
-ol li {
+.menu ol li {
   list-style-type: decimal;
 }
