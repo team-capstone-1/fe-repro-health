@@ -6,7 +6,6 @@ dayjs.locale("id");
 import { Row, Col, Card, Tag, Avatar, Flex, Image, Pagination } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
 
 import { ListArticles } from "../constant/list-article";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
@@ -17,6 +16,7 @@ import { APIArticle } from "@/apis/APIArticle";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
+import { ToastContainer } from "react-toastify";
 
 export default function ListArticle() {
   const [isLoading, setIsLoading] = useState(false);
@@ -65,6 +65,7 @@ export default function ListArticle() {
 
   return (
     <>
+      <ToastContainer className="mt-14 w-full" />
       <section>
         <div className="relative mb-6 focus:bg-black">
           <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">

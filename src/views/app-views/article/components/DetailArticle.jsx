@@ -18,14 +18,14 @@ import {
   CommentUser as commentUser,
 } from "../constant/detail-article";
 
-import Markdown from "react-markdown";
-import parse from 'html-react-parser';
+// import Markdown from "react-markdown";
+import parse from "html-react-parser";
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
-import ModalDeleteArticle from "../../../../components/shared-components/ModalDeleteArticle";
+import ModalDeleteArticle from "@/components/shared-components/ModalDeleteArticle";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);
@@ -53,7 +53,7 @@ export default function DetailArticle() {
 
   const handleOpenModalDelete = () => {
     setIsShowDelete((prev) => !prev);
-  }
+  };
 
   useEffect(() => {
     fetchDetailArticles();
@@ -74,7 +74,11 @@ export default function DetailArticle() {
         {/* {detailArticles?.map((article) => ( */}
         <>
           <Flex justify="space-between" align="center">
-            <h3 className="font-bold">Unggah Artikel</h3>
+            <div className="mb-3 mt-5">
+              <h3 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-2xl">
+                {detailArticles?.title}
+              </h3>
+            </div>
             <div>
               <Space size="middle">
                 <Button
@@ -248,7 +252,10 @@ export default function DetailArticle() {
         </Flex>
       )}
       {isShowDelete && (
-        <ModalDeleteArticle closeModal={handleOpenModalDelete} />
+        <ModalDeleteArticle
+          closeModal={handleOpenModalDelete}
+          detailArticles={detailArticles}
+        />
       )}
     </section>
   );

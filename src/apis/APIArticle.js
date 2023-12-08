@@ -48,4 +48,21 @@ export const APIArticle = {
       throw new Error(err);
     }
   },
+
+  deleteArticle: async (articleId) => {
+    try {
+      const result = await axiosInstance.delete(
+        `/doctors/articles/${articleId}`,
+      );
+
+      console.log("delete", result.data);
+      return result.data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const { response } = error.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(error);
+    }
+  },
 };
