@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Row, Button, Col, Flex } from "antd";
 
+import { useSelector } from "react-redux";
+import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
+
 export default function ButtonFilter({ onFilterClick }) {
   const [selectedFilter, setSelectedfilter] = useState("bulan");
+  const doctorState = useSelector(selectDoctorProfile);
+  // const { name } = doctorState.data.response;
 
   const handleButtonClick = (buttonType) => {
     setSelectedfilter(buttonType);
@@ -13,7 +18,8 @@ export default function ButtonFilter({ onFilterClick }) {
       <Row id="button-filter-wrapper" justify="space-between">
         <Col xs={24} md={12}>
           <h4 id="welcome-doctor" className="mb-4 block font-semibold">
-            Selamat Datang, Dr Andi!
+            {/* Selamat Datang, {name.split(",")[0]}! */}
+            Selamat Datang, Dr. Andi Cahaya!
           </h4>
         </Col>
         <Col xs={24} md={12} className="mb-5 text-start md:text-end">

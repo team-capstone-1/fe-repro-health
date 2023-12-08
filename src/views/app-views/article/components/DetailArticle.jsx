@@ -26,7 +26,7 @@ import { DetailArticle as detailArticle } from "../constant/detail-article";
 
 import parse from "html-react-parser";
 import ModalDeleteArticle from "@/components/shared-components/ModalDeleteArticle";
-import splitString from "@/utils/SplitString";
+import { splitString } from "@/utils/SplitString";
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
 import { useScrollToTop } from "@/hooks/useScrollToTop";

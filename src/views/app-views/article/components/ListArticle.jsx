@@ -15,7 +15,7 @@ import { ListArticles } from "../constant/list-article";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
-import splitString from "@/utils/SplitString";
+import { splitString } from "@/utils/SplitString";
 import { APIArticle } from "@/apis/APIArticle";
 import { useDebounce } from "@/hooks/useDebounce";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
