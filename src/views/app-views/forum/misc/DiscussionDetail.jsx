@@ -170,7 +170,7 @@ export default function DiscussionDetail() {
       {isShow && (
         <ModalConfirmForumAnswer
           closeModal={handleShowModal}
-          authorName={data[0]?.author}
+          authorName={data[0]?.anonymous ? "Anonim" : data[0]?.patient?.name}
           payload={payload}
           setIsAnswered={setIsAnswered}
         />
