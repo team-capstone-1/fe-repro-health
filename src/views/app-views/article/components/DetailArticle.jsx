@@ -86,7 +86,7 @@ export default function DetailArticle() {
           </Button>
         </Link>
         <Flex justify="space-around" align="center">
-          <div>
+          <section>
             <Space size="middle">
               <Button
                 onClick={handleOpenModalDelete}
@@ -99,7 +99,7 @@ export default function DetailArticle() {
                 Hapus
               </Button>
             </Space>
-          </div>
+          </section>
         </Flex>
       </Flex>
       <Card>
@@ -142,11 +142,11 @@ export default function DetailArticle() {
             </>
           ) : (
             <>
-              <div className="mb-3 mt-5">
+              <section className="mb-3 mt-5">
                 <h2 className="sm:text-md text-start text-base font-semibold text-[#0D0D0D] md:text-lg lg:text-xl xl:text-3xl">
                   {detailArticles?.title}
                 </h2>
-              </div>
+              </section>
 
               <List itemLayout="horizontal">
                 <List.Item>
@@ -176,7 +176,7 @@ export default function DetailArticle() {
                 </List.Item>
               </List>
 
-              <div className="mt-2">
+              <section className="mt-2">
                 <div className="inline-flex h-10 w-[73px]  items-start justify-start gap-2.5 rounded-[10px] p-2">
                   <div className="inline-flex items-center justify-start gap-2">
                     <MdOutlineRemoveRedEye className="relative h-5 w-5 text-[#989898]" />
@@ -199,7 +199,7 @@ export default function DetailArticle() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </section>
             </>
           )}
 
@@ -220,7 +220,7 @@ export default function DetailArticle() {
             />
           )}
 
-          <div id="tags">
+          <section id="tags">
             <h4 className="my-4 text-base text-[#4B4B4B] sm:text-xl">Tags</h4>
             {tags &&
               tags?.map((tag, index) => (
@@ -232,9 +232,12 @@ export default function DetailArticle() {
                   {tag}
                 </Tag>
               ))}
-          </div>
+          </section>
 
-          <div id="content-article" className="menu my-5 w-full text-justify">
+          <section
+            id="content-article"
+            className="menu my-5 w-full text-justify"
+          >
             {parse(`${detailArticles?.content}`)}
 
             <div className="mt-5">
@@ -245,7 +248,8 @@ export default function DetailArticle() {
                 {detailArticles?.reference}
               </p>
             </div>
-          </div>
+          </section>
+
           <section id="comment-section">
             <div className="mt-8 h-14 w-full bg-[#E9E9E9] p-4 sm:mt-14">
               <h3 className="text-base font-semibold text-[#4B4B4B] sm:text-xl">

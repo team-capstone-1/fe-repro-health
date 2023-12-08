@@ -131,13 +131,7 @@ export default function ListArticle() {
             </Col>
           ))}
         </Row>
-        <Col>
-          <Pagination
-            defaultCurrent={1}
-            total={50}
-            className="mx-auto my-10 flex justify-center md:gap-5"
-          />
-        </Col>
+
         {isError.message !== null && !isLoading && isError ? (
           <Flex className="mb-5 flex-col items-center justify-center text-red-500">
             <p>{isError.message}</p>
@@ -146,6 +140,16 @@ export default function ListArticle() {
           <></>
         )}
       </section>
+
+      <footer>
+        <Col>
+          <Pagination
+            defaultCurrent={1}
+            total={50}
+            className="mx-auto my-10 flex justify-center md:gap-5"
+          />
+        </Col>
+      </footer>
     </>
   );
 }
