@@ -6,11 +6,11 @@ dayjs.extend(relativeTime);
 dayjs.locale("id");
 
 import { Link, useParams } from "react-router-dom";
-import { Avatar, Button, Card, Image, Tag, List } from "antd";
+import { Avatar, Button, Card, Image, Tag, List, Flex, Space } from "antd";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
 import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
-import { FaRegBookmark } from "react-icons/fa";
+import { FaRegBookmark, FaTrashAlt } from "react-icons/fa";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 import {
@@ -25,11 +25,14 @@ import { useEffect, useState } from "react";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
+import ModalDeleteArticle from "../../../../components/shared-components/ModalDeleteArticle";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);
   const [detailArticles, setDetailArticles] = useState([]);
   const { articleId } = useParams();
+  const [isShowDelete, setIsShowDelete] = useState(false);
+
   useDocumentTitle("Artikel");
   useScrollToTop();
 
@@ -47,6 +50,10 @@ export default function DetailArticle() {
       setIsError(error);
     }
   };
+
+  const handleOpenModalDelete = () => {
+    setIsShowDelete((prev) => !prev);
+  }
 
   useEffect(() => {
     fetchDetailArticles();
@@ -66,11 +73,23 @@ export default function DetailArticle() {
 
         {/* {detailArticles?.map((article) => ( */}
         <>
-          <div className="mb-3 mt-5">
-            <h3 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-2xl">
-              {detailArticles?.title}
-            </h3>
-          </div>
+          <Flex justify="space-between" align="center">
+            <h3 className="font-bold">Unggah Artikel</h3>
+            <div>
+              <Space size="middle">
+                <Button
+                  onClick={handleOpenModalDelete}
+                  id="remove-article"
+                  className="flex border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                >
+                  <span className="me-2 text-lg">
+                    <FaTrashAlt />
+                  </span>
+                  Hapus
+                </Button>
+              </Space>
+            </div>
+          </Flex>
 
           <List itemLayout="horizontal">
             <List.Item>
@@ -227,6 +246,9 @@ export default function DetailArticle() {
         <Flex className="mb-5 flex-col items-center justify-center text-red-500">
           <p>{isError.message}</p>
         </Flex>
+      )}
+      {isShowDelete && (
+        <ModalDeleteArticle closeModal={handleOpenModalDelete} />
       )}
     </section>
   );
