@@ -234,10 +234,7 @@ export default function DetailArticle() {
               ))}
           </div>
 
-          <div
-            id="content-article"
-            className="my-5 w-full list-disc text-justify"
-          >
+          <div id="content-article" className="menu my-5 w-full text-justify">
             {parse(`${detailArticles?.content}`)}
 
             <div className="mt-5">
