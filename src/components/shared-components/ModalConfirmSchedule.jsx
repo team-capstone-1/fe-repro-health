@@ -13,12 +13,10 @@ export default function ModalConfirmSchedule({
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleOk = () => {
-    // openNotification();
-
     setIsModalOpen(false);
     closeModal();
     handleOpenDrawer();
-    showSuccessToast("Jadwal berhasil diubah !", "top-center");
+    showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
   };
 
   const handleCancel = () => {

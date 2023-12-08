@@ -9,12 +9,11 @@ const successStyle = {
   className: "bg-green-500 text-white ps-5 font-medium text-base xl:text-lg",
 };
 
-const defaultStyle = {
-  className: "bg-grey-500 text-white ps-5 font-medium text-base xl:text-lg",
-};
+export const showErrorToast = (pesan, position, size) => {
+  const containerId = size === "medium" ? "md" : "xl";
 
-export const showErrorToast = (pesan, position) => {
   toast(pesan, {
+    containerId: containerId,
     position,
     autoClose: 3000,
     hideProgressBar: true,
@@ -28,8 +27,10 @@ export const showErrorToast = (pesan, position) => {
   });
 };
 
-export const showSuccessToast = (pesan, position) => {
+export const showSuccessToast = (pesan, position, size) => {
+  const containerId = size === "medium" ? "md" : "xl";
   toast(pesan, {
+    containerId: containerId,
     position,
     autoClose: 3000,
     hideProgressBar: true,
@@ -40,20 +41,5 @@ export const showSuccessToast = (pesan, position) => {
     pauseOnHover: true,
     progress: undefined,
     ...successStyle,
-  });
-};
-
-export const showDefaultToast = (pesan, position) => {
-  toast(pesan, {
-    position,
-    autoClose: 3000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    closeButton: (
-      <span className="my-auto me-3 text-sm text-grey-200">Abaikan</span>
-    ),
-    pauseOnHover: true,
-    progress: undefined,
-    ...defaultStyle,
   });
 };

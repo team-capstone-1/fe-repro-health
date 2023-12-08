@@ -4,7 +4,12 @@ import { PiSealCheck } from "react-icons/pi";
 import { APIForum } from "@/apis/APIForum";
 import { showSuccessToast, showErrorToast } from "./Toast";
 
-const ModalConfirmForumAnswer = ({ closeModal, authorName, payload, setIsAnswered }) => {
+const ModalConfirmForumAnswer = ({
+  closeModal,
+  authorName,
+  payload,
+  setIsAnswered,
+}) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleOk = () => {
@@ -12,9 +17,9 @@ const ModalConfirmForumAnswer = ({ closeModal, authorName, payload, setIsAnswere
     const postData = async () => {
       try {
         await APIForum.addForumReply(payload);
-        showSuccessToast("Jawaban anda telah dikirim !", "top-right");
+        showSuccessToast("Jawaban anda telah dikirim !", "top-center", "large");
       } catch (error) {
-        showErrorToast("Gagal mengirim jawaban !", "top-right");
+        showErrorToast("Gagal mengirim jawaban !", "top-center", "large");
         console.error(error);
       } finally {
         closeModal();

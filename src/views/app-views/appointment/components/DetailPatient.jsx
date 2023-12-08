@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import "dayjs/locale/id";
 import { useEffect, useState } from "react";
 import { Button, Card, Drawer, Flex } from "antd";
-import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
 import Utils from "@/utils";
@@ -26,7 +25,6 @@ export default function DetailPatient({ idAppointment, handleOpen, isOpen }) {
         open={isOpen}
       >
         <ContentDrawer idAppointment={idAppointment} />
-        <ToastContainer className=" mt-16 w-full sm:mt-10 sm:w-[480px]" />
       </Drawer>
     </>
   );

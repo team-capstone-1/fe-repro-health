@@ -7,7 +7,6 @@ import {
   AiOutlineArrowRight,
 } from "react-icons/ai";
 import { useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import forgotPasswordIllus from "@/assets/forgot-password-illustration.svg";
@@ -50,13 +49,16 @@ const ForgotPassword = () => {
       navigate(`/verifikasi/${encryptData(data.email)}`);
     } catch (error) {
       console.error(error);
-      showErrorToast("Terjadi kesalahan, pastikan email sudah terdaftar");
+      showErrorToast(
+        "Terjadi kesalahan, pastikan email sudah terdaftar",
+        "top-right",
+        "medium",
+      );
     }
   };
 
   return (
     <>
-      <ToastContainer className="w-full sm:w-[35rem] lg:w-[38rem]" />
       <section className="flex h-screen items-center justify-center xl:scale-95">
         <div className="base-container">
           <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-14 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">
