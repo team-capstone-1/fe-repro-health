@@ -6,7 +6,17 @@ dayjs.extend(relativeTime);
 dayjs.locale("id");
 
 import { Link, useParams } from "react-router-dom";
-import { Avatar, Button, Card, Image, Tag, List, Flex, Space } from "antd";
+import {
+  Avatar,
+  Button,
+  Card,
+  Image,
+  Tag,
+  List,
+  Flex,
+  Space,
+  Skeleton,
+} from "antd";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
 import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
@@ -25,9 +35,11 @@ import { useEffect, useState } from "react";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
+import splitString from "@/utils/SplitString";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [detailArticles, setDetailArticles] = useState([]);
   const { articleId } = useParams();
   const [isShowDelete, setIsShowDelete] = useState(false);
@@ -37,14 +49,17 @@ export default function DetailArticle() {
 
   const doctor = useSelector(selectDoctorProfile);
   const dataDoctor = doctor?.data?.response;
-  const tag = detailArticles?.tags;
+  const tags = splitString(detailArticles?.tags);
+
   const fetchDetailArticles = async () => {
     try {
       const result = await APIArticle.getDetailArticle(articleId);
       setDetailArticles(result?.response);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsError(error);
+      setIsLoading(false);
     }
   };
 
@@ -53,6 +68,7 @@ export default function DetailArticle() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchDetailArticles();
   }, []);
 
@@ -86,12 +102,11 @@ export default function DetailArticle() {
         </Flex>
       </Flex>
       <Card>
-        {/* {detailArticles?.map((article) => ( */}
         <>
           <div className="mb-3 mt-5">
-            <h3 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-2xl">
+            <h2 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-3xl">
               {detailArticles?.title}
-            </h3>
+            </h2>
           </div>
 
           <List itemLayout="horizontal">
@@ -145,32 +160,35 @@ export default function DetailArticle() {
               </div>
             </div>
           </div>
-
-          <Image
-            id="image-article"
-            className="h-[250px] sm:h-[300px] md:h-[380px] lg:h-[403px] xl:h-[433px]"
-            src={detailArticles?.image}
-            alt={detailArticles?.image_desc}
-            preview={true}
-            fallback={detailArticle[0].image_article}
-          />
+          {isLoading ? (
+            <>
+              <Skeleton.Image
+                active
+                className="h-[250px] w-full sm:h-[300px] md:h-[380px] md:w-3/4 lg:h-[403px] xl:h-[433px]"
+              />
+            </>
+          ) : (
+            <Image
+              id="image-article"
+              className="h-[250px] sm:h-[300px] md:h-[380px] lg:h-[403px] xl:h-[433px]"
+              src={detailArticles?.image}
+              alt={detailArticles?.image_desc}
+              preview={true}
+            />
+          )}
 
           <div id="tags">
             <h4 className="my-4 text-base text-[#4B4B4B] sm:text-xl">Tags</h4>
-            <Tag
-              className="mb-2 me-2 text-justify text-xs font-semibold text-[#4B4B4B] hover:bg-green-100 sm:text-sm md:text-base"
-              rootClassName="h-7 sm:h-10 px-5 py-2.5 rounded-lg border-[#4B4B4B] justify-center items-center inline-flex"
-            >
-              {tag && tag.slice(0, 1).toUpperCase() + tag.slice(1)}
-            </Tag>
-            {/* {detailArticle[0].tags.map((tag) => (
-              <Tag
-                className="mb-2 me-2 text-justify text-xs font-semibold text-[#4B4B4B] hover:bg-green-100 sm:text-sm md:text-base"
-                rootClassName="h-7 sm:h-10 px-5 py-2.5 rounded-lg border-[#4B4B4B] justify-center items-center inline-flex"
-              >
-                {tag}
-              </Tag>
-            ))} */}
+            {tags &&
+              tags?.map((tag, index) => (
+                <Tag
+                  key={index}
+                  className="mb-2 me-2 text-justify text-xs font-semibold capitalize text-[#4B4B4B] hover:bg-green-100 sm:text-sm md:text-base"
+                  rootClassName="h-7 sm:h-10 px-5 py-2.5 rounded-lg border-[#4B4B4B] justify-center items-center inline-flex"
+                >
+                  {tag}
+                </Tag>
+              ))}
           </div>
 
           <div
@@ -183,31 +201,11 @@ export default function DetailArticle() {
               <h5 className="mb-2 text-xs font-semibold text-[#151515] sm:text-base">
                 Referensi
               </h5>
-              {/* {detailArticle[0].reference.map((ref) => ( */}
               <p className="text-start text-[10px] font-[300] italic text-[#151515] sm:text-sm">
                 {detailArticles?.reference}
               </p>
-              {/* ))} */}
             </div>
           </div>
-
-          {/* <div id="content-article" className="my-5 w-full text-justify">
-            <p className="text-base font-[400] text-[#151515]">
-              {detailArticles?.content}
-            </p>
-
-            <div className="mb-4 mt-5">
-              <h5 className="mb-2 text-sm font-semibold text-[#151515] sm:text-base">
-                Referensi
-              </h5>
-              {detailArticle[0].reference.map((ref) => (
-                <p className="text-start text-[10px] font-[300] italic text-[#151515] sm:text-sm">
-                  {ref}
-                </p>
-              ))}
-            </div>
-          </div> */}
-
           <section id="comment-section">
             <div className="mt-8 h-14 w-full bg-[#E9E9E9] p-4 sm:mt-14">
               <h3 className="text-base font-semibold text-[#4B4B4B] sm:text-xl">
@@ -243,7 +241,6 @@ export default function DetailArticle() {
             </List>
           </section>
         </>
-        {/* ))} */}
       </Card>
       {isError && (
         <Flex className="mb-5 flex-col items-center justify-center text-red-500">
