@@ -28,9 +28,8 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
-
 .ql-editor {
-  height: 150px;
+  height: 280px;
 }
 
 h1,
@@ -161,10 +160,6 @@ p {
 input,
 textarea {
   font-family: "Poppins", sans-serif;
-}
-
-.ql-editor {
-  height: 280px;
 }
 
 .menu ul,
