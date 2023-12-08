@@ -11,7 +11,6 @@ import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirm
 import { APIForum } from "@/apis/APIForum";
 import { format } from "date-fns";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { ToastContainer } from "react-toastify";
 
 export default function DiscussionDetail() {
   useDocumentTitle("Detail Pertanyaan");
@@ -60,7 +59,6 @@ export default function DiscussionDetail() {
 
   return (
     <>
-      <ToastContainer className=" mt-16 w-full sm:mt-10 sm:w-[480px]" />
       <div className="px-0 pt-4 sm:px-5 md:px-8">
         <Link
           id="back-to-forum"

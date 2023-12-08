@@ -4,7 +4,16 @@ import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <>
-      <ToastContainer className="mt-14 w-full" />
+      <ToastContainer
+        enableMultiContainer
+        containerId="xl"
+        className="mt-14 w-full"
+      />
+      <ToastContainer
+        enableMultiContainer
+        containerId="md"
+        className="mt-14 w-[450px]"
+      />
       <SetupRoutes />
     </>
   );

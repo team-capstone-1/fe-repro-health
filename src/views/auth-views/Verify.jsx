@@ -15,7 +15,6 @@ import {
   showErrorToast,
 } from "@/components/shared-components/Toast";
 import { CONST } from "@/utils/Constant";
-import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { toggleResetPassword } from "@/store/is-password-reset-slice";
 
@@ -62,7 +61,7 @@ const Verify = () => {
       });
     } catch (error) {
       console.error(error);
-      showErrorToast("Kode verifikasi tidak sesuai", "top-right");
+      showErrorToast("Kode verifikasi tidak sesuai", "top-right", "medium");
     }
   };
 
@@ -72,12 +71,16 @@ const Verify = () => {
       await APIAuth.sendOTP({
         email,
       });
-      showSuccessToast("Kode verifikasi berhasil dikirim ulang", "top-right");
+      showSuccessToast(
+        "Kode verifikasi berhasil dikirim ulang",
+        "top-right",
+        "medium",
+      );
       setIsLoading(false);
     } catch (error) {
       console.error(error);
       setIsLoading(false);
-      showErrorToast("Kode verifikasi gagal dikirim", "top-right");
+      showErrorToast("Kode verifikasi gagal dikirim", "top-right", "medium");
     }
   };
 
@@ -98,7 +101,6 @@ const Verify = () => {
 
   return (
     <>
-      <ToastContainer className="w-full sm:w-[35rem] lg:w-[38rem]" />
       <section className="flex h-screen items-center justify-center xl:scale-95">
         <div className="base-container">
           <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-16 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">

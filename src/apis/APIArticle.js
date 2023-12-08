@@ -36,7 +36,7 @@ export const APIArticle = {
           "Content-Type": "multipart/form-data",
         },
       });
-      showSuccessToast("Artikel berhasil ditambahkan", "top-center");
+      showSuccessToast("Artikel berhasil ditambahkan", "top-center", "large");
       return result.data.response;
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -52,8 +52,7 @@ export const APIArticle = {
       const result = await axiosInstance.delete(
         `/doctors/articles/${articleId}`,
       );
-      showSuccessToast("Artikel berhasil dihapus", "top-center");
-
+      showSuccessToast("Artikel berhasil dihapus", "top-center", "large");
       return result.data;
     } catch (error) {
       if (error instanceof AxiosError) {

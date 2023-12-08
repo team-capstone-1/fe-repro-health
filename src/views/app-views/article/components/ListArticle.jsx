@@ -7,7 +7,6 @@ import distanceInWordsStrict from "date-fns/formatDistanceStrict";
 import id from "date-fns/locale/id";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
 import { Row, Col, Card, Tag, Avatar, Flex, Image, Pagination } from "antd";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -70,7 +69,6 @@ export default function ListArticle() {
 
   return (
     <>
-      <ToastContainer className="mt-14 w-full" />
       <section>
         <div className="relative mb-6 focus:bg-black">
           <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
@@ -122,7 +120,6 @@ export default function ListArticle() {
                     </div>
                     <div>
                       <h6 className="font-semibold">{dataDoctor?.name}</h6>
-                      {/* {dayjs(item?.date, "YYYY-MM-DD").format("DD MMM YYYY")} */}
                       <h6 className="text-grey-200">{item.date}</h6>
                     </div>
                   </Flex>

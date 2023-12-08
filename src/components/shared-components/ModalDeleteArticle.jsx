@@ -18,7 +18,7 @@ const ModalDeleteArticle = ({ closeModal, detailArticles }) => {
       });
     } catch (error) {
       console.error(error);
-      showErrorToast("Artikel gagal dihapus", "top-center");
+      showErrorToast("Artikel gagal dihapus", "top-center", "large");
     }
   };
 

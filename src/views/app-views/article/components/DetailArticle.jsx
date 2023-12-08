@@ -16,27 +16,22 @@ import {
   Flex,
   Space,
   Skeleton,
-  Col,
 } from "antd";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
 import { MdOutlineComment, MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegBookmark, FaTrashAlt } from "react-icons/fa";
-import { ToastContainer } from "react-toastify";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import {
-  DetailArticle as detailArticle,
-  // CommentUser as commentUser,
-} from "../constant/detail-article";
+import { DetailArticle as detailArticle } from "../constant/detail-article";
 
 import parse from "html-react-parser";
 import ModalDeleteArticle from "@/components/shared-components/ModalDeleteArticle";
+import splitString from "@/utils/SplitString";
 import { APIArticle } from "@/apis/APIArticle";
 import { useEffect, useState } from "react";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
-import splitString from "@/utils/SplitString";
 
 export default function DetailArticle() {
   const [isError, setIsError] = useState(null);
@@ -75,7 +70,6 @@ export default function DetailArticle() {
 
   return (
     <section id="detail-article" className="py-5">
-      {<ToastContainer className="mt-4 w-full" />}
       <Flex justify="space-between" className="mb-6">
         <Link to="/artikel-saya">
           <Button

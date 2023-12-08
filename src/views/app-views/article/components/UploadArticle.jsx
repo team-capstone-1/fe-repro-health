@@ -6,7 +6,6 @@ import { Flex, Col, Row, Button, Space, Select } from "antd";
 import { IoImageOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useForm, Controller } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import ModalConfirm from "@/components/shared-components/ModalConfirm";
@@ -123,7 +122,7 @@ const UploadArticle = () => {
       globalRoute.navigate && globalRoute.navigate(`/artikel/${id}`);
     } catch (err) {
       console.error(err);
-      showErrorToast("Artikel gagal diunggah", "top-center");
+      showErrorToast("Artikel gagal diunggah", "top-center", "large");
     }
   };
   const onSubmitArticle = (data) => {
@@ -144,7 +143,6 @@ const UploadArticle = () => {
 
   return (
     <>
-      <ToastContainer className="mt-14 w-full" />
       <section id="unggah-artikel" className="mb-5 py-5">
         <form
           onSubmit={handleSubmit(onSubmitArticle)}
