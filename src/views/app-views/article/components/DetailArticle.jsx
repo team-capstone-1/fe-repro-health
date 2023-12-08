@@ -16,6 +16,7 @@ import {
   Flex,
   Space,
   Skeleton,
+  Col,
 } from "antd";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { UserOutlined } from "@ant-design/icons";
@@ -25,7 +26,7 @@ import { ToastContainer } from "react-toastify";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import {
   DetailArticle as detailArticle,
-  CommentUser as commentUser,
+  // CommentUser as commentUser,
 } from "../constant/detail-article";
 
 import parse from "html-react-parser";
@@ -103,63 +104,105 @@ export default function DetailArticle() {
       </Flex>
       <Card>
         <>
-          <div className="mb-3 mt-5">
-            <h2 className="sm:text-md text-start text-base text-[#0D0D0D] md:text-lg lg:text-xl xl:text-3xl">
-              {detailArticles?.title}
-            </h2>
-          </div>
-
-          <List itemLayout="horizontal">
-            <List.Item>
-              <List.Item.Meta
-                avatar={
-                  <Avatar
-                    size={60}
-                    icon={<UserOutlined />}
-                    src={dataDoctor?.profile_image}
-                  />
-                }
-                title={
-                  <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
-                    Oleh {dataDoctor?.name}
-                  </h5>
-                }
-                description={
-                  <p className="text-xs text-grey-400 sm:text-sm">
-                    Diunggah pada{" "}
-                    {dayjs(detailArticles?.date, "YYYY-MM-DDTHH:mm:ssZ").format(
-                      `DD MMMM YYYY [pukul] HH:mm [WIB]`,
-                    )}
-                  </p>
-                }
+          {isLoading ? (
+            <>
+              <Skeleton.Input
+                active
+                className="mb-3 mt-5 block h-[15px] w-[350px] sm:w-[500px]"
               />
-            </List.Item>
-          </List>
-
-          <div className="mt-2">
-            <div className="inline-flex h-10 w-[73px]  items-start justify-start gap-2.5 rounded-[10px] p-2">
-              <div className="inline-flex items-center justify-start gap-2">
-                <MdOutlineRemoveRedEye className="relative h-5 w-5 text-[#989898]" />
-                <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
-                  {detailArticles?.views}
-                </p>
+              <Space>
+                <List>
+                  <List.Item>
+                    <List.Item.Meta
+                      avatar={
+                        <Skeleton.Avatar active size={60} shape="circle" />
+                      }
+                      title={
+                        <Skeleton.Input
+                          active
+                          size="small"
+                          className="h-[15px] w-[200px] sm:w-[300px]"
+                        />
+                      }
+                      description={
+                        <Skeleton.Input
+                          active
+                          size="small"
+                          className="h-[15px] w-[200px] sm:w-[300px]"
+                        />
+                      }
+                    />
+                  </List.Item>
+                </List>
+              </Space>
+              <Skeleton.Input
+                active
+                className="mb-3 mt-5 block h-[15px] w-[100px] sm:w-[200px]"
+              />
+            </>
+          ) : (
+            <>
+              <div className="mb-3 mt-5">
+                <h2 className="sm:text-md text-start text-base font-semibold text-[#0D0D0D] md:text-lg lg:text-xl xl:text-3xl">
+                  {detailArticles?.title}
+                </h2>
               </div>
 
-              <div className="inline-flex items-center justify-start gap-2.5">
-                <FaRegBookmark className="relative h-5 w-5 text-[#989898]" />
-                <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
-                  {detailArticle[0].bookmarks_amount}
-                </p>
-              </div>
+              <List itemLayout="horizontal">
+                <List.Item>
+                  <List.Item.Meta
+                    avatar={
+                      <Avatar
+                        size={60}
+                        icon={<UserOutlined />}
+                        src={dataDoctor?.profile_image}
+                      />
+                    }
+                    title={
+                      <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
+                        Oleh {dataDoctor?.name}
+                      </h5>
+                    }
+                    description={
+                      <p className="text-xs text-grey-400 sm:text-sm">
+                        Diunggah pada{" "}
+                        {dayjs(
+                          detailArticles?.date,
+                          "YYYY-MM-DDTHH:mm:ssZ",
+                        ).format(`DD MMMM YYYY [pukul] HH:mm [WIB]`)}
+                      </p>
+                    }
+                  />
+                </List.Item>
+              </List>
 
-              <div className="inline-flex items-center justify-start gap-2.5">
-                <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
-                <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
-                  {commentUser?.length}
-                </p>
+              <div className="mt-2">
+                <div className="inline-flex h-10 w-[73px]  items-start justify-start gap-2.5 rounded-[10px] p-2">
+                  <div className="inline-flex items-center justify-start gap-2">
+                    <MdOutlineRemoveRedEye className="relative h-5 w-5 text-[#989898]" />
+                    <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
+                      {detailArticles?.views}
+                    </p>
+                  </div>
+
+                  <div className="inline-flex items-center justify-start gap-2.5">
+                    <FaRegBookmark className="relative h-5 w-5 text-[#989898]" />
+                    <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
+                      {detailArticle[0].bookmarks_amount}
+                    </p>
+                  </div>
+
+                  <div className="inline-flex items-center justify-start gap-2.5">
+                    <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
+                    <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
+                      {detailArticle[0].comments?.length}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
+
           {isLoading ? (
             <>
               <Skeleton.Image
@@ -209,36 +252,38 @@ export default function DetailArticle() {
           <section id="comment-section">
             <div className="mt-8 h-14 w-full bg-[#E9E9E9] p-4 sm:mt-14">
               <h3 className="text-base font-semibold text-[#4B4B4B] sm:text-xl">
-                Komentar ({commentUser?.length})
+                Komentar ({detailArticle?.comments?.length})
               </h3>
             </div>
 
-            <List itemLayout="horizontal" className="p-4">
-              {commentUser?.map((comment) => (
-                <List.Item key={comment.user_id}>
-                  <List.Item.Meta
-                    avatar={
-                      <Avatar
-                        size={50}
-                        icon={<UserOutlined />}
-                        src={comment.user_image}
-                      />
-                    }
-                    title={
-                      <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
-                        Oleh {comment.user_name}
-                      </h5>
-                    }
-                    description={
-                      <p className="mb-5 text-xs text-grey-300 sm:text-sm">
-                        {dayjs(comment.upload_date).fromNow()}
-                      </p>
-                    }
-                  />
-                  {comment.user_comment}
-                </List.Item>
-              ))}
-            </List>
+            <Skeleton loading={isLoading} active avatar>
+              <List itemLayout="horizontal" className="p-4">
+                {detailArticle[0].comments.map((comment) => (
+                  <List.Item key={comment.user_id}>
+                    <List.Item.Meta
+                      avatar={
+                        <Avatar
+                          size={50}
+                          icon={<UserOutlined />}
+                          src={comment.user_image}
+                        />
+                      }
+                      title={
+                        <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
+                          Oleh {comment.user_name}
+                        </h5>
+                      }
+                      description={
+                        <p className="mb-5 text-xs text-grey-300 sm:text-sm">
+                          {dayjs(comment.upload_date).fromNow()}
+                        </p>
+                      }
+                    />
+                    {comment.user_comment}
+                  </List.Item>
+                ))}
+              </List>
+            </Skeleton>
           </section>
         </>
       </Card>
