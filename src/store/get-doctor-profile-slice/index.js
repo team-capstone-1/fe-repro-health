@@ -6,7 +6,6 @@ export const fetchGetDoctorProfile = createAsyncThunk(
   APIProfile.getDoctorProfile,
 );
 
-// initial state
 const initialState = {
   message: "",
   status: "idle",
@@ -38,5 +37,4 @@ const getDoctorProfileSlice = createSlice({
 });
 
 export const selectDoctorProfile = (state) => state.doctorProfile;
-
 export default getDoctorProfileSlice.reducer;

@@ -1,4 +1,4 @@
-import ListAppointment from "./components/ListAppointment";
+import { ListAppointment } from "./components/ListAppointment";
 
 export default function Appointment() {
   return (

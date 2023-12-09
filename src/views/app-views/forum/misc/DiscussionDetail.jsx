@@ -5,12 +5,14 @@ import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { Button } from "antd";
-import anonymousPict from "@/assets/anonymous-pp.jpg";
 import Markdown from "react-markdown";
-import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
-import { APIForum } from "@/apis/APIForum";
+
 import { format } from "date-fns";
+import { APIForum } from "@/apis/APIForum";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { ModalConfirmForumAnswer } from "@/components/shared-components/ModalConfirmForumAnswer";
+
+import anonymousPict from "@/assets/anonymous-pp.jpg";
 
 export default function DiscussionDetail() {
   useDocumentTitle("Detail Pertanyaan");

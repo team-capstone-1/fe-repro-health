@@ -1,14 +1,16 @@
+import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDebounce } from "@/hooks/useDebounce";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 import id from "date-fns/locale/id";
 import distanceInWordsStrict from "date-fns/formatDistanceStrict";
-import anonymousPict from "@/assets/anonymous-pp.jpg";
-import { APIForum } from "@/apis/APIForum";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
 
-export default function NotAnsweredYet() {
+import { APIForum } from "@/apis/APIForum";
+import { useDebounce } from "@/hooks/useDebounce";
+
+import anonymousPict from "@/assets/anonymous-pp.jpg";
+
+export function NotAnsweredYet() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -189,7 +191,10 @@ export default function NotAnsweredYet() {
               </div>
             </div>
           ))}
-          {forumList !== null && forumList.length === 0 && !isLoading && !isError && (
+        {forumList !== null &&
+          forumList.length === 0 &&
+          !isLoading &&
+          !isError && (
             <div className="my-24 text-center sm:text-xl">
               Semua pertanyaan sudah terjawab
             </div>

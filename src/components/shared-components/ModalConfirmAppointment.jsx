@@ -7,12 +7,12 @@ import { APIAppointment } from "@/apis/APIAppointment";
 import { useDispatch } from "react-redux";
 import { toggleFetchLatestData } from "@/store/toggle-fetch-new-data";
 
-const ModalConfirmAppointment = ({
+export function ModalConfirmAppointment({
   closeModal,
   textContent,
   textTitle,
   dataPasien,
-}) => {
+}) {
   const [isOpen, setIsOpen] = useState(true);
   const dispatch = useDispatch();
   const handleOk = async () => {
@@ -105,5 +105,4 @@ const ModalConfirmAppointment = ({
       </Modal>
     </>
   );
-};
-export default ModalConfirmAppointment;
+}

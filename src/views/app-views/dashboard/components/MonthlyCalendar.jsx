@@ -4,13 +4,12 @@ import { Calendar } from "antd";
 import { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
-import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
-
 import { months } from "@/utils/GenerateDate";
-import { mapListData, formatStrDayJs } from "@/utils/MapListData";
+import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
 import { getListDataByDate } from "@/utils/GetListData";
+import { mapListData, formatStrDayJs } from "@/utils/MapListData";
 
-export default function ScheduleCalendar() {
+export function MonthlyCalendar() {
   const response = Response;
   const currentDate = dayjs();
   const [displayedDate, setDisplayedDate] = useState(currentDate);

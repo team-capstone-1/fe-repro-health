@@ -4,12 +4,12 @@ import { PiSealCheck } from "react-icons/pi";
 import { APIForum } from "@/apis/APIForum";
 import { showSuccessToast, showErrorToast } from "./Toast";
 
-const ModalConfirmForumAnswer = ({
+export function ModalConfirmForumAnswer({
   closeModal,
   authorName,
   payload,
   setIsAnswered,
-}) => {
+}) {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleOk = () => {
@@ -84,5 +84,4 @@ const ModalConfirmForumAnswer = ({
       </Modal>
     </>
   );
-};
-export default ModalConfirmForumAnswer;
+}
