@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Button } from "antd";
+import { Modal, Button, Skeleton } from "antd";
 import { useSelector } from "react-redux";
 
 import { APIAuth } from "@/apis/APIAuth";
@@ -10,7 +10,7 @@ import logoutModalIcon from "@/assets/logout-modal-icon.svg";
 export function LogoutModal({ closeModal }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const doctorState = useSelector(selectDoctorProfile);
-  const { name } = doctorState.data.response;
+  const doctorName = doctorState.data?.response.name;
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -65,9 +65,18 @@ export function LogoutModal({ closeModal }) {
           alt="logout-modal-icon"
           className="my-4 h-10 w-10"
         />
-        <p id="doctor-name" className="mt-2 text-xl font-semibold">
-          Halo, {name.split(",")[0]}!
-        </p>
+        {doctorState.status === "loading" && (
+          <Skeleton.Input active size="small" />
+        )}
+        {doctorState.status === "success" && (
+          <p id="doctor-name" className="mt-2 text-xl font-semibold">
+            Halo, {doctorName?.split(",")[0]}!
+          </p>
+        )}
+        {doctorState.status === "failed" && (
+          <Skeleton.Input active size="small" />
+        )}
+
         <p
           id="logout-modal-text"
           className="mt-2 text-base font-medium leading-relaxed text-grey-400 md:px-3"
