@@ -4,7 +4,7 @@ import { Row, Button, Col, Flex } from "antd";
 import { useSelector } from "react-redux";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
-export default function ButtonFilter({ onFilterClick }) {
+export function ButtonFilter({ onFilterClick }) {
   const [selectedFilter, setSelectedfilter] = useState("bulan");
   const doctorState = useSelector(selectDoctorProfile);
   // const { name } = doctorState.data.response;

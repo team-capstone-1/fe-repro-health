@@ -7,7 +7,7 @@ import { FaTrashCan } from "react-icons/fa6";
 
 import { generateTimestampOutput } from "@/utils/GenerateTimestampsOutput";
 
-export default function CardNotifications({
+export function CardNotifications({
   iconType,
   title,
   description,

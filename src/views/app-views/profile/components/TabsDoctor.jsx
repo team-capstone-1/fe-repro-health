@@ -1,11 +1,11 @@
 import { Card } from "antd";
 import { TabsDoctorProfile } from "@/components/shared-components/Tabs";
 
-import WorkExperience from "./WorkExperience";
-import Education from "./Education";
-import Certificate from "./Certificate";
+import { WorkExperience } from "./WorkExperience";
+import { Education } from "./Education";
+import { Certificate } from "./Certificate";
 
-export default function TabsDoctor() {
+export function TabsDoctor() {
   return (
     <section id="tabs-profile">
       <Card>
