@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Modal, Button } from "antd";
-import logoutModalIcon from "@/assets/logout-modal-icon.svg";
-import { APIAuth } from "@/apis/APIAuth";
 import { useSelector } from "react-redux";
+
+import { APIAuth } from "@/apis/APIAuth";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
+
+import logoutModalIcon from "@/assets/logout-modal-icon.svg";
 
 export function LogoutModal({ closeModal }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const doctorState = useSelector(selectDoctorProfile);
   const { name } = doctorState.data.response;
+
   const handleOk = () => {
     setIsModalOpen(false);
     APIAuth.logout();
