@@ -10,7 +10,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 
-import LogoutModal from "@/components/layout-components/LogoutModal";
+import { LogoutModal } from "@/components/layout-components/LogoutModal";
 
 export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);

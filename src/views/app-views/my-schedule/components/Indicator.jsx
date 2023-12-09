@@ -1,4 +1,4 @@
-export const Indicator = ({ text, type, date, displayedDate }) => {
+export function Indicator({ text, type, date, displayedDate }) {
   let textColor;
   let bgColor;
   if (date.month() === displayedDate.month()) {
@@ -59,4 +59,4 @@ export const Indicator = ({ text, type, date, displayedDate }) => {
       )}
     </>
   );
-};
+}

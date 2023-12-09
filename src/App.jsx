@@ -1,7 +1,7 @@
 import SetupRoutes from "@/routers";
 import { ToastContainer } from "react-toastify";
 
-function App() {
+export default function App() {
   return (
     <>
       <ToastContainer
@@ -18,5 +18,3 @@ function App() {
     </>
   );
 }
-
-export default App;

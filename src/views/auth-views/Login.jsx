@@ -10,7 +10,7 @@ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { APIAuth } from "@/apis/APIAuth";
 import { showErrorToast } from "@/components/shared-components/Toast";
 
-const Login = () => {
+export default function Login() {
   useDocumentTitle("Login");
 
   const [isRemembered, setIsRemembered] = useState(false);
@@ -247,6 +247,4 @@ const Login = () => {
       </section>
     </>
   );
-};
-
-export default Login;
+}

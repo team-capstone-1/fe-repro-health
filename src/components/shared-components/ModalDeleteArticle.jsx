@@ -5,7 +5,7 @@ import { APIArticle } from "@/apis/APIArticle";
 import { showErrorToast } from "./Toast";
 import { globalRoute } from "@/utils/GlobalRoute";
 
-const ModalDeleteArticle = ({ closeModal, detailArticles }) => {
+export function ModalDeleteArticle({ closeModal, detailArticles }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleOk = async () => {
@@ -74,6 +74,4 @@ const ModalDeleteArticle = ({ closeModal, detailArticles }) => {
       </div>
     </Modal>
   );
-};
-
-export default ModalDeleteArticle;
+}

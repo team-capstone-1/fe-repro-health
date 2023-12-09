@@ -1,10 +1,11 @@
 import { Row, Col } from "antd";
 
-import HandPhone from "@/assets/handphone-2.png";
-import ButtonGooglePlay from "@/components/shared-components/ButtonGooglePlay";
-import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
+import { ButtonGooglePlay } from "@/components/shared-components/ButtonGooglePlay";
+import { ButtonAppStore } from "@/components/shared-components/ButtonAppStore";
 
-export default function BannerDownload() {
+import HandPhone from "@/assets/handphone-2.png";
+
+export function BannerDownload() {
   return (
     <>
       <div

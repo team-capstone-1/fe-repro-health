@@ -1,3 +1,3 @@
-export default function splitString(value) {
+export function splitString(value) {
   return value?.split(", ").map((item) => item);
 }

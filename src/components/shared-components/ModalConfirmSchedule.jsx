@@ -4,7 +4,7 @@ import { IoIosWarning } from "react-icons/io";
 
 import { showSuccessToast } from "./Toast";
 
-export default function ModalConfirmSchedule({
+export function ModalConfirmSchedule({
   handleOpenDrawer,
   closeModal,
   textDate,

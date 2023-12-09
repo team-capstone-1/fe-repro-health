@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 import { Button, Card, Drawer, Flex } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
-import Utils from "@/utils";
-import ModalConfirmAppointment from "@/components/shared-components/ModalConfirmAppointment";
-import ModalPaymentAppointment from "@/components/shared-components/ModalPaymentAppointment";
+import { thousandSeparator } from "@/utils/ThousandSeparator";
+import { ModalConfirmAppointment } from "@/components/shared-components/ModalConfirmAppointment";
+import { ModalPaymentAppointment } from "@/components/shared-components/ModalPaymentAppointment";
 import { APIAppointment } from "@/apis/APIAppointment";
-import SkeletonDetailPatient from "./SkeletonDetailPatient";
+import { SkeletonDetailPatient } from "./SkeletonDetailPatient";
 import {
   selectToggleFetchLatestData,
   toggleFetchLatestData,
 } from "@/store/toggle-fetch-new-data";
 
-export default function DetailPatient({ idAppointment, handleOpen, isOpen }) {
+export function DetailPatient({ idAppointment, handleOpen, isOpen }) {
   return (
     <>
       <Drawer
@@ -238,7 +238,7 @@ const CardDetailAppointment = ({ dataPasien, isError }) => {
         <Flex justify="space-between" className="mt-2">
           <p className="text-xs font-normal sm:text-sm">Total Biaya</p>
           <p className="text-end text-xs font-medium sm:text-sm">
-            {Utils.thousandSeparator(dataPasien?.total)}
+            {thousandSeparator(dataPasien?.total)}
           </p>
         </Flex>
         {dataPasien?.status === "waiting" && (

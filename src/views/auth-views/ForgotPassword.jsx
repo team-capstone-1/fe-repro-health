@@ -15,7 +15,7 @@ import { APIAuth } from "@/apis/APIAuth";
 import { showErrorToast } from "@/components/shared-components/Toast";
 import { CONST } from "@/utils/Constant";
 
-const ForgotPassword = () => {
+export default function ForgotPassword() {
   useDocumentTitle("Lupa Password");
 
   const navigate = useNavigate();
@@ -151,6 +151,4 @@ const ForgotPassword = () => {
       </section>
     </>
   );
-};
-
-export default ForgotPassword;
+}
