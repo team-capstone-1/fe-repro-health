@@ -190,7 +190,7 @@ const Tags = ({ tags }) => {
       {tagsList?.map((tag, index) => (
         <Tag
           key={index}
-          className="rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium capitalize text-green-600"
+          className="mb-2 rounded-lg border-none bg-green-100 px-3 py-1 text-sm font-medium capitalize text-green-600"
         >
           {tag}
         </Tag>
