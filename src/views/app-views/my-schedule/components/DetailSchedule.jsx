@@ -1,68 +1,29 @@
 import { useEffect, useState } from "react";
-import { Badge, Button, Collapse, Drawer, Flex, Switch, Tooltip } from "antd";
-import { FiInfo } from "react-icons/fi";
-
+import { Button, Drawer, Flex, Switch, Tooltip } from "antd";
 import { months } from "@/utils/GenerateDate";
+import { FiInfo } from "react-icons/fi";
+import { Controller, useForm } from "react-hook-form";
 import { formatStrDayJs } from "@/utils/MapListData";
 import { getListDataByDate } from "@/utils/GetListData";
+import { NewResponse } from "@/views/app-views/my-schedule/constant/my-schedule/NewResponse";
+
 import { ModalConfirmSchedule } from "@/components/shared-components/ModalConfirmSchedule";
+import { selectDoctorSchedule } from "@/store/get-doctor-schedule-slice";
+import ListAppointment from "./ListAppointment";
+import ButtonSubmit from "./ButtonSubmit";
+import { useSelector } from "react-redux";
 
-function ListAppointment() {
-  return (
-    <ul className="text-black">
-      <li>
-        <Flex align="start" gap={5}>
-          <Badge color="#17c6a3" />
-          <span className="ms-1 flex flex-col text-base font-semibold">
-            Anastasia Amalia
-            <span className="font-normal text-grey-200">009</span>
-          </span>
-        </Flex>
-      </li>
-      <li>
-        <Flex align="start" gap={5}>
-          <Badge color="#17c6a3" />
-          <span className="ms-1 flex flex-col text-base font-semibold">
-            Supriyadi
-            <span className="font-normal text-grey-200">010</span>
-          </span>
-        </Flex>
-      </li>
-      <li>
-        <Flex align="start" gap={5}>
-          <Badge color="#17c6a3" />
-          <span className="ms-1 flex flex-col text-base font-semibold">
-            Naufal Helmi
-            <span className="font-normal text-grey-200">012</span>
-          </span>
-        </Flex>
-      </li>
-    </ul>
-  );
-}
+const text = (
+  <span className="text-black">
+    Anda hanya dapat mengubah jadwal dari hari yang akan datang
+  </span>
+);
 
-const items = (panelStyle) => [
-  {
-    key: "1",
-    label: <p className="text-base font-semibold">Pagi</p>,
-    children: <ListAppointment />,
-    style: panelStyle,
-  },
-  {
-    key: "2",
-    label: <p className="text-base font-semibold">Siang</p>,
-    children: <ListAppointment />,
-    style: panelStyle,
-  },
-  {
-    key: "3",
-    label: <p className="text-base font-semibold">Malam</p>,
-    children: <ListAppointment />,
-    style: panelStyle,
-  },
-];
-
-export function DetailSchedule({ handleOpenDrawer, isOpen, date }) {
+export default function DrawerDetailSchedule({
+  handleOpenDrawer,
+  isOpen,
+  date,
+}) {
   const HeaderDrawer = () => {
     return (
       <div className="ps-5">
@@ -72,6 +33,7 @@ export function DetailSchedule({ handleOpenDrawer, isOpen, date }) {
       </div>
     );
   };
+
   return (
     <Drawer
       width={500}
@@ -87,25 +49,34 @@ export function DetailSchedule({ handleOpenDrawer, isOpen, date }) {
 
 const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   const [isShow, setIsShow] = useState(false);
+  const scheduleState = useSelector(selectDoctorSchedule);
   const strDate = formatStrDayJs(selectedDate);
-  const listData = getListDataByDate(strDate);
+
+  const { handleSubmit, control, setValue } = useForm();
+
+  const listData = getListDataByDate(scheduleState?.data, strDate);
 
   const handleOpenModal = () => {
     setIsShow((prev) => !prev);
     handleOpenDrawer();
   };
 
-  const text = (
-    <span className="text-black">
-      Anda hanya dapat mengubah jadwal dari hari yang akan datang
-    </span>
-  );
+  const payload = {
+    date: formatStrDayJs(selectedDate),
+    listData: [],
+  };
+  const onSubmit = (data) => {
+    Object.keys(data).forEach((session) => {
+      const sessionType = session.split("-")[1];
+      const newObject = {
+        doctor_available: data[session],
+        session: sessionType,
+      };
+      payload.listData.push(newObject);
+      handleOpenModal();
+    });
 
-  const panelStyle = {
-    marginBottom: 8,
-    background: "#e9e9e9",
-    borderRadius: 5,
-    border: "none",
+    console.log(payload);
   };
 
   const textDate = (
@@ -115,35 +86,25 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   );
 
   const Morning = () => {
-    const [isChecked, setIsChecked] = useState(true);
-
-    const handleCheck = () => {
-      setIsChecked((prev) => !prev);
-    };
-
-    const CheckType = () => {
-      if (listData === null) {
-        setIsChecked(false);
-      } else if (
-        listData[0]?.type === "Masuk" &&
-        listData[0]?.content === "Pagi"
-      ) {
-        setIsChecked(true);
-      } else if (listData[0]?.type === "Libur") {
-        setIsChecked(false);
-      } else {
-        setIsChecked(false);
-      }
-    };
-
     useEffect(() => {
+      const CheckType = () => {
+        if (listData === null) {
+          setValue("session-pagi", false);
+        } else if (
+          listData[0]?.doctor_available &&
+          listData[0]?.session === "pagi"
+        ) {
+          setValue("session-pagi", true);
+        } else if (listData[0]?.session === "Libur") {
+          setValue("session-pagi", false);
+        } else {
+          setValue("session-pagi", false);
+        }
+      };
+
       CheckType();
     }, []);
 
-    const onChange = (checked) => {
-      handleCheck();
-      console.log(`switch to ${checked}`);
-    };
     return (
       <>
         <Flex justify="space-between" align="center">
@@ -151,100 +112,102 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
             <h6 className="text-base font-semibold">Pagi</h6>
             <p>08.00 - 11.00</p>
           </div>
-          <div>
-            <Switch
-              checked={isChecked}
-              onChange={onChange}
-              className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
-            />
-          </div>
+          <Controller
+            name="session-pagi"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <Switch
+                id="switch-pagi"
+                checked={value}
+                onChange={onChange}
+                className={`${value ? "bg-green-500" : "bg-grey-300"}`}
+              />
+            )}
+          />
         </Flex>
       </>
     );
   };
 
   const Noon = () => {
-    const [isChecked, setIsChecked] = useState(true);
-
-    const CheckType = () => {
-      if (listData === null) {
-        setIsChecked(false);
-      } else if (
-        (listData[1]?.type === "Masuk" && listData[1]?.content === "Siang") ||
-        (listData[0]?.type === "Masuk" && listData[0]?.content === "Siang")
-      ) {
-        setIsChecked(true);
-      } else if (listData[0]?.type === "Libur") {
-        setIsChecked(false);
-      } else {
-        setIsChecked(false);
-      }
-    };
-
     useEffect(() => {
+      const CheckType = () => {
+        if (listData === null) {
+          setValue("session-siang", false);
+        } else if (
+          (listData[1]?.doctor_available && listData[1]?.session === "siang") ||
+          (listData[0]?.doctor_available && listData[0]?.session === "siang")
+        ) {
+          setValue("session-siang", true);
+        } else if (listData[0]?.session === "Libur") {
+          setValue("session-siang", false);
+        } else {
+          setValue("session-siang", false);
+        }
+      };
       CheckType();
     }, []);
 
-    const onChange = (checked) => {
-      setIsChecked((prev) => !prev);
-      console.log(`switch to ${checked}`);
-    };
     return (
       <Flex justify="space-between" align="center">
         <div>
           <h6 className="text-base font-semibold">Siang</h6>
           <p>13.00 - 15.30</p>
         </div>
-        <div>
-          <Switch
-            checked={isChecked}
-            onChange={onChange}
-            className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
-          />
-        </div>
+        <Controller
+          name="session-siang"
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <Switch
+              id="switch-siang"
+              checked={value}
+              onChange={onChange}
+              className={`${value ? "bg-green-500" : "bg-grey-300"}`}
+            />
+          )}
+        />
       </Flex>
     );
   };
 
   const Night = () => {
-    const [isChecked, setIsChecked] = useState(true);
-
-    const CheckType = () => {
-      if (listData === null) {
-        setIsChecked(false);
-      } else if (
-        (listData[1]?.type === "Masuk" && listData[1]?.content === "Malam") ||
-        (listData[2]?.type === "Masuk" && listData[2]?.content === "Malam")
-      ) {
-        setIsChecked(true);
-      } else if (listData[0]?.type === "Libur") {
-        setIsChecked(false);
-      } else {
-        setIsChecked(false);
-      }
-    };
-
     useEffect(() => {
+      const CheckType = () => {
+        if (listData === null) {
+          setValue("session-malam", false);
+        } else if (
+          (listData[1]?.doctor_available && listData[1]?.session === "malam") ||
+          (listData[2]?.doctor_available && listData[2]?.session === "malam")
+        ) {
+          setValue("session-malam", true);
+        } else if (listData[0]?.session === "Libur") {
+          setValue("session-malam", false);
+        } else {
+          setValue("session-malam", false);
+        }
+      };
+
       CheckType();
     }, []);
 
-    const onChange = (checked) => {
-      setIsChecked((prev) => !prev);
-      console.log(`switch to ${checked}`);
-    };
     return (
       <Flex justify="space-between" align="center">
         <div>
           <h6 className="text-base font-semibold">Malam</h6>
           <p>18.30 - 20.30</p>
         </div>
-        <div>
-          <Switch
-            checked={isChecked}
-            onChange={onChange}
-            className={`${isChecked ? "bg-green-500" : "bg-grey-300"}`}
-          />
-        </div>
+        <Controller
+          name="session-malam"
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <Switch
+              id="switch-malam"
+              checked={value}
+              onChange={onChange}
+              className={`${value ? "bg-green-500" : "bg-grey-300"}`}
+            />
+          )}
+        />
       </Flex>
     );
   };
@@ -259,37 +222,28 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
           </span>
         </Tooltip>
       </Flex>
-      <Morning />
-      <Noon />
-      <Night />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Morning />
+        <Noon />
+        <Night />
 
-      <Flex id="jadwal-janji-temu">
-        <h5 className="text-base font-semibold text-green-500">
-          Jadwal Janji Temu
-        </h5>
-      </Flex>
-      <div id="list-janji-temu" className="w-full">
-        <Collapse
-          accordion
-          bordered={false}
-          expandIconPosition="end"
-          items={items(panelStyle)}
-          style={{
-            background: "#fff",
-          }}
-        />
-      </div>
+        <Flex id="jadwal-janji-temu">
+          <h5 className="mt-5 text-base font-semibold text-green-500">
+            Jadwal Janji Temu
+          </h5>
+        </Flex>
+        <div id="list-janji-temu" className="mt-5 w-full">
+          <ListAppointment data={listData} />
+        </div>
 
-      <Flex justify="center" className="mt-5">
-        <Button
-          id="button-submit"
-          type="primary"
-          className="bg-green-500 px-10 pb-8 pt-2 hover:bg-green-600 disabled:bg-grey-100 disabled:text-grey-200"
-          onClick={handleOpenModal}
-        >
-          Simpan Perubahan
-        </Button>
-      </Flex>
+        <Flex justify="center" className="mt-5">
+          <ButtonSubmit
+            htmlType="submit"
+            date={selectedDate}
+            // openHandler={handleOpenModal}
+          />
+        </Flex>
+      </form>
       {isShow && (
         <ModalConfirmSchedule
           handleOpenDrawer={handleOpenDrawer}

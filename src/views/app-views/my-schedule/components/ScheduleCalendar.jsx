@@ -1,21 +1,35 @@
 import dayjs from "dayjs";
-import { Card, ConfigProvider } from "antd";
+import { Card, ConfigProvider, Skeleton } from "antd";
 import { Calendar } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { useDispatch, useSelector } from "react-redux";
 
+import DetailSchedule from "./DetailSchedule";
 import { months } from "@/utils/GenerateDate";
-import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
+// import { NewResponse } from "@/views/app-views/my-schedule/constant/my-schedule/NewResponse";
 import { mapListData } from "@/utils/MapListData";
-import { DetailSchedule } from "./DetailSchedule";
 import { Indicator } from "./Indicator";
+import {
+  fetchDoctorSchedule,
+  selectDoctorSchedule,
+} from "@/store/get-doctor-schedule-slice";
 
 export function ScheduleCalendar() {
-  const response = Response;
   const currentDate = dayjs();
   const [displayedDate, setDisplayedDate] = useState(currentDate);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const dispatch = useDispatch();
+  const scheduleState = useSelector(selectDoctorSchedule);
+  const response = scheduleState.data;
+  // const response = NewResponse;
+
+  useEffect(() => {
+    dispatch(fetchDoctorSchedule());
+  }, [dispatch]);
+
   const handleOpenDrawer = () => {
     setIsOpen((prev) => !prev);
   };
@@ -91,50 +105,52 @@ export function ScheduleCalendar() {
     );
   };
   const dateCellRender = (value) => {
-    const listData = mapListData(response.data, value);
-    return (
-      <>
-        <div
-          id="date-cell-wrapper"
-          className={`h-36 w-full border p-2  px-4 text-left hover:bg-green-50 ${
-            value.date() === dayjs().date() &&
-            value.month() === dayjs().month() &&
-            value.year() === dayjs().year()
-              ? "border-t-4 border-green-600 border-b-inherit border-l-inherit border-r-inherit"
-              : ""
-          }`}
-        >
+    if (scheduleState.status === "success") {
+      const listData = mapListData(response?.data, value);
+      return (
+        <>
           <div
-            id="date-cell"
-            className={`${
-              value.day() === 0 && value.month() === displayedDate.month()
-                ? "text-negative"
+            id="date-cell-wrapper"
+            className={`h-36 w-full border p-2  px-4 text-left hover:bg-green-50 ${
+              value.date() === dayjs().date() &&
+              value.month() === dayjs().month() &&
+              value.year() === dayjs().year()
+                ? "border-t-4 border-green-600 border-b-inherit border-l-inherit border-r-inherit"
                 : ""
             }`}
           >
-            {value.date()}
-          </div>
-          <div id="list-schedule" className="flex h-[80%] flex-col justify-end">
-            {listData.map((item, index) => (
-              <div
-                className={`flex w-full items-center rounded-bl-lg rounded-tl-lg shadow-sm ${
-                  item.type === "Tidak Masuk"
-                    ? "justify-start"
-                    : "justify-between"
-                } ${item.type === "Libur" ? "pe-0" : "pe-2"}`}
-                key={index}
-              >
-                <Indicator
-                  text={item.content}
-                  type={item.type}
-                  appointment={item.appointment}
-                  date={value}
-                  displayedDate={displayedDate}
-                />
+            <div
+              id="date-cell"
+              className={`${
+                value.day() === 0 && value.month() === displayedDate.month()
+                  ? "text-negative"
+                  : ""
+              }`}
+            >
+              {value.date()}
+            </div>
+            <div
+              id="list-schedule"
+              className="flex h-[80%] flex-col justify-end"
+            >
+              {listData.map((item, index) => (
                 <div
-                  className={`grid h-4 w-4 content-center rounded-full  text-center 
+                  className={`flex w-full items-center rounded-bl-lg rounded-tl-lg shadow-sm ${
+                    !item.doctor_available ? "justify-start" : "justify-between"
+                  } ${item.doctor_available === "Libur" ? "pe-0" : "pe-2"}`}
+                  key={index}
+                >
+                  <Indicator
+                    session={item.session}
+                    doctor_available={item.doctor_available}
+                    appointment={item.appointments}
+                    date={value}
+                    displayedDate={displayedDate}
+                  />
+                  <div
+                    className={`grid h-4 w-4 content-center rounded-full  text-center 
               text-[0.6rem] font-light text-white ${
-                !item.appointment || item.type === "Tidak Masuk"
+                !item.appointments || !item.doctor_available
                   ? "hidden"
                   : "block"
               } ${
@@ -142,15 +158,17 @@ export function ScheduleCalendar() {
                   ? "bg-grey-50"
                   : "bg-negative"
               }`}
-                >
-                  {item.appointment}
+                  >
+                    {item.appointments?.length}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </>
-    );
+        </>
+      );
+    }
+    return <Skeleton active />;
   };
 
   const onSelect = (date) => {
