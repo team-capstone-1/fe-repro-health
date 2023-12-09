@@ -44,6 +44,7 @@ export const APIDashboard = {
       throw new Error(error);
     }
   },
+
   getCountDataForOneDay: async () => {
     try {
       const result = await axiosInstance.get(
