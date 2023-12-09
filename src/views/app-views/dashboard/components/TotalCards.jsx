@@ -7,7 +7,7 @@ import Icon02 from "@/assets/db-icon-02.png";
 import Icon03 from "@/assets/db-icon-03.png";
 import Icon04 from "@/assets/db-icon-04.png";
 
-export default function TotalCards({ selectedFilter }) {
+export function TotalCards({ selectedFilter }) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -45,7 +45,11 @@ export default function TotalCards({ selectedFilter }) {
   };
 
   const formatPercentage = (percentage) => {
-    return percentage !== undefined ? (percentage < 0 ? percentage + "%" : "+" + percentage + "%") : "0%";
+    return percentage !== undefined
+      ? percentage < 0
+        ? percentage + "%"
+        : "+" + percentage + "%"
+      : "0%";
   };
 
   const cardData = [

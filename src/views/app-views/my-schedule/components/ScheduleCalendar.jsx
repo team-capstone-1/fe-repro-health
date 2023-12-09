@@ -7,13 +7,10 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { months } from "@/utils/GenerateDate";
 import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
 import { mapListData } from "@/utils/MapListData";
-
-import DetailSchedule from "./DetailSchedule";
+import { DetailSchedule } from "./DetailSchedule";
 import { Indicator } from "./Indicator";
 
-import { ToastContainer } from "react-toastify";
-
-export default function ScheduleCalendar() {
+export function ScheduleCalendar() {
   const response = Response;
   const currentDate = dayjs();
   const [displayedDate, setDisplayedDate] = useState(currentDate);
@@ -90,7 +87,6 @@ export default function ScheduleCalendar() {
             </li>
           ))}
         </ul>
-        <ToastContainer className="mt-14 w-full" />
       </>
     );
   };

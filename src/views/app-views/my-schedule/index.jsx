@@ -1,4 +1,4 @@
-import ScheduleCalendar from "./components/MySchedule";
+import { ScheduleCalendar } from "./components/ScheduleCalendar";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 

@@ -3,7 +3,7 @@ import { ColumnAppointment } from "../constant/appointment";
 import { useEffect, useState } from "react";
 import { APIAppointment } from "@/apis/APIAppointment";
 
-export default function AppointmentTable() {
+export function AppointmentTable() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);

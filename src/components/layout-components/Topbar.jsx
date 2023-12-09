@@ -5,7 +5,7 @@ import { PiRobot } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import { Flex, Skeleton } from "antd";
 
-import DrawerSidebar from "@/components/layout-components/DrawerSidebar";
+import { DrawerSidebar } from "@/components/layout-components/DrawerSidebar";
 import BlankProfile from "@/assets/blank-profile.png";
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 import {
@@ -30,7 +30,7 @@ export default function Topbar() {
       <div className="app-container z-10 flex justify-between py-5 md:py-3">
         <div className="flex items-center">
           <DrawerSidebar />
-          <Link to="/">
+          <Link to="/dashboard">
             <img
               id="logo-reprohealth-topbar"
               src={logoReproHealth}

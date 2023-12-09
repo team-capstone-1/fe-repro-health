@@ -2,10 +2,11 @@ import { Card, Flex, Skeleton } from "antd";
 import { useSelector } from "react-redux";
 import { BiSolidErrorCircle } from "react-icons/bi";
 
-import BlankProfile from "@/assets/blank-profile.png";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
-export default function DoctorProfile() {
+import BlankProfile from "@/assets/blank-profile.png";
+
+export function DoctorProfile() {
   const stateDataDoctor = useSelector(selectDoctorProfile);
   const dataDoctor = stateDataDoctor?.data?.response;
 

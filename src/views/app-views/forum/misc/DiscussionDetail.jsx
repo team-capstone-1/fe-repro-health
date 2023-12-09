@@ -5,13 +5,14 @@ import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { Button } from "antd";
-import anonymousPict from "@/assets/anonymous-pp.jpg";
 import Markdown from "react-markdown";
-import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
-import { APIForum } from "@/apis/APIForum";
+
 import { format } from "date-fns";
+import { APIForum } from "@/apis/APIForum";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { ToastContainer } from "react-toastify";
+import { ModalConfirmForumAnswer } from "@/components/shared-components/ModalConfirmForumAnswer";
+
+import anonymousPict from "@/assets/anonymous-pp.jpg";
 
 export default function DiscussionDetail() {
   useDocumentTitle("Detail Pertanyaan");
@@ -60,7 +61,6 @@ export default function DiscussionDetail() {
 
   return (
     <>
-      <ToastContainer className=" mt-16 w-full sm:mt-10 sm:w-[480px]" />
       <div className="px-0 pt-4 sm:px-5 md:px-8">
         <Link
           id="back-to-forum"

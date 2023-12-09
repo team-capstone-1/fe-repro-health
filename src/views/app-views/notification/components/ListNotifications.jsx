@@ -2,7 +2,7 @@ import { Flex, Tooltip } from "antd";
 import { FiInfo } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-import CardNotifications from "@/views/app-views/notification/components/CardNotifications";
+import { CardNotifications } from "@/views/app-views/notification/components/CardNotifications";
 import { DataNotifications } from "@/views/app-views/notification/constants/notifications";
 
 function countUnreadNotifications(data) {
@@ -15,7 +15,7 @@ function countUnreadNotifications(data) {
   }, 0);
 }
 
-export default function ListNotifications() {
+export function ListNotifications() {
   const totalUnRead = countUnreadNotifications(DataNotifications);
   const text = (
     <span className="text-black">

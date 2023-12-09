@@ -1,16 +1,18 @@
 import dayjs from "dayjs";
 import "dayjs/locale/id";
-
 dayjs.locale("id");
-import { Modal, Divider, Flex, Image, Spin } from "antd";
+
 import { useEffect, useState } from "react";
 import { IoMdCheckmark } from "react-icons/io";
-import siluetTF from "@/assets/silluet-bukti-tf.png";
-import buktiTF from "@/assets/bukti-tf.png";
-import Utils from "@/utils";
-import { APIAppointment } from "@/apis/APIAppointment";
+import { Modal, Divider, Flex, Image, Spin } from "antd";
 
-const ModalPaymentAppointment = ({ closeModal, data }) => {
+import { APIAppointment } from "@/apis/APIAppointment";
+import { thousandSeparator } from "@/utils/ThousandSeparator";
+
+import buktiTF from "@/assets/bukti-tf.png";
+import siluetTF from "@/assets/silluet-bukti-tf.png";
+
+export function ModalPaymentAppointment({ closeModal, data }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
@@ -67,7 +69,7 @@ const ModalPaymentAppointment = ({ closeModal, data }) => {
                 <div className="text-center">
                   <p className="text-xl text-grey-900">Pembayaran Diterima!</p>
                   <p className="mt-1 text-2xl font-bold text-grey-900">
-                    {Utils.thousandSeparator(dataPayment?.total)}
+                    {thousandSeparator(dataPayment?.total)}
                   </p>
                 </div>
               </div>
@@ -106,19 +108,19 @@ const ModalPaymentAppointment = ({ closeModal, data }) => {
                   <Flex justify="space-between" align="center" className="mt-5">
                     <p className="text-base">Nominal</p>
                     <p className="text-base font-semibold">
-                      {Utils.thousandSeparator(dataPayment?.price)}
+                      {thousandSeparator(dataPayment?.price)}
                     </p>
                   </Flex>
                   <Flex justify="space-between" align="center">
                     <p className="text-base">Biaya Admin</p>
                     <p className="text-base font-semibold">
-                      {Utils.thousandSeparator(dataPayment?.admin_fee)}
+                      {thousandSeparator(dataPayment?.admin_fee)}
                     </p>
                   </Flex>
                   <Flex justify="space-between" align="center">
                     <p className="text-base">Total</p>
                     <p className="text-xl font-bold text-green-500">
-                      {Utils.thousandSeparator(dataPayment?.total)}
+                      {thousandSeparator(dataPayment?.total)}
                     </p>
                   </Flex>
                 </div>
@@ -157,6 +159,4 @@ const ModalPaymentAppointment = ({ closeModal, data }) => {
       )}
     </Modal>
   );
-};
-
-export default ModalPaymentAppointment;
+}

@@ -11,16 +11,13 @@ import {
 } from "recharts";
 
 import {
-  // DataIncome as data,
   DataIncome,
   DataIncomeDay,
   DataIncomeWeek,
 } from "@/views/app-views/dashboard/constant/graph-income";
-
 import { useEffect, useState } from "react";
-import { APIDashboard } from "@/apis/APIDashboard";
 
-const CustomTooltip = ({ active, payload, label }) => {
+export function CustomTooltip({ active, payload, label }) {
   if (active && payload && payload.length) {
     return (
       <div className="w-full rounded-[4px] bg-white px-3 py-3 shadow-lg">
@@ -39,11 +36,11 @@ const CustomTooltip = ({ active, payload, label }) => {
   }
 
   return null;
-};
+}
 
-export default function ChartIncome({ selectedFilter }) {
+export function ChartIncome({ selectedFilter }) {
   const [dataIncome, setDataIncome] = useState([]);
-  const [isError, setIsError] = useState(false);
+  // const [isError, setIsError] = useState(false);
 
   const IncomeMonth = DataIncome.slice(DataIncome.length - 7);
   // const IncomeWeeks = DataIncomeWeek.slice(DataIncomeWeek.length - 7);
@@ -102,8 +99,6 @@ export default function ChartIncome({ selectedFilter }) {
     if (selectedFilter === "minggu") return value.slice(8, 20);
     return value.slice(0, 3);
   };
-
-  // console.log("hasil selected: " + selectedFilter);
 
   return (
     <Row id="chart-income" justify="start">

@@ -1,28 +1,25 @@
 import * as yup from "yup";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
-import resetPasswordIllus from "@/assets/reset-password-illustration.svg";
-import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { APIAuth } from "@/apis/APIAuth";
-import {
-  showErrorToast,
-  showSuccessToast,
-} from "@/components/shared-components/Toast";
+import { authService } from "@/configs/Auth";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { toggleResetPassword } from "@/store/is-password-reset-slice";
+import { showErrorToast } from "@/components/shared-components/Toast";
 import {
   selectDoctorProfile,
   fetchGetDoctorProfile,
 } from "@/store/get-doctor-profile-slice";
-import { toggleResetPassword } from "@/store/is-password-reset-slice";
-import { authService } from "@/configs/Auth";
 
-const ResetPassword = () => {
+import resetPasswordIllus from "@/assets/reset-password-illustration.svg";
+
+export default function ResetPassword() {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const [isVisiblePasswordConfirm, setIsVisiblePasswordConfirm] =
     useState(false);
@@ -60,21 +57,17 @@ const ResetPassword = () => {
   const onSubmitHandler = async (data) => {
     try {
       await APIAuth.changePassword(data).then(() => {
-        showSuccessToast("Kata sandi telah diganti!", "top-right");
-        setTimeout(() => {
-          dispatch(toggleResetPassword());
-          navigate("/dashboard");
-        }, 2000);
+        dispatch(toggleResetPassword());
+        navigate("/dashboard");
       });
     } catch (error) {
       console.error(error);
-      showErrorToast("gagal mengganti kata sandi!", "top-right");
+      showErrorToast("gagal mengganti kata sandi!", "top-right", "medium");
     }
   };
 
   return (
     <>
-      <ToastContainer className="w-full sm:w-[35rem] lg:w-[38rem]" />
       <section className="flex h-screen items-center justify-center xl:scale-95">
         <div className="base-container">
           <div className="mx-auto max-w-[1200px] rounded-lg bg-white p-8 shadow-none md:p-16 md:shadow-[2px_2px_4px_4px_rgba(186,186,186,0.3)]">
@@ -209,6 +202,4 @@ const ResetPassword = () => {
       </section>
     </>
   );
-};
-
-export default ResetPassword;
+}

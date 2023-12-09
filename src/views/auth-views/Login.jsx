@@ -1,6 +1,5 @@
 import * as yup from "yup";
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
@@ -11,7 +10,7 @@ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { APIAuth } from "@/apis/APIAuth";
 import { showErrorToast } from "@/components/shared-components/Toast";
 
-const Login = () => {
+export default function Login() {
   useDocumentTitle("Login");
 
   const [isRemembered, setIsRemembered] = useState(false);
@@ -63,6 +62,7 @@ const Login = () => {
         showErrorToast(
           "email atau password yang anda masukan salah!",
           "top-right",
+          "medium",
         );
       }
     } else {
@@ -80,6 +80,7 @@ const Login = () => {
         showErrorToast(
           "email atau password yang anda masukan salah!",
           "top-right",
+          "medium",
         );
       }
     }
@@ -87,7 +88,6 @@ const Login = () => {
 
   return (
     <>
-      <ToastContainer className="w-full sm:w-[35rem] lg:w-[38rem]" />
       <section className="flex h-screen items-center justify-center xl:scale-90">
         <div className="bg-error-timeout"></div>
         <div className="base-container">
@@ -247,6 +247,4 @@ const Login = () => {
       </section>
     </>
   );
-};
-
-export default Login;
+}

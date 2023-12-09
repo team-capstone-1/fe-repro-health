@@ -1,10 +1,10 @@
-export const formatStrDayJs = (date) => {
+export function formatStrDayJs(date) {
   return date?.format("DD-MM-YYYY");
-};
-export const mapListData = (data, eventDate) => {
+}
+
+export function mapListData(data, eventDate) {
   const event = {};
 
-  // and you can create a new entry with this function
   function add(_case, values) {
     event[_case] = values;
   }
@@ -15,4 +15,4 @@ export const mapListData = (data, eventDate) => {
 
   const key = formatStrDayJs(eventDate);
   return event[key] || [];
-};
+}
