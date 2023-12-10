@@ -11,6 +11,7 @@ const successStyle = {
 export function showErrorToast(pesan, position, size) {
   const containerId = size === "medium" ? "md" : "xl";
   toast(pesan, {
+    toastId: "error-toast",
     containerId: containerId,
     position,
     autoClose: 3000,
@@ -28,6 +29,7 @@ export function showErrorToast(pesan, position, size) {
 export function showSuccessToast(pesan, position, size) {
   const containerId = size === "medium" ? "md" : "xl";
   toast(pesan, {
+    toastId: "success-toast",
     containerId: containerId,
     position,
     autoClose: 3000,
