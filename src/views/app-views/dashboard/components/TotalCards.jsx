@@ -8,7 +8,12 @@ import Icon03 from "@/assets/db-icon-03.png";
 import Icon04 from "@/assets/db-icon-04.png";
 
 export function TotalCards({ selectedFilter }) {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    totalConsultations: 0,
+    totalPatients: 0,
+    totalTransactions: 0,
+    totalArticles: 0,
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
