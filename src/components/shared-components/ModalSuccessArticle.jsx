@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { Modal, Button } from "antd";
-import { PiSealCheck } from "react-icons/pi";
 import { useState } from "react";
+import { Modal, Button } from "antd";
+import { Link } from "react-router-dom";
+import { PiSealCheck } from "react-icons/pi";
 
-const ModalSuccessArticle = ({ closeModal }) => {
+export function ModalSuccessArticle({ closeModal }) {
   const [isOpen, setIsOpen] = useState(true);
   const handleCancel = () => {
     setIsOpen(false);
@@ -44,6 +44,4 @@ const ModalSuccessArticle = ({ closeModal }) => {
       </div>
     </Modal>
   );
-};
-
-export default ModalSuccessArticle;
+}

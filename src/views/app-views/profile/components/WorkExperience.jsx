@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Timeline, ConfigProvider, Skeleton, Flex } from "antd";
 import { APIProfile } from "@/apis/APIProfile";
 
-export default function WorkExperience() {
+export function WorkExperience() {
   const [isError, setIsError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDot, setSelectedDot] = useState(0);

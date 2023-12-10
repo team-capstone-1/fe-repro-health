@@ -10,10 +10,11 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut } from "react-icons/io";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 
-import logoReproHealth from "@/assets/logo-reprohealth.png";
-import LogoutModal from "@/components/layout-components/LogoutModal";
+import { LogoutModal } from "@/components/layout-components/LogoutModal";
 
-const App = () => {
+import logoReproHealth from "@/assets/logo-reprohealth.png";
+
+export function DrawerSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const location = useLocation();
@@ -134,10 +135,9 @@ const App = () => {
       {isShow && <LogoutModal closeModal={handleOpenModal} />}
     </>
   );
-};
-export default App;
+}
 
-const DrawerTitle = () => {
+function DrawerTitle() {
   return (
     <div className="flex justify-end">
       <Link to="/">
@@ -150,7 +150,7 @@ const DrawerTitle = () => {
       </Link>
     </div>
   );
-};
+}
 
 function getItem(label, key, icon, children, type) {
   return {

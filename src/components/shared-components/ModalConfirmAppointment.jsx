@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Button, Modal } from "antd";
 import { PiSealCheck } from "react-icons/pi";
 
-import { showSuccessToast } from "./Toast";
+import { showErrorToast, showSuccessToast } from "./Toast";
 import { APIAppointment } from "@/apis/APIAppointment";
 import { useDispatch } from "react-redux";
 import { toggleFetchLatestData } from "@/store/toggle-fetch-new-data";
 
-const ModalConfirmAppointment = ({
+export function ModalConfirmAppointment({
   closeModal,
   textContent,
   textTitle,
   dataPasien,
-}) => {
+}) {
   const [isOpen, setIsOpen] = useState(true);
   const dispatch = useDispatch();
   const handleOk = async () => {
@@ -21,11 +21,20 @@ const ModalConfirmAppointment = ({
         await APIAppointment.confirmConsultation(dataPasien.id).then(() => {
           setIsOpen(false);
           closeModal();
-          showSuccessToast("Janji temu telah dikonfirmasi !", "top-right");
+          showSuccessToast(
+            "Janji temu telah dikonfirmasi !",
+            "top-right",
+            "medium",
+          );
           dispatch(toggleFetchLatestData());
         });
       } catch (err) {
         console.error(err);
+        showErrorToast(
+          "Janji temu gagal dikonfirmasi !",
+          "top-right",
+          "medium",
+        );
       }
     }
     if (textTitle === "Selesaikan Janji Temu") {
@@ -33,11 +42,12 @@ const ModalConfirmAppointment = ({
         await APIAppointment.finishConsultation(dataPasien.id).then(() => {
           setIsOpen(false);
           closeModal();
-          showSuccessToast("Janji temu selesai !", "top-right");
+          showSuccessToast("Janji temu selesai !", "top-right", "medium");
           dispatch(toggleFetchLatestData());
         });
       } catch (err) {
         console.error(err);
+        showErrorToast("Janji temu gagal selesaikan !", "top-right", "medium");
       }
     }
   };
@@ -95,5 +105,4 @@ const ModalConfirmAppointment = ({
       </Modal>
     </>
   );
-};
-export default ModalConfirmAppointment;
+}

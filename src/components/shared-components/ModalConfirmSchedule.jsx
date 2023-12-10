@@ -4,7 +4,7 @@ import { IoIosWarning } from "react-icons/io";
 
 import { showSuccessToast } from "./Toast";
 
-export default function ModalConfirmSchedule({
+export function ModalConfirmSchedule({
   handleOpenDrawer,
   closeModal,
   textDate,
@@ -13,12 +13,10 @@ export default function ModalConfirmSchedule({
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleOk = () => {
-    // openNotification();
-
     setIsModalOpen(false);
     closeModal();
     handleOpenDrawer();
-    showSuccessToast("Jadwal berhasil diubah !", "top-center");
+    showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
   };
 
   const handleCancel = () => {

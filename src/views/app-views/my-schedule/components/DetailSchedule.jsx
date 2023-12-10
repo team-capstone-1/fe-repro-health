@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Badge, Button, Collapse, Drawer, Flex, Switch, Tooltip } from "antd";
-import { months } from "@/utils/GenerateDate";
 import { FiInfo } from "react-icons/fi";
+
+import { months } from "@/utils/GenerateDate";
 import { formatStrDayJs } from "@/utils/MapListData";
 import { getListDataByDate } from "@/utils/GetListData";
+import { ModalConfirmSchedule } from "@/components/shared-components/ModalConfirmSchedule";
 
-import ModalConfirmSchedule from "@/components/shared-components/ModalConfirmSchedule";
-
-const ListAppointment = () => {
+function ListAppointment() {
   return (
     <ul className="text-black">
       <li>
@@ -39,7 +39,8 @@ const ListAppointment = () => {
       </li>
     </ul>
   );
-};
+}
+
 const items = (panelStyle) => [
   {
     key: "1",
@@ -61,11 +62,7 @@ const items = (panelStyle) => [
   },
 ];
 
-export default function DrawerDetailSchedule({
-  handleOpenDrawer,
-  isOpen,
-  date,
-}) {
+export function DetailSchedule({ handleOpenDrawer, isOpen, date }) {
   const HeaderDrawer = () => {
     return (
       <div className="ps-5">
@@ -75,7 +72,6 @@ export default function DrawerDetailSchedule({
       </div>
     );
   };
-
   return (
     <Drawer
       width={500}
@@ -91,9 +87,7 @@ export default function DrawerDetailSchedule({
 
 const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   const [isShow, setIsShow] = useState(false);
-
   const strDate = formatStrDayJs(selectedDate);
-
   const listData = getListDataByDate(strDate);
 
   const handleOpenModal = () => {
@@ -291,7 +285,6 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
           id="button-submit"
           type="primary"
           className="bg-green-500 px-10 pb-8 pt-2 hover:bg-green-600 disabled:bg-grey-100 disabled:text-grey-200"
-          // disabled
           onClick={handleOpenModal}
         >
           Simpan Perubahan

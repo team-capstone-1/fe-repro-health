@@ -5,7 +5,7 @@ import { AiFillInstagram } from "react-icons/ai";
 
 import Logo from "@/assets/logo-white.png";
 
-export default function Footer() {
+export function Footer() {
   return (
     <>
       <div

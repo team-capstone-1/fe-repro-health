@@ -1,20 +1,36 @@
 import { useState } from "react";
-import { Row, Button, Col, Flex } from "antd";
+import { Row, Button, Col, Flex, Skeleton } from "antd";
+import { useSelector } from "react-redux";
 
-export default function ButtonFilter({ onFilterClick }) {
+import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
+
+export function ButtonFilter({ onFilterClick }) {
   const [selectedFilter, setSelectedfilter] = useState("bulan");
+  const doctorState = useSelector(selectDoctorProfile);
+  const doctorName = doctorState.data?.response.name;
 
   const handleButtonClick = (buttonType) => {
     setSelectedfilter(buttonType);
     onFilterClick(buttonType);
   };
+
   return (
     <>
       <Row id="button-filter-wrapper" justify="space-between">
         <Col xs={24} md={12}>
-          <h4 id="welcome-doctor" className="mb-4 block font-semibold">
-            Selamat Datang, Dr Andi!
-          </h4>
+          {doctorState.status === "loading" && (
+            <Skeleton.Input active size="small" />
+          )}
+          {doctorState.status === "success" && (
+            <h4 id="welcome-doctor" className="mb-4 block font-semibold">
+              Selamat Datang, {doctorName?.split(",")[0]}!
+            </h4>
+          )}
+          {doctorState.status === "failed" && (
+            <h4 id="welcome-doctor" className="mb-4 block font-semibold">
+              Selamat Datang!
+            </h4>
+          )}
         </Col>
         <Col xs={24} md={12} className="mb-5 text-start md:text-end">
           <Flex

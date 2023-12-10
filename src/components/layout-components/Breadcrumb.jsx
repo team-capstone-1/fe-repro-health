@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "antd";
 
-export default function Breadcrumbs({ currentPage }) {
+export function Breadcrumbs({ currentPage }) {
   return (
     <>
       <Breadcrumb

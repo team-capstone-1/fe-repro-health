@@ -2,7 +2,7 @@ import Icon01 from "@/assets/db-icon-01.png";
 import Icon02 from "@/assets/db-icon-02.png";
 import { Card, Col, Flex, Row } from "antd";
 
-export default function CardAppointment({ data }) {
+export function CardAppointment({ data }) {
   const appointmentToday = data?.filter(
     (item) => new Date(item.date).toDateString() === new Date().toDateString(),
   );

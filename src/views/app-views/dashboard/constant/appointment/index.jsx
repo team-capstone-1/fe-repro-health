@@ -2,7 +2,8 @@
 import dayjs from "dayjs";
 import "dayjs/locale/id";
 import { Button } from "antd";
-import Utils from "@/utils";
+
+import { thousandSeparator } from "@/utils/ThousandSeparator";
 
 export const ColumnAppointment = [
   {
@@ -45,7 +46,7 @@ export const ColumnAppointment = [
     key: "total",
     width: 150,
     render: (val) => (
-      <span className="text-green-500">{Utils.thousandSeparator(val)}</span>
+      <span className="text-green-500">{thousandSeparator(val)}</span>
     ),
   },
   {

@@ -1,15 +1,18 @@
+import * as yup from "yup";
 import { useEffect, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useForm } from "react-hook-form";
 import { Button } from "antd";
-import anonymousPict from "@/assets/anonymous-pp.jpg";
 import Markdown from "react-markdown";
-import ModalConfirmForumAnswer from "@/components/shared-components/ModalConfirmForumAnswer";
-import { APIForum } from "@/apis/APIForum";
+
 import { format } from "date-fns";
+import { APIForum } from "@/apis/APIForum";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { ToastContainer } from "react-toastify";
+import { ModalConfirmForumAnswer } from "@/components/shared-components/ModalConfirmForumAnswer";
+
+import anonymousPict from "@/assets/anonymous-pp.jpg";
 
 export default function DiscussionDetail() {
   useDocumentTitle("Detail Pertanyaan");
@@ -18,23 +21,34 @@ export default function DiscussionDetail() {
   const [loading, setLoading] = useState(true);
   const [isShow, setIsShow] = useState(false);
   const { questionId } = useParams();
-  const { register, handleSubmit } = useForm();
   const [payload, setPayload] = useState();
   const [isAnswered, setIsAnswered] = useState(false);
 
+  const schema = yup.object().shape({
+    replyForum: yup.string().required("Jawaban harus diisi"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   useEffect(() => {
     setLoading(true);
-    try {
-      const fetchData = async () => {
+    const fetchData = async () => {
+      try {
         const data = await APIForum.getForumDetail(questionId);
         setData(data);
         setLoading(false);
-      };
-      fetchData();
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    };
+    fetchData();
   }, [isAnswered]);
 
   const handleShowModal = () => {
@@ -42,12 +56,11 @@ export default function DiscussionDetail() {
   };
   const onSubmit = (content) => {
     handleShowModal();
-    setPayload({ questionId, data: content["reply-forum"] });
+    setPayload({ questionId, data: content["replyForum"] });
   };
 
   return (
     <>
-      <ToastContainer className=" mt-16 w-full sm:mt-10 sm:w-[480px]" />
       <div className="px-0 pt-4 sm:px-5 md:px-8">
         <Link
           id="back-to-forum"
@@ -127,11 +140,17 @@ export default function DiscussionDetail() {
                     <h5 className="text-lg font-semibold">Jawab Pertanyaan</h5>
                     <textarea
                       id="reply-forum"
-                      {...register("reply-forum")}
-                      className="h-52 rounded-sm px-2 py-3 ring-1 ring-slate-400"
+                      {...register("replyForum")}
+                      className={`h-52 rounded-sm px-2 py-3 ring-1 ${
+                        errors.replyForum?.message
+                          ? "outline-red-500 ring-red-500"
+                          : "outline-slate-400 ring-slate-400 focus:outline-green-500"
+                      }`}
                       placeholder="Tulis jawaban Anda di sini"
-                      required
                     />
+                    <span className="mt-1 text-xs text-red-500">
+                      {errors.replyForum?.message}
+                    </span>
                     <div className="flex justify-end">
                       <Button
                         id="send-reply"
@@ -151,7 +170,7 @@ export default function DiscussionDetail() {
       {isShow && (
         <ModalConfirmForumAnswer
           closeModal={handleShowModal}
-          authorName={data[0]?.author}
+          authorName={data[0]?.anonymous ? "Anonim" : data[0]?.patient?.name}
           payload={payload}
           setIsAnswered={setIsAnswered}
         />

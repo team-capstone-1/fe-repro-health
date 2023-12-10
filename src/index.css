@@ -28,9 +28,8 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
-
 .ql-editor {
-  height: 150px;
+  height: 280px;
 }
 
 h1,
@@ -161,4 +160,19 @@ p {
 input,
 textarea {
   font-family: "Poppins", sans-serif;
+}
+
+.menu ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.menu ul li {
+  list-style-type: disc;
+}
+
+.menu ol li {
+  list-style-type: decimal;
 }

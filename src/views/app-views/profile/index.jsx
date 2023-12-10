@@ -1,11 +1,11 @@
 import { Col, Row } from "antd";
 
-import DoctorProfile from "./components/DoctorProfile";
-import TabsDoctor from "./components/TabsDoctor";
+import { DoctorProfile } from "./components/DoctorProfile";
+import { TabsDoctor } from "./components/TabsDoctor";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 
-function Profile() {
+export default function Profile() {
   useDocumentTitle("Profil");
   useScrollToTop();
   return (
@@ -21,5 +21,3 @@ function Profile() {
     </section>
   );
 }
-
-export default Profile;
