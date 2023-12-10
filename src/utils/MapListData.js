@@ -9,7 +9,7 @@ export function mapListData(data, eventDate) {
     event[_case] = values;
   }
 
-  data.forEach((event) => {
+  data?.forEach((event) => {
     add(event.date, event.listData);
   });
 

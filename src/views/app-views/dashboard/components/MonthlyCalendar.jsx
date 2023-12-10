@@ -1,18 +1,28 @@
 import dayjs from "dayjs";
 import { Card, ConfigProvider, Tooltip } from "antd";
 import { Calendar } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 import { months } from "@/utils/GenerateDate";
-import { Response } from "@/views/app-views/my-schedule/constant/my-schedule";
 import { getListDataByDate } from "@/utils/GetListData";
 import { mapListData, formatStrDayJs } from "@/utils/MapListData";
+import {
+  fetchDoctorSchedule,
+  selectDoctorSchedule,
+} from "@/store/get-doctor-schedule-slice";
 
 export function MonthlyCalendar() {
-  const response = Response;
   const currentDate = dayjs();
   const [displayedDate, setDisplayedDate] = useState(currentDate);
+  const scheduleState = useSelector(selectDoctorSchedule);
+  const dispatch = useDispatch();
+  const response = scheduleState?.data;
+
+  useEffect(() => {
+    dispatch(fetchDoctorSchedule());
+  }, [dispatch]);
 
   const HeaderRender = ({ onChange }) => {
     const days = ["M", "S", "S", "R", "K", "J", "S"];
@@ -81,7 +91,7 @@ export function MonthlyCalendar() {
     );
   };
   const dateCellRender = (value) => {
-    const listData = mapListData(response.data, value);
+    const listData = mapListData(response?.data, value);
     return (
       <>
         <Tooltip
@@ -112,12 +122,12 @@ export function MonthlyCalendar() {
               {value.date()}
             </div>
 
-            {listData.map(({ type }, index) => (
+            {listData.map(({ doctor_available }, index) => (
               <div
                 key={index}
                 id="dot-calendar-dashboard"
                 className={`mb-1 h-[0.3rem] w-[0.3rem] rounded-full bg-negative ${
-                  type === "Libur" ? "block" : "hidden"
+                  doctor_available === "Libur" ? "block" : "hidden"
                 }`}
               ></div>
             ))}
@@ -189,12 +199,12 @@ const TooltipContent = ({ value }) => {
   const date = value.date();
   const month = months[value.month()];
   const year = value.year();
-
+  const scheduleState = useSelector(selectDoctorSchedule);
   const strDate = formatStrDayJs(value);
-  const listData = getListDataByDate(strDate);
+  const listData = getListDataByDate(scheduleState?.data, strDate);
 
   if (listData?.length > 0) {
-    if (listData[0]?.type === "Libur") {
+    if (listData[0]?.doctor_available === "Libur") {
       return (
         <div className="flex flex-col gap-2 p-4 text-black">
           <p className="text-xs font-semibold">
@@ -205,7 +215,8 @@ const TooltipContent = ({ value }) => {
       );
     }
     const totalAppointment = listData?.reduce((accumulator, item) => {
-      return accumulator + item.appointment;
+      const appointmentLength = item.appointments?.length || 0;
+      return accumulator + appointmentLength;
     }, 0);
     return (
       <div className="flex flex-col gap-2 p-4 text-black">
