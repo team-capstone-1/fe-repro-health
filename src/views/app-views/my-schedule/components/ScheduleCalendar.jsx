@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import DetailSchedule from "./DetailSchedule";
 import { months } from "@/utils/GenerateDate";
-// import { NewResponse } from "@/views/app-views/my-schedule/constant/my-schedule/NewResponse";
 import { mapListData } from "@/utils/MapListData";
 import { Indicator } from "./Indicator";
 import {
@@ -24,7 +23,6 @@ export function ScheduleCalendar() {
   const dispatch = useDispatch();
   const scheduleState = useSelector(selectDoctorSchedule);
   const response = scheduleState.data;
-  // const response = NewResponse;
 
   useEffect(() => {
     dispatch(fetchDoctorSchedule());

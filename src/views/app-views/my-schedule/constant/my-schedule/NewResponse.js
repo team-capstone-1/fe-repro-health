@@ -7,7 +7,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -26,7 +26,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -40,7 +40,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -54,7 +54,7 @@ export const NewResponse = {
         {
           doctor_available: false,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -73,7 +73,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -87,7 +87,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -106,7 +106,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -120,7 +120,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -139,7 +139,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -153,7 +153,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -167,7 +167,7 @@ export const NewResponse = {
         {
           doctor_available: false,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -186,7 +186,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -205,7 +205,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -219,7 +219,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -233,7 +233,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Zorra Boy",
               id: 18,
@@ -252,7 +252,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -266,7 +266,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -289,7 +289,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -303,7 +303,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -317,7 +317,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -336,7 +336,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -355,7 +355,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -369,7 +369,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -383,7 +383,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -402,7 +402,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -416,7 +416,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -435,7 +435,7 @@ export const NewResponse = {
         {
           doctor_available: false,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -449,7 +449,7 @@ export const NewResponse = {
         {
           doctor_available: false,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -468,7 +468,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -482,7 +482,7 @@ export const NewResponse = {
         {
           doctor_available: false,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -496,7 +496,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -515,7 +515,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -543,7 +543,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -557,7 +557,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -576,7 +576,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -590,7 +590,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -609,7 +609,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "pagi",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -623,7 +623,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "siang",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -637,7 +637,7 @@ export const NewResponse = {
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,
@@ -656,12 +656,12 @@ export const NewResponse = {
         {
           doctor_available: false,
           session: "pagi",
-          appointment: null,
+          appointments: null,
         },
         {
           doctor_available: true,
           session: "malam",
-          appointment: [
+          appointments: [
             {
               patient: "Anastasia Amalia",
               id: 9,

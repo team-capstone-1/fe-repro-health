@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import { Button, Drawer, Flex, Switch, Tooltip } from "antd";
+import { useSelector } from "react-redux";
+import { Drawer, Flex, Switch, Tooltip } from "antd";
 import { months } from "@/utils/GenerateDate";
 import { FiInfo } from "react-icons/fi";
 import { Controller, useForm } from "react-hook-form";
 import { formatStrDayJs } from "@/utils/MapListData";
 import { getListDataByDate } from "@/utils/GetListData";
-import { NewResponse } from "@/views/app-views/my-schedule/constant/my-schedule/NewResponse";
 
 import { ModalConfirmSchedule } from "@/components/shared-components/ModalConfirmSchedule";
 import { selectDoctorSchedule } from "@/store/get-doctor-schedule-slice";
 import ListAppointment from "./ListAppointment";
 import ButtonSubmit from "./ButtonSubmit";
-import { useSelector } from "react-redux";
 
 const text = (
   <span className="text-black">
@@ -237,11 +236,7 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
         </div>
 
         <Flex justify="center" className="mt-5">
-          <ButtonSubmit
-            htmlType="submit"
-            date={selectedDate}
-            // openHandler={handleOpenModal}
-          />
+          <ButtonSubmit htmlType="submit" date={selectedDate} />
         </Flex>
       </form>
       {isShow && (
