@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import { axiosInstance } from "@/configs/AxiosInstance";
 import { authService } from "@/configs/Auth";
 import { globalRoute } from "@/utils/GlobalRoute";
+import { showSuccessToast } from "@/components/shared-components/Toast";
 
 export const APIAuth = {
   login: async (data) => {
@@ -63,6 +64,7 @@ export const APIAuth = {
   changePassword: async (data) => {
     try {
       const result = await axiosInstance.put("/doctors/change-password", data);
+      showSuccessToast("Kata sandi telah diganti!", "top-center", "large");
       return result.data;
     } catch (error) {
       if (error instanceof AxiosError) {

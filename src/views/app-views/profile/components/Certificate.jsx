@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import "dayjs/locale/id";
-
 dayjs.locale("id");
 
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ import {
   Image,
   Input,
   Row,
-  Space,
   Spin,
   Table,
 } from "antd";
@@ -19,62 +17,9 @@ import { BsSearch } from "react-icons/bs";
 
 import { APIProfile } from "@/apis/APIProfile";
 import { useDebounce } from "@/hooks/useDebounce";
+import { ColumnCertificate } from "../constant/certificate";
 
-const columns = [
-  {
-    title: "Id Sertifikat",
-    dataIndex: "id",
-    key: "id",
-    width: 150,
-    render: (id) => (
-      <span className="text-sm font-medium text-[#4B4B4B]">
-        {id.slice(0, 8)}
-      </span>
-    ),
-  },
-  {
-    title: "Jenis Sertifikat",
-    dataIndex: "certificate_type",
-    key: "certificate_type",
-    width: 200,
-  },
-  {
-    title: "Keterangan",
-    dataIndex: "description",
-    key: "description",
-    width: 350,
-  },
-  {
-    title: "Masa Berlaku",
-    dataIndex: ["start_date", "end_date"],
-    key: "id",
-    width: 250,
-    render: (_, id) => (
-      <Space size="small">
-        <span>
-          {dayjs(id?.start_date, "YYYY-MM-DD").format("DD MMMM YYYY")}
-        </span>
-        <span>-</span>
-        <span>{dayjs(id?.end_date, "YYYY-MM-DD").format("DD MMMM YYYY")}</span>
-      </Space>
-    ),
-  },
-  {
-    title: "Ukuran File",
-    dataIndex: "file_size",
-    key: "file_size",
-    width: 100,
-    render: (file_size) => {
-      const convertMB = parseInt(file_size) / 1024 / 1024;
-      const formattedMB = convertMB.toFixed(2);
-      console.log(`hasil convert before: ${convertMB} after: ${formattedMB}`);
-
-      return <span>{formattedMB} MB</span>;
-    },
-  },
-];
-
-export default function Certificate() {
+export function Certificate() {
   const [isLoading, setIsLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [dataDoctor, setDataDoctor] = useState([]);
@@ -89,7 +34,6 @@ export default function Certificate() {
         const result = await APIProfile.getDoctorCertifications();
         if (searchQuery) {
           const filteredData = result.response?.filter((data) => {
-            // return data.id.toLowerCase().includes(searchQuery.toLowerCase());
             return (
               data.description
                 .toLowerCase()
@@ -167,7 +111,7 @@ export default function Certificate() {
                 rowClassName="cursor-pointer"
                 id="table-certificate"
                 dataSource={dataDoctor}
-                columns={columns}
+                columns={ColumnCertificate}
                 pagination={false}
                 scroll={{ x: 1000 }}
                 style={{ maxWidth: "100vw" }}

@@ -1,14 +1,7 @@
-import ButtonGooglePlay from "@/components/shared-components/ButtonGooglePlay";
-import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
-import BannerDownload from "@/components/shared-components/BannerDownload";
-import doctorImg from "@/assets/doctor.svg";
-import handPhone from "@/assets/handphone.png";
-import doctorVector from "@/assets/doctor-vector.png";
-
-import { AiOutlineCheck } from "react-icons/ai";
-import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { Button } from "antd";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
+import { AiOutlineCheck } from "react-icons/ai";
 
 import {
   DataHeroSection,
@@ -19,6 +12,13 @@ import {
 } from "@/views/landing-views/constant/home-page";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { ButtonGooglePlay } from "@/components/shared-components/ButtonGooglePlay";
+import { ButtonAppStore } from "@/components/shared-components/ButtonAppStore";
+import { BannerDownload } from "@/components/shared-components/BannerDownload";
+
+import doctorImg from "@/assets/doctor.svg";
+import handPhone from "@/assets/handphone.png";
+import doctorVector from "@/assets/doctor-vector.png";
 
 export default function LandingPage() {
   useDocumentTitle("ReproHealth");

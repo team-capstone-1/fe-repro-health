@@ -1,10 +1,11 @@
 import { Row, Col } from "antd";
 
-import HandPhone from "@/assets/handphone-2.png";
-import ButtonGooglePlay from "@/components/shared-components/ButtonGooglePlay";
-import ButtonAppStore from "@/components/shared-components/ButtonAppStore";
+import { ButtonGooglePlay } from "@/components/shared-components/ButtonGooglePlay";
+import { ButtonAppStore } from "@/components/shared-components/ButtonAppStore";
 
-export default function BannerDownload() {
+import handPhone from "@/assets/handphone-2.png";
+
+export function BannerDownload() {
   return (
     <>
       <div
@@ -13,7 +14,7 @@ export default function BannerDownload() {
       >
         <Row align="middle">
           <Col span={6} xs={0} md={6} align="center">
-            <img src={HandPhone} alt="handphone" />
+            <img src={handPhone} alt="handphone" />
           </Col>
           <Col span={18} xs={24} sm={18}>
             <Row align="middle">
@@ -39,7 +40,7 @@ export default function BannerDownload() {
             </Row>
           </Col>
           <Col xs={24} md={0} align="center">
-            <img src={HandPhone} alt="handphone" />
+            <img src={handPhone} alt="handphone" />
           </Col>
         </Row>
       </div>

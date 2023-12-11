@@ -1,7 +1,7 @@
 import { Col, Form, Input, Row, Select, ConfigProvider } from "antd";
 import { BsSearch } from "react-icons/bs";
 
-export default function ListFilter({ setSearchValue, setFilterStatus }) {
+export function ListFilter({ setSearchValue, setFilterStatus }) {
   const Filter = [
     {
       value: "processed",

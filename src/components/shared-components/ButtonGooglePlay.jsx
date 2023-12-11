@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+
 import logoGooglePlay from "@/assets/logo-google-play.png";
 
-export default function ButtonGooglePlay() {
+export function ButtonGooglePlay() {
   return (
     <Link
       to="https://drive.google.com/drive/folders/1zPcloKV1jKKxmaKEVK9TiTCCvtEhG7QZ"

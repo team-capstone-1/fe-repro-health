@@ -264,7 +264,7 @@ export default function Chatbot() {
         </div>
         <div className="max-h-full w-full max-w-[1200px] rounded-md ring-1 ring-slate-200">
           <div className="flex items-center gap-6 border-b-2 px-6 py-4">
-            <img src={ChatbotIcon} alt="" />
+            <img src={chatbotIcon} alt="" />
             <div className="flex flex-col gap-1">
               <h5 className="font-semibold leading-none">Asisten Dokter</h5>
               <p className="hidden font-medium leading-none md:block">
@@ -276,7 +276,7 @@ export default function Chatbot() {
             <div className="flex h-[61.5vh] max-h-[61.5vh] w-full flex-col overflow-y-scroll px-4 min-[500px]:px-6 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
               {selectedChat[0]?.data.pesan.length === 0 ? (
                 <div className="my-auto">
-                  <img className="mx-auto" src={ChatbotMascot} alt="" />
+                  <img className="mx-auto" src={chatbotMascot} alt="" />
                   <p className="px-2 text-center font-medium md:px-8">
                     Selamat datang di Asisten Dokter! Saya adalah AI Bot yang
                     siap membantu Anda menjelajahi topik Kesehatan Reproduksi.

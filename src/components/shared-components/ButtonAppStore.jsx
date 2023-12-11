@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { AiFillApple } from "react-icons/ai";
 
-export default function ButtonAppStore() {
+export function ButtonAppStore() {
   return (
     <Link
       to="https://drive.google.com/drive/folders/1zPcloKV1jKKxmaKEVK9TiTCCvtEhG7QZ"

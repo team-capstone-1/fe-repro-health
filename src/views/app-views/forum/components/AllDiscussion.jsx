@@ -1,14 +1,16 @@
+import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDebounce } from "@/hooks/useDebounce";
 import id from "date-fns/locale/id";
+
 import distanceInWordsStrict from "date-fns/formatDistanceStrict";
-import anonymousPict from "@/assets/anonymous-pp.jpg";
+import { useDebounce } from "@/hooks/useDebounce";
 import { APIForum } from "@/apis/APIForum";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
-export default function AllDiscussion() {
+import anonymousPict from "@/assets/anonymous-pp.jpg";
+
+export function AllDiscussion() {
   const [showBy, setShowBy] = useState("populer");
   const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -30,12 +32,13 @@ export default function AllDiscussion() {
             return new Date(b.date) - new Date(a.date);
           });
         }
-        data !== null && data.forEach((data) => {
-          data.date = distanceInWordsStrict(new Date(data.date), new Date(), {
-            locale: id,
-            addSuffix: true,
+        data !== null &&
+          data.forEach((data) => {
+            data.date = distanceInWordsStrict(new Date(data.date), new Date(), {
+              locale: id,
+              addSuffix: true,
+            });
           });
-        });
         setForumList(data);
         setIsLoading(false);
       } catch (error) {
@@ -148,7 +151,10 @@ export default function AllDiscussion() {
                   {data.status && (
                     <img
                       className="-ml-4 h-12 w-12 rounded-full hover:opacity-80"
-                      src={data.forum_replies?.[0]?.doctor?.profile_image}
+                      src={
+                        data.forum_replies?.[0]?.doctor?.profile_image ||
+                        anonymousPict
+                      }
                       alt="doctor profile"
                     />
                   )}
@@ -190,6 +196,14 @@ export default function AllDiscussion() {
               </div>
             </div>
           ))}
+        {forumList !== null &&
+          forumList.length === 0 &&
+          !isLoading &&
+          !isError && (
+            <div className="my-24 text-center sm:text-xl">
+              Semua pertanyaan belum terjawab
+            </div>
+          )}
       </ul>
     </div>
   );

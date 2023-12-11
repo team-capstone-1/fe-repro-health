@@ -1,3 +1,8 @@
+import dayjs from "dayjs";
+import "dayjs/locale/id";
+
+dayjs.locale("id");
+
 import { Card, Col, Row } from "antd";
 import {
   BarChart,
@@ -10,14 +15,18 @@ import {
   Legend,
 } from "recharts";
 
-import {
-  // DataIncome as data,
-  DataIncome,
-  DataIncomeDay,
-  DataIncomeWeek,
-} from "@/views/app-views/dashboard/constant/graph-income";
+import // DataIncome,
+// DataIncomeDay,
+// DataIncomeWeek,
+// formatDateToStringDay,
+// formatDateToStringWeek,
+// formatDateToStringMonth,
+"@/views/app-views/dashboard/constant/graph-income";
+import { useEffect, useState } from "react";
 
-const CustomTooltip = ({ active, payload, label }) => {
+import { APIDashboard } from "@/apis/APIDashboard";
+
+export function CustomTooltip({ active, payload, label }) {
   if (active && payload && payload.length) {
     return (
       <div className="w-full rounded-[4px] bg-white px-3 py-3 shadow-lg">
@@ -36,18 +45,84 @@ const CustomTooltip = ({ active, payload, label }) => {
   }
 
   return null;
-};
+}
 
-export default function ChartIncome({ selectedFilter }) {
-  const IncomeMonth = DataIncome.slice(DataIncome.length - 7);
-  // const IncomeWeeks = DataIncomeWeek.slice(DataIncomeWeek.length - 7);
-  const IncomeWeeks = DataIncomeWeek;
-  const IncomeDays = DataIncomeDay.slice(DataIncomeDay.length - 7);
+export function ChartIncome({ selectedFilter }) {
+  const [dataIncome, setDataIncome] = useState([]);
+  // const [isError, setIsError] = useState(null);
+  const today = dayjs();
   const mobileSize = window.innerWidth <= 450;
 
-  console.log("week", IncomeWeeks);
-  console.log("month", IncomeMonth);
-  console.log("days", IncomeDays);
+  useEffect(() => {
+    const fecthDataIncome = async () => {
+      try {
+        const result = await APIDashboard.getDashboardIncome();
+        console.log("data income", result);
+
+        setDataIncome(result?.response);
+      } catch (error) {
+        console.error(error);
+        // setIsError(error);
+      }
+    };
+
+    fecthDataIncome();
+  }, []);
+
+  const filterAndAggregateData = (startDate, endDate) => {
+    const filteredData = dataIncome.filter(
+      (data) => dayjs(data.date) >= startDate && dayjs(data.date) <= endDate,
+    );
+
+    const sortedData = filteredData.sort(
+      (a, b) => dayjs(a.date).toDate() - dayjs(b.date).toDate(),
+    );
+
+    const aggregatedData = sortedData.reduce((acc, data) => {
+      // const date = dayjs(data.date).format("dddd, DD MMMM YYYY");
+      let formattedDate = "";
+
+      if (selectedFilter === "hari") {
+        formattedDate = dayjs(data.date).format("dddd, DD MMMM YYYY");
+      }
+      if (selectedFilter === "minggu") {
+        const value = dayjs(data.date);
+        const startOfWeek = value.startOf("week");
+        const endOfWeek = value.endOf("week");
+
+        formattedDate = `Week ${value.week()}, ${startOfWeek.format(
+          "DD",
+        )} - ${endOfWeek.format("DD MMMM YYYY")}`;
+      }
+      if (selectedFilter === "bulan") {
+        formattedDate = dayjs(data.date).format("MMMM YYYY");
+      }
+
+      acc[formattedDate] = (acc[formattedDate] || 0) + parseFloat(data.income);
+      return acc;
+    }, {});
+
+    return Object.entries(aggregatedData).map(([date, income]) => ({
+      date,
+      income,
+    }));
+  };
+
+  let chartData = [];
+
+  switch (selectedFilter) {
+    case "hari":
+      chartData = filterAndAggregateData(today.subtract(7, "days"), today);
+      break;
+    case "minggu":
+      chartData = filterAndAggregateData(today.subtract(7, "weeks"), today);
+      break;
+    case "bulan":
+      chartData = filterAndAggregateData(today.subtract(7, "months"), today);
+      break;
+    default:
+      break;
+  }
 
   // const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
   const customTickYAxis = (values) => {
@@ -81,8 +156,6 @@ export default function ChartIncome({ selectedFilter }) {
     return value.slice(0, 3);
   };
 
-  // console.log("hasil selected: " + selectedFilter);
-
   return (
     <Row id="chart-income" justify="start">
       <Col span={24} xs={24} md={24} lg={24}>
@@ -100,13 +173,15 @@ export default function ChartIncome({ selectedFilter }) {
             <BarChart
               id="bar-chart"
               // data={data}
-              data={
-                selectedFilter === "hari"
-                  ? IncomeDays
-                  : selectedFilter === "minggu"
-                  ? IncomeWeeks
-                  : IncomeMonth
-              }
+              // data={
+              //   selectedFilter === "hari"
+              //     ? DataIncomeDay
+              //     : selectedFilter === "minggu"
+              //     ? IncomeWeeks
+              //     : IncomeMonth
+              // }
+              // data={filteredData}
+              data={chartData}
               barGap={0}
               margin={{
                 top: 5,
@@ -114,7 +189,6 @@ export default function ChartIncome({ selectedFilter }) {
                 left: 0,
                 bottom: 10,
               }}
-              // maxBarSize={30}
             >
               <Legend
                 id="legend-chart-income"
@@ -148,11 +222,9 @@ export default function ChartIncome({ selectedFilter }) {
                 tickFormatter={customTickYAxis}
                 orientation="left"
                 type="number"
-                // dataKey="amount"
                 tickLine={false}
                 axisLine={false}
                 tickMargin={0}
-                // ticks={[0, 10, 20, 30, 40, 50, 60]}
                 className="text-base"
               />
 

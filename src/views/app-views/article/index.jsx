@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Row, Col, Button } from "antd";
 import { MdOutlineFileUpload } from "react-icons/md";
 
-import ListArticle from "./components/ListArticle";
+import { ListArticle } from "./components/ListArticle";
 
 export default function index() {
   return (

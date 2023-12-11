@@ -1,8 +1,8 @@
-import Icon01 from "@/assets/db-icon-01.png";
-import Icon02 from "@/assets/db-icon-02.png";
+import icon01 from "@/assets/db-icon-01.png";
+import icon02 from "@/assets/db-icon-02.png";
 import { Card, Col, Flex, Row } from "antd";
 
-export default function CardAppointment({ data }) {
+export function CardAppointment({ data }) {
   const appointmentToday = data?.filter(
     (item) => new Date(item.date).toDateString() === new Date().toDateString(),
   );
@@ -24,7 +24,7 @@ export default function CardAppointment({ data }) {
                   </h4>
                 </div>
                 <div className="grid h-16 w-16 place-content-center rounded-lg bg-green-50">
-                  <img id="item-icon" src={Icon01} alt="item-icon" />
+                  <img id="item-icon" src={icon01} alt="item-icon" />
                 </div>
               </Flex>
             </div>
@@ -43,7 +43,7 @@ export default function CardAppointment({ data }) {
                   </h4>
                 </div>
                 <div className="grid h-16 w-16 place-content-center rounded-lg bg-green-50">
-                  <img id="item-icon" src={Icon02} alt="item-icon" />
+                  <img id="item-icon" src={icon02} alt="item-icon" />
                 </div>
               </Flex>
             </div>
