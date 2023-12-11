@@ -151,7 +151,10 @@ export function AllDiscussion() {
                   {data.status && (
                     <img
                       className="-ml-4 h-12 w-12 rounded-full hover:opacity-80"
-                      src={data.forum_replies?.[0]?.doctor?.profile_image}
+                      src={
+                        data.forum_replies?.[0]?.doctor?.profile_image ||
+                        anonymousPict
+                      }
                       alt="doctor profile"
                     />
                   )}

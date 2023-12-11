@@ -108,7 +108,10 @@ export default function DiscussionDetail() {
                     <div className="flex gap-3 pt-2">
                       <img
                         className="h-12 w-12 rounded-full hover:opacity-80"
-                        src={data[0]?.forum_replies[0]?.doctor?.profile_image}
+                        src={
+                          data[0]?.forum_replies[0]?.doctor?.profile_image ||
+                          anonymousPict
+                        }
                         alt="patient profile"
                       />
                       <div className="flex flex-col justify-center">
