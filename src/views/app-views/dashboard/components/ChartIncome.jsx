@@ -25,7 +25,14 @@ import {
 } from "@/utils/FormatDate";
 // import { DummyResponse } from "../constant/graph-income";
 
-export function CustomTooltip({ active, payload, label }) {
+function toLocaleStrings(digits) {
+  return digits.toLocaleString("id-ID", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+}
+
+function customTooltip({ active, payload, label }) {
   if (active && payload && payload.length) {
     return (
       <div className="w-full rounded-[4px] bg-white px-3 py-3 shadow-lg">
@@ -34,10 +41,7 @@ export function CustomTooltip({ active, payload, label }) {
         </p>
 
         <p className="text-base text-black">
-          {`${payload[0].value.toLocaleString("id-ID", {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-          })} Rupiah`}
+          {`${toLocaleStrings(payload[0].value)} Rupiah`}
         </p>
       </div>
     );
@@ -118,22 +122,11 @@ export function ChartIncome({ selectedFilter }) {
     } else if (values > 100000000) {
       return Math.floor(values / 1000000) + " jt";
     } else if (values >= 1000000 && values < 10000000) {
-      // return `${values.toString().slice(0, 2)} rb`;
-      return `${values
-        .toLocaleString("id-ID", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })
-        .slice(0, 3)} jt`;
+      return `${toLocaleStrings(values).slice(0, 3)} jt`;
     } else if (values > 1000 && values < 1000000) {
       return Math.floor(values / 1000) + " rb";
     } else if (values < 1000) {
-      return `${values
-        .toLocaleString("id-ID", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })
-        .slice(0, 3)} rp`;
+      return `${toLocaleStrings(values).slice(0, 3)} rp`;
     }
   };
 
@@ -209,7 +202,7 @@ export function ChartIncome({ selectedFilter }) {
               <Tooltip
                 id="tooltip-chart-income"
                 cursor={{ fill: "transparent" }}
-                content={CustomTooltip}
+                content={customTooltip}
               />
 
               <Bar
