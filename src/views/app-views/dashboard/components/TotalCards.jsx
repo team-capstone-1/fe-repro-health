@@ -2,10 +2,10 @@ import { Row, Col, Card, Skeleton, Flex } from "antd";
 import { useEffect, useState } from "react";
 import { APIDashboard } from "@/apis/APIDashboard";
 
-import Icon01 from "@/assets/db-icon-01.png";
-import Icon02 from "@/assets/db-icon-02.png";
-import Icon03 from "@/assets/db-icon-03.png";
-import Icon04 from "@/assets/db-icon-04.png";
+import icon01 from "@/assets/db-icon-01.png";
+import icon02 from "@/assets/db-icon-02.png";
+import icon03 from "@/assets/db-icon-03.png";
+import icon04 from "@/assets/db-icon-04.png";
 
 export function TotalCards({ selectedFilter }) {
   const [data, setData] = useState({
@@ -41,9 +41,9 @@ export function TotalCards({ selectedFilter }) {
 
   const formatPrice = (num) => {
     if (num >= 1000000) {
-      return (num / 1000000) + " M";
+      return num / 1000000 + " M";
     } else if (num >= 1000) {
-      return (num / 1000) + " K";
+      return num / 1000 + " K";
     } else {
       return num;
     }
@@ -61,25 +61,25 @@ export function TotalCards({ selectedFilter }) {
     {
       title: "Total Janji Temu",
       total: data.totalConsultations,
-      icon: `${Icon01}`,
+      icon: `${icon01}`,
       percent: formatPercentage(data.consultationPercentage),
     },
     {
       title: "Total Pasien",
       total: data.totalPatients,
-      icon: `${Icon02}`,
+      icon: `${icon02}`,
       percent: formatPercentage(data.patientPercentage),
     },
     {
       title: "Total Pendapatan",
       total: formatPrice(data.totalTransactions),
-      icon: `${Icon03}`,
+      icon: `${icon03}`,
       percent: formatPercentage(data.transactionPercentage),
     },
     {
       title: "Total Artikel",
       total: data.totalArticles,
-      icon: `${Icon04}`,
+      icon: `${icon04}`,
       percent: formatPercentage(data.articlePercentage),
     },
   ];
