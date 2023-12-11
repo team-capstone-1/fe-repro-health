@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import { LuSendHorizonal } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 
-import ChatbotIcon from "@/assets/chatbot-icon.svg";
-import ChatbotMascot from "@/assets/chatbot-mascot.svg";
+import chatbotIcon from "@/assets/chatbot-icon.svg";
+import chatbotMascot from "@/assets/chatbot-mascot.svg";
 import profileDoctor from "@/assets/profile-doctor.svg";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
@@ -103,7 +103,7 @@ export default function Chatbot() {
         </div>
         <div className="max-h-full w-full max-w-[1200px] rounded-md ring-1 ring-slate-200">
           <div className="flex items-center gap-6 border-b-2 px-6 py-4">
-            <img src={ChatbotIcon} alt="" />
+            <img src={chatbotIcon} alt="" />
             <div className="flex flex-col gap-1">
               <h5 className="font-semibold leading-none">Asisten Dokter</h5>
               <p className="hidden font-medium leading-none md:block">
@@ -115,7 +115,7 @@ export default function Chatbot() {
             <div className="flex h-[60vh] max-h-[60vh] w-full flex-col overflow-y-scroll px-2 min-[500px]:px-6 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
               {selectedList[0]?.pesan.length === 0 ? (
                 <div className="my-auto">
-                  <img className="mx-auto" src={ChatbotMascot} alt="" />
+                  <img className="mx-auto" src={chatbotMascot} alt="" />
                   <p className="px-2 text-center font-medium md:px-8">
                     Selamat datang di Asisten Dokter! Saya adalah AI Bot yang
                     siap membantu Anda menjelajahi topik Kesehatan Reproduksi.
@@ -144,7 +144,7 @@ export default function Chatbot() {
                           src={
                             pesan.pengirim === "user"
                               ? profileDoctor
-                              : ChatbotIcon
+                              : chatbotIcon
                           }
                           className="hidden h-8 w-8 min-[500px]:block"
                           alt="chatbot icon"

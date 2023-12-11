@@ -14,6 +14,8 @@ import {
   toggleFetchLatestData,
 } from "@/store/toggle-fetch-new-data";
 
+import anonymousPict from "@/assets/anonymous-pp.jpg";
+
 export function DetailPatient({ idAppointment, handleOpen, isOpen }) {
   return (
     <>
@@ -95,7 +97,7 @@ const CardDetailPatient = ({ dataPasien, isError }) => {
       >
         <Flex justify="center">
           <img
-            src={dataPasien?.profile_image}
+            src={dataPasien?.profile_image || anonymousPict}
             alt="pasien"
             className="h-[6.25rem] w-[6.25rem] rounded-full border bg-white"
           />
