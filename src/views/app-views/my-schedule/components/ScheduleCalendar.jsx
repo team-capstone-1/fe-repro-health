@@ -13,6 +13,10 @@ import {
   fetchDoctorSchedule,
   selectDoctorSchedule,
 } from "@/store/get-doctor-schedule-slice";
+import {
+  selectToggleFetchLatestData,
+  toggleFetchLatestData,
+} from "@/store/toggle-fetch-new-data";
 
 export function ScheduleCalendar() {
   const currentDate = dayjs();
@@ -23,10 +27,15 @@ export function ScheduleCalendar() {
   const dispatch = useDispatch();
   const scheduleState = useSelector(selectDoctorSchedule);
   const response = scheduleState.data;
+  const { shouldFetchLatestData } = useSelector(selectToggleFetchLatestData);
 
   useEffect(() => {
     dispatch(fetchDoctorSchedule());
-  }, [dispatch]);
+    if (shouldFetchLatestData) {
+      dispatch(toggleFetchLatestData());
+      dispatch(fetchDoctorSchedule());
+    }
+  }, [dispatch, shouldFetchLatestData]);
 
   const handleOpenDrawer = () => {
     setIsOpen((prev) => !prev);

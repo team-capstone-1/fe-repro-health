@@ -53,7 +53,7 @@ export default function DetailArticle() {
       setDetailArticles(result?.response);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setIsError(error);
       setIsLoading(false);
     }
