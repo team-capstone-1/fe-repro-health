@@ -30,14 +30,14 @@ export default function Topbar() {
       <div className="app-container z-10 flex justify-between py-5 md:py-3">
         <div className="flex items-center">
           <DrawerSidebar />
-          <Link to="/dashboard">
+          <a href="/dashboard">
             <img
               id="logo-reprohealth-topbar"
               src={logoReproHealth}
               alt="logo"
               className="hidden w-28 cursor-pointer sm:block md:w-40"
             />
-          </Link>
+          </a>
         </div>
 
         <div id="profile-doctor-topbar" className="flex items-center gap-3">
