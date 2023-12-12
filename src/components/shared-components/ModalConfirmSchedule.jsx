@@ -1,9 +1,11 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { IoIosWarning } from "react-icons/io";
 
 import { showErrorToast, showSuccessToast } from "./Toast";
 import { APISchedule } from "@/apis/APISchedule";
+import { toggleFetchLatestData } from "@/store/toggle-fetch-new-data";
 
 export function ModalConfirmSchedule({
   payload,
@@ -12,7 +14,7 @@ export function ModalConfirmSchedule({
   textDate,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-
+  const dispatch = useDispatch();
   const handleOk = async () => {
     if (payload.doctor_available) {
       try {
@@ -25,6 +27,7 @@ export function ModalConfirmSchedule({
         setIsModalOpen(false);
         closeModal();
         handleOpenDrawer();
+        dispatch(toggleFetchLatestData());
       }
     } else {
       try {
@@ -37,6 +40,7 @@ export function ModalConfirmSchedule({
         setIsModalOpen(false);
         closeModal();
         handleOpenDrawer();
+        dispatch(toggleFetchLatestData());
       }
     }
   };
