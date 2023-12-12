@@ -131,7 +131,7 @@ export function ChartIncome({ selectedFilter }) {
   };
 
   const customTickXAxis = (value) => {
-    if (selectedFilter === "minggu") return value.slice(8, 20);
+    if (selectedFilter === "minggu") return value.slice(8, 24);
     return value.slice(0, 3);
   };
 
