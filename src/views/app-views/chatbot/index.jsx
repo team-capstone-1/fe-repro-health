@@ -19,7 +19,6 @@ export default function Chatbot() {
 
   const { register, handleSubmit, reset } = useForm();
   const [chatLists, setChatLists] = useState([]);
-  console.log(chatLists, "chatLists")
   const ref = useRef(null);
   const uuid = uuidv4();
   const [refetch, setRefetch] = useState(false);
@@ -152,7 +151,7 @@ export default function Chatbot() {
       handleAddBtn();
       setIsNewChat(true);
     }
-    
+
     // setSelectedChat(...selectedChat, {
     //   data: {
     //     ...selectedChat[0]?.data,
@@ -264,7 +263,7 @@ export default function Chatbot() {
         </div>
         <div className="max-h-full w-full max-w-[1200px] rounded-md ring-1 ring-slate-200">
           <div className="flex items-center gap-6 border-b-2 px-6 py-4">
-            <img src={chatbotIcon} alt="" />
+            <img src={ChatbotIcon} alt="" />
             <div className="flex flex-col gap-1">
               <h5 className="font-semibold leading-none">Asisten Dokter</h5>
               <p className="hidden font-medium leading-none md:block">
@@ -276,7 +275,7 @@ export default function Chatbot() {
             <div className="flex h-[61.5vh] max-h-[61.5vh] w-full flex-col overflow-y-scroll px-4 min-[500px]:px-6 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]">
               {selectedChat[0]?.data.pesan.length === 0 ? (
                 <div className="my-auto">
-                  <img className="mx-auto" src={chatbotMascot} alt="" />
+                  <img className="mx-auto" src={ChatbotMascot} alt="" />
                   <p className="px-2 text-center font-medium md:px-8">
                     Selamat datang di Asisten Dokter! Saya adalah AI Bot yang
                     siap membantu Anda menjelajahi topik Kesehatan Reproduksi.
@@ -338,7 +337,7 @@ export default function Chatbot() {
                   id="input-chatbot"
                   {...register("input-chatbot")}
                   type="text"
-                  className="peer absolute left-0.5 top-1/2 block h-11 w-[calc(100%-3rem)] -translate-y-1/2 resize-none overflow-y-scroll rounded-md pt-[0.8em] focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-60 px-2 md:px-4 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]"
+                  className="peer absolute left-0.5 top-1/2 block h-11 w-[calc(100%-3rem)] -translate-y-1/2 resize-none overflow-y-scroll rounded-md px-2 pt-[0.8em] focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-60 md:px-4 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]"
                   placeholder={
                     isloading
                       ? "Mohon tunggu AI sedang menjawab..."

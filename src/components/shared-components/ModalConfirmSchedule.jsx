@@ -2,21 +2,43 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { IoIosWarning } from "react-icons/io";
 
-import { showSuccessToast } from "./Toast";
+import { showErrorToast, showSuccessToast } from "./Toast";
+import { APISchedule } from "@/apis/APISchedule";
 
 export function ModalConfirmSchedule({
+  payload,
   handleOpenDrawer,
   closeModal,
   textDate,
-  textSession,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-    closeModal();
-    handleOpenDrawer();
-    showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
+  const handleOk = async () => {
+    if (payload.doctor_available) {
+      try {
+        await APISchedule.updateActiveSchedule(payload);
+        showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
+      } catch (error) {
+        console.error(error);
+        showErrorToast("Jadwal gagal diubah !", "top-center", "large");
+      } finally {
+        setIsModalOpen(false);
+        closeModal();
+        handleOpenDrawer();
+      }
+    } else {
+      try {
+        await APISchedule.updateInactiveSchedule(payload);
+        showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
+      } catch (error) {
+        console.error(error);
+        showErrorToast("Jadwal gagal diubah !", "top-center", "large");
+      } finally {
+        setIsModalOpen(false);
+        closeModal();
+        handleOpenDrawer();
+      }
+    }
   };
 
   const handleCancel = () => {
@@ -24,6 +46,8 @@ export function ModalConfirmSchedule({
     closeModal();
     handleOpenDrawer();
   };
+
+  const status = payload.doctor_available ? "mengaktifkan" : "menonaktifkan";
   return (
     <>
       <Modal
@@ -60,28 +84,13 @@ export function ModalConfirmSchedule({
         >
           <IoIosWarning className="h-16 w-16 text-[#FEA53F] sm:h-20 sm:w-20" />
           <p className="mt-5 text-[14px] font-normal text-grey-400 sm:text-sm md:px-3">
-            Anda akan menonaktifkan sesi {textSession} pada {textDate}. Yakin
-            untuk mengonfirmasi pengubahan ini?
+            Anda akan <strong>{status}</strong> sesi{" "}
+            <strong>{payload?.session}</strong> pada tanggal{" "}
+            <strong>{textDate}</strong>. Yakin untuk mengonfirmasi pengubahan
+            ini?
           </p>
         </section>
       </Modal>
     </>
   );
 }
-
-// const openNotification = () => {
-//   notification.open({
-//     message: (
-//       <p className="font-medium text-[#FBFBFB]">Jadwal berhasil diubah!</p>
-//     ),
-//   });
-
-//   notification.config({
-//     top: 75,
-//     placement: "topRight",
-//     closeIcon: <p className="text-sm text-[#93E5D5]">Abaikan</p>,
-//     duration: 5,
-//     className: "bg-green-500 h-[64px] w-screen",
-//     stack: true,
-//   });
-// };

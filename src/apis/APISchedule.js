@@ -14,4 +14,40 @@ export const APISchedule = {
       throw new Error(err);
     }
   },
+
+  updateInactiveSchedule: async ({ date, session }) => {
+    try {
+      const result = await axiosInstance.put("/doctors/schedule/inactive", {
+        params: {
+          date,
+          session,
+        },
+      });
+      return result.data.response;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
+    }
+  },
+
+  updateActiveSchedule: async ({ date, session }) => {
+    try {
+      const result = await axiosInstance.put("/doctors/schedule/active", {
+        params: {
+          date,
+          session,
+        },
+      });
+      return result.data.response;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        const { response } = err.response.data;
+        throw new AxiosError(response);
+      }
+      throw new Error(err);
+    }
+  },
 };
