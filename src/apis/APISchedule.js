@@ -17,12 +17,9 @@ export const APISchedule = {
 
   updateInactiveSchedule: async ({ date, session }) => {
     try {
-      const result = await axiosInstance.put("/doctors/schedule/inactive", {
-        params: {
-          date,
-          session,
-        },
-      });
+      const result = await axiosInstance.put(
+        `/doctors/schedule/inactive?date=${date}&session=${session}`,
+      );
       return result.data.response;
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -35,12 +32,9 @@ export const APISchedule = {
 
   updateActiveSchedule: async ({ date, session }) => {
     try {
-      const result = await axiosInstance.put("/doctors/schedule/active", {
-        params: {
-          date,
-          session,
-        },
-      });
+      const result = await axiosInstance.put(
+        `/doctors/schedule/active?date=${date}&session=${session}`,
+      );
       return result.data.response;
     } catch (err) {
       if (err instanceof AxiosError) {
