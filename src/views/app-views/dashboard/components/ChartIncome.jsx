@@ -6,7 +6,7 @@ dayjs.locale("id");
 import { useEffect, useState } from "react";
 import { APIDashboard } from "@/apis/APIDashboard";
 
-import { Card, Col, Empty, Row } from "antd";
+import { Card, Col, ConfigProvider, Empty, Row, Spin } from "antd";
 import {
   BarChart,
   Bar,
@@ -49,57 +49,29 @@ function customTooltip({ active, payload, label }) {
   return null;
 }
 
-export function ChartIncome({ selectedFilter, monthlyCalendarHeight }) {
+export function ChartIncome({ selectedFilter }) {
   const [dataIncome, setDataIncome] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const today = dayjs();
   const mobileSize = window.innerWidth <= 450;
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchDataIncome = async () => {
       try {
         const result = await APIDashboard.getDashboardIncome();
         setDataIncome(result?.response || []);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
         setIsError(error);
       }
     };
 
     fetchDataIncome();
   }, []);
-
-  // console.log(monthlyCalendarHeight);
-
-  if (!dataIncome || dataIncome.length === 0) {
-    return (
-      <Row
-        id="chart-income"
-        justify="start"
-        style={{ height: monthlyCalendarHeight || "auto" }}
-      >
-        <Col span={24} xs={24} md={24} lg={24}>
-          <Card>
-          <section>
-              <h3
-                id="title-graph"
-                className="text-2xl font-semibold text-black"
-              >
-                Grafik Pendapatan
-              </h3>
-              <h6 id="label-graph" className="mb-5 mt-1">
-                {`Menampilkan data pendapatan 7 ${selectedFilter.toLowerCase()} terakhir`}
-              </h6>
-            </section>
-            <div>
-              <p className="text-center">Data pendapatan tidak tersedia.</p>
-              <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-            </div>
-          </Card>
-        </Col>
-      </Row>
-    );
-  }
 
   const filterAndAggregateData = (startDate, endDate) => {
     const filteredData = dataIncome?.filter(
@@ -176,80 +148,108 @@ export function ChartIncome({ selectedFilter, monthlyCalendarHeight }) {
             </h6>
           </section>
 
-          <Wrapper id="chart-income-wrapper" width="100%" height={360}>
-            <BarChart
-              id="bar-chart"
-              data={chartData}
-              barGap={0}
-              margin={{
-                top: 5,
-                right: 0,
-                left: 0,
-                bottom: 10,
+          {isLoading && (
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "#17c6a3",
+                },
               }}
             >
-              <Legend
-                id="legend-chart-income"
-                verticalAlign="top"
-                align="end"
-                iconSize={20}
-                iconType="circle"
-                formatter={(value) => (
-                  <span className="text-xs text-black md:text-[14px] lg:text-[16px]">
-                    {value}
-                  </span>
-                )}
-                wrapperStyle={{
-                  paddingBottom: "10px",
-                }}
-              />
+              <Spin />
+            </ConfigProvider>
+          )}
 
-              <CartesianGrid stroke="rgba(233, 233, 233, 1)" vertical={false} />
-
-              <XAxis
-                tickFormatter={customTickXAxis}
-                orientation="bottom"
-                dataKey="date"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={10}
-                className="text-sm font-medium sm:text-base"
-              />
-
-              <YAxis
-                tickFormatter={customTickYAxis}
-                orientation="left"
-                type="number"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={0}
-                className="text-base"
-              />
-
-              <Tooltip
-                id="tooltip-chart-income"
-                cursor={{ fill: "transparent" }}
-                content={customTooltip}
-              />
-
-              <Bar
-                id="bar-chart-income"
-                barSize={mobileSize ? 15 : 30}
-                radius={mobileSize ? 5 : 10}
-                dataKey="income"
-                name="Jumlah Pendapatan"
-                fill="rgba(20, 198, 164, 1)"
-                activeBar={{ fill: "rgba(16, 141, 116, 1)" }}
-              />
-            </BarChart>
-          </Wrapper>
-          {isError && (
-            <>
-              <p className="text-center">
-                <span className="text-negative">Terjadi kesalahan!</span>{" "}
-                silahkan kembali beberapa saat lagi.
+          {!dataIncome || (dataIncome.length === 0 && !isLoading) ? (
+            <div className="h-[360px]">
+              <p className="text-center text-gray-500">
+                Data pendapatan tidak tersedia.
               </p>
-              <p className="text-center text-negative">{isError.message}</p>
+              <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+              {isError && (
+                <>
+                  <p className="pt-40 text-center text-xs sm:text-[16px]">
+                    <span className="text-negative">Terjadi kesalahan!</span>{" "}
+                    silahkan kembali beberapa saat lagi.
+                  </p>
+                  <p className="text-center text-negative opacity-75">
+                    {isError.message}
+                  </p>
+                </>
+              )}
+            </div>
+          ) : (
+            <>
+              <Wrapper id="chart-income-wrapper" width="100%" height={360}>
+                <BarChart
+                  id="bar-chart"
+                  data={chartData}
+                  barGap={0}
+                  margin={{
+                    top: 5,
+                    right: 0,
+                    left: 0,
+                    bottom: 10,
+                  }}
+                >
+                  <Legend
+                    id="legend-chart-income"
+                    verticalAlign="top"
+                    align="end"
+                    iconSize={mobileSize ? 10 : 20}
+                    iconType="circle"
+                    formatter={(value) => (
+                      <span className="text-xs text-black md:text-[14px] lg:text-[16px]">
+                        {value}
+                      </span>
+                    )}
+                    wrapperStyle={{
+                      paddingBottom: "10px",
+                    }}
+                  />
+
+                  <CartesianGrid
+                    stroke="rgba(233, 233, 233, 1)"
+                    vertical={false}
+                  />
+
+                  <XAxis
+                    tickFormatter={customTickXAxis}
+                    orientation="bottom"
+                    dataKey="date"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={10}
+                    className="text-sm font-medium sm:text-base"
+                  />
+
+                  <YAxis
+                    tickFormatter={customTickYAxis}
+                    orientation="left"
+                    type="number"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={0}
+                    className="text-base"
+                  />
+
+                  <Tooltip
+                    id="tooltip-chart-income"
+                    cursor={{ fill: "transparent" }}
+                    content={customTooltip}
+                  />
+
+                  <Bar
+                    id="bar-chart-income"
+                    barSize={mobileSize ? 15 : 30}
+                    radius={mobileSize ? 5 : 10}
+                    dataKey="income"
+                    name="Jumlah Pendapatan"
+                    fill="rgba(20, 198, 164, 1)"
+                    activeBar={{ fill: "rgba(16, 141, 116, 1)" }}
+                  />
+                </BarChart>
+              </Wrapper>
             </>
           )}
         </Card>
