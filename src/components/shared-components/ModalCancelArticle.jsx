@@ -3,7 +3,7 @@ import { Modal, Button } from "antd";
 import { IoIosWarning } from "react-icons/io";
 import { useState } from "react";
 
-const ModalCancelArticle = ({ closeModal }) => {
+export function ModalCancelArticle({ closeModal }) {
   const [isOpen, setIsOpen] = useState(true);
   const handleCancel = () => {
     setIsOpen(false);
@@ -53,6 +53,4 @@ const ModalCancelArticle = ({ closeModal }) => {
       </div>
     </Modal>
   );
-};
-
-export default ModalCancelArticle;
+}

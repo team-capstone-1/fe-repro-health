@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ConfigProvider, Flex, Skeleton, Timeline } from "antd";
 import { APIProfile } from "@/apis/APIProfile";
 
-export default function Education() {
+export function Education() {
   const [isError, setIsError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedDot, setSelectedDot] = useState(0);

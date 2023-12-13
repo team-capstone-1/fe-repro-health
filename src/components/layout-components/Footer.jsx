@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 
-import Logo from "@/assets/logo-white.png";
+import logo from "@/assets/logo-white.png";
 
-export default function Footer() {
+export function Footer() {
   return (
     <>
       <div
@@ -16,7 +16,7 @@ export default function Footer() {
           <Col className="gutter-row" span={8} xs={24} md={8} lg={7}>
             <div>
               <Link id="logo-footer" to="/">
-                <img src={Logo} alt="" />
+                <img src={logo} alt="" />
               </Link>
               <p className="my-3 pt-5 font-semibold">Sosial Media</p>
               <div className="flex gap-3">

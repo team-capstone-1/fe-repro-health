@@ -2,10 +2,11 @@ import { Card, Flex, Skeleton } from "antd";
 import { useSelector } from "react-redux";
 import { BiSolidErrorCircle } from "react-icons/bi";
 
-import BlankProfile from "@/assets/blank-profile.png";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
 
-export default function DoctorProfile() {
+import anonymousPict from "@/assets/anonymous-pp.jpg";
+
+export function DoctorProfile() {
   const stateDataDoctor = useSelector(selectDoctorProfile);
   const dataDoctor = stateDataDoctor?.data?.response;
 
@@ -18,7 +19,7 @@ export default function DoctorProfile() {
             <div className="flex justify-center md:col-span-1 lg:col-span-3 xl:col-span-2">
               <div id="doctor-image">
                 <img
-                  src={dataDoctor?.profile_image || BlankProfile}
+                  src={dataDoctor?.profile_image || anonymousPict}
                   alt="profile-doctor"
                   className="my-5 h-32 w-32 rounded-full md:my-0 md:h-36 md:w-36"
                 />

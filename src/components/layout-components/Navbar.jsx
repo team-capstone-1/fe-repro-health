@@ -6,7 +6,7 @@ import { Button } from "antd";
 
 import logoReproHealth from "@/assets/logo-reprohealth.png";
 
-export default function Navbar() {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
