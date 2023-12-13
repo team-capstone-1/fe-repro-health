@@ -64,7 +64,7 @@ export function ListArticle() {
 
           !filteredData ? setDataArticles([]) : setDataArticles(filteredData);
         } else {
-          setDataArticles(result?.response);
+          setDataArticles(result?.response || []);
         }
         setIsLoading(false);
         result !== null &&
@@ -87,7 +87,7 @@ export function ListArticle() {
     <>
       <section>
         <div className="relative mb-6 focus:bg-black">
-          {!isLoading ? (
+          {!isLoading && !isError ? (
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
               <BsSearch className="text-gray-400" />
             </div>
@@ -165,8 +165,9 @@ export function ListArticle() {
         </Row>
 
         {isError.message !== null && !isLoading && isError ? (
-          <Flex className="mb-5 flex-col items-center justify-center text-red-500">
-            <p>{isError.message}</p>
+          <Flex className="mb-5 flex-col items-center justify-center">
+            <p className="text-gray-500">Data artikel tidak tersedia.</p>
+            <p className="text-negative opacity-75">{isError.message}</p>
           </Flex>
         ) : (
           <></>
