@@ -1,5 +1,5 @@
-import { Button, Modal } from "antd";
 import { useState } from "react";
+import { Button, Modal } from "antd";
 import { useDispatch } from "react-redux";
 import { IoIosWarning } from "react-icons/io";
 
@@ -14,8 +14,11 @@ export function ModalConfirmSchedule({
   textDate,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
   const handleOk = async () => {
+    setIsSubmitting(true);
+
     if (payload.doctor_available) {
       try {
         await APISchedule.updateActiveSchedule(payload);
@@ -64,10 +67,11 @@ export function ModalConfirmSchedule({
               id="button-confirm-schedule"
               key="ok"
               onClick={handleOk}
-              className="mb-2 mt-5 h-10 rounded-lg bg-[#FEA53F] text-sm text-white sm:px-7 sm:text-base sm:font-medium"
+              className="mb-2 mt-5 h-10 rounded-lg bg-warning text-sm text-white disabled:bg-warning/70 sm:px-7 sm:text-base sm:font-medium"
               style={{
                 border: "transparent",
               }}
+              disabled={isSubmitting}
             >
               Ya, Saya yakin
             </Button>
@@ -75,7 +79,7 @@ export function ModalConfirmSchedule({
               id="button-cancel-schedule"
               key="cancel"
               onClick={handleCancel}
-              className="ms-4 mt-5 h-10 rounded-lg border-[#FEA53F] text-sm text-[#FEA53F] sm:px-7 sm:text-base sm:font-medium"
+              className="ms-4 mt-5 h-10 rounded-lg border-warning text-sm text-warning sm:px-7 sm:text-base sm:font-medium"
             >
               Tidak, Batalkan
             </Button>
