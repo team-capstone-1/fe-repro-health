@@ -226,10 +226,10 @@ export default function Chatbot() {
             </Button>
           </div>
           <h5 className="text-sm font-semibold text-grey-200">Riwayat Chat</h5>
-          <div className="mb-5 mt-3 flex h-[60%] min-h-[60%] flex-col gap-3">
+          <div className="mt-3 flex flex-col gap-3 relative min-h-[50%]">
             {chatLists.length === 0 && (
-              <div className="flex h-full w-full items-center justify-center">
-                <div className="flex items-center justify-center ">
+              <div className="flex h-full w-full items-center justify-center absolute top-1/2 -translate-y-1/2">
+                <div className="flex items-center justify-center">
                   <p className="px-2 text-center font-medium md:px-8">
                     Riwayat chat kosong
                   </p>
