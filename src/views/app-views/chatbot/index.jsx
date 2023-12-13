@@ -19,7 +19,6 @@ export default function Chatbot() {
 
   const { register, handleSubmit, reset } = useForm();
   const [chatLists, setChatLists] = useState([]);
-  console.log(chatLists, "chatLists")
   const ref = useRef(null);
   const uuid = uuidv4();
   const [refetch, setRefetch] = useState(false);
@@ -67,7 +66,28 @@ export default function Chatbot() {
   }, [chatLists.length, selectedChat]);
 
   const formattedDate = (date, withoutTime) => {
-    const formattedDate = new Date(date);
+    let dateArray = date.split("/");
+
+    let formattedDay = parseInt(dateArray[0], 10);
+    let formattedMonth = parseInt(dateArray[1], 10);
+    let formattedYear = parseInt(dateArray[2], 10);
+    let parts = date.split(" ");
+
+    let time = parts[1];
+
+    let formattedHour = parseInt(time.split(":")[0], 10);
+    let formattedMinute = parseInt(time.split(":")[1], 10);
+    let formattedSecond = parseInt(time.split(":")[2], 10);
+
+    let newDate = new Date(
+      formattedYear,
+      formattedMonth - 1,
+      formattedDay,
+    );
+
+    newDate.setHours(formattedHour, formattedMinute, formattedSecond);
+
+    const formattedDate = new Date(newDate);
     const day = formattedDate.getDate().toString().padStart(2, "0");
     const month = (formattedDate.getMonth() + 1).toString().padStart(2, "0");
     const year = formattedDate.getFullYear();
@@ -77,22 +97,22 @@ export default function Chatbot() {
     const seconds = String(formattedDate.getSeconds()).padStart(2, "0");
 
     if (withoutTime) {
-      return `${day}/${month}/${year}`;
+      return `${month}/${day}/${year}`;
     }
-    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
   };
 
   const relativeTime = (date) => {
     const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
     const currentDate = new Date();
-    const timeDifference = currentDate.getTime() - new Date(date).getTime();
+    const timeDifference = currentDate.getTime() - new Date(date).getTime() - 7 * 60 * 60 * 1000;
     if (timeDifference > oneDayInMilliseconds) {
       return formattedDate(date, true);
     } else {
       if (timeDifference < 1000 * 60) {
         return "Baru saja";
       }
-      return distanceInWordsStrict(new Date(date), new Date(), {
+      return distanceInWordsStrict(new Date(date), new Date() - 7 * 60 * 60 * 1000 , {
         locale: id,
         // addSuffix: true,
       });
@@ -107,7 +127,7 @@ export default function Chatbot() {
           dataProfile.response.id,
         );
         dataChatbot.forEach((data) => {
-          const newDate = formattedDate(data.data.tgl);
+          const newDate = formattedDate(data.data.tgl, false);
           data.data.tgl = newDate;
         });
         dataChatbot.sort((a, b) => {
@@ -146,31 +166,11 @@ export default function Chatbot() {
 
   const handleOnSubmit = async (data) => {
     reset();
-    // setIsNewChat(false);
     setIsLoading(true);
     if (selectedChat[0]?.data.id === null) {
       handleAddBtn();
       setIsNewChat(true);
     }
-    
-    // setSelectedChat(...selectedChat, {
-    //   data: {
-    //     ...selectedChat[0]?.data,
-    //     pesan: [
-    //       // eslint-disable-next-line no-unsafe-optional-chaining
-    //       ...selectedChat[0]?.data.pesan,
-    //       {
-    //         id: uuidv4(),
-    //         jawaban: "Mohon tunggu AI sedang menjawab...",
-    //         pengirim: "",
-    //         pesan: data["input-chatbot"],
-    //         waktu: new Date(),
-    //       },
-    //     ],
-    //   },
-    //   status: "",
-    //   }
-    //   );
 
     selectedChat[0]?.data.pesan.push({
       id: uuidv4(),
@@ -338,7 +338,7 @@ export default function Chatbot() {
                   id="input-chatbot"
                   {...register("input-chatbot")}
                   type="text"
-                  className="peer absolute left-0.5 top-1/2 block h-11 w-[calc(100%-3rem)] -translate-y-1/2 resize-none overflow-y-scroll rounded-md pt-[0.8em] focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-60 px-2 md:px-4 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]"
+                  className="peer absolute left-0.5 top-1/2 block h-11 w-[calc(100%-3rem)] -translate-y-1/2 resize-none overflow-y-scroll rounded-md px-2 pt-[0.8em] focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-60 md:px-4 [&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-[4px]"
                   placeholder={
                     isloading
                       ? "Mohon tunggu AI sedang menjawab..."
