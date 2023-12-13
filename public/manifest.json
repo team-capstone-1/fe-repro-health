@@ -8,7 +8,7 @@
     "theme_color": "#17c6a3",
     "icons": [
       {
-        "src": "reprohealth.ico",
+        "src": "reprohealth.png",
         "sizes": "144x144",
         "type": "image/png"
       }
