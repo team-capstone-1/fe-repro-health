@@ -6,7 +6,7 @@ dayjs.locale("id");
 import { useEffect, useState } from "react";
 import { APIDashboard } from "@/apis/APIDashboard";
 
-import { Card, Col, Row } from "antd";
+import { Card, Col, Empty, Row } from "antd";
 import {
   BarChart,
   Bar,
@@ -39,7 +39,6 @@ function customTooltip({ active, payload, label }) {
         <p id="label-year" className="mb-4 text-base font-medium text-black">
           {`${label} `}
         </p>
-
         <p className="text-base text-black">
           {`${toLocaleStrings(payload[0].value)} Rupiah`}
         </p>
@@ -50,38 +49,68 @@ function customTooltip({ active, payload, label }) {
   return null;
 }
 
-export function ChartIncome({ selectedFilter }) {
+export function ChartIncome({ selectedFilter, monthlyCalendarHeight }) {
   const [dataIncome, setDataIncome] = useState([]);
   const [isError, setIsError] = useState(false);
   const today = dayjs();
   const mobileSize = window.innerWidth <= 450;
 
   useEffect(() => {
-    const fecthDataIncome = async () => {
+    const fetchDataIncome = async () => {
       try {
         const result = await APIDashboard.getDashboardIncome();
-
-        setDataIncome(result?.response);
+        setDataIncome(result?.response || []);
       } catch (error) {
         console.error(error);
         setIsError(error);
       }
     };
 
-    fecthDataIncome();
+    fetchDataIncome();
   }, []);
 
+  // console.log(monthlyCalendarHeight);
+
+  if (!dataIncome || dataIncome.length === 0) {
+    return (
+      <Row
+        id="chart-income"
+        justify="start"
+        style={{ height: monthlyCalendarHeight || "auto" }}
+      >
+        <Col span={24} xs={24} md={24} lg={24}>
+          <Card>
+          <section>
+              <h3
+                id="title-graph"
+                className="text-2xl font-semibold text-black"
+              >
+                Grafik Pendapatan
+              </h3>
+              <h6 id="label-graph" className="mb-5 mt-1">
+                {`Menampilkan data pendapatan 7 ${selectedFilter.toLowerCase()} terakhir`}
+              </h6>
+            </section>
+            <div>
+              <p className="text-center">Data pendapatan tidak tersedia.</p>
+              <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+            </div>
+          </Card>
+        </Col>
+      </Row>
+    );
+  }
+
   const filterAndAggregateData = (startDate, endDate) => {
-    const filteredData = dataIncome.filter(
+    const filteredData = dataIncome?.filter(
       (data) => dayjs(data.date) >= startDate && dayjs(data.date) <= endDate,
     );
 
-    const sortedData = filteredData.sort(
+    const sortedData = filteredData?.sort(
       (a, b) => dayjs(a.date).toDate() - dayjs(b.date).toDate(),
     );
 
-    const aggregatedData = sortedData.reduce((acc, data) => {
-      // const date = dayjs(data.date).format("dddd, DD MMMM YYYY");
+    const aggregatedData = sortedData?.reduce((acc, data) => {
       const formattedDate =
         selectedFilter === "bulan"
           ? formatDateToStringMonth(data.date)
@@ -117,7 +146,6 @@ export function ChartIncome({ selectedFilter }) {
 
   const customTickYAxis = (values) => {
     if (values >= 10000000 && values < 100000000) {
-      // return `${values.toString().slice(0, 2)} jt`;
       return Math.floor(values / 1000000) + " jt";
     } else if (values > 100000000) {
       return Math.floor(values / 1000000) + " jt";
@@ -151,7 +179,6 @@ export function ChartIncome({ selectedFilter }) {
           <Wrapper id="chart-income-wrapper" width="100%" height={360}>
             <BarChart
               id="bar-chart"
-              // data={data}
               data={chartData}
               barGap={0}
               margin={{
@@ -213,9 +240,7 @@ export function ChartIncome({ selectedFilter }) {
                 name="Jumlah Pendapatan"
                 fill="rgba(20, 198, 164, 1)"
                 activeBar={{ fill: "rgba(16, 141, 116, 1)" }}
-              >
-                {/* <LabelList position="top" fill="black" /> */}
-              </Bar>
+              />
             </BarChart>
           </Wrapper>
           {isError && (
