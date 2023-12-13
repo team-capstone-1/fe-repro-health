@@ -1,5 +1,5 @@
 export function formatStrDayJs(date) {
-  return date?.format("DD-MM-YYYY");
+  return date?.format("YYYY-MM-DD");
 }
 
 export function mapListData(data, eventDate) {
