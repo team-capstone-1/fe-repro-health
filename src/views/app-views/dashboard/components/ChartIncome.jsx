@@ -3,6 +3,9 @@ import "dayjs/locale/id";
 
 dayjs.locale("id");
 
+import { useEffect, useState } from "react";
+import { APIDashboard } from "@/apis/APIDashboard";
+
 import { Card, Col, Row } from "antd";
 import {
   BarChart,
@@ -15,18 +18,21 @@ import {
   Legend,
 } from "recharts";
 
-import // DataIncome,
-// DataIncomeDay,
-// DataIncomeWeek,
-// formatDateToStringDay,
-// formatDateToStringWeek,
-// formatDateToStringMonth,
-"@/views/app-views/dashboard/constant/graph-income";
-import { useEffect, useState } from "react";
+import {
+  formatDateToStringDay,
+  formatDateToStringMonth,
+  formatDateToStringWeek,
+} from "@/utils/FormatDate";
+// import { DummyResponse } from "../constant/graph-income";
 
-import { APIDashboard } from "@/apis/APIDashboard";
+function toLocaleStrings(digits) {
+  return digits.toLocaleString("id-ID", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+}
 
-export function CustomTooltip({ active, payload, label }) {
+function customTooltip({ active, payload, label }) {
   if (active && payload && payload.length) {
     return (
       <div className="w-full rounded-[4px] bg-white px-3 py-3 shadow-lg">
@@ -35,10 +41,7 @@ export function CustomTooltip({ active, payload, label }) {
         </p>
 
         <p className="text-base text-black">
-          {`${payload[0].value.toLocaleString("id-ID", {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-          })} Rupiah`}
+          {`${toLocaleStrings(payload[0].value)} Rupiah`}
         </p>
       </div>
     );
@@ -49,7 +52,7 @@ export function CustomTooltip({ active, payload, label }) {
 
 export function ChartIncome({ selectedFilter }) {
   const [dataIncome, setDataIncome] = useState([]);
-  // const [isError, setIsError] = useState(null);
+  const [isError, setIsError] = useState(false);
   const today = dayjs();
   const mobileSize = window.innerWidth <= 450;
 
@@ -57,12 +60,11 @@ export function ChartIncome({ selectedFilter }) {
     const fecthDataIncome = async () => {
       try {
         const result = await APIDashboard.getDashboardIncome();
-        console.log("data income", result);
 
         setDataIncome(result?.response);
       } catch (error) {
         console.error(error);
-        // setIsError(error);
+        setIsError(error);
       }
     };
 
@@ -80,23 +82,12 @@ export function ChartIncome({ selectedFilter }) {
 
     const aggregatedData = sortedData.reduce((acc, data) => {
       // const date = dayjs(data.date).format("dddd, DD MMMM YYYY");
-      let formattedDate = "";
-
-      if (selectedFilter === "hari") {
-        formattedDate = dayjs(data.date).format("dddd, DD MMMM YYYY");
-      }
-      if (selectedFilter === "minggu") {
-        const value = dayjs(data.date);
-        const startOfWeek = value.startOf("week");
-        const endOfWeek = value.endOf("week");
-
-        formattedDate = `Week ${value.week()}, ${startOfWeek.format(
-          "DD",
-        )} - ${endOfWeek.format("DD MMMM YYYY")}`;
-      }
-      if (selectedFilter === "bulan") {
-        formattedDate = dayjs(data.date).format("MMMM YYYY");
-      }
+      const formattedDate =
+        selectedFilter === "bulan"
+          ? formatDateToStringMonth(data.date)
+          : selectedFilter === "minggu"
+          ? formatDateToStringWeek(data.date)
+          : formatDateToStringDay(data.date);
 
       acc[formattedDate] = (acc[formattedDate] || 0) + parseFloat(data.income);
       return acc;
@@ -124,7 +115,6 @@ export function ChartIncome({ selectedFilter }) {
       break;
   }
 
-  // const customTickYAxis = (values) => `${values.toString().slice(0, 2)} jt`;
   const customTickYAxis = (values) => {
     if (values >= 10000000 && values < 100000000) {
       // return `${values.toString().slice(0, 2)} jt`;
@@ -132,22 +122,11 @@ export function ChartIncome({ selectedFilter }) {
     } else if (values > 100000000) {
       return Math.floor(values / 1000000) + " jt";
     } else if (values >= 1000000 && values < 10000000) {
-      // return `${values.toString().slice(0, 2)} rb`;
-      return `${values
-        .toLocaleString("id-ID", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })
-        .slice(0, 3)} jt`;
+      return `${toLocaleStrings(values).slice(0, 3)} jt`;
     } else if (values > 1000 && values < 1000000) {
       return Math.floor(values / 1000) + " rb";
     } else if (values < 1000) {
-      return `${values
-        .toLocaleString("id-ID", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        })
-        .slice(0, 3)} rp`;
+      return `${toLocaleStrings(values).slice(0, 3)} rp`;
     }
   };
 
@@ -173,14 +152,6 @@ export function ChartIncome({ selectedFilter }) {
             <BarChart
               id="bar-chart"
               // data={data}
-              // data={
-              //   selectedFilter === "hari"
-              //     ? DataIncomeDay
-              //     : selectedFilter === "minggu"
-              //     ? IncomeWeeks
-              //     : IncomeMonth
-              // }
-              // data={filteredData}
               data={chartData}
               barGap={0}
               margin={{
@@ -231,15 +202,11 @@ export function ChartIncome({ selectedFilter }) {
               <Tooltip
                 id="tooltip-chart-income"
                 cursor={{ fill: "transparent" }}
-                content={CustomTooltip}
+                content={customTooltip}
               />
 
               <Bar
                 id="bar-chart-income"
-                // barSize={mobileSize || data.length < 20 ? 30 : 5}
-                // barSize={data.length < 8 ? 30 : 20}
-                // barSize={mobileSize || data.length > 20 ? 15 : 30}
-                // radius={data.length >= 7 ? 10 : 2}
                 barSize={mobileSize ? 15 : 30}
                 radius={mobileSize ? 5 : 10}
                 dataKey="income"
@@ -251,6 +218,15 @@ export function ChartIncome({ selectedFilter }) {
               </Bar>
             </BarChart>
           </Wrapper>
+          {isError && (
+            <>
+              <p className="text-center">
+                <span className="text-negative">Terjadi kesalahan!</span>{" "}
+                silahkan kembali beberapa saat lagi.
+              </p>
+              <p className="text-center text-negative">{isError.message}</p>
+            </>
+          )}
         </Card>
       </Col>
     </Row>

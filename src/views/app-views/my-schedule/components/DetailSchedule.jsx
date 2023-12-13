@@ -1,12 +1,19 @@
+import dayjs from "dayjs";
+import "dayjs/locale/id";
+
+dayjs.locale("id");
+
+import * as yup from "yup";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Drawer, Flex, Switch, Tooltip } from "antd";
-import { months } from "@/utils/GenerateDate";
 import { FiInfo } from "react-icons/fi";
 import { Controller, useForm } from "react-hook-form";
+
 import { formatStrDayJs } from "@/utils/MapListData";
 import { getListDataByDate } from "@/utils/GetListData";
-
+import { months } from "@/utils/GenerateDate";
 import { ModalConfirmSchedule } from "@/components/shared-components/ModalConfirmSchedule";
 import { selectDoctorSchedule } from "@/store/get-doctor-schedule-slice";
 import ListAppointment from "./ListAppointment";
@@ -17,6 +24,39 @@ const text = (
     Anda hanya dapat mengubah jadwal dari hari yang akan datang
   </span>
 );
+
+const initialValueSchema = yup.object().shape({
+  form: yup.boolean(),
+  "session-pagi": yup.boolean(),
+  "session-siang": yup.boolean(),
+  "session-malam": yup.boolean(),
+});
+
+const dataChangedSchema = yup.object().shape({
+  form: yup.boolean(),
+  "session-pagi": yup.boolean(),
+  "session-siang": yup.boolean(),
+  "session-malam": yup.boolean(),
+});
+
+function countChangedValues(initial, changed) {
+  try {
+    initialValueSchema.validateSync(initial, { abortEarly: false });
+    dataChangedSchema.validateSync(changed, { abortEarly: false });
+  } catch (error) {
+    throw new Error(`Data tidak valid! ${error.errors.join(", ")}`);
+  }
+
+  let count = 0;
+  for (const key in changed) {
+    if (changed.hasOwnProperty(key) && initial.hasOwnProperty(key)) {
+      if (changed[key] !== initial[key]) {
+        count++;
+      }
+    }
+  }
+  return count;
+}
 
 export default function DrawerDetailSchedule({
   handleOpenDrawer,
@@ -48,10 +88,27 @@ export default function DrawerDetailSchedule({
 
 const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
   const [isShow, setIsShow] = useState(false);
+  const [payload, setPayload] = useState(null);
+
   const scheduleState = useSelector(selectDoctorSchedule);
   const strDate = formatStrDayJs(selectedDate);
+  const initialValue = {
+    form: false,
+    "session-pagi": false,
+    "session-siang": false,
+    "session-malam": false,
+  };
 
-  const { handleSubmit, control, setValue } = useForm();
+  const {
+    handleSubmit,
+    control,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(initialValueSchema),
+  });
 
   const listData = getListDataByDate(scheduleState?.data, strDate);
 
@@ -60,23 +117,58 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
     handleOpenDrawer();
   };
 
-  const payload = {
-    date: formatStrDayJs(selectedDate),
-    listData: [],
-  };
   const onSubmit = (data) => {
-    Object.keys(data).forEach((session) => {
-      const sessionType = session.split("-")[1];
-      const newObject = {
-        doctor_available: data[session],
-        session: sessionType,
-      };
-      payload.listData.push(newObject);
-      handleOpenModal();
-    });
+    let changedValue;
+    let payload = {
+      date: dayjs(selectedDate, "YYYY-MM-DD").format("YYYY-MM-DD"),
+      session: "",
+    };
+    try {
+      dataChangedSchema.validateSync(data);
 
-    console.log(payload);
+      const changedCount = countChangedValues(data, initialValue);
+
+      if (changedCount > 1) {
+        setError("form", {
+          type: "manual",
+          message: "Anda hanya dapat mengubah 1 session.",
+        });
+      } else {
+        Object.keys(data).forEach((session) => {
+          const sessionType = session.split("-")[1];
+          if (data[session] !== initialValue[session]) {
+            const newObject = {
+              doctor_available: data[session],
+              session: sessionType,
+            };
+            changedValue = newObject;
+          }
+        });
+        payload = {
+          ...payload,
+          session: changedValue?.session,
+          doctor_available: changedValue?.doctor_available,
+        };
+        if (changedValue) {
+          handleOpenModal();
+          setPayload(payload);
+        }
+        setError("form", {
+          type: "manual",
+          message: "Anda tidak mengubah jadwal pada sesi manapun.",
+        });
+      }
+    } catch (error) {
+      setError("form", {
+        type: "manual",
+        message: error.errors?.join(", "),
+      });
+    }
   };
+
+  useEffect(() => {
+    clearErrors("form");
+  }, [handleOpenDrawer]);
 
   const textDate = (
     <span>
@@ -89,18 +181,21 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
       const CheckType = () => {
         if (listData === null) {
           setValue("session-pagi", false);
+          initialValue["session-pagi"] = false;
         } else if (
           listData[0]?.doctor_available &&
           listData[0]?.session === "pagi"
         ) {
           setValue("session-pagi", true);
+          initialValue["session-pagi"] = true;
         } else if (listData[0]?.session === "Libur") {
           setValue("session-pagi", false);
+          initialValue["session-pagi"] = false;
         } else {
           setValue("session-pagi", false);
+          initialValue["session-pagi"] = false;
         }
       };
-
       CheckType();
     }, []);
 
@@ -133,15 +228,19 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
       const CheckType = () => {
         if (listData === null) {
           setValue("session-siang", false);
+          initialValue["session-siang"] = false;
         } else if (
           (listData[1]?.doctor_available && listData[1]?.session === "siang") ||
           (listData[0]?.doctor_available && listData[0]?.session === "siang")
         ) {
           setValue("session-siang", true);
+          initialValue["session-siang"] = true;
         } else if (listData[0]?.session === "Libur") {
           setValue("session-siang", false);
+          initialValue["session-siang"] = false;
         } else {
           setValue("session-siang", false);
+          initialValue["session-siang"] = false;
         }
       };
       CheckType();
@@ -174,15 +273,19 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
       const CheckType = () => {
         if (listData === null) {
           setValue("session-malam", false);
+          initialValue["session-malam"] = false;
         } else if (
           (listData[1]?.doctor_available && listData[1]?.session === "malam") ||
           (listData[2]?.doctor_available && listData[2]?.session === "malam")
         ) {
           setValue("session-malam", true);
+          initialValue["session-malam"] = true;
         } else if (listData[0]?.session === "Libur") {
           setValue("session-malam", false);
+          initialValue["session-malam"] = false;
         } else {
           setValue("session-malam", false);
+          initialValue["session-malam"] = false;
         }
       };
 
@@ -225,7 +328,11 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
         <Morning />
         <Noon />
         <Night />
-
+        <div>
+          {errors?.["form"] && (
+            <p className="text-negative">{errors?.["form"]?.message}</p>
+          )}
+        </div>
         <Flex id="jadwal-janji-temu">
           <h5 className="mt-5 text-base font-semibold text-green-500">
             Jadwal Janji Temu
@@ -241,6 +348,7 @@ const DrawerContent = ({ handleOpenDrawer, selectedDate }) => {
       </form>
       {isShow && (
         <ModalConfirmSchedule
+          payload={payload}
           handleOpenDrawer={handleOpenDrawer}
           closeModal={handleOpenModal}
           textDate={textDate}

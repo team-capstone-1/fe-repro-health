@@ -13,7 +13,6 @@ export function AppointmentTable() {
   const fetchDataAppointment = async () => {
     try {
       const result = await APIAppointment.getListAppointments();
-      console.log(result);
 
       setData(result);
       setIsLoading(false);
@@ -28,8 +27,6 @@ export function AppointmentTable() {
     setIsLoading(true);
     fetchDataAppointment();
   }, []);
-
-  console.log("data appointment", data);
 
   return (
     <>

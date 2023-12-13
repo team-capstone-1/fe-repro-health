@@ -1,22 +1,51 @@
-import { Button, Modal } from "antd";
 import { useState } from "react";
+import { Button, Modal } from "antd";
+import { useDispatch } from "react-redux";
 import { IoIosWarning } from "react-icons/io";
 
-import { showSuccessToast } from "./Toast";
+import { showErrorToast, showSuccessToast } from "./Toast";
+import { APISchedule } from "@/apis/APISchedule";
+import { toggleFetchLatestData } from "@/store/toggle-fetch-new-data";
 
 export function ModalConfirmSchedule({
+  payload,
   handleOpenDrawer,
   closeModal,
   textDate,
-  textSession,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
+  const handleOk = async () => {
+    setIsSubmitting(true);
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-    closeModal();
-    handleOpenDrawer();
-    showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
+    if (payload.doctor_available) {
+      try {
+        await APISchedule.updateActiveSchedule(payload);
+        showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
+      } catch (error) {
+        console.error(error);
+        showErrorToast("Jadwal gagal diubah !", "top-center", "large");
+      } finally {
+        setIsModalOpen(false);
+        closeModal();
+        handleOpenDrawer();
+        dispatch(toggleFetchLatestData());
+      }
+    } else {
+      try {
+        await APISchedule.updateInactiveSchedule(payload);
+        showSuccessToast("Jadwal berhasil diubah !", "top-center", "large");
+      } catch (error) {
+        console.error(error);
+        showErrorToast("Jadwal gagal diubah !", "top-center", "large");
+      } finally {
+        setIsModalOpen(false);
+        closeModal();
+        handleOpenDrawer();
+        dispatch(toggleFetchLatestData());
+      }
+    }
   };
 
   const handleCancel = () => {
@@ -24,6 +53,8 @@ export function ModalConfirmSchedule({
     closeModal();
     handleOpenDrawer();
   };
+
+  const status = payload.doctor_available ? "mengaktifkan" : "menonaktifkan";
   return (
     <>
       <Modal
@@ -36,10 +67,11 @@ export function ModalConfirmSchedule({
               id="button-confirm-schedule"
               key="ok"
               onClick={handleOk}
-              className="mb-2 mt-5 h-10 rounded-lg bg-[#FEA53F] text-sm text-white sm:px-7 sm:text-base sm:font-medium"
+              className="mb-2 mt-5 h-10 rounded-lg bg-warning text-sm text-white disabled:bg-warning/70 sm:px-7 sm:text-base sm:font-medium"
               style={{
                 border: "transparent",
               }}
+              disabled={isSubmitting}
             >
               Ya, Saya yakin
             </Button>
@@ -47,7 +79,7 @@ export function ModalConfirmSchedule({
               id="button-cancel-schedule"
               key="cancel"
               onClick={handleCancel}
-              className="ms-4 mt-5 h-10 rounded-lg border-[#FEA53F] text-sm text-[#FEA53F] sm:px-7 sm:text-base sm:font-medium"
+              className="ms-4 mt-5 h-10 rounded-lg border-warning text-sm text-warning sm:px-7 sm:text-base sm:font-medium"
             >
               Tidak, Batalkan
             </Button>
@@ -60,28 +92,13 @@ export function ModalConfirmSchedule({
         >
           <IoIosWarning className="h-16 w-16 text-[#FEA53F] sm:h-20 sm:w-20" />
           <p className="mt-5 text-[14px] font-normal text-grey-400 sm:text-sm md:px-3">
-            Anda akan menonaktifkan sesi {textSession} pada {textDate}. Yakin
-            untuk mengonfirmasi pengubahan ini?
+            Anda akan <strong>{status}</strong> sesi{" "}
+            <strong>{payload?.session}</strong> pada tanggal{" "}
+            <strong>{textDate}</strong>. Yakin untuk mengonfirmasi pengubahan
+            ini?
           </p>
         </section>
       </Modal>
     </>
   );
 }
-
-// const openNotification = () => {
-//   notification.open({
-//     message: (
-//       <p className="font-medium text-[#FBFBFB]">Jadwal berhasil diubah!</p>
-//     ),
-//   });
-
-//   notification.config({
-//     top: 75,
-//     placement: "topRight",
-//     closeIcon: <p className="text-sm text-[#93E5D5]">Abaikan</p>,
-//     duration: 5,
-//     className: "bg-green-500 h-[64px] w-screen",
-//     stack: true,
-//   });
-// };
