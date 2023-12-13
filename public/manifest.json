@@ -1,16 +1,21 @@
 {
-    "name": "ReproHealth",
-    "short_name": "ReproHealth",
-    "description": "Partner Terpercaya untuk Kesehatan Reproduksi Anda",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#fff",
-    "theme_color": "#17c6a3",
-    "icons": [
-      {
-        "src": "logo-reprohealth.png",
-        "sizes": "539x165",
-        "type": "image/png"
-      }
-    ]
-  }
+  "name": "ReproHealth",
+  "short_name": "ReproHealth",
+  "description": "Partner Terpercaya untuk Kesehatan Reproduksi Anda",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#17c6a3",
+  "icons": [
+    {
+      "src": "reprohealth.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-reprohealth.png",
+      "sizes": "539x165",
+      "type": "image/png"
+    }
+  ]
+}
