@@ -66,7 +66,28 @@ export default function Chatbot() {
   }, [chatLists.length, selectedChat]);
 
   const formattedDate = (date, withoutTime) => {
-    const formattedDate = new Date(date);
+    let dateArray = date.split("/");
+
+    let formattedDay = parseInt(dateArray[0], 10);
+    let formattedMonth = parseInt(dateArray[1], 10);
+    let formattedYear = parseInt(dateArray[2], 10);
+    let parts = date.split(" ");
+
+    let time = parts[1];
+
+    let formattedHour = parseInt(time.split(":")[0], 10);
+    let formattedMinute = parseInt(time.split(":")[1], 10);
+    let formattedSecond = parseInt(time.split(":")[2], 10);
+
+    let newDate = new Date(
+      formattedYear,
+      formattedMonth - 1,
+      formattedDay,
+    );
+
+    newDate.setHours(formattedHour, formattedMinute, formattedSecond);
+
+    const formattedDate = new Date(newDate);
     const day = formattedDate.getDate().toString().padStart(2, "0");
     const month = (formattedDate.getMonth() + 1).toString().padStart(2, "0");
     const year = formattedDate.getFullYear();
@@ -76,22 +97,22 @@ export default function Chatbot() {
     const seconds = String(formattedDate.getSeconds()).padStart(2, "0");
 
     if (withoutTime) {
-      return `${day}/${month}/${year}`;
+      return `${month}/${day}/${year}`;
     }
-    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
   };
 
   const relativeTime = (date) => {
     const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
     const currentDate = new Date();
-    const timeDifference = currentDate.getTime() - new Date(date).getTime();
+    const timeDifference = currentDate.getTime() - new Date(date).getTime() - 7 * 60 * 60 * 1000;
     if (timeDifference > oneDayInMilliseconds) {
       return formattedDate(date, true);
     } else {
       if (timeDifference < 1000 * 60) {
         return "Baru saja";
       }
-      return distanceInWordsStrict(new Date(date), new Date(), {
+      return distanceInWordsStrict(new Date(date), new Date() - 7 * 60 * 60 * 1000 , {
         locale: id,
         // addSuffix: true,
       });
@@ -106,7 +127,7 @@ export default function Chatbot() {
           dataProfile.response.id,
         );
         dataChatbot.forEach((data) => {
-          const newDate = formattedDate(data.data.tgl);
+          const newDate = formattedDate(data.data.tgl, false);
           data.data.tgl = newDate;
         });
         dataChatbot.sort((a, b) => {
@@ -145,31 +166,11 @@ export default function Chatbot() {
 
   const handleOnSubmit = async (data) => {
     reset();
-    // setIsNewChat(false);
     setIsLoading(true);
     if (selectedChat[0]?.data.id === null) {
       handleAddBtn();
       setIsNewChat(true);
     }
-
-    // setSelectedChat(...selectedChat, {
-    //   data: {
-    //     ...selectedChat[0]?.data,
-    //     pesan: [
-    //       // eslint-disable-next-line no-unsafe-optional-chaining
-    //       ...selectedChat[0]?.data.pesan,
-    //       {
-    //         id: uuidv4(),
-    //         jawaban: "Mohon tunggu AI sedang menjawab...",
-    //         pengirim: "",
-    //         pesan: data["input-chatbot"],
-    //         waktu: new Date(),
-    //       },
-    //     ],
-    //   },
-    //   status: "",
-    //   }
-    //   );
 
     selectedChat[0]?.data.pesan.push({
       id: uuidv4(),
@@ -225,10 +226,10 @@ export default function Chatbot() {
             </Button>
           </div>
           <h5 className="text-sm font-semibold text-grey-200">Riwayat Chat</h5>
-          <div className="mb-5 mt-3 flex h-[60%] min-h-[60%] flex-col gap-3">
+          <div className="mt-3 flex flex-col gap-3 relative min-h-[50%]">
             {chatLists.length === 0 && (
-              <div className="flex h-full w-full items-center justify-center">
-                <div className="flex items-center justify-center ">
+              <div className="flex h-full w-full items-center justify-center absolute top-1/2 -translate-y-1/2">
+                <div className="flex items-center justify-center">
                   <p className="px-2 text-center font-medium md:px-8">
                     Riwayat chat kosong
                   </p>
