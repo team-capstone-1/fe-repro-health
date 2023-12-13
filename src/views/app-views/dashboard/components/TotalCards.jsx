@@ -53,9 +53,11 @@ export function TotalCards({ selectedFilter }) {
     return percentage !== undefined
       ? percentage < 0
         ? percentage + "%"
-        : "+" + Math.round(percentage * 100) / 100 + "%"
+        : percentage % 1 === 0
+          ? "+" + percentage.toFixed(0) + "%"
+          : "+" + percentage.toFixed(2) + "%"
       : "0%";
-  };
+  };  
 
   const cardData = [
     {
