@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Row, Col } from "antd";
 
 import { ButtonFilter } from "./components/ButtonFilter";
@@ -14,9 +14,22 @@ export default function Dashboard() {
   useScrollToTop();
 
   const [selectedFilter, setSelectedFilter] = useState("bulan");
+  const [monthlyCalendarHeight, setMonthlyCalendarHeight] = useState(null);
+  const monthlyCalendarRef = useRef(null);
+
   const handleFilterClick = (filter) => {
     setSelectedFilter(filter);
   };
+
+  const updateMonthlyCalendarHeight = () => {
+    if (monthlyCalendarRef.current) {
+      setMonthlyCalendarHeight(monthlyCalendarRef.current.clientHeight);
+    }
+  };
+
+  useEffect(() => {
+    updateMonthlyCalendarHeight();
+  }, [selectedFilter]);
 
   return (
     <>
@@ -27,9 +40,12 @@ export default function Dashboard() {
             <TotalCards selectedFilter={selectedFilter} />
           </Col>
           <Col xs={24} md={24} lg={14} xl={16}>
-            <ChartIncome selectedFilter={selectedFilter} />
+            <ChartIncome
+              selectedFilter={selectedFilter}
+              monthlyCalendarHeight={monthlyCalendarHeight}
+            />
           </Col>
-          <Col xs={24} md={24} lg={10} xl={8}>
+          <Col xs={24} md={24} lg={10} xl={8} ref={monthlyCalendarRef}>
             <MonthlyCalendar />
           </Col>
           <Col span={24}>

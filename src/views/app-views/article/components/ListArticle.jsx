@@ -42,6 +42,9 @@ export function ListArticle() {
   const doctor = useSelector(selectDoctorProfile);
   const dataDoctor = doctor?.data?.response;
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const sizePage = 6;
+
   useDocumentTitle("Artikel Saya");
   useScrollToTop();
 
@@ -49,7 +52,7 @@ export function ListArticle() {
     setIsLoading(true);
     const fetchListArticles = async () => {
       try {
-        const result = await APIArticle.getListArticle();
+        const result = await APIArticle.getListArticle(currentPage);
         if (searchQuery) {
           const filteredData = result.response?.filter((data) => {
             const filterBy =
@@ -61,7 +64,7 @@ export function ListArticle() {
 
           !filteredData ? setDataArticles([]) : setDataArticles(filteredData);
         } else {
-          setDataArticles(result?.response);
+          setDataArticles(result?.response || []);
         }
         setIsLoading(false);
         result !== null &&
@@ -78,13 +81,13 @@ export function ListArticle() {
       }
     };
     fetchListArticles();
-  }, [searchQuery]);
+  }, [searchQuery, currentPage]);
 
   return (
     <>
       <section>
         <div className="relative mb-6 focus:bg-black">
-          {!isLoading ? (
+          {!isLoading && !isError ? (
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-4 sm:ps-8">
               <BsSearch className="text-gray-400" />
             </div>
@@ -120,48 +123,51 @@ export function ListArticle() {
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         )}
         <Row gutter={[16, 24]}>
-          {dataArticles?.map((item, i) => (
-            <Col key={i} span={8} xs={24} md={12} lg={8}>
-              <Link to={`/artikel/${item.id}`}>
-                <Card
-                  loading={isLoading}
-                  hoverable
-                  cover={
-                    <>
-                      <Image
-                        alt={item?.image_desc}
-                        src={item?.image}
-                        className="h-[200px] md:h-[190px] lg:h-[200px] xl:h-[250px]"
-                        preview={false}
-                        fallback={ListArticles[0].img}
-                      />
-                    </>
-                  }
-                >
-                  <Tags tags={item.tags} />
+          {dataArticles
+            ?.slice((currentPage - 1) * sizePage, currentPage * sizePage)
+            ?.map((item, i) => (
+              <Col key={i} span={8} xs={24} md={12} lg={8}>
+                <Link to={`/artikel/${item.id}`}>
+                  <Card
+                    loading={isLoading}
+                    hoverable
+                    cover={
+                      <>
+                        <Image
+                          alt={item?.image_desc}
+                          src={item?.image}
+                          className="h-[200px] md:h-[190px] lg:h-[200px] xl:h-[250px]"
+                          preview={false}
+                          fallback={ListArticles[0].img}
+                        />
+                      </>
+                    }
+                  >
+                    <Tags tags={item.tags} />
 
-                  <p className="mb-5 mt-3 line-clamp-1 font-semibold">
-                    {item?.title}
-                  </p>
+                    <p className="mb-5 mt-3 line-clamp-1 font-semibold">
+                      {item?.title}
+                    </p>
 
-                  <Flex gap="middle">
-                    <div className="self-center">
-                      <Avatar src={dataDoctor?.profile_image} />
-                    </div>
-                    <div>
-                      <h6 className="font-semibold">{dataDoctor?.name}</h6>
-                      <h6 className="text-grey-200">{item.date}</h6>
-                    </div>
-                  </Flex>
-                </Card>
-              </Link>
-            </Col>
-          ))}
+                    <Flex gap="middle">
+                      <div className="self-center">
+                        <Avatar src={dataDoctor?.profile_image} />
+                      </div>
+                      <div>
+                        <h6 className="font-semibold">{dataDoctor?.name}</h6>
+                        <h6 className="text-grey-200">{item.date}</h6>
+                      </div>
+                    </Flex>
+                  </Card>
+                </Link>
+              </Col>
+            ))}
         </Row>
 
         {isError.message !== null && !isLoading && isError ? (
-          <Flex className="mb-5 flex-col items-center justify-center text-red-500">
-            <p>{isError.message}</p>
+          <Flex className="mb-5 flex-col items-center justify-center">
+            <p className="text-gray-500">Data artikel tidak tersedia.</p>
+            <p className="text-negative opacity-75">{isError.message}</p>
           </Flex>
         ) : (
           <></>
@@ -169,15 +175,30 @@ export function ListArticle() {
       </section>
 
       <footer>
-        {dataArticles.length === 0 ? null : (
-          <Col>
-            <Pagination
-              defaultCurrent={1}
-              total={50}
-              className="mx-auto my-10 flex justify-center md:gap-5"
-            />
-          </Col>
-        )}
+        <ConfigProvider
+          theme={{
+            components: {
+              Pagination: {
+                colorPrimary: "#17c6a3",
+                colorPrimaryHover: "#15b494",
+              },
+            },
+          }}
+        >
+          {dataArticles.length === 0 ? null : (
+            <Col>
+              <Pagination
+                defaultCurrent={currentPage}
+                defaultPageSize={sizePage}
+                total={dataArticles?.length}
+                onChange={(page) => {
+                  setCurrentPage(page);
+                }}
+                className="mx-auto my-10 flex justify-center md:gap-5"
+              />
+            </Col>
+          )}
+        </ConfigProvider>
       </footer>
     </>
   );

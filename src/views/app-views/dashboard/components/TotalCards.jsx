@@ -52,8 +52,10 @@ export function TotalCards({ selectedFilter }) {
   const formatPercentage = (percentage) => {
     return percentage !== undefined
       ? percentage < 0
-        ? percentage + "%"
-        : "+" + Math.round(percentage * 100) / 100 + "%"
+        ? percentage.toFixed(2) + "%"
+        : percentage % 1 === 0
+        ? "+" + percentage.toFixed(0) + "%"
+        : "+" + percentage.toFixed(2) + "%"
       : "0%";
   };
 

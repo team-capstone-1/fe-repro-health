@@ -15,7 +15,7 @@ export const formatDateToStringDay = (date) => {
 
 export const formatDateToStringWeek = (date) => {
   const value = dayjs(date, "YYYY-MM-DD");
-  return `Week ${value.week()}, ${value.startOf("week").format("DD")} - ${value
-    .endOf("week")
-    .format("DD MMMM YYYY")}`;
+  return `Week ${value.week()}, ${value
+    .startOf("week")
+    .format("DD MMM")} - ${value.endOf("week").format("DD MMM YYYY")}`;
 };
