@@ -259,12 +259,15 @@ export default function DetailArticle() {
                         <Avatar
                           size={50}
                           icon={<UserOutlined />}
-                          src={item.patient_profile}
+                          src={
+                            item.patient_profile ??
+                            "https://res.cloudinary.com/ddgoyuips/image/upload/c_crop,g_auto,h_800,w_800/cld-sample.jpg"
+                          }
                         />
                       }
                       title={
                         <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
-                          Oleh {item.patient_id}
+                          Oleh {item.patient_name ?? "Anonymous"}
                         </h5>
                       }
                       description={
