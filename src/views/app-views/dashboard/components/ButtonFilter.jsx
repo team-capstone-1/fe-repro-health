@@ -19,7 +19,10 @@ export function ButtonFilter({ onFilterClick }) {
       <Row id="button-filter-wrapper" justify="space-between">
         <Col xs={24} md={12}>
           {doctorState.status === "loading" && (
-            <Skeleton.Input active size="small" />
+            <Skeleton.Input
+              active
+              className="mb-5 block h-[15px] w-[350px] sm:mb-0 sm:w-[400px] xl:my-3"
+            />
           )}
           {doctorState.status === "success" && (
             <h4 id="welcome-doctor" className="mb-4 block font-semibold">

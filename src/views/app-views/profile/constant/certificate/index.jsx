@@ -52,7 +52,11 @@ export const ColumnCertificate = [
       const convertMB = parseInt(file_size) / 1024 / 1024;
       const formattedMB = convertMB.toFixed(2);
 
-      return <span>{formattedMB} MB</span>;
+      return (
+        <span>
+          {isNaN(file_size) || file_size.length === 0 ? "0" : formattedMB} MB
+        </span>
+      );
     },
   },
 ];

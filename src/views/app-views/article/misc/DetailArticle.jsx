@@ -30,7 +30,6 @@ import { splitString } from "@/utils/SplitString";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { selectDoctorProfile } from "@/store/get-doctor-profile-slice";
-import { DetailArticle as detailArticle } from "../constant/detail-article";
 import { ModalDeleteArticle } from "@/components/shared-components/ModalDeleteArticle";
 
 export default function DetailArticle() {
@@ -47,26 +46,25 @@ export default function DetailArticle() {
   const dataDoctor = doctor?.data?.response;
   const tags = splitString(detailArticles?.tags);
 
-  const fetchDetailArticles = async () => {
-    try {
-      const result = await APIArticle.getDetailArticle(articleId);
-      setDetailArticles(result?.response);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      setIsError(error);
-      setIsLoading(false);
-    }
-  };
-
   const handleOpenModalDelete = () => {
     setIsShowDelete((prev) => !prev);
   };
 
   useEffect(() => {
     setIsLoading(true);
+    const fetchDetailArticles = async () => {
+      try {
+        const result = await APIArticle.getDetailArticle(articleId);
+        setDetailArticles(result?.response);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsError(error);
+        setIsLoading(false);
+      }
+    };
     fetchDetailArticles();
-  }, []);
+  }, [articleId]);
 
   return (
     <section id="detail-article" className="py-5">
@@ -176,21 +174,21 @@ export default function DetailArticle() {
                   <div className="inline-flex items-center justify-start gap-2">
                     <MdOutlineRemoveRedEye className="relative h-5 w-5 text-[#989898]" />
                     <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
-                      {detailArticles?.views}
+                      {detailArticles?.views || 0}
                     </p>
                   </div>
 
                   <div className="inline-flex items-center justify-start gap-2.5">
                     <FaRegBookmark className="relative h-5 w-5 text-[#989898]" />
                     <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
-                      {detailArticle[0].bookmarks_amount}
+                      {detailArticles?.bookmarks || 0}
                     </p>
                   </div>
 
                   <div className="inline-flex items-center justify-start gap-2.5">
                     <MdOutlineComment className="relative h-5 w-5 text-[#989898]" />
                     <p className="text-xs font-medium text-[#989898] sm:text-sm md:text-base">
-                      {detailArticle[0].comments?.length}
+                      {detailArticles?.comments?.length || 0}
                     </p>
                   </div>
                 </div>
@@ -248,34 +246,37 @@ export default function DetailArticle() {
           <section id="comment-section">
             <div className="mt-8 h-14 w-full bg-[#E9E9E9] p-4 sm:mt-14">
               <h3 className="text-base font-semibold text-[#4B4B4B] sm:text-xl">
-                Komentar ({detailArticle?.comments?.length})
+                Komentar ({detailArticles?.comments?.length || 0})
               </h3>
             </div>
 
             <Skeleton loading={isLoading} active avatar>
               <List itemLayout="horizontal" className="p-4">
-                {detailArticle[0].comments.map((comment) => (
-                  <List.Item key={comment.user_id}>
+                {detailArticles?.comments?.map((item) => (
+                  <List.Item key={item.id}>
                     <List.Item.Meta
                       avatar={
                         <Avatar
                           size={50}
                           icon={<UserOutlined />}
-                          src={comment.user_image}
+                          src={
+                            item.patient_profile ??
+                            "https://res.cloudinary.com/ddgoyuips/image/upload/c_crop,g_auto,h_800,w_800/cld-sample.jpg"
+                          }
                         />
                       }
                       title={
                         <h5 className="text-sm font-semibold text-grey-500 sm:text-base">
-                          Oleh {comment.user_name}
+                          Oleh {item.patient_name ?? "Anonymous"}
                         </h5>
                       }
                       description={
                         <p className="mb-5 text-xs text-grey-300 sm:text-sm">
-                          {dayjs(comment.upload_date).fromNow()}
+                          {dayjs(item.date).fromNow()}
                         </p>
                       }
                     />
-                    {comment.user_comment}
+                    {item.comment}
                   </List.Item>
                 ))}
               </List>
