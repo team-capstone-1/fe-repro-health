@@ -1,5 +1,4 @@
 import profileDoctor from "@/assets/profile-doctor.svg";
-// import imageArticle from "@/assets/image-article.png";
 
 export const DetailArticle = [
   {
@@ -71,30 +70,3 @@ export const DetailArticle = [
     ],
   },
 ];
-
-// export const CommentUser = [
-//   {
-//     user_id: 1,
-//     user_image: "https://picsum.photos/200",
-//     user_name: "Ridha Nayla",
-//     upload_date: "2023-11-29T07:48:15Z",
-//     user_comment:
-//       "Wah, bener banget nih! Aku dulu juga suka nangis gara-gara hal sepele pas hamil. Ternyata emang efek hormon ya, hehe.",
-//   },
-//   {
-//     user_id: 2,
-//     user_image: "https://picsum.photos/200",
-//     user_name: "Ridha Nayla",
-//     upload_date: "2023-11-27T07:48:15Z",
-//     user_comment:
-//       "Setuju banget! Waktu hamil, emosi rasanya labil banget. Aku pernah nangis gegara lupa beli ice cream favorit. Hormon emang kocak kadang.",
-//   },
-//   {
-//     user_id: 3,
-//     user_image: "https://picsum.photos/200",
-//     user_name: "Agung Ridho",
-//     upload_date: "2023-11-01T07:48:15Z",
-//     user_comment:
-//       "Sebagai calon ayah, awalnya bingung juga sama perubahan emosi pasangan. Tapi setelah baca-baca dan curhat sama temen-temen, ternyata wajar banget ya kalo dia sering nangis. Intinya, dukung aja sebisa mungkin",
-//   },
-// ];
