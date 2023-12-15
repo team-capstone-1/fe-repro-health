@@ -17,7 +17,8 @@
     <br />
     <a href="https://github.com/team-capstone-1/fe-repro-health/issues">Report Bug</a>
     ·
-    <a href="https://github.com/team-capstone-1/fe-repro-health/issues">Request Feature</a>
+    <a href="https://github.com/team-capstone-1/fe-repro-health/pulls">Request Feature</a>
+   
 </p>
 
 <!-- TABLE OF CONTENTS -->
