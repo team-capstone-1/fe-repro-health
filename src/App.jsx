@@ -1,24 +1,20 @@
-import { useState } from "react";
-import "./App.css";
+import SetupRoutes from "@/routers";
+import { ToastContainer } from "react-toastify";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
     <>
-      <div>
-        <h1 className="bg-green-900">ASNDAKSMAKS</h1>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <ToastContainer
+        enableMultiContainer
+        containerId="xl"
+        className="mt-14 w-full"
+      />
+      <ToastContainer
+        enableMultiContainer
+        containerId="md"
+        className="mt-14 w-[450px]"
+      />
+      <SetupRoutes />
     </>
   );
 }
-
-export default App;

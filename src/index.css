@@ -1,3 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.base-container {
+  @apply w-full px-2 sm:px-12 lg:px-[5.5rem] xl:px-32 2xl:px-[10.5rem];
+}
+
+.app-container {
+  @apply w-full px-2 sm:px-12 md:px-5 lg:px-[5.5rem] xl:px-24 2xl:px-[10.5rem];
+}
+
+.icon-footer {
+  @apply flex h-8 w-8 cursor-pointer place-content-center items-center rounded-full border-2 border-white hover:border-green-100 hover:text-green-200 hover:duration-300;
+}
+
+.ql-container {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.ql-toolbar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.ql-editor {
+  height: 280px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+h3 {
+  font-size: 32px;
+  font-weight: 600;
+}
+h4 {
+  font-size: 24px;
+  font-weight: 600;
+}
+h5 {
+  font-size: 18px;
+  font-weight: 400;
+}
+h6 {
+  font-size: 14px;
+  font-weight: 400;
+}
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 18px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+}
+
+.big-calendar table thead tr > th {
+  display: none;
+}
+
+.ant-picker-body {
+  padding-top: 0px !important;
+}
+
+.ant-btn-primary {
+  background-color: #17c6a3;
+}
+
+.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: #15b494;
+}
+
+.ant-input {
+  font-family: "Poppins", sans-serif;
+}
+
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+}
+
+.menu ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.menu ul li {
+  list-style-type: disc;
+}
+
+.menu ol li {
+  list-style-type: decimal;
+}
