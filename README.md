@@ -17,7 +17,8 @@
     <br />
     <a href="https://github.com/team-capstone-1/fe-repro-health/issues">Report Bug</a>
     ·
-    <a href="https://github.com/team-capstone-1/fe-repro-health/issues">Request Feature</a>
+    <a href="https://github.com/team-capstone-1/fe-repro-health/pulls">Request Feature</a>
+   
 </p>
 
 <!-- TABLE OF CONTENTS -->
@@ -29,7 +30,7 @@
     </li>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#project-management">Project Management</a></li>
-    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#build-with">Build With</a></li>
     <li><a href="#folder-structure">Folder Structure</a></li>
   </ul>
 </details>
@@ -115,9 +116,9 @@ Make sure you have installed this on your computer, or run this syntax on your t
 
 ---
 
-## Built With
+## Build With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+The framework and libraries we used to bootstrap our project:
 
 - ![Static Badge](https://img.shields.io/badge/React-%2361DAFB?style=fot-the-badge&logo=react&color=%23000&link=https%3A%2F%2Fant.design%2Fdocs%2Freact%2Fintroduce) ![Static Badge](https://img.shields.io/badge/Vite-%23646CFF?style=fot-the-badge&logo=vite&color=%23000)
 
