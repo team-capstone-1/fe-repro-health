@@ -82,7 +82,7 @@ export default function DiscussionDetail() {
                 src={
                   data[0]?.anonymous
                     ? anonymousPict
-                    : data[0]?.patient?.profile_image
+                    : data[0]?.patient?.profile_image || anonymousPict
                 }
                 alt="patient profile"
               />

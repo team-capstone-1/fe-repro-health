@@ -142,7 +142,7 @@ export function NotAnsweredYet() {
                     src={
                       data.anonymous
                         ? anonymousPict
-                        : data.patient.profile_image
+                        : data.patient.profile_image || anonymousPict
                     }
                     alt="patient profile"
                   />
